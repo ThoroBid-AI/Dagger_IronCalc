@@ -79,6 +79,10 @@ def parse_offline_arg(argv: List[str]) -> bool:
     return "--offline" in argv
 
 
+def parse_report_arg(argv: List[str]) -> bool:
+    return "--from-report" in argv
+
+
 def normalize(name: str) -> str:
     return re.sub(r"\s+", "", name.upper())
 
@@ -246,6 +250,20 @@ def load_batch_functions(batch_id: str) -> Set[str]:
     return functions
 
 
+def load_report_functions(report_path: Path) -> Set[str]:
+    if not report_path.exists():
+        raise FileNotFoundError(f"Missing report file: {report_path}")
+    functions: Set[str] = set()
+    with report_path.open(newline="") as f:
+        for row in csv.DictReader(f):
+            status = (row.get("status") or "").strip()
+            if status.startswith("SOURCE_ISSUE"):
+                fn = (row.get("function_name") or "").strip().upper()
+                if fn:
+                    functions.add(fn)
+    return functions
+
+
 def build_request(url: str, profile: Dict[str, str]) -> urllib.request.Request:
     headers = dict(profile)
     headers.setdefault("Accept-Language", "en-US,en;q=0.9")
@@ -396,6 +414,26 @@ def extract_table_pairs(text: str, fn: str) -> List[str]:
                 if item and item not in examples:
                     examples.append(item)
     return examples[:12]
+
+
+def extract_table_formulas(text: str, fn: str) -> List[str]:
+    fn_esc = re.escape(fn)
+    formulas: List[str] = []
+    for table_html in TABLE_RE.finditer(text):
+        rows = extract_table_rows(table_html.group(1))
+        if not rows:
+            continue
+        for cells in rows[1:]:
+            for cell in cells:
+                if not cell:
+                    continue
+                for match in re.finditer(rf"\b{fn_esc}\s*\([^\n\r)]{{0,220}}\)", cell, flags=re.I):
+                    candidate = match.group(0).strip().strip("`").strip()
+                    if candidate and candidate not in formulas:
+                        formulas.append(candidate)
+                        if len(formulas) >= 12:
+                            return formulas
+    return formulas
 
 
 def extract_named_section_text(sections: List[Tuple[str, str]], title_terms: Iterable[str]) -> str:
@@ -580,6 +618,7 @@ def extract_examples_text(html_text: str, fn: str) -> str:
     for title, body in sections:
         if "example" in title:
             examples.extend(extract_formula_examples(body, fn))
+            examples.extend(extract_table_formulas(body, fn))
             table_pairs = extract_table_pairs(body, fn)
             for pair in table_pairs[:8]:
                 if len(pair) > 1:
@@ -603,6 +642,9 @@ def extract_examples_text(html_text: str, fn: str) -> str:
         fallback_examples = extract_formula_examples(html_text, fn)
         if fallback_examples:
             return "Examples: " + " | ".join(fallback_examples[:10])
+        table_formulas = extract_table_formulas(html_text, fn)
+        if table_formulas:
+            return "Examples: " + " | ".join(table_formulas[:10])
         fallback_tables = extract_table_pairs(html_text, fn)
         if fallback_tables:
             return "Examples: " + " | ".join(str(item) for item in fallback_tables[:8])
@@ -627,6 +669,14 @@ def summarize(text: str, max_len: int = 650) -> str:
     if not clean:
         return "Not captured from source."
     return clean if len(clean) <= max_len else clean[:max_len].rstrip() + "…"
+
+
+def examples_include_fn(examples: List[str], fn: str) -> bool:
+    fn_esc = re.escape(fn)
+    for example in examples:
+        if re.search(rf"\b{fn_esc}\s*\(", example, flags=re.I):
+            return True
+    return False
 
 
 def section_for_provider(
@@ -745,11 +795,20 @@ def section_for_provider(
             # `extract_examples_text` may return structured items already.
             examples_lines = [part.strip() for part in examples_raw.replace("Examples: ", "", 1).split(" | ")]
             lines.append("- Examples:")
+            if not examples_include_fn(examples_lines, fn) and signatures:
+                for sig in signatures:
+                    if sig not in examples_lines:
+                        examples_lines.append(sig)
             for example in examples_lines:
                 if example:
                     lines.append(f"  - {summarize(example, 240)}")
         else:
-            lines.append(f"- Examples: {summarize(examples_raw)}")
+            if not examples_include_fn([examples_raw], fn) and signatures:
+                lines.append("- Examples:")
+                for sig in signatures[:6]:
+                    lines.append(f"  - {summarize(sig, 240)}")
+            else:
+                lines.append(f"- Examples: {summarize(examples_raw)}")
     else:
         if fallback_examples:
             lines.append("- Examples:")
@@ -823,14 +882,19 @@ def load_matrix_row(matrix: Dict[str, Dict[str, str]], fn: str) -> Tuple[str, st
 def main() -> int:
     batch = parse_batch_arg(sys.argv)
     offline = parse_offline_arg(sys.argv)
-    print(f"[batch={batch}] Starting documentation enrichment...")
+    use_report = parse_report_arg(sys.argv)
+    batch_label = "REPORT" if use_report else batch
+    print(f"[batch={batch_label}] Starting documentation enrichment...")
     try:
-        batch_functions = load_batch_functions(batch)
+        if use_report:
+            batch_functions = load_report_functions(REPORT)
+        else:
+            batch_functions = load_batch_functions(batch)
     except Exception as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
     if not batch_functions:
-        print(f"No functions found for batch {batch}", file=sys.stderr)
+        print(f"No functions found for batch {batch_label}", file=sys.stderr)
         return 1
 
     try:
@@ -869,7 +933,7 @@ def main() -> int:
         fallback_errors = parse_first_text(errors_section)
         fallback_summary = parse_first_nonempty(purpose_section) or parse_first_text(purpose_section)
 
-        print(f"[batch={batch}] [FN] {fn}")
+        print(f"[batch={batch_label}] [FN] {fn}")
         provider_sections: List[List[str]] = []
 
         for provider, url, avail in (
@@ -897,7 +961,7 @@ def main() -> int:
                 )
             else:
                 try:
-                    html_text = fetch(url, batch=batch, fn=fn, provider=provider)
+                    html_text = fetch(url, batch=batch_label, fn=fn, provider=provider)
                     provider_section = section_for_provider(
                         provider,
                         fn,
@@ -937,16 +1001,16 @@ def main() -> int:
         doc.write_text("\n".join(updated_doc).rstrip() + "\n")
         rows.append((fn, "UPDATED", str(doc)))
         updated += 1
-        print(f"[batch={batch}] [OK] {fn} enriched")
+        print(f"[batch={batch_label}] [OK] {fn} enriched")
 
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     with REPORT.open("w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["batch", "function_name", "status", "doc_path"])
         for fn, status, path in rows:
-            w.writerow([batch, fn, status, path])
+            w.writerow([batch_label, fn, status, path])
 
-    print(f"[batch={batch}] Enrichment complete. updated={updated} missing={missing}")
+    print(f"[batch={batch_label}] Enrichment complete. updated={updated} missing={missing}")
     if missing:
         return 1
     return 0
