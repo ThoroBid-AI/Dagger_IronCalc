@@ -1085,11 +1085,47 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Boolean(compare_values(&left, &right) >= 0))
         }
         "HSTACK" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut arrays: Vec<Vec<Vec<ArrayNode>>> = Vec::new();
+            let mut row_count: Option<usize> = None;
+            for arg in args {
+                let array = match model.get_number_or_array(arg, cell) {
+                    Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                    Ok(NumberOrArray::Array(a)) => a,
+                    Err(e) => return Some(e),
+                };
+                if let Some(rc) = row_count {
+                    if array.len() != rc {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "HSTACK requires same row count".to_string(),
+                        ));
+                    }
+                } else {
+                    row_count = Some(array.len());
+                }
+                arrays.push(array);
+            }
+            let rows = row_count.unwrap_or(0);
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for row_idx in 0..rows {
+                let mut out_row: Vec<ArrayNode> = Vec::new();
+                for array in &arrays {
+                    if row_idx >= array.len() {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "HSTACK row out of range".to_string(),
+                        ));
+                    }
+                    out_row.extend(array[row_idx].iter().cloned());
+                }
+                out.push(out_row);
+            }
+            Some(CalcResult::Array(out))
         }
         "HYPERLINK" => {
             Some(CalcResult::new_error(
@@ -1740,11 +1776,51 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "TAKE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let rows = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let cols = if args.len() == 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let row_len = array.len();
+            let col_len = array.first().map(|r| r.len()).unwrap_or(0);
+            let (row_start, row_end) = if rows >= 0 {
+                (0, usize::min(rows as usize, row_len))
+            } else {
+                let take = usize::min(rows.unsigned_abs() as usize, row_len);
+                (row_len.saturating_sub(take), row_len)
+            };
+            let (col_start, col_end) = if cols == 0 {
+                (0, col_len)
+            } else if cols > 0 {
+                (0, usize::min(cols as usize, col_len))
+            } else {
+                let take = usize::min(cols.unsigned_abs() as usize, col_len);
+                (col_len.saturating_sub(take), col_len)
+            };
+            let mut out = Vec::new();
+            for row in array.into_iter().skip(row_start).take(row_end.saturating_sub(row_start)) {
+                let mut out_row = Vec::new();
+                for value in row.into_iter().skip(col_start).take(col_end.saturating_sub(col_start)) {
+                    out_row.push(value);
+                }
+                out.push(out_row);
+            }
+            Some(CalcResult::Array(out))
         }
         "TEXTSPLIT" => {
             Some(CalcResult::new_error(
@@ -1754,18 +1830,38 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "TOCOL" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for row in array {
+                for item in row {
+                    out.push(vec![item]);
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "TOROW" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let mut out_row: Vec<ArrayNode> = Vec::new();
+            for row in array {
+                for item in row {
+                    out_row.push(item);
+                }
+            }
+            Some(CalcResult::Array(vec![out_row]))
         }
         "TODATE" => {
             Some(CalcResult::new_error(
@@ -1803,11 +1899,27 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "TRANSPOSE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let rows = array.len();
+            let cols = array.first().map(|r| r.len()).unwrap_or(0);
+            let mut out = vec![vec![ArrayNode::Number(0.0); rows]; cols];
+            for r in 0..rows {
+                for c in 0..cols {
+                    if let Some(row) = array.get(r) {
+                        if let Some(value) = row.get(c) {
+                            out[c][r] = value.clone();
+                        }
+                    }
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "TREND" => {
             Some(CalcResult::new_error(
@@ -1895,11 +2007,31 @@ pub(crate) fn evaluate_batch_fallback(
             }
         }
         "UNICHAR" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let code = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f.trunc() as i64,
+                Err(e) => return Some(e),
+            };
+            if code <= 0 || code > 0x10FFFF {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid character code".to_string(),
+                ));
+            }
+            let ch = match char::from_u32(code as u32) {
+                Some(c) => c,
+                None => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid character code".to_string(),
+                    ))
+                }
+            };
+            Some(CalcResult::String(ch.to_string()))
         }
         "UNIQUE" => {
             Some(CalcResult::new_error(
@@ -1948,11 +2080,38 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "VSTACK" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut arrays: Vec<Vec<Vec<ArrayNode>>> = Vec::new();
+            let mut col_count: Option<usize> = None;
+            for arg in args {
+                let array = match model.get_number_or_array(arg, cell) {
+                    Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                    Ok(NumberOrArray::Array(a)) => a,
+                    Err(e) => return Some(e),
+                };
+                let cols = array.first().map(|r| r.len()).unwrap_or(0);
+                if let Some(cc) = col_count {
+                    if cols != cc {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "VSTACK requires same column count".to_string(),
+                        ));
+                    }
+                } else {
+                    col_count = Some(cols);
+                }
+                arrays.push(array);
+            }
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for array in arrays {
+                for row in array {
+                    out.push(row);
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "WEBSERVICE" => {
             Some(CalcResult::new_error(
@@ -1962,18 +2121,96 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "WRAPCOLS" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let wrap = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if wrap <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Wrap count must be positive".to_string(),
+                ));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let mut flat: Vec<ArrayNode> = Vec::new();
+            for row in array {
+                for item in row {
+                    flat.push(item);
+                }
+            }
+            let wrap = wrap as usize;
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            let mut idx = 0;
+            while idx < flat.len() {
+                let mut row = Vec::new();
+                for _ in 0..wrap {
+                    if idx < flat.len() {
+                        row.push(flat[idx].clone());
+                    } else {
+                        row.push(ArrayNode::Error(Error::NA));
+                    }
+                    idx += 1;
+                }
+                out.push(row);
+            }
+            if out.is_empty() {
+                out.push(vec![ArrayNode::Error(Error::NA); wrap]);
+            }
+            Some(CalcResult::Array(out))
         }
         "WRAPROWS" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let wrap = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if wrap <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Wrap count must be positive".to_string(),
+                ));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let mut flat: Vec<ArrayNode> = Vec::new();
+            for row in array {
+                for item in row {
+                    flat.push(item);
+                }
+            }
+            let wrap = wrap as usize;
+            let rows = if wrap == 0 { 0 } else { wrap };
+            let cols = if rows == 0 { 0 } else { (flat.len() + rows - 1) / rows };
+            let mut out: Vec<Vec<ArrayNode>> = vec![vec![ArrayNode::Error(Error::NA); cols]; rows];
+            let mut idx = 0;
+            for c in 0..cols {
+                for r in 0..rows {
+                    if idx < flat.len() {
+                        out[r][c] = flat[idx].clone();
+                        idx += 1;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            if out.is_empty() {
+                out.push(vec![ArrayNode::Error(Error::NA); 1]);
+            }
+            Some(CalcResult::Array(out))
         }
         "XMATCH" => {
             Some(CalcResult::new_error(

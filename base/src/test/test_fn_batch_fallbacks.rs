@@ -768,10 +768,19 @@ fn test_batch_fallback_gte_extra() {
 #[test]
 fn test_batch_fallback_hstack() {
     let mut model = new_empty_model();
-    model._set("A1", "=HSTACK(1)");
+    model._set("A1", "=SUM(HSTACK({1,2},{3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
+}
+
+#[test]
+fn test_batch_fallback_hstack_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=SUM(HSTACK({1,2;3,4},{5,6;7,8}))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"36");
 }
 
 #[test]
@@ -1641,10 +1650,19 @@ fn test_batch_fallback_sumproduct() {
 #[test]
 fn test_batch_fallback_take() {
     let mut model = new_empty_model();
-    model._set("A1", "=TAKE(1)");
+    model._set("A1", "=SUM(TAKE({1,2;3,4},1,1))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1");
+}
+
+#[test]
+fn test_batch_fallback_take_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=SUM(TAKE({1,2;3,4},-1))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"7");
 }
 
 #[test]
@@ -1659,19 +1677,19 @@ fn test_batch_fallback_textsplit() {
 #[test]
 fn test_batch_fallback_tocol() {
     let mut model = new_empty_model();
-    model._set("A1", "=TOCOL(1)");
+    model._set("A1", "=SUM(TOCOL({1,2;3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
 fn test_batch_fallback_torow() {
     let mut model = new_empty_model();
-    model._set("A1", "=TOROW(1)");
+    model._set("A1", "=SUM(TOROW({1,2;3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
@@ -1722,10 +1740,10 @@ fn test_batch_fallback_to_text() {
 #[test]
 fn test_batch_fallback_transpose() {
     let mut model = new_empty_model();
-    model._set("A1", "=TRANSPOSE(1)");
+    model._set("A1", "=SUM(TRANSPOSE({1,2;3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
@@ -1794,10 +1812,10 @@ fn test_batch_fallback_unary_percent_extra() {
 #[test]
 fn test_batch_fallback_unichar() {
     let mut model = new_empty_model();
-    model._set("A1", "=UNICHAR(1)");
+    model._set("A1", "=UNICHAR(65)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"A");
 }
 
 #[test]
@@ -1839,10 +1857,19 @@ fn test_batch_fallback_vdb() {
 #[test]
 fn test_batch_fallback_vstack() {
     let mut model = new_empty_model();
-    model._set("A1", "=VSTACK(1)");
+    model._set("A1", "=SUM(VSTACK({1,2},{3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
+}
+
+#[test]
+fn test_batch_fallback_vstack_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=SUM(VSTACK({1,2;3,4},{5,6;7,8}))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"36");
 }
 
 #[test]
@@ -1857,19 +1884,19 @@ fn test_batch_fallback_webservice() {
 #[test]
 fn test_batch_fallback_wrapcols() {
     let mut model = new_empty_model();
-    model._set("A1", "=WRAPCOLS(1)");
+    model._set("A1", "=SUM(WRAPCOLS({1,2,3,4},2))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
 fn test_batch_fallback_wraprows() {
     let mut model = new_empty_model();
-    model._set("A1", "=WRAPROWS(1)");
+    model._set("A1", "=SUM(WRAPROWS({1,2,3,4},2))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
