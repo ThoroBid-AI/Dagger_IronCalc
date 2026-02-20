@@ -19,19 +19,7 @@ use crate::{
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 125] = [
-    "GETPIVOTDATA",
-    "GOOGLEFINANCE",
-    "GOOGLETRANSLATE",
-    "GROUPBY",
-    "GROWTH",
-    "GT",
-    "GTE",
-    "HSTACK",
-    "HYPERLINK",
-    "IMAGE",
-    "IMCOTH",
-    "IMLOG",
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 113] = [
     "IMPORTDATA",
     "IMPORTFEED",
     "IMPORTHTML",
@@ -1140,6 +1128,90 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "FVSCHEDULE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GETPIVOTDATA" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GOOGLEFINANCE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GOOGLETRANSLATE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GROUPBY" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GROWTH" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "GTE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "HSTACK" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "HYPERLINK" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMAGE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMCOTH" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMLOG" => {
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,

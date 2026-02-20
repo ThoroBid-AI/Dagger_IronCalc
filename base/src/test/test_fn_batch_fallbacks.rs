@@ -8,18 +8,6 @@ use crate::test::util::new_empty_model;
 fn test_batch_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
     let functions = [
-        "GETPIVOTDATA",
-        "GOOGLEFINANCE",
-        "GOOGLETRANSLATE",
-        "GROUPBY",
-        "GROWTH",
-        "GT",
-        "GTE",
-        "HSTACK",
-        "HYPERLINK",
-        "IMAGE",
-        "IMCOTH",
-        "IMLOG",
         "IMPORTDATA",
         "IMPORTFEED",
         "IMPORTHTML",
@@ -805,6 +793,114 @@ fn test_batch_fallback_frequency() {
 fn test_batch_fallback_fvschedule() {
     let mut model = new_empty_model();
     model._set("A1", "=FVSCHEDULE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_getpivotdata() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GETPIVOTDATA(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_googlefinance() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GOOGLEFINANCE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_googletranslate() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GOOGLETRANSLATE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_groupby() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GROUPBY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_growth() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GROWTH(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_gt() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_gte() {
+    let mut model = new_empty_model();
+    model._set("A1", "=GTE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_hstack() {
+    let mut model = new_empty_model();
+    model._set("A1", "=HSTACK(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_hyperlink() {
+    let mut model = new_empty_model();
+    model._set("A1", "=HYPERLINK(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_image() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMAGE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_imcoth() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMCOTH(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_imlog() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMLOG(1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
