@@ -10,11 +10,12 @@ use crate::{
     expressions::token::Error,
     expressions::types::CellReferenceIndex,
     expressions::utils::number_to_column,
+    functions::util::compare_values,
     cast::NumberOrArray,
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 175] = [
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 173] = [
     "ACCRINT",
     "ACCRINTM",
     "AGGREGATE",
@@ -43,13 +44,11 @@ const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 175] = [
     "CUBEVALUE",
     "DETECTLANGUAGE",
     "DISC",
-    "DIVIDE",
     "DOLLAR",
     "DROP",
     "DURATION",
     "ENCODEURL",
     "EPOCHTODATE",
-    "EQ",
     "EUROCONVERT",
     "EXPAND",
     "FILTER",
@@ -609,6 +608,41 @@ pub(crate) fn evaluate_batch_fallback(
                 }
             }
             Some(CalcResult::String(out))
+        }
+        "DIVIDE" => {
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let numerator = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let denominator = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            if denominator == 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::DIV,
+                    cell,
+                    "Division by zero".to_string(),
+                ));
+            }
+            Some(CalcResult::Number(numerator / denominator))
+        }
+        "EQ" => {
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = model.evaluate_node_in_context(&args[0], cell);
+            if left.is_error() {
+                return Some(left);
+            }
+            let right = model.evaluate_node_in_context(&args[1], cell);
+            if right.is_error() {
+                return Some(right);
+            }
+            Some(CalcResult::Boolean(compare_values(&left, &right) == 0))
         }
         _ => None,
     }

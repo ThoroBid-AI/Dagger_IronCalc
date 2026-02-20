@@ -130,7 +130,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 4,DEVSQ,implemented,,,,,,,,,,,,yes,fn_devsq,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/devsq.rs
 4,DGET,implemented,,,,,,,,,,,,yes,fn_dget,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DISC,unimplemented,,,,,,,,,,,,no,,
-4,DIVIDE,unimplemented,,,,,,,,,,,,no,,
+4,DIVIDE,divide_basic,,,,A1,"=DIVIDE(10,2)",5,,A2,"=DIVIDE(1,0)",#DIV/0!,,no,,
 4,DMAX,implemented,,,,,,,,,,,,yes,fn_dmax,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DMIN,implemented,,,,,,,,,,,,yes,fn_dmin,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DOLLAR,unimplemented,,,,,,,,,,,,no,,
@@ -149,7 +149,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 4,ENCODEURL,unimplemented,,,,,,,,,,,,no,,
 4,EOMONTH,implemented,,,,,,,,,,,,yes,fn_eomonth,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 4,EPOCHTODATE,unimplemented,,,,,,,,,,,,no,,
-4,EQ,unimplemented,,,,,,,,,,,,no,,
+4,EQ,eq_basic,,,,A1,"=EQ(1,1)",TRUE,,A2,"=EQ(1,2)",FALSE,,no,,
 4,ERF,implemented,,,,,,,,,,,,yes,fn_erf,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
 4,ERF.PRECISE,implemented,,,,,,,,,,,,yes,fn_erfprecise,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
 4,ERFC,implemented,,,,,,,,,,,,yes,fn_erfc,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs

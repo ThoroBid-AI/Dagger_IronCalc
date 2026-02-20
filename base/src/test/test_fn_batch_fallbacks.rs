@@ -36,13 +36,11 @@ fn test_batch_unsupported_functions_return_nimpl() {
         "CUBEVALUE",
         "DETECTLANGUAGE",
         "DISC",
-        "DIVIDE",
         "DOLLAR",
         "DROP",
         "DURATION",
         "ENCODEURL",
         "EPOCHTODATE",
-        "EQ",
         "EUROCONVERT",
         "EXPAND",
         "FILTER",
@@ -345,4 +343,40 @@ fn test_batch_fallback_dbcs() {
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"ＡＢＣ");
+}
+
+#[test]
+fn test_batch_fallback_divide() {
+    let mut model = new_empty_model();
+    model._set("A1", "=DIVIDE(10,2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"5");
+}
+
+#[test]
+fn test_batch_fallback_divide_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=DIVIDE(1,0)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"#DIV/0!");
+}
+
+#[test]
+fn test_batch_fallback_eq() {
+    let mut model = new_empty_model();
+    model._set("A1", "=EQ(1,1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_eq_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=EQ(1,2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
