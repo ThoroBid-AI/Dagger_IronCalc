@@ -34,7 +34,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns count of empty cells in a range.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Implemented in IronCalc.
 
   - COUNTBLANK({"A",, "", "B"})
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Non-range inputs may return argument error in strict mode.
 
@@ -58,7 +58,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns count of empty cells in a range.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Implemented in IronCalc.
 
   - COUNTBLANK({"A",, "", "B"})
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Non-range inputs may return argument error in strict mode.
 

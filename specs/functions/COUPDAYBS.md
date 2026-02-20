@@ -36,7 +36,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns coupon days from settlement to next interest period start.
 
 - Signatures:
 
@@ -46,7 +46,7 @@ Not implemented in IronCalc.
 
   - COUPDAYBS(45234, 45600, 2, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Settlement after maturity returns error.
 
@@ -60,7 +60,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns coupon days from settlement to next interest period start.
 
 - Signatures:
 
@@ -70,7 +70,7 @@ Not implemented in IronCalc.
 
   - COUPDAYBS(45234, 45600, 2, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Settlement after maturity returns error.
 

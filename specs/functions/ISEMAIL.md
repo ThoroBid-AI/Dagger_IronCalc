@@ -37,7 +37,7 @@ Validates whether text is an email-like address.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISEMAIL("a@b.com")
+- Summary: Validates whether text is an email-like address.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Validates whether text is an email-like address.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISEMAIL("a@b.com")
+- Summary: Validates whether text is an email-like address.
 
 - Signatures:
 

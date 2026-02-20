@@ -34,7 +34,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns previous coupon date before settlement.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Not implemented in IronCalc.
 
   - COUPPCD(45234, 45600, 2, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Missing schedule yields error.
 
@@ -58,7 +58,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns previous coupon date before settlement.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Not implemented in IronCalc.
 
   - COUPPCD(45234, 45600, 2, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Missing schedule yields error.
 

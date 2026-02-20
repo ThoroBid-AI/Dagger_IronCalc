@@ -36,7 +36,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Counts unique values in supplied arguments.
 
 - Signatures:
 
@@ -46,7 +46,7 @@ Not implemented in IronCalc.
 
   - COUNTUNIQUE(1,1,2,3)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or malformed arguments return a calculation error.
 
@@ -60,7 +60,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Counts unique values in supplied arguments.
 
 - Signatures:
 
@@ -70,7 +70,7 @@ Not implemented in IronCalc.
 
   - COUNTUNIQUE(1,1,2,3)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or malformed arguments return a calculation error.
 

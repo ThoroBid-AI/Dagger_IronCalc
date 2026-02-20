@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Counts numbers in database field meeting criteria.
 
 - Signatures:
 
@@ -45,7 +45,7 @@ Implemented in IronCalc.
 
   - DCOUNT(database, "Qty", criteria)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or malformed arguments return a calculation error.
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Counts numbers in database field meeting criteria.
 
 - Signatures:
 
@@ -69,7 +69,7 @@ Implemented in IronCalc.
 
   - DCOUNT(database, "Qty", criteria)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or malformed arguments return a calculation error.
 

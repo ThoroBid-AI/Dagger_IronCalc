@@ -34,7 +34,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns threshold value for binomial distribution by cumulative probability.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Not implemented in IronCalc.
 
   - CRITBINOM(0.75, 10, 0.5)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: If probability outside 0-1, returns error.
 
@@ -58,7 +58,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns threshold value for binomial distribution by cumulative probability.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Not implemented in IronCalc.
 
   - CRITBINOM(0.75, 10, 0.5)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: If probability outside 0-1, returns error.
 

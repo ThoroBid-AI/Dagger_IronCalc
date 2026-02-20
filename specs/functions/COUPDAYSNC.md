@@ -34,7 +34,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns number of days from settlement to next coupon date.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Not implemented in IronCalc.
 
   - COUPDAYSNC(45234, 45600, 2, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid schedule results return error.
 
@@ -58,7 +58,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns number of days from settlement to next coupon date.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Not implemented in IronCalc.
 
   - COUPDAYSNC(45234, 45600, 2, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid schedule results return error.
 

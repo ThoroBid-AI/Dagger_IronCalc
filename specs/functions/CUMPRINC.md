@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns cumulative principal paid between periods.
 
 - Signatures:
 
@@ -45,7 +45,7 @@ Implemented in IronCalc.
 
   - CUMPRINC(0.05, 12, 10000, 1, 3, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or malformed arguments return a calculation error.
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns cumulative principal paid between periods.
 
 - Signatures:
 
@@ -69,7 +69,7 @@ Implemented in IronCalc.
 
   - CUMPRINC(0.05, 12, 10000, 1, 3, 0)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or malformed arguments return a calculation error.
 

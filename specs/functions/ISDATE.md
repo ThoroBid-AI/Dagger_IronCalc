@@ -37,7 +37,7 @@ Returns TRUE if value is a valid date.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISDATE("2026-02-19")
+- Summary: Returns TRUE if value is a valid date.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns TRUE if value is a valid date.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISDATE("2026-02-19")
+- Summary: Returns TRUE if value is a valid date.
 
 - Signatures:
 

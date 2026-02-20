@@ -34,7 +34,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns population covariance.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Implemented in IronCalc.
 
   - COVARIANCE.P({1,2,3},{2,4,6})
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Non-numeric values are ignored where required or return error based on host mode.
 
@@ -58,7 +58,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns population covariance.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Implemented in IronCalc.
 
   - COVARIANCE.P({1,2,3},{2,4,6})
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Non-numeric values are ignored where required or return error based on host mode.
 

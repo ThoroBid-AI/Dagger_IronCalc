@@ -25,7 +25,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns serial date from year month day values.
 
 - Signatures:
 
@@ -49,7 +49,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns serial date from year month day values.
 
 - Signatures:
 

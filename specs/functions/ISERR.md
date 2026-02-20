@@ -33,7 +33,7 @@ Returns TRUE if value is any error except #N/A.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISERR(#DIV/0!)
+- Summary: Returns TRUE if value is any error except #N/A.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE if value is any error except #N/A.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISERR(#DIV/0!)
+- Summary: Returns TRUE if value is any error except #N/A.
 
 - Signatures:
 

@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns fixed declining balance depreciation for period.
 
 - Signatures:
 
@@ -46,7 +46,7 @@ Implemented in IronCalc.
 
   - DB(10000,1000,5,1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid `life` or `period` returns error.
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns fixed declining balance depreciation for period.
 
 - Signatures:
 
@@ -70,7 +70,7 @@ Implemented in IronCalc.
 
   - DB(10000,1000,5,1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid `life` or `period` returns error.
 
