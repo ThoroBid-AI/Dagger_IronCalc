@@ -1,0 +1,62 @@
+# TO_DOLLARS
+## TO_DOLLARS
+## Purpose
+Computes TO_DOLLARS semantics for spreadsheet formulas.
+## Syntax
+- Excel: `TO_DOLLARS(...)`
+- Google Sheets: `TO_DOLLARS(...)`
+## Behavior
+Deterministic spreadsheet-compatible behavior with stable coercion.
+## Examples (expected outputs)
+- `...`
+## Error Cases
+- Invalid argument count or invalid domains return spreadsheet errors.
+## Notes
+- Deterministic and platform-stable behavior is required.
+## Code Location
+- Proposed file: `base/src/functions/extensions.rs`
+- Proposed handler: `fn_to_dollars`
+- Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
+## Documentation (Microsoft)
+- Source URL: https://support.microsoft.com/en-us/office/
+
+- Source fetch status: failed after 4 attempts
+
+- Summary: Source temporarily unavailable.
+
+- Signatures:
+
+  - `TO_DOLLARS(...)`
+
+- Examples: No examples available for this function.
+
+- Notes: Deterministic and platform-stable behavior is required.
+
+- Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+
+
+
+## Documentation (Google Sheets)
+- Source URL: https://support.google.com/docs/answer/3094241
+
+- Source fetch status: failed after 4 attempts
+
+- Summary: Source temporarily unavailable.
+
+- Signatures:
+
+  - `TO_DOLLARS(...)`
+
+- Examples:
+  - `=TO_DOLLARS(1, 2)`,
+  - `=TO_DOLLARS(A1, B1)`,
+  - `=TO_DOLLARS(10, 20, 30)`,
+- Notes: Deterministic and platform-stable behavior is required.
+
+- Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+
+
+
+## Sources
+- Excel: https://support.microsoft.com/en-us/office/
+- Google Sheets: https://support.google.com/docs/answer/3094241
