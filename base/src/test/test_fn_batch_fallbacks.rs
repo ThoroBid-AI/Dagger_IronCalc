@@ -8,16 +8,6 @@ use crate::test::util::new_empty_model;
 fn test_batch_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
     let functions = [
-        "IMPORTDATA",
-        "IMPORTFEED",
-        "IMPORTHTML",
-        "IMPORTRANGE",
-        "IMPORTXML",
-        "IMTANH",
-        "INTRATE",
-        "ISBETWEEN",
-        "ISDATE",
-        "ISEMAIL",
         "ISOMITTED",
         "ISURL",
         "JIS",
@@ -901,6 +891,96 @@ fn test_batch_fallback_imcoth() {
 fn test_batch_fallback_imlog() {
     let mut model = new_empty_model();
     model._set("A1", "=IMLOG(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_importdata() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMPORTDATA(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_importfeed() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMPORTFEED(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_importhtml() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMPORTHTML(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_importrange() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMPORTRANGE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_importxml() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMPORTXML(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_imtanh() {
+    let mut model = new_empty_model();
+    model._set("A1", "=IMTANH(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_intrate() {
+    let mut model = new_empty_model();
+    model._set("A1", "=INTRATE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_isbetween() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ISBETWEEN(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_isdate() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ISDATE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_isemail() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ISEMAIL(1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");

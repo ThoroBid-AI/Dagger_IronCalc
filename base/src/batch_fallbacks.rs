@@ -19,17 +19,7 @@ use crate::{
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 113] = [
-    "IMPORTDATA",
-    "IMPORTFEED",
-    "IMPORTHTML",
-    "IMPORTRANGE",
-    "IMPORTXML",
-    "IMTANH",
-    "INTRATE",
-    "ISBETWEEN",
-    "ISDATE",
-    "ISEMAIL",
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 103] = [
     "ISOMITTED",
     "ISURL",
     "JIS",
@@ -1212,6 +1202,76 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "IMLOG" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMPORTDATA" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMPORTFEED" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMPORTHTML" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMPORTRANGE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMPORTXML" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "IMTANH" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "INTRATE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "ISBETWEEN" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "ISDATE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "ISEMAIL" => {
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
