@@ -3355,24 +3355,250 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(result))
         }
         "PERCENTRANK" => {
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            let data = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match data {
+                NumberOrArray::Number(f) => values.push(f),
+                NumberOrArray::Array(a) => {
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Number(f) => values.push(f),
+                                ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => {
+                                    if let Some(f) = model.cast_number(&s) {
+                                        values.push(f);
+                                    }
+                                }
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Percentrank error".to_string()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            values.retain(|v| v.is_finite());
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let x = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let n = values.len();
+            if n == 1 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let min = values[0];
+            let max = values[n - 1];
+            if x < min || x > max {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "Value out of range".to_string(),
+                ));
+            }
+            if (x - min).abs() < f64::EPSILON {
+                return Some(CalcResult::Number(0.0));
+            }
+            if (x - max).abs() < f64::EPSILON {
+                return Some(CalcResult::Number(1.0));
+            }
+            let mut idx = 0usize;
+            while idx + 1 < n {
+                let lower = values[idx];
+                let upper = values[idx + 1];
+                if (x - lower).abs() < f64::EPSILON {
+                    let rank = idx as f64;
+                    return Some(CalcResult::Number(rank / (n as f64 - 1.0)));
+                }
+                if x > lower && x < upper {
+                    let fraction = (x - lower) / (upper - lower);
+                    let rank = idx as f64 + fraction;
+                    return Some(CalcResult::Number(rank / (n as f64 - 1.0)));
+                }
+                idx += 1;
+            }
             Some(CalcResult::new_error(
-                Error::NIMPL,
+                Error::NA,
                 cell,
-                "Function not supported yet".to_string(),
+                "Not found".to_string(),
             ))
         }
         "PERCENTRANKEXC" => {
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            let data = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match data {
+                NumberOrArray::Number(f) => values.push(f),
+                NumberOrArray::Array(a) => {
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Number(f) => values.push(f),
+                                ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => {
+                                    if let Some(f) = model.cast_number(&s) {
+                                        values.push(f);
+                                    }
+                                }
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Percentrank error".to_string()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            values.retain(|v| v.is_finite());
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let x = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let n = values.len();
+            if n < 2 {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "Insufficient data".to_string(),
+                ));
+            }
+            let min = values[0];
+            let max = values[n - 1];
+            if x <= min || x >= max {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "Value out of range".to_string(),
+                ));
+            }
+            let mut idx = 0usize;
+            while idx + 1 < n {
+                let lower = values[idx];
+                let upper = values[idx + 1];
+                if (x - lower).abs() < f64::EPSILON {
+                    let rank = (idx + 1) as f64;
+                    return Some(CalcResult::Number(rank / (n as f64 + 1.0)));
+                }
+                if x > lower && x < upper {
+                    let fraction = (x - lower) / (upper - lower);
+                    let rank = (idx + 1) as f64 + fraction;
+                    return Some(CalcResult::Number(rank / (n as f64 + 1.0)));
+                }
+                idx += 1;
+            }
             Some(CalcResult::new_error(
-                Error::NIMPL,
+                Error::NA,
                 cell,
-                "Function not supported yet".to_string(),
+                "Not found".to_string(),
             ))
         }
         "PERCENTRANKINC" => {
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            let data = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match data {
+                NumberOrArray::Number(f) => values.push(f),
+                NumberOrArray::Array(a) => {
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Number(f) => values.push(f),
+                                ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => {
+                                    if let Some(f) = model.cast_number(&s) {
+                                        values.push(f);
+                                    }
+                                }
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Percentrank error".to_string()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            values.retain(|v| v.is_finite());
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let x = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let n = values.len();
+            if n == 1 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let min = values[0];
+            let max = values[n - 1];
+            if x < min || x > max {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "Value out of range".to_string(),
+                ));
+            }
+            if (x - min).abs() < f64::EPSILON {
+                return Some(CalcResult::Number(0.0));
+            }
+            if (x - max).abs() < f64::EPSILON {
+                return Some(CalcResult::Number(1.0));
+            }
+            let mut idx = 0usize;
+            while idx + 1 < n {
+                let lower = values[idx];
+                let upper = values[idx + 1];
+                if (x - lower).abs() < f64::EPSILON {
+                    let rank = idx as f64;
+                    return Some(CalcResult::Number(rank / (n as f64 - 1.0)));
+                }
+                if x > lower && x < upper {
+                    let fraction = (x - lower) / (upper - lower);
+                    let rank = idx as f64 + fraction;
+                    return Some(CalcResult::Number(rank / (n as f64 - 1.0)));
+                }
+                idx += 1;
+            }
             Some(CalcResult::new_error(
-                Error::NIMPL,
+                Error::NA,
                 cell,
-                "Function not supported yet".to_string(),
+                "Not found".to_string(),
             ))
         }
         "PERMUT" => {
@@ -3473,11 +3699,106 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "PROB" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let values = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let probs = match model.get_number_or_array(&args[1], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let mut xs: Vec<f64> = Vec::new();
+            let mut ps: Vec<f64> = Vec::new();
+            let extract = |value: NumberOrArray, out: &mut Vec<f64>| -> Option<CalcResult> {
+                match value {
+                    NumberOrArray::Number(f) => out.push(f),
+                    NumberOrArray::Array(a) => {
+                        for row in a {
+                            for node in row {
+                                match node {
+                                    ArrayNode::Number(f) => out.push(f),
+                                    ArrayNode::Boolean(b) => out.push(if b { 1.0 } else { 0.0 }),
+                                    ArrayNode::String(s) => {
+                                        if let Some(f) = model.cast_number(&s) {
+                                            out.push(f);
+                                        } else {
+                                            return Some(CalcResult::new_error(
+                                                Error::VALUE,
+                                                cell,
+                                                "Invalid value".to_string(),
+                                            ));
+                                        }
+                                    }
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Prob error".to_string()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                None
+            };
+            if let Some(err) = extract(values, &mut xs) {
+                return Some(err);
+            }
+            if let Some(err) = extract(probs, &mut ps) {
+                return Some(err);
+            }
+            if xs.is_empty() || xs.len() != ps.len() {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Value/probability size mismatch".to_string(),
+                ));
+            }
+            let mut total = 0.0;
+            for p in &ps {
+                if *p < 0.0 || *p > 1.0 {
+                    return Some(CalcResult::new_error(
+                        Error::NUM,
+                        cell,
+                        "Probability out of range".to_string(),
+                    ));
+                }
+                total += *p;
+            }
+            if (total - 1.0).abs() > 1.0e-6 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Probabilities must sum to 1".to_string(),
+                ));
+            }
+            let lower = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let upper = if args.len() == 4 {
+                match model.get_number_no_bools(&args[3], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                lower
+            };
+            if lower > upper {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Lower > upper".to_string(),
+                ));
+            }
+            let mut sum = 0.0;
+            for (x, p) in xs.iter().zip(ps.iter()) {
+                if *x >= lower && *x <= upper {
+                    sum += *p;
+                }
+            }
+            Some(CalcResult::Number(sum))
         }
         "PROPER" => {
             if args.len() != 1 {
@@ -3981,11 +4302,66 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "SERIESSUM" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let x = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let n = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let m = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let coeffs = match model.get_number_or_array(&args[3], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let mut c: Vec<f64> = Vec::new();
+            match coeffs {
+                NumberOrArray::Number(f) => c.push(f),
+                NumberOrArray::Array(a) => {
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Number(f) => c.push(f),
+                                ArrayNode::Boolean(b) => c.push(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => {
+                                    if let Some(f) = model.cast_number(&s) {
+                                        c.push(f);
+                                    } else {
+                                        return Some(CalcResult::new_error(
+                                            Error::VALUE,
+                                            cell,
+                                            "Invalid coefficient".to_string(),
+                                        ));
+                                    }
+                                }
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Seriessum error".to_string()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if c.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "No coefficients".to_string(),
+                ));
+            }
+            let mut sum = 0.0;
+            for (i, coeff) in c.iter().enumerate() {
+                let exp = n + (i as f64) * m;
+                sum += *coeff * x.powf(exp);
+            }
+            Some(CalcResult::Number(sum))
         }
         "SORT" => {
             Some(CalcResult::new_error(

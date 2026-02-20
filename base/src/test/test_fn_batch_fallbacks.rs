@@ -1378,28 +1378,28 @@ fn test_batch_fallback_percentile_inc() {
 #[test]
 fn test_batch_fallback_percentrank() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERCENTRANK(1)");
+    model._set("A1", "=PERCENTRANK({1,2},1)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0");
 }
 
 #[test]
 fn test_batch_fallback_percentrank_exc() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERCENTRANK.EXC(1)");
+    model._set("A1", "=PERCENTRANK.EXC({1,2,3},2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.5");
 }
 
 #[test]
 fn test_batch_fallback_percentrank_inc() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERCENTRANK.INC(1)");
+    model._set("A1", "=PERCENTRANK.INC({1,2},2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1");
 }
 
 #[test]
@@ -1486,10 +1486,10 @@ fn test_batch_fallback_pricemat() {
 #[test]
 fn test_batch_fallback_prob() {
     let mut model = new_empty_model();
-    model._set("A1", "=PROB(1)");
+    model._set("A1", "=PROB({1,2,3},{0.2,0.5,0.3},1,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.7");
 }
 
 #[test]
@@ -1684,10 +1684,10 @@ fn test_batch_fallback_sequence() {
 #[test]
 fn test_batch_fallback_seriessum() {
     let mut model = new_empty_model();
-    model._set("A1", "=SERIESSUM(1)");
+    model._set("A1", "=SERIESSUM(2,1,2,{1,2,3})");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"114");
 }
 
 #[test]

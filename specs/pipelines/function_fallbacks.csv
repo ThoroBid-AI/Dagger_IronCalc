@@ -368,9 +368,9 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 10,PERCENTILE,percentile_inc_basic,,,,A1,"=PERCENTILE({1,2,3,4},0.5)",2.5,,,,,,no,,
 10,PERCENTILE.EXC,percentile_exc_basic,,,,A1,"=PERCENTILE.EXC({1,2,3,4},0.2)",1,,,,,,no,,
 10,PERCENTILE.INC,percentile_inc_basic,,,,A1,"=PERCENTILE.INC({1,2,3,4},0.25)",1.75,,,,,,no,,
-10,PERCENTRANK,unsupported_nimpl,,,,A1,=PERCENTRANK(1),#N/IMPL!,,,,,,no,,
-10,PERCENTRANK.EXC,unsupported_nimpl,,,,A1,=PERCENTRANK.EXC(1),#N/IMPL!,,,,,,no,,
-10,PERCENTRANK.INC,unsupported_nimpl,,,,A1,=PERCENTRANK.INC(1),#N/IMPL!,,,,,,no,,
+10,PERCENTRANK,percentrank_inc_basic,,,,A1,"=PERCENTRANK({1,2},1)",0,,,,,,no,,
+10,PERCENTRANK.EXC,percentrank_exc_basic,,,,A1,"=PERCENTRANK.EXC({1,2,3},2)",0.5,,,,,,no,,
+10,PERCENTRANK.INC,percentrank_inc_basic,,,,A1,"=PERCENTRANK.INC({1,2},2)",1,,,,,,no,,
 10,PERMUT,permut_basic,,,,A1,"=PERMUT(5,2)",20,,,,,,no,,
 10,PERMUTATIONA,permutationa_basic,,,,A1,"=PERMUTATIONA(2,3)",8,,,,,,no,,
 10,PHI,implemented,,,,,,,,,,,,yes,fn_phi,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/phi.rs
@@ -385,7 +385,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 10,PRICE,unsupported_nimpl,,,,A1,=PRICE(1),#N/IMPL!,,,,,,no,,
 10,PRICEDISC,unsupported_nimpl,,,,A1,=PRICEDISC(1),#N/IMPL!,,,,,,no,,
 10,PRICEMAT,unsupported_nimpl,,,,A1,=PRICEMAT(1),#N/IMPL!,,,,,,no,,
-10,PROB,unsupported_nimpl,,,,A1,=PROB(1),#N/IMPL!,,,,,,no,,
+10,PROB,prob_basic,,,,A1,"=PROB({1,2,3},{0.2,0.5,0.3},1,2)",0.7,,,,,,no,,
 10,PRODUCT,implemented,,,,,,,,,,,,yes,fn_product,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 10,PROPER,proper_basic,,,,A1,"=PROPER(""hello world"")",Hello World,,A2,"=PROPER(""mIxEd"")",Mixed,,no,,
 10,PV,implemented,,,,,,,,,,,,yes,fn_pv,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
@@ -429,7 +429,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 11,SECH,implemented,,,,,,,,,,,,yes,fn_sech,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 11,SECOND,implemented,,,,,,,,,,,,yes,fn_second,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 11,SEQUENCE,sequence_basic,,,,A1,"=SUM(SEQUENCE(2,2,1,1))",10,,,,,,no,,
-11,SERIESSUM,unsupported_nimpl,,,,A1,=SERIESSUM(1),#N/IMPL!,,,,,,no,,
+11,SERIESSUM,seriessum_basic,,,,A1,"=SERIESSUM(2,1,2,{1,2,3})",114,,,,,,no,,
 11,SHEET,implemented,,,,,,,,,,,,yes,fn_sheet,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 11,SHEETS,implemented,,,,,,,,,,,,yes,fn_sheets,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 11,SIGN,implemented,,,,,,,,,,,,yes,fn_sign,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
