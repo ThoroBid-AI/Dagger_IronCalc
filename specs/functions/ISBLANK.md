@@ -33,7 +33,7 @@ Checks whether a reference is empty.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISBLANK("")
+- Summary: Checks whether a reference is empty.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Checks whether a reference is empty.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISBLANK("")
+- Summary: Checks whether a reference is empty.
 
 - Signatures:
 

@@ -33,7 +33,7 @@ Returns internal rate of return for periodic cash flows.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IRR({-1000,300,300,300,300})
+- Summary: Returns internal rate of return for periodic cash flows.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns internal rate of return for periodic cash flows.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IRR({-1000,300,300,300,300})
+- Summary: Returns internal rate of return for periodic cash flows.
 
 - Signatures:
 

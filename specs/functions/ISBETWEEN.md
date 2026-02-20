@@ -37,7 +37,7 @@ Returns TRUE if value is between two bounds.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISBETWEEN(5, 1, 10)
+- Summary: Returns TRUE if value is between two bounds.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns TRUE if value is between two bounds.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISBETWEEN(5, 1, 10)
+- Summary: Returns TRUE if value is between two bounds.
 
 - Signatures:
 

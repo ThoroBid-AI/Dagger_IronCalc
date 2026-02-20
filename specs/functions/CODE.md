@@ -39,7 +39,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns numeric code for the first character in text.
 
 - Signatures:
 
@@ -49,7 +49,7 @@ Not implemented in IronCalc.
 
   - CODE("A")
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Empty input or invalid UTF sequence returns an error.
 
@@ -63,7 +63,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns numeric code for the first character in text.
 
 - Signatures:
 
@@ -73,7 +73,7 @@ Not implemented in IronCalc.
 
   - CODE("A")
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Empty input or invalid UTF sequence returns an error.
 

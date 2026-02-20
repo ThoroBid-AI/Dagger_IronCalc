@@ -33,7 +33,7 @@ Returns metadata information about a formula or environment (where supported).
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INFO("system")
+- Summary: Returns metadata information about a formula or environment (where supported).
 
 - Signatures:
 

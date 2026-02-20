@@ -25,7 +25,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns selected columns from an array.
 
 - Signatures:
 
@@ -49,7 +49,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns selected columns from an array.
 
 - Signatures:
 

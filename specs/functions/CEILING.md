@@ -34,7 +34,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Rounds a number up to nearest multiple of significance.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Implemented in IronCalc.
 
   - CEILING(2.3,1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Returns `#VALUE!` when significance is zero or invalid.
 
@@ -58,7 +58,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Rounds a number up to nearest multiple of significance.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Implemented in IronCalc.
 
   - CEILING(2.3,1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Returns `#VALUE!` when significance is zero or invalid.
 

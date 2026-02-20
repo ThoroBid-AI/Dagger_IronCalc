@@ -35,7 +35,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns confidence interval half-width for normal distribution.
 
 - Signatures:
 
@@ -45,7 +45,7 @@ Not implemented in IronCalc.
 
   - CONFIDENCE.NORM(0.05, 1.2, 10)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or type yields an error.
 
@@ -59,7 +59,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns confidence interval half-width for normal distribution.
 
 - Signatures:
 
@@ -69,7 +69,7 @@ Not implemented in IronCalc.
 
   - CONFIDENCE.NORM(0.05, 1.2, 10)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or type yields an error.
 

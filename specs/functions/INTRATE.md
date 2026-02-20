@@ -37,7 +37,7 @@ Returns the interest rate for an investment over a period.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INTRATE("01/01/2026","01/01/2027",900,1000,0)
+- Summary: Returns the interest rate for an investment over a period.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns the interest rate for an investment over a period.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INTRATE("01/01/2026","01/01/2027",900,1000,0)
+- Summary: Returns the interest rate for an investment over a period.
 
 - Signatures:
 

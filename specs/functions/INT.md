@@ -34,7 +34,7 @@ Rounds number down to nearest integer toward negative infinity.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INT(3.8)
+- Summary: Rounds number down to nearest integer toward negative infinity.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Rounds number down to nearest integer toward negative infinity.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INT(3.8)
+- Summary: Rounds number down to nearest integer toward negative infinity.
 
 - Signatures:
 

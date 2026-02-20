@@ -33,7 +33,7 @@ Returns interest payment for a specific period.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IPMT(0.08/12, 1, 12, -1000)
+- Summary: Returns interest payment for a specific period.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns interest payment for a specific period.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IPMT(0.08/12, 1, 12, -1000)
+- Summary: Returns interest payment for a specific period.
 
 - Signatures:
 

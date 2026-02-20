@@ -33,7 +33,7 @@ Returns the y-axis intercept from linear regression of known points.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INTERCEPT({1,2,3},{1,2,3})
+- Summary: Returns the y-axis intercept from linear regression of known points.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the y-axis intercept from linear regression of known points.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: INTERCEPT({1,2,3},{1,2,3})
+- Summary: Returns the y-axis intercept from linear regression of known points.
 
 - Signatures:
 

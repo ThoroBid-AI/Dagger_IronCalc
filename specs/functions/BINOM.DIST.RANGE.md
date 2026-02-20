@@ -35,7 +35,7 @@ Not implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns probability for a range of successes in a binomial experiment.
 
 - Signatures:
 
@@ -45,7 +45,7 @@ Not implemented in IronCalc.
 
   - BINOM.DIST.RANGE(10, 0.5, 3, 5)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count or type yields an error.
 
