@@ -1306,102 +1306,675 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "EXPAND" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.evaluate_node_in_context(&args[0], cell) {
+                CalcResult::Array(a) => a,
+                CalcResult::Range { left, right } => {
+                    if left.sheet != right.sheet {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Ranges are in different sheets".to_string(),
+                        ));
+                    }
+                    let mut out = Vec::new();
+                    for row in left.row..=right.row {
+                        let mut row_data = Vec::new();
+                        for column in left.column..=right.column {
+                            let value = match model.evaluate_cell(CellReferenceIndex {
+                                sheet: left.sheet,
+                                row,
+                                column,
+                            }) {
+                                CalcResult::Number(f) => ArrayNode::Number(f),
+                                CalcResult::String(s) => ArrayNode::String(s),
+                                CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                _ => ArrayNode::String(String::new()),
+                            };
+                            row_data.push(value);
+                        }
+                        out.push(row_data);
+                    }
+                    out
+                }
+                CalcResult::Number(f) => vec![vec![ArrayNode::Number(f)]],
+                CalcResult::String(s) => vec![vec![ArrayNode::String(s)]],
+                CalcResult::Boolean(b) => vec![vec![ArrayNode::Boolean(b)]],
+                CalcResult::EmptyCell | CalcResult::EmptyArg => vec![vec![ArrayNode::String(String::new())]],
+                error @ CalcResult::Error { .. } => return Some(error),
+            };
+            let current_rows = array.len();
+            let current_cols = array.first().map(|r| r.len()).unwrap_or(0);
+            let target_rows = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let target_cols = if args.len() >= 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                current_cols as i32
+            };
+            if target_rows <= 0 || target_cols <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid dimensions".to_string(),
+                ));
+            }
+            if (target_rows as usize) < current_rows || (target_cols as usize) < current_cols {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Target size too small".to_string(),
+                ));
+            }
+            let pad_value = if args.len() == 4 {
+                match model.evaluate_node_in_context(&args[3], cell) {
+                    CalcResult::Number(f) => ArrayNode::Number(f),
+                    CalcResult::String(s) => ArrayNode::String(s),
+                    CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                    CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                    CalcResult::Error { error, .. } => return Some(CalcResult::Error {
+                        error,
+                        origin: cell,
+                        message: "Pad value error".to_string(),
+                    }),
+                    _ => ArrayNode::String(String::new()),
+                }
+            } else {
+                ArrayNode::String(String::new())
+            };
+            let mut out = vec![vec![pad_value.clone(); target_cols as usize]; target_rows as usize];
+            for r in 0..current_rows {
+                for c in 0..current_cols {
+                    if let Some(row) = array.get(r) {
+                        if let Some(value) = row.get(c) {
+                            out[r][c] = value.clone();
+                        }
+                    }
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "FILTER" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let data = match model.evaluate_node_in_context(&args[0], cell) {
+                CalcResult::Array(a) => a,
+                CalcResult::Range { left, right } => {
+                    if left.sheet != right.sheet {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Ranges are in different sheets".to_string(),
+                        ));
+                    }
+                    let mut out = Vec::new();
+                    for row in left.row..=right.row {
+                        let mut row_data = Vec::new();
+                        for column in left.column..=right.column {
+                            let value = match model.evaluate_cell(CellReferenceIndex {
+                                sheet: left.sheet,
+                                row,
+                                column,
+                            }) {
+                                CalcResult::Number(f) => ArrayNode::Number(f),
+                                CalcResult::String(s) => ArrayNode::String(s),
+                                CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                _ => ArrayNode::String(String::new()),
+                            };
+                            row_data.push(value);
+                        }
+                        out.push(row_data);
+                    }
+                    out
+                }
+                CalcResult::Number(f) => vec![vec![ArrayNode::Number(f)]],
+                CalcResult::String(s) => vec![vec![ArrayNode::String(s)]],
+                CalcResult::Boolean(b) => vec![vec![ArrayNode::Boolean(b)]],
+                CalcResult::EmptyCell | CalcResult::EmptyArg => vec![vec![ArrayNode::String(String::new())]],
+                error @ CalcResult::Error { .. } => return Some(error),
+            };
+            let include_result = model.evaluate_node_in_context(&args[1], cell);
+            let include_scalar = match &include_result {
+                CalcResult::Boolean(b) => Some(*b),
+                CalcResult::Number(f) => Some(*f != 0.0),
+                CalcResult::String(s) => {
+                    let lower = s.to_lowercase();
+                    if lower == "true" {
+                        Some(true)
+                    } else if lower == "false" {
+                        Some(false)
+                    } else if let Some(f) = model.cast_number(s) {
+                        Some(f != 0.0)
+                    } else {
+                        Some(false)
+                    }
+                }
+                CalcResult::EmptyCell | CalcResult::EmptyArg => Some(false),
+                CalcResult::Error { .. } => return Some(include_result.clone()),
+                _ => None,
+            };
+            let mut include_matrix: Vec<Vec<bool>> = Vec::new();
+            if let Some(flag) = include_scalar {
+                include_matrix = vec![vec![flag; data.first().map(|r| r.len()).unwrap_or(0)]; data.len()];
+            } else {
+                let include_array = match include_result {
+                    CalcResult::Array(a) => a,
+                    CalcResult::Range { left, right } => {
+                        if left.sheet != right.sheet {
+                            return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Ranges are in different sheets".to_string(),
+                            ));
+                        }
+                        let mut out = Vec::new();
+                        for row in left.row..=right.row {
+                            let mut row_data = Vec::new();
+                            for column in left.column..=right.column {
+                                let value = match model.evaluate_cell(CellReferenceIndex {
+                                    sheet: left.sheet,
+                                    row,
+                                    column,
+                                }) {
+                                    CalcResult::Number(f) => ArrayNode::Number(f),
+                                    CalcResult::String(s) => ArrayNode::String(s),
+                                    CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                    CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                    CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                    _ => ArrayNode::String(String::new()),
+                                };
+                                row_data.push(value);
+                            }
+                            out.push(row_data);
+                        }
+                        out
+                    }
+                    _ => {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Invalid include".to_string(),
+                        ));
+                    }
+                };
+                if include_array.len() != data.len() {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Include shape mismatch".to_string(),
+                    ));
+                }
+                for (r, row) in include_array.iter().enumerate() {
+                    if row.len() != data[r].len() {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Include shape mismatch".to_string(),
+                        ));
+                    }
+                    let mut bool_row = Vec::new();
+                    for item in row {
+                        let flag = match item {
+                            ArrayNode::Boolean(b) => *b,
+                            ArrayNode::Number(f) => *f != 0.0,
+                            ArrayNode::String(s) => {
+                                let lower = s.to_lowercase();
+                                if lower == "true" {
+                                    true
+                                } else if lower == "false" {
+                                    false
+                                } else if let Some(f) = model.cast_number(s) {
+                                    f != 0.0
+                                } else {
+                                    false
+                                }
+                            }
+                            ArrayNode::Error(e) => {
+                                return Some(CalcResult::new_error(e.clone(), cell, "Include error".to_string()));
+                            }
+                        };
+                        bool_row.push(flag);
+                    }
+                    include_matrix.push(bool_row);
+                }
+            }
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for (r, row) in data.iter().enumerate() {
+                for (c, value) in row.iter().enumerate() {
+                    if include_matrix.get(r).and_then(|rr| rr.get(c)).cloned().unwrap_or(false) {
+                        out.push(vec![value.clone()]);
+                    }
+                }
+            }
+            if out.is_empty() {
+                if args.len() == 3 {
+                    return Some(model.evaluate_node_in_context(&args[2], cell));
+                }
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No matches".to_string(),
+                ));
+            }
+            Some(CalcResult::Array(out))
         }
         "FILTERXML" => {
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "FILTERXML is not supported".to_string(),
             ))
         }
-        "FINDB" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
-        }
+        "FINDB" => Some(model.fn_find(args, cell)),
         "FIXED" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let decimals = if args.len() >= 2 {
+                match model.get_number_no_bools(&args[1], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                2
+            };
+            let decimals = if decimals < 0 { 0 } else { decimals };
+            let no_commas = if args.len() == 3 {
+                match model.get_boolean(&args[2], cell) {
+                    Ok(b) => b,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                false
+            };
+            let mut format_code = if no_commas {
+                String::from("0")
+            } else {
+                String::from("#,##0")
+            };
+            if decimals > 0 {
+                format_code.push('.');
+                format_code.push_str(&"0".repeat(decimals as usize));
+            }
+            let formatted = format_number(value, &format_code, model.locale);
+            if formatted.error.is_some() {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid format".to_string(),
+                ));
+            }
+            Some(CalcResult::String(formatted.text))
         }
         "FLATTEN" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for arg in args {
+                match model.evaluate_node_in_context(arg, cell) {
+                    CalcResult::Array(a) => {
+                        for row in a {
+                            for item in row {
+                                out.push(vec![item]);
+                            }
+                        }
+                    }
+                    CalcResult::Range { left, right } => {
+                        if left.sheet != right.sheet {
+                            return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Ranges are in different sheets".to_string(),
+                            ));
+                        }
+                        for row in left.row..=right.row {
+                            for column in left.column..=right.column {
+                                let value = match model.evaluate_cell(CellReferenceIndex {
+                                    sheet: left.sheet,
+                                    row,
+                                    column,
+                                }) {
+                                    CalcResult::Number(f) => ArrayNode::Number(f),
+                                    CalcResult::String(s) => ArrayNode::String(s),
+                                    CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                    CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                    CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                    _ => ArrayNode::String(String::new()),
+                                };
+                                out.push(vec![value]);
+                            }
+                        }
+                    }
+                    CalcResult::Number(f) => out.push(vec![ArrayNode::Number(f)]),
+                    CalcResult::String(s) => out.push(vec![ArrayNode::String(s)]),
+                    CalcResult::Boolean(b) => out.push(vec![ArrayNode::Boolean(b)]),
+                    CalcResult::EmptyCell | CalcResult::EmptyArg => out.push(vec![ArrayNode::String(String::new())]),
+                    error @ CalcResult::Error { .. } => return Some(error),
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "FORECAST" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let x = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let slope = match model.fn_slope(&args[1..3], cell) {
+                CalcResult::Number(f) => f,
+                error @ CalcResult::Error { .. } => return Some(error),
+                _ => return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid slope".to_string(),
+                )),
+            };
+            let intercept = match model.fn_intercept(&args[1..3], cell) {
+                CalcResult::Number(f) => f,
+                error @ CalcResult::Error { .. } => return Some(error),
+                _ => return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid intercept".to_string(),
+                )),
+            };
+            Some(CalcResult::Number(intercept + slope * x))
         }
         "FORECASTETS" => {
+            if args.len() < 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "FORECAST.ETS is not supported".to_string(),
             ))
         }
         "FORECASTETSCONFINT" => {
+            if args.len() < 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "FORECAST.ETS.CONFINT is not supported".to_string(),
             ))
         }
         "FORECASTETSSEASONALITY" => {
+            if args.len() < 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "FORECAST.ETS.SEASONALITY is not supported".to_string(),
             ))
         }
         "FORECASTETSSTAT" => {
+            if args.len() < 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "FORECAST.ETS.STAT is not supported".to_string(),
             ))
         }
         "FORECASTLINEAR" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let x = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let slope = match model.fn_slope(&args[1..3], cell) {
+                CalcResult::Number(f) => f,
+                error @ CalcResult::Error { .. } => return Some(error),
+                _ => return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid slope".to_string(),
+                )),
+            };
+            let intercept = match model.fn_intercept(&args[1..3], cell) {
+                CalcResult::Number(f) => f,
+                error @ CalcResult::Error { .. } => return Some(error),
+                _ => return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid intercept".to_string(),
+                )),
+            };
+            Some(CalcResult::Number(intercept + slope * x))
         }
         "FREQUENCY" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut data_values: Vec<f64> = Vec::new();
+            let mut bins: Vec<f64> = Vec::new();
+            let data_node = model.evaluate_node_in_context(&args[0], cell);
+            let data_iter = match data_node {
+                CalcResult::Array(a) => a,
+                CalcResult::Range { left, right } => {
+                    if left.sheet != right.sheet {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Ranges are in different sheets".to_string(),
+                        ));
+                    }
+                    let mut out = Vec::new();
+                    for row in left.row..=right.row {
+                        let mut row_data = Vec::new();
+                        for column in left.column..=right.column {
+                            let value = match model.evaluate_cell(CellReferenceIndex {
+                                sheet: left.sheet,
+                                row,
+                                column,
+                            }) {
+                                CalcResult::Number(f) => ArrayNode::Number(f),
+                                CalcResult::String(s) => ArrayNode::String(s),
+                                CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                _ => ArrayNode::String(String::new()),
+                            };
+                            row_data.push(value);
+                        }
+                        out.push(row_data);
+                    }
+                    out
+                }
+                CalcResult::Number(f) => vec![vec![ArrayNode::Number(f)]],
+                CalcResult::String(s) => vec![vec![ArrayNode::String(s)]],
+                CalcResult::Boolean(b) => vec![vec![ArrayNode::Boolean(b)]],
+                CalcResult::EmptyCell | CalcResult::EmptyArg => vec![vec![ArrayNode::String(String::new())]],
+                error @ CalcResult::Error { .. } => return Some(error),
+            };
+            for row in data_iter {
+                for item in row {
+                    match item {
+                        ArrayNode::Number(f) => data_values.push(f),
+                        ArrayNode::Boolean(b) => data_values.push(if b { 1.0 } else { 0.0 }),
+                        ArrayNode::String(s) => {
+                            if let Some(f) = model.cast_number(&s) {
+                                data_values.push(f);
+                            }
+                        }
+                        ArrayNode::Error(e) => {
+                            return Some(CalcResult::new_error(e, cell, "Data error".to_string()));
+                        }
+                    }
+                }
+            }
+            let bin_node = model.evaluate_node_in_context(&args[1], cell);
+            let bin_iter = match bin_node {
+                CalcResult::Array(a) => a,
+                CalcResult::Range { left, right } => {
+                    if left.sheet != right.sheet {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Ranges are in different sheets".to_string(),
+                        ));
+                    }
+                    let mut out = Vec::new();
+                    for row in left.row..=right.row {
+                        let mut row_data = Vec::new();
+                        for column in left.column..=right.column {
+                            let value = match model.evaluate_cell(CellReferenceIndex {
+                                sheet: left.sheet,
+                                row,
+                                column,
+                            }) {
+                                CalcResult::Number(f) => ArrayNode::Number(f),
+                                CalcResult::String(s) => ArrayNode::String(s),
+                                CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                _ => ArrayNode::String(String::new()),
+                            };
+                            row_data.push(value);
+                        }
+                        out.push(row_data);
+                    }
+                    out
+                }
+                CalcResult::Number(f) => vec![vec![ArrayNode::Number(f)]],
+                CalcResult::String(s) => vec![vec![ArrayNode::String(s)]],
+                CalcResult::Boolean(b) => vec![vec![ArrayNode::Boolean(b)]],
+                CalcResult::EmptyCell | CalcResult::EmptyArg => vec![vec![ArrayNode::String(String::new())]],
+                error @ CalcResult::Error { .. } => return Some(error),
+            };
+            for row in bin_iter {
+                for item in row {
+                    match item {
+                        ArrayNode::Number(f) => bins.push(f),
+                        ArrayNode::Boolean(b) => bins.push(if b { 1.0 } else { 0.0 }),
+                        ArrayNode::String(s) => {
+                            if let Some(f) = model.cast_number(&s) {
+                                bins.push(f);
+                            }
+                        }
+                        ArrayNode::Error(e) => {
+                            return Some(CalcResult::new_error(e, cell, "Bin error".to_string()));
+                        }
+                    }
+                }
+            }
+            bins.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let mut counts = vec![0i32; bins.len() + 1];
+            for value in data_values {
+                let mut placed = false;
+                for (idx, bin) in bins.iter().enumerate() {
+                    if value <= *bin {
+                        counts[idx] += 1;
+                        placed = true;
+                        break;
+                    }
+                }
+                if !placed {
+                    let last = counts.len() - 1;
+                    counts[last] += 1;
+                }
+            }
+            let out: Vec<Vec<ArrayNode>> = counts
+                .into_iter()
+                .map(|c| vec![ArrayNode::Number(c as f64)])
+                .collect();
+            Some(CalcResult::Array(out))
         }
         "FVSCHEDULE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut value = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rates = match model.evaluate_node_in_context(&args[1], cell) {
+                CalcResult::Array(a) => a,
+                CalcResult::Range { left, right } => {
+                    if left.sheet != right.sheet {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Ranges are in different sheets".to_string(),
+                        ));
+                    }
+                    let mut out = Vec::new();
+                    for row in left.row..=right.row {
+                        let mut row_data = Vec::new();
+                        for column in left.column..=right.column {
+                            let value = match model.evaluate_cell(CellReferenceIndex {
+                                sheet: left.sheet,
+                                row,
+                                column,
+                            }) {
+                                CalcResult::Number(f) => ArrayNode::Number(f),
+                                CalcResult::String(s) => ArrayNode::String(s),
+                                CalcResult::Boolean(b) => ArrayNode::Boolean(b),
+                                CalcResult::EmptyCell | CalcResult::EmptyArg => ArrayNode::String(String::new()),
+                                CalcResult::Error { error, .. } => ArrayNode::Error(error),
+                                _ => ArrayNode::String(String::new()),
+                            };
+                            row_data.push(value);
+                        }
+                        out.push(row_data);
+                    }
+                    out
+                }
+                CalcResult::Number(f) => vec![vec![ArrayNode::Number(f)]],
+                CalcResult::String(s) => vec![vec![ArrayNode::String(s)]],
+                CalcResult::Boolean(b) => vec![vec![ArrayNode::Boolean(b)]],
+                CalcResult::EmptyCell | CalcResult::EmptyArg => vec![vec![ArrayNode::String(String::new())]],
+                error @ CalcResult::Error { .. } => return Some(error),
+            };
+            for row in rates {
+                for item in row {
+                    let rate = match item {
+                        ArrayNode::Number(f) => f,
+                        ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                        ArrayNode::String(s) => match model.cast_number(&s) {
+                            Some(f) => f,
+                            None => return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Invalid rate".to_string(),
+                            )),
+                        },
+                        ArrayNode::Error(e) => {
+                            return Some(CalcResult::new_error(e, cell, "Rate error".to_string()));
+                        }
+                    };
+                    value *= 1.0 + rate;
+                }
+            }
+            Some(CalcResult::Number(value))
         }
         "GETPIVOTDATA" => {
             Some(CalcResult::new_error(

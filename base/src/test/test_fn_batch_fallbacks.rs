@@ -570,25 +570,31 @@ fn test_batch_fallback_euroconvert() {
 #[test]
 fn test_batch_fallback_expand() {
     let mut model = new_empty_model();
-    model._set("A1", "=EXPAND(1)");
+    model._set("A1", "=SUM(EXPAND({1,2},2,3,0))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]
 fn test_batch_fallback_filter() {
     let mut model = new_empty_model();
-    model._set("A1", "=FILTER(1)");
+    model._set("A1", "1");
+    model._set("A2", "2");
+    model._set("A3", "3");
+    model._set("B1", "TRUE");
+    model._set("B2", "FALSE");
+    model._set("B3", "TRUE");
+    model._set("C1", "=SUM(FILTER(A1:A3,B1:B3))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("C1"), *"4");
 }
 
 #[test]
 fn test_batch_fallback_filterxml() {
     let mut model = new_empty_model();
-    model._set("A1", "=FILTERXML(1)");
+    model._set("A1", "=FILTERXML(\"<a>1</a>\",\"//a\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -597,43 +603,49 @@ fn test_batch_fallback_filterxml() {
 #[test]
 fn test_batch_fallback_findb() {
     let mut model = new_empty_model();
-    model._set("A1", "=FINDB(1)");
+    model._set("A1", "=FINDB(\"b\",\"abc\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_fixed() {
     let mut model = new_empty_model();
-    model._set("A1", "=FIXED(1)");
+    model._set("A1", "=FIXED(1234.567,2,FALSE)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1,234.57");
 }
 
 #[test]
 fn test_batch_fallback_flatten() {
     let mut model = new_empty_model();
-    model._set("A1", "=FLATTEN(1)");
+    model._set("A1", "=SUM(FLATTEN({1,2;3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
 fn test_batch_fallback_forecast() {
     let mut model = new_empty_model();
-    model._set("A1", "=FORECAST(1)");
+    model._set("A1", "1");
+    model._set("A2", "2");
+    model._set("A3", "3");
+    model._set("B1", "1");
+    model._set("B2", "2");
+    model._set("B3", "3");
+    model._set("C1", "=FORECAST(4,A1:A3,B1:B3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("C1"), *"4");
 }
 
 #[test]
 fn test_batch_fallback_forecast_ets() {
     let mut model = new_empty_model();
-    model._set("A1", "=FORECAST.ETS(1)");
+    model._set("A1", "=FORECAST.ETS(1,1,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -642,7 +654,7 @@ fn test_batch_fallback_forecast_ets() {
 #[test]
 fn test_batch_fallback_forecast_ets_confint() {
     let mut model = new_empty_model();
-    model._set("A1", "=FORECAST.ETS.CONFINT(1)");
+    model._set("A1", "=FORECAST.ETS.CONFINT(1,1,1,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -651,7 +663,7 @@ fn test_batch_fallback_forecast_ets_confint() {
 #[test]
 fn test_batch_fallback_forecast_ets_seasonality() {
     let mut model = new_empty_model();
-    model._set("A1", "=FORECAST.ETS.SEASONALITY(1)");
+    model._set("A1", "=FORECAST.ETS.SEASONALITY(1,1,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -660,7 +672,7 @@ fn test_batch_fallback_forecast_ets_seasonality() {
 #[test]
 fn test_batch_fallback_forecast_ets_stat() {
     let mut model = new_empty_model();
-    model._set("A1", "=FORECAST.ETS.STAT(1)");
+    model._set("A1", "=FORECAST.ETS.STAT(1,1,1,1,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -669,28 +681,34 @@ fn test_batch_fallback_forecast_ets_stat() {
 #[test]
 fn test_batch_fallback_forecast_linear() {
     let mut model = new_empty_model();
-    model._set("A1", "=FORECAST.LINEAR(1)");
+    model._set("A1", "1");
+    model._set("A2", "2");
+    model._set("A3", "3");
+    model._set("B1", "1");
+    model._set("B2", "2");
+    model._set("B3", "3");
+    model._set("C1", "=FORECAST.LINEAR(5,A1:A3,B1:B3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("C1"), *"5");
 }
 
 #[test]
 fn test_batch_fallback_frequency() {
     let mut model = new_empty_model();
-    model._set("A1", "=FREQUENCY(1)");
+    model._set("A1", "=SUM(FREQUENCY({1,2,3,4,5},{2,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"5");
 }
 
 #[test]
 fn test_batch_fallback_fvschedule() {
     let mut model = new_empty_model();
-    model._set("A1", "=FVSCHEDULE(1)");
+    model._set("A1", "=FVSCHEDULE(100,{0.1,0.2})");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"132");
 }
 
 #[test]
