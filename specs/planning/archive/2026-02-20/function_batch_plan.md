@@ -1,5 +1,7 @@
 # Function Batch Plan (Complexity-Based)
 
+> Archived snapshot (2026-02-20). Historical batching output.
+
 Total batches: 15
 
 ## Batch 1 (40 functions)
@@ -570,4 +572,3 @@ Total batches: 15
 - UNIQUE (complexity: hard, implemented: N)
 - XLOOKUP (complexity: hard, implemented: Y)
 - XMATCH (complexity: hard, implemented: N)
-

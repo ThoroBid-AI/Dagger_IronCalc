@@ -1,5 +1,7 @@
 # Function Shortlist (All Functions)
 
+> Archived snapshot (2026-02-20). Historical prioritization output.
+
 Total functions: 539
 Batch size: 40
 

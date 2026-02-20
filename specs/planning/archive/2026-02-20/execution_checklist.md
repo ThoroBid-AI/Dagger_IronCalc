@@ -1,5 +1,8 @@
 # Execution Checklist
 
+> Archived snapshot (2026-02-20). Historical workflow notes only.
+> For active execution, use `specs/planning/function_implementation_plan.md`.
+
 ## Phase 0: Baseline
 - Confirm target oracles: Excel 365 (current) + Google Sheets.
 - Confirm default locale: en-US.
@@ -7,7 +10,10 @@
 
 ## Phase 1: Inventory & Validation
 - Regenerate comparison matrices if needed:
-  - `python scripts/compare_functions.py`
+  - Legacy reference: `python scripts/compare_functions.py` (not present in current repo)
+  - Current equivalent:
+    - `python scripts/update_function_matrix.py`
+    - `python scripts/generate_hf_coverage_reports.py`
 - Ensure normalized matrix exists:
   - `specs/matrices/function_matrix_normalized.csv`
 - Run doc validator:
@@ -15,20 +21,20 @@
 
 ## Phase 2: Planning & Batching
 - Confirm complexity map:
-  - `specs/planning/function_complexity_map.csv`
+  - `specs/data/function_complexity_map.csv`
 - Confirm batch plan:
-  - `specs/planning/function_batch_plan.md`
+  - `specs/planning/archive/2026-02-20/function_batch_plan.md`
 - Confirm implementation plan:
   - `specs/planning/function_implementation_plan.md`
 - Confirm doc template:
-  - `specs/planning/function_doc_template.md`
+  - `specs/planning/archive/2026-02-20/function_doc_template.md`
 
 ## Phase 3: Documentation
 - Generate docs for Batch N (25–50 functions).
 - For each doc, include:
   - Purpose, Syntax, Behavior, Examples, Error Cases, Notes, Sources.
 - Add code locations for implemented functions using:
-  - `specs/reports/function_impl_mapping.csv`
+  - `specs/reports/function_impl_mapping.csv` (optional; generated only when mapping workflow is run)
 - Run validator after each batch.
 
 ## Phase 4: Oracle Fixtures

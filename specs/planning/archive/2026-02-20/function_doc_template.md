@@ -1,5 +1,7 @@
 # <FUNCTION_NAME>
 
+> Archived snapshot (2026-02-20). Historical template reference.
+
 ## Purpose
 
 ## Syntax

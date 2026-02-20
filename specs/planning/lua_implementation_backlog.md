@@ -1,14 +1,20 @@
 # Lua Implementation Backlog (HF + Excel/Sheets)
 
 ## Purpose
-Define a complete, ordered Lua implementation backlog based on the global function coverage matrix. This backlog is the primary list for closing parity gaps in IronCalc by leveraging HyperFormula coverage.
+Define a complete, ordered implementation backlog (using Lua prompts as guidance) based on the global function coverage matrix. This backlog is the primary list for closing parity gaps in IronCalc by leveraging HyperFormula coverage.
+
+## Runtime Contract
+- Implementation runtime in this repository is Rust (`base` crate).
+- `specs/lua_prompts.md` is a planning/spec artifact used for behavior guidance.
+- See `specs/planning/implementation_runtime_contract.md`.
+- Use `specs/planning/implementation_handoff_contract.md` as the per-function execution contract.
 
 ## Source Files
 - Coverage matrix: `specs/matrices/function_matrix_normalized.csv`
 - HF vs IronCalc report: `specs/reports/ironcalc_missing_but_in_hf.csv`
 - Grouped backlog: `specs/reports/ironcalc_missing_but_in_hf_grouped.csv`
 - Lua prompts: `specs/lua_prompts.md`
-- Specs: `specs/functions/<FUNCTION>.md`
+- Optional detailed specs: `specs/functions/<FUNCTION>.md` (when present)
 - Status tracker: `specs/reports/lua_backlog_status.csv`
 
 ## Backlog Definition
@@ -28,7 +34,7 @@ Functions that are **missing in IronCalc**, but **present in HyperFormula** and 
 - `CLEAN`
 - `CODE`
 - `PROPER`
-- `REPLACE` (Sheets only)
+- `REPLACE`
 - `UNICHAR`
 
 ### Lookup/Reference
@@ -43,12 +49,6 @@ Functions that are **missing in IronCalc**, but **present in HyperFormula** and 
 
 ### Statistical
 - `CRITBINOM`
-- `FTEST`
-- `GAMMADIST`
-- `GAMMAINV`
-- `HYPGEOMDIST`
-- `NEGBINOMDIST`
-- `TTEST`
 
 ### Array/Matrix
 - `ARRAYFORMULA` (Sheets only)
@@ -63,8 +63,9 @@ Functions that are **missing in IronCalc**, but **present in HyperFormula** and 
 
 ## Execution Checklist (Per Function)
 1. Open prompt: search for the function in `specs/lua_prompts.md`
-2. Review spec: `specs/functions/<FUNCTION>.md`
-3. Confirm expected behavior across Excel + Sheets.
-4. Implement in Lua with error/array/coercion rules.
-5. Add tests + fixtures as required by the main plan.
-6. Update status in tracking (if applicable).
+2. Review behavior sections in `specs/lua_prompts.md` as primary spec input.
+3. If available, review `specs/functions/<FUNCTION>.md` for extra detail.
+4. Confirm expected behavior across Excel + Sheets.
+5. Implement in Rust engine code with error/array/coercion rules.
+6. Add tests + fixtures as required by the main plan.
+7. Update status in tracking (if applicable).

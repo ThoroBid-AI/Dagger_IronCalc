@@ -1,5 +1,7 @@
 # Dual‑Engine Strategy (Excel + Sheets)
 
+> Archived snapshot (2026-02-20). Historical proposal, not the active execution plan.
+
 ## Goal
 Provide Excel‑compatible and Google Sheets‑compatible evaluation paths under a unified engine.
 

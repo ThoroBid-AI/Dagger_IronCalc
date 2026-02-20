@@ -9,8 +9,8 @@
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_abs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -49,7 +49,7 @@ Return the absolute value of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ABS.md
+- Spec file: specs/functions/ABS.md
 
 
 ---
@@ -105,7 +105,7 @@ Not implemented in IronCalc. Planned as a financial function for bond-like sched
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ACCRINT.md
+- Spec file: specs/functions/ACCRINT.md
 
 
 ---
@@ -159,7 +159,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ACCRINTM.md
+- Spec file: specs/functions/ACCRINTM.md
 
 
 ---
@@ -173,8 +173,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_acos
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -213,7 +213,7 @@ Return the arccosine (inverse cosine) of a number in radians.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ACOS.md
+- Spec file: specs/functions/ACOS.md
 
 
 ---
@@ -227,8 +227,8 @@ Return the arccosine (inverse cosine) of a number in radians.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_acosh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -267,7 +267,7 @@ Return the inverse hyperbolic cosine of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ACOSH.md
+- Spec file: specs/functions/ACOSH.md
 
 
 ---
@@ -281,8 +281,8 @@ Return the inverse hyperbolic cosine of a number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_acot
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -320,7 +320,7 @@ Return the inverse cotangent of a number in radians.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ACOT.md
+- Spec file: specs/functions/ACOT.md
 
 
 ---
@@ -334,8 +334,8 @@ Return the inverse cotangent of a number in radians.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_acoth
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -373,7 +373,7 @@ Return the inverse hyperbolic cotangent of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ACOTH.md
+- Spec file: specs/functions/ACOTH.md
 
 
 ---
@@ -427,7 +427,7 @@ Not implemented in IronCalc. Prefer native `+` and `SUM` operator/function patte
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ADD.md
+- Spec file: specs/functions/ADD.md
 
 
 ---
@@ -472,8 +472,8 @@ Converts row and column numbers into a cell reference string.
 Not implemented in IronCalc. Required for formula output generation and interoperability.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/lookup_and_reference.rs`
+- Handler: `fn_address` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -483,7 +483,7 @@ Not implemented in IronCalc. Required for formula output generation and interope
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ADDRESS.md
+- Spec file: specs/functions/ADDRESS.md
 
 
 ---
@@ -538,7 +538,7 @@ Not implemented in IronCalc. Planned as a combined aggregate with compatibility 
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AGGREGATE.md
+- Spec file: specs/functions/AGGREGATE.md
 
 
 ---
@@ -592,7 +592,7 @@ Not implemented in IronCalc. Planned with date-aware accrual logic.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AMORDEGRC.md
+- Spec file: specs/functions/AMORDEGRC.md
 
 
 ---
@@ -646,7 +646,7 @@ Not implemented in IronCalc. Planned as a dedicated depreciation implementation.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AMORLINC.md
+- Spec file: specs/functions/AMORLINC.md
 
 
 ---
@@ -660,8 +660,8 @@ Not implemented in IronCalc. Planned as a dedicated depreciation implementation.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_and
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -701,7 +701,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AND.md
+- Spec file: specs/functions/AND.md
 
 
 ---
@@ -715,8 +715,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_arabic
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -756,7 +756,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ARABIC.md
+- Spec file: specs/functions/ARABIC.md
 
 
 ---
@@ -810,7 +810,7 @@ Not implemented in IronCalc. Targeted for area-aware reference validation and AP
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AREAS.md
+- Spec file: specs/functions/AREAS.md
 
 
 ---
@@ -853,8 +853,8 @@ Allows a formula to return an array result that spills across adjacent cells.
 Not implemented in IronCalc. Sheets-specific behavior; map to dynamic array engine semantics.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/lookup_and_reference.rs`
+- Handler: `fn_arrayformula` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -864,7 +864,7 @@ Not implemented in IronCalc. Sheets-specific behavior; map to dynamic array engi
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ARRAYFORMULA.md
+- Spec file: specs/functions/ARRAYFORMULA.md
 
 
 ---
@@ -907,8 +907,8 @@ Limits array output to a specified row/column size.
 Not implemented in IronCalc. Planned as array shaping operator.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/lookup_and_reference.rs`
+- Handler: `fn_array_constrain` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -918,7 +918,7 @@ Not implemented in IronCalc. Planned as array shaping operator.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ARRAY_CONSTRAIN.md
+- Spec file: specs/functions/ARRAY_CONSTRAIN.md
 
 
 ---
@@ -974,7 +974,7 @@ Not implemented in IronCalc. Planned Unicode normalization utility.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ASC.md
+- Spec file: specs/functions/ASC.md
 
 
 ---
@@ -988,8 +988,8 @@ Not implemented in IronCalc. Planned Unicode normalization utility.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_asin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1028,7 +1028,7 @@ Return the arcsine (inverse sine) of a number in radians.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ASIN.md
+- Spec file: specs/functions/ASIN.md
 
 
 ---
@@ -1042,8 +1042,8 @@ Return the arcsine (inverse sine) of a number in radians.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_asinh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1082,7 +1082,7 @@ Return the inverse hyperbolic sine of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ASINH.md
+- Spec file: specs/functions/ASINH.md
 
 
 ---
@@ -1096,8 +1096,8 @@ Return the inverse hyperbolic sine of a number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_atan
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1135,7 +1135,7 @@ Return the arctangent (inverse tangent) of a number in radians.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ATAN.md
+- Spec file: specs/functions/ATAN.md
 
 
 ---
@@ -1149,8 +1149,8 @@ Return the arctangent (inverse tangent) of a number in radians.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_atan2
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1190,7 +1190,7 @@ Return the arctangent of the specified x- and y-coordinates in radians.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ATAN2.md
+- Spec file: specs/functions/ATAN2.md
 
 
 ---
@@ -1204,8 +1204,8 @@ Return the arctangent of the specified x- and y-coordinates in radians.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_atanh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1243,7 +1243,7 @@ Return the inverse hyperbolic tangent of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ATANH.md
+- Spec file: specs/functions/ATANH.md
 
 
 ---
@@ -1257,8 +1257,8 @@ Return the inverse hyperbolic tangent of a number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_avedev
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1297,7 +1297,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AVEDEV.md
+- Spec file: specs/functions/AVEDEV.md
 
 
 ---
@@ -1311,8 +1311,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_average
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1351,7 +1351,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AVERAGE.md
+- Spec file: specs/functions/AVERAGE.md
 
 
 ---
@@ -1405,7 +1405,7 @@ Not implemented in IronCalc. Planned as dedicated weighted average function.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AVERAGE.WEIGHTED.md
+- Spec file: specs/functions/AVERAGE.WEIGHTED.md
 
 
 ---
@@ -1419,8 +1419,8 @@ Not implemented in IronCalc. Planned as dedicated weighted average function.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_averagea
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1459,7 +1459,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AVERAGEA.md
+- Spec file: specs/functions/AVERAGEA.md
 
 
 ---
@@ -1473,8 +1473,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_averageif
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1512,7 +1512,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AVERAGEIF.md
+- Spec file: specs/functions/AVERAGEIF.md
 
 
 ---
@@ -1526,8 +1526,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_averageifs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1566,7 +1566,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/AVERAGEIFS.md
+- Spec file: specs/functions/AVERAGEIFS.md
 
 
 ---
@@ -1620,7 +1620,7 @@ Not implemented in IronCalc. Requires locale-sensitive number-to-text module.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BAHTTEXT.md
+- Spec file: specs/functions/BAHTTEXT.md
 
 
 ---
@@ -1634,8 +1634,8 @@ Not implemented in IronCalc. Requires locale-sensitive number-to-text module.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_base
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1674,7 +1674,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BASE.md
+- Spec file: specs/functions/BASE.md
 
 
 ---
@@ -1688,8 +1688,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_besseli
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1728,7 +1728,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BESSELI.md
+- Spec file: specs/functions/BESSELI.md
 
 
 ---
@@ -1742,8 +1742,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_besselj
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1782,7 +1782,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BESSELJ.md
+- Spec file: specs/functions/BESSELJ.md
 
 
 ---
@@ -1796,8 +1796,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_besselk
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1835,7 +1835,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BESSELK.md
+- Spec file: specs/functions/BESSELK.md
 
 
 ---
@@ -1849,8 +1849,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bessely
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -1889,7 +1889,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BESSELY.md
+- Spec file: specs/functions/BESSELY.md
 
 
 ---
@@ -1943,7 +1943,7 @@ Not implemented in IronCalc. Planned through dedicated statistical distribution 
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BETA.DIST.md
+- Spec file: specs/functions/BETA.DIST.md
 
 
 ---
@@ -1997,7 +1997,7 @@ Not implemented in IronCalc. Planned distribution inversion support.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BETA.INV.md
+- Spec file: specs/functions/BETA.INV.md
 
 
 ---
@@ -2050,7 +2050,7 @@ Not implemented in IronCalc. Planned compatibility alias implementation.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BETA.INVN.md
+- Spec file: specs/functions/BETA.INVN.md
 
 
 ---
@@ -2064,8 +2064,8 @@ Not implemented in IronCalc. Planned compatibility alias implementation.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bin2dec
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2106,7 +2106,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BIN2DEC.md
+- Spec file: specs/functions/BIN2DEC.md
 
 
 ---
@@ -2120,8 +2120,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bin2hex
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2160,7 +2160,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BIN2HEX.md
+- Spec file: specs/functions/BIN2HEX.md
 
 
 ---
@@ -2174,8 +2174,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bin2oct
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2215,7 +2215,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BIN2OCT.md
+- Spec file: specs/functions/BIN2OCT.md
 
 
 ---
@@ -2270,7 +2270,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BINOM.DIST.md
+- Spec file: specs/functions/BINOM.DIST.md
 
 
 ---
@@ -2325,7 +2325,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BINOM.DIST.RANGE.md
+- Spec file: specs/functions/BINOM.DIST.RANGE.md
 
 
 ---
@@ -2380,7 +2380,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BINOM.INV.md
+- Spec file: specs/functions/BINOM.INV.md
 
 
 ---
@@ -2394,8 +2394,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bitand
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2435,7 +2435,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BITAND.md
+- Spec file: specs/functions/BITAND.md
 
 
 ---
@@ -2449,8 +2449,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bitlshift
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2490,7 +2490,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BITLSHIFT.md
+- Spec file: specs/functions/BITLSHIFT.md
 
 
 ---
@@ -2504,8 +2504,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bitor
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2545,7 +2545,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BITOR.md
+- Spec file: specs/functions/BITOR.md
 
 
 ---
@@ -2559,8 +2559,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bitrshift
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2600,7 +2600,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BITRSHIFT.md
+- Spec file: specs/functions/BITRSHIFT.md
 
 
 ---
@@ -2614,8 +2614,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_bitxor
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2655,7 +2655,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BITXOR.md
+- Spec file: specs/functions/BITXOR.md
 
 
 ---
@@ -2709,7 +2709,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BYCOL.md
+- Spec file: specs/functions/BYCOL.md
 
 
 ---
@@ -2763,7 +2763,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/BYROW.md
+- Spec file: specs/functions/BYROW.md
 
 
 ---
@@ -2818,7 +2818,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CALL.md
+- Spec file: specs/functions/CALL.md
 
 
 ---
@@ -2832,8 +2832,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ceiling
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -2872,7 +2872,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CEILING.md
+- Spec file: specs/functions/CEILING.md
 
 
 ---
@@ -2927,7 +2927,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CEILING.MATH.md
+- Spec file: specs/functions/CEILING.MATH.md
 
 
 ---
@@ -2982,7 +2982,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CEILING.PRECISE.md
+- Spec file: specs/functions/CEILING.PRECISE.md
 
 
 ---
@@ -2996,8 +2996,8 @@ Not implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_cell
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3037,7 +3037,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CELL.md
+- Spec file: specs/functions/CELL.md
 
 
 ---
@@ -3080,8 +3080,8 @@ Returns the character represented by a numeric code point.
 Not implemented in IronCalc.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/text.rs`
+- Handler: `fn_char` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -3091,7 +3091,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHAR.md
+- Spec file: specs/functions/CHAR.md
 
 
 ---
@@ -3146,7 +3146,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHISQ.DIST.md
+- Spec file: specs/functions/CHISQ.DIST.md
 
 
 ---
@@ -3201,7 +3201,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHISQ.DIST.RT.md
+- Spec file: specs/functions/CHISQ.DIST.RT.md
 
 
 ---
@@ -3256,7 +3256,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHISQ.INV.md
+- Spec file: specs/functions/CHISQ.INV.md
 
 
 ---
@@ -3311,7 +3311,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHISQ.INV.RT.md
+- Spec file: specs/functions/CHISQ.INV.RT.md
 
 
 ---
@@ -3366,7 +3366,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHISQ.TEST.md
+- Spec file: specs/functions/CHISQ.TEST.md
 
 
 ---
@@ -3380,8 +3380,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_choose
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3421,7 +3421,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHOOSE.md
+- Spec file: specs/functions/CHOOSE.md
 
 
 ---
@@ -3475,7 +3475,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHOOSECOLS.md
+- Spec file: specs/functions/CHOOSECOLS.md
 
 
 ---
@@ -3529,7 +3529,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CHOOSEROWS.md
+- Spec file: specs/functions/CHOOSEROWS.md
 
 
 ---
@@ -3574,8 +3574,8 @@ Removes non-printable characters from text.
 Not implemented in IronCalc.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/text.rs`
+- Handler: `fn_clean` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -3585,7 +3585,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CLEAN.md
+- Spec file: specs/functions/CLEAN.md
 
 
 ---
@@ -3628,8 +3628,8 @@ Returns numeric code for the first character in text.
 Not implemented in IronCalc.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/text.rs`
+- Handler: `fn_code` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -3639,7 +3639,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CODE.md
+- Spec file: specs/functions/CODE.md
 
 
 ---
@@ -3653,8 +3653,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_column
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3694,7 +3694,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COLUMN.md
+- Spec file: specs/functions/COLUMN.md
 
 
 ---
@@ -3708,8 +3708,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_columns
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3749,7 +3749,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COLUMNS.md
+- Spec file: specs/functions/COLUMNS.md
 
 
 ---
@@ -3763,8 +3763,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_combin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3804,7 +3804,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COMBIN.md
+- Spec file: specs/functions/COMBIN.md
 
 
 ---
@@ -3818,8 +3818,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_combina
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3859,7 +3859,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COMBINA.md
+- Spec file: specs/functions/COMBINA.md
 
 
 ---
@@ -3873,8 +3873,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_complex
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3914,7 +3914,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COMPLEX.md
+- Spec file: specs/functions/COMPLEX.md
 
 
 ---
@@ -3928,8 +3928,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_concat
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -3969,7 +3969,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CONCAT.md
+- Spec file: specs/functions/CONCAT.md
 
 
 ---
@@ -3983,8 +3983,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_concatenate
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4024,7 +4024,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CONCATENATE.md
+- Spec file: specs/functions/CONCATENATE.md
 
 
 ---
@@ -4079,7 +4079,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CONFIDENCE.NORM.md
+- Spec file: specs/functions/CONFIDENCE.NORM.md
 
 
 ---
@@ -4134,7 +4134,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CONFIDENCE.T.md
+- Spec file: specs/functions/CONFIDENCE.T.md
 
 
 ---
@@ -4148,8 +4148,8 @@ Not implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_convert
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/convert.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4189,7 +4189,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CONVERT.md
+- Spec file: specs/functions/CONVERT.md
 
 
 ---
@@ -4244,7 +4244,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COPILOT.md
+- Spec file: specs/functions/COPILOT.md
 
 
 ---
@@ -4258,8 +4258,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_correl
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4299,7 +4299,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CORREL.md
+- Spec file: specs/functions/CORREL.md
 
 
 ---
@@ -4313,8 +4313,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_cos
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4354,7 +4354,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COS.md
+- Spec file: specs/functions/COS.md
 
 
 ---
@@ -4368,8 +4368,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_cosh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4409,7 +4409,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COSH.md
+- Spec file: specs/functions/COSH.md
 
 
 ---
@@ -4423,8 +4423,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_cot
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4464,7 +4464,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COT.md
+- Spec file: specs/functions/COT.md
 
 
 ---
@@ -4478,8 +4478,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_coth
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4519,7 +4519,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COTH.md
+- Spec file: specs/functions/COTH.md
 
 
 ---
@@ -4533,8 +4533,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_count
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4574,7 +4574,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUNT.md
+- Spec file: specs/functions/COUNT.md
 
 
 ---
@@ -4588,8 +4588,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_counta
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4628,7 +4628,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUNTA.md
+- Spec file: specs/functions/COUNTA.md
 
 
 ---
@@ -4642,8 +4642,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_countblank
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4682,7 +4682,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUNTBLANK.md
+- Spec file: specs/functions/COUNTBLANK.md
 
 
 ---
@@ -4696,8 +4696,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_countif
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4737,7 +4737,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUNTIF.md
+- Spec file: specs/functions/COUNTIF.md
 
 
 ---
@@ -4751,8 +4751,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_countifs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -4792,7 +4792,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUNTIFS.md
+- Spec file: specs/functions/COUNTIFS.md
 
 
 ---
@@ -4837,8 +4837,8 @@ Counts unique values in supplied arguments.
 Not implemented in IronCalc.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/statistical/count_and_average.rs`
+- Handler: `fn_countunique` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -4848,7 +4848,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUNTUNIQUE.md
+- Spec file: specs/functions/COUNTUNIQUE.md
 
 
 ---
@@ -4904,7 +4904,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUPDAYBS.md
+- Spec file: specs/functions/COUPDAYBS.md
 
 
 ---
@@ -4960,7 +4960,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUPDAYS.md
+- Spec file: specs/functions/COUPDAYS.md
 
 
 ---
@@ -5014,7 +5014,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUPDAYSNC.md
+- Spec file: specs/functions/COUPDAYSNC.md
 
 
 ---
@@ -5068,7 +5068,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUPNCD.md
+- Spec file: specs/functions/COUPNCD.md
 
 
 ---
@@ -5123,7 +5123,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUPNUM.md
+- Spec file: specs/functions/COUPNUM.md
 
 
 ---
@@ -5177,7 +5177,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COUPPCD.md
+- Spec file: specs/functions/COUPPCD.md
 
 
 ---
@@ -5231,7 +5231,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COVARIANCE.P.md
+- Spec file: specs/functions/COVARIANCE.P.md
 
 
 ---
@@ -5286,7 +5286,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/COVARIANCE.S.md
+- Spec file: specs/functions/COVARIANCE.S.md
 
 
 ---
@@ -5329,8 +5329,8 @@ Returns threshold value for binomial distribution by cumulative probability.
 Not implemented in IronCalc.
 
 ### Code Location
-- Proposed file: `base/src/functions/<category>.rs`
-- Handler: `fn_...` (to be added)
+- Proposed file: `base/src/functions/statistical/binom.rs`
+- Handler: `fn_critbinom` (to be added)
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -5340,7 +5340,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CRITBINOM.md
+- Spec file: specs/functions/CRITBINOM.md
 
 
 ---
@@ -5354,8 +5354,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_csc
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -5395,7 +5395,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CSC.md
+- Spec file: specs/functions/CSC.md
 
 
 ---
@@ -5409,8 +5409,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_csch
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -5450,7 +5450,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CSCH.md
+- Spec file: specs/functions/CSCH.md
 
 
 ---
@@ -5505,7 +5505,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBEKPIMEMBER.md
+- Spec file: specs/functions/CUBEKPIMEMBER.md
 
 
 ---
@@ -5560,7 +5560,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBEMEMBER.md
+- Spec file: specs/functions/CUBEMEMBER.md
 
 
 ---
@@ -5615,7 +5615,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBEMEMBERPROPERTY.md
+- Spec file: specs/functions/CUBEMEMBERPROPERTY.md
 
 
 ---
@@ -5671,7 +5671,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBERANKEDMEMBER.md
+- Spec file: specs/functions/CUBERANKEDMEMBER.md
 
 
 ---
@@ -5726,7 +5726,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBESET.md
+- Spec file: specs/functions/CUBESET.md
 
 
 ---
@@ -5781,7 +5781,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBESETCOUNT.md
+- Spec file: specs/functions/CUBESETCOUNT.md
 
 
 ---
@@ -5836,7 +5836,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUBEVALUE.md
+- Spec file: specs/functions/CUBEVALUE.md
 
 
 ---
@@ -5850,8 +5850,8 @@ Not implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_cumipmt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -5891,7 +5891,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUMIPMT.md
+- Spec file: specs/functions/CUMIPMT.md
 
 
 ---
@@ -5905,8 +5905,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_cumprinc
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -5946,7 +5946,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/CUMPRINC.md
+- Spec file: specs/functions/CUMPRINC.md
 
 
 ---
@@ -5960,8 +5960,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_date
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -5990,7 +5990,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_date`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -6000,7 +6000,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DATE.md
+- Spec file: specs/functions/DATE.md
 
 
 ---
@@ -6014,8 +6014,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_datedif
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6044,7 +6044,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_datedif`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -6054,7 +6054,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DATEDIF.md
+- Spec file: specs/functions/DATEDIF.md
 
 
 ---
@@ -6068,8 +6068,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_datevalue
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6098,7 +6098,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_datevalue`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -6108,7 +6108,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DATEVALUE.md
+- Spec file: specs/functions/DATEVALUE.md
 
 
 ---
@@ -6122,8 +6122,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_daverage
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6163,7 +6163,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DAVERAGE.md
+- Spec file: specs/functions/DAVERAGE.md
 
 
 ---
@@ -6177,8 +6177,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_day
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6218,7 +6218,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DAY.md
+- Spec file: specs/functions/DAY.md
 
 
 ---
@@ -6232,8 +6232,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_days
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6273,7 +6273,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DAYS.md
+- Spec file: specs/functions/DAYS.md
 
 
 ---
@@ -6287,8 +6287,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_days360
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6328,7 +6328,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DAYS360.md
+- Spec file: specs/functions/DAYS360.md
 
 
 ---
@@ -6342,8 +6342,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_db
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6384,7 +6384,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DB.md
+- Spec file: specs/functions/DB.md
 
 
 ---
@@ -6439,7 +6439,7 @@ Not implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DBCS.md
+- Spec file: specs/functions/DBCS.md
 
 
 ---
@@ -6453,8 +6453,8 @@ Not implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dcount
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6494,7 +6494,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DCOUNT.md
+- Spec file: specs/functions/DCOUNT.md
 
 
 ---
@@ -6508,8 +6508,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dcounta
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6549,7 +6549,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DCOUNTA.md
+- Spec file: specs/functions/DCOUNTA.md
 
 
 ---
@@ -6563,8 +6563,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ddb
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6604,7 +6604,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DDB.md
+- Spec file: specs/functions/DDB.md
 
 
 ---
@@ -6618,8 +6618,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dec2bin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6658,7 +6658,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DEC2BIN.md
+- Spec file: specs/functions/DEC2BIN.md
 
 
 ---
@@ -6672,8 +6672,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dec2hex
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6713,7 +6713,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DEC2HEX.md
+- Spec file: specs/functions/DEC2HEX.md
 
 
 ---
@@ -6727,8 +6727,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dec2oct
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6768,7 +6768,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DEC2OCT.md
+- Spec file: specs/functions/DEC2OCT.md
 
 
 ---
@@ -6782,8 +6782,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_decimal
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6823,7 +6823,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DECIMAL.md
+- Spec file: specs/functions/DECIMAL.md
 
 
 ---
@@ -6837,8 +6837,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_degrees
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6878,7 +6878,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DEGREES.md
+- Spec file: specs/functions/DEGREES.md
 
 
 ---
@@ -6892,8 +6892,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_delta
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/misc.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -6933,7 +6933,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DELTA.md
+- Spec file: specs/functions/DELTA.md
 
 
 ---
@@ -6994,7 +6994,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DETECTLANGUAGE.md
+- Spec file: specs/functions/DETECTLANGUAGE.md
 
 
 ---
@@ -7008,8 +7008,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_devsq
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/devsq.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7050,7 +7050,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DEVSQ.md
+- Spec file: specs/functions/DEVSQ.md
 
 
 ---
@@ -7064,8 +7064,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dget
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7106,7 +7106,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DGET.md
+- Spec file: specs/functions/DGET.md
 
 
 ---
@@ -7167,7 +7167,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DISC.md
+- Spec file: specs/functions/DISC.md
 
 
 ---
@@ -7228,7 +7228,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DIVIDE.md
+- Spec file: specs/functions/DIVIDE.md
 
 
 ---
@@ -7242,8 +7242,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dmax
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7284,7 +7284,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DMAX.md
+- Spec file: specs/functions/DMAX.md
 
 
 ---
@@ -7298,8 +7298,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dmin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7340,7 +7340,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DMIN.md
+- Spec file: specs/functions/DMIN.md
 
 
 ---
@@ -7401,7 +7401,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DOLLAR.md
+- Spec file: specs/functions/DOLLAR.md
 
 
 ---
@@ -7415,8 +7415,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dollarde
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7457,7 +7457,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DOLLARDE.md
+- Spec file: specs/functions/DOLLARDE.md
 
 
 ---
@@ -7471,8 +7471,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dollarfr
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7513,7 +7513,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DOLLARFR.md
+- Spec file: specs/functions/DOLLARFR.md
 
 
 ---
@@ -7527,8 +7527,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dproduct
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7569,7 +7569,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DPRODUCT.md
+- Spec file: specs/functions/DPRODUCT.md
 
 
 ---
@@ -7630,7 +7630,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DROP.md
+- Spec file: specs/functions/DROP.md
 
 
 ---
@@ -7644,8 +7644,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dstdev
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7686,7 +7686,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DSTDEV.md
+- Spec file: specs/functions/DSTDEV.md
 
 
 ---
@@ -7700,8 +7700,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dstdevp
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7742,7 +7742,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DSTDEVP.md
+- Spec file: specs/functions/DSTDEVP.md
 
 
 ---
@@ -7756,8 +7756,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dsum
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7798,7 +7798,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DSUM.md
+- Spec file: specs/functions/DSUM.md
 
 
 ---
@@ -7859,7 +7859,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DURATION.md
+- Spec file: specs/functions/DURATION.md
 
 
 ---
@@ -7873,8 +7873,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dvar
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7915,7 +7915,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DVAR.md
+- Spec file: specs/functions/DVAR.md
 
 
 ---
@@ -7929,8 +7929,8 @@ Implemented in IronCalc.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_dvarp
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -7971,7 +7971,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/DVARP.md
+- Spec file: specs/functions/DVARP.md
 
 
 ---
@@ -7985,8 +7985,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_edate
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8027,7 +8027,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EDATE.md
+- Spec file: specs/functions/EDATE.md
 
 
 ---
@@ -8041,8 +8041,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_effect
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8083,7 +8083,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EFFECT.md
+- Spec file: specs/functions/EFFECT.md
 
 
 ---
@@ -8144,7 +8144,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ENCODEURL.md
+- Spec file: specs/functions/ENCODEURL.md
 
 
 ---
@@ -8158,8 +8158,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_eomonth
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8200,7 +8200,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EOMONTH.md
+- Spec file: specs/functions/EOMONTH.md
 
 
 ---
@@ -8261,7 +8261,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EPOCHTODATE.md
+- Spec file: specs/functions/EPOCHTODATE.md
 
 
 ---
@@ -8322,7 +8322,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EQ.md
+- Spec file: specs/functions/EQ.md
 
 
 ---
@@ -8336,8 +8336,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_erf
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8378,7 +8378,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ERF.md
+- Spec file: specs/functions/ERF.md
 
 
 ---
@@ -8439,7 +8439,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ERF.PRECISE.md
+- Spec file: specs/functions/ERF.PRECISE.md
 
 
 ---
@@ -8453,8 +8453,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_erfc
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8495,7 +8495,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ERFC.md
+- Spec file: specs/functions/ERFC.md
 
 
 ---
@@ -8556,7 +8556,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ERFC.PRECISE.md
+- Spec file: specs/functions/ERFC.PRECISE.md
 
 
 ---
@@ -8617,7 +8617,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ERROR.TYPE.md
+- Spec file: specs/functions/ERROR.TYPE.md
 
 
 ---
@@ -8678,7 +8678,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EUROCONVERT.md
+- Spec file: specs/functions/EUROCONVERT.md
 
 
 ---
@@ -8692,8 +8692,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_even
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8734,7 +8734,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EVEN.md
+- Spec file: specs/functions/EVEN.md
 
 
 ---
@@ -8748,8 +8748,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_exact
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8790,7 +8790,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EXACT.md
+- Spec file: specs/functions/EXACT.md
 
 
 ---
@@ -8804,8 +8804,8 @@ Implemented in IronCalc.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_exp
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -8846,7 +8846,7 @@ Implemented in IronCalc.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EXP.md
+- Spec file: specs/functions/EXP.md
 
 
 ---
@@ -8907,7 +8907,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EXPAND.md
+- Spec file: specs/functions/EXPAND.md
 
 
 ---
@@ -8968,7 +8968,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/EXPON.DIST.md
+- Spec file: specs/functions/EXPON.DIST.md
 
 
 ---
@@ -9029,7 +9029,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/F.DIST.md
+- Spec file: specs/functions/F.DIST.md
 
 
 ---
@@ -9090,7 +9090,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/F.DIST.RT.md
+- Spec file: specs/functions/F.DIST.RT.md
 
 
 ---
@@ -9151,7 +9151,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/F.INV.md
+- Spec file: specs/functions/F.INV.md
 
 
 ---
@@ -9212,7 +9212,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/F.INV.RT.md
+- Spec file: specs/functions/F.INV.RT.md
 
 
 ---
@@ -9273,7 +9273,7 @@ Function behavior and implementation details to be added as part of batch implem
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/F.TEST.md
+- Spec file: specs/functions/F.TEST.md
 
 
 ---
@@ -9287,8 +9287,8 @@ Function behavior and implementation details to be added as part of batch implem
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_fact
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9327,7 +9327,7 @@ Returns the factorial of an integer argument.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FACT.md
+- Spec file: specs/functions/FACT.md
 
 
 ---
@@ -9341,8 +9341,8 @@ Returns the factorial of an integer argument.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_factdouble
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9381,7 +9381,7 @@ Returns the double factorial of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FACTDOUBLE.md
+- Spec file: specs/functions/FACTDOUBLE.md
 
 
 ---
@@ -9395,8 +9395,8 @@ Returns the double factorial of a number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_false
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9434,7 +9434,7 @@ Returns the FALSE logical constant.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FALSE.md
+- Spec file: specs/functions/FALSE.md
 
 
 ---
@@ -9476,7 +9476,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Deterministic and reproducible under seeded execution context.
 
 ### Code Location
-- Proposed file: `base/src/functions/extensions.rs`
+- Proposed file: `base/src/functions/lookup_and_reference.rs`
 - Proposed handler: `fn_filter`
 - Pseudocode: deterministic parsing, coercion, and computation.
 
@@ -9488,7 +9488,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FILTER.md
+- Spec file: specs/functions/FILTER.md
 
 
 ---
@@ -9546,7 +9546,7 @@ Parses XML text and returns queried content using a path expression.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FILTERXML.md
+- Spec file: specs/functions/FILTERXML.md
 
 
 ---
@@ -9560,8 +9560,8 @@ Parses XML text and returns queried content using a path expression.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_find
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9599,7 +9599,7 @@ Returns the position of a substring inside text (case-sensitive).
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FIND.md
+- Spec file: specs/functions/FIND.md
 
 
 ---
@@ -9657,7 +9657,7 @@ Byte-level text search equivalent to FIND.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FINDB.md
+- Spec file: specs/functions/FINDB.md
 
 
 ---
@@ -9671,8 +9671,8 @@ Byte-level text search equivalent to FIND.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_fisher
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/fisher.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9710,7 +9710,7 @@ Returns the hyperbolic arctangent-like Fisher transform.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FISHER.md
+- Spec file: specs/functions/FISHER.md
 
 
 ---
@@ -9724,8 +9724,8 @@ Returns the hyperbolic arctangent-like Fisher transform.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_fisher_inv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/fisher.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9763,7 +9763,7 @@ Returns the inverse Fisher transform.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FISHERINV.md
+- Spec file: specs/functions/FISHERINV.md
 
 
 ---
@@ -9821,7 +9821,7 @@ Formats a number to fixed decimals as text with optional thousands separators an
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FIXED.md
+- Spec file: specs/functions/FIXED.md
 
 
 ---
@@ -9879,7 +9879,7 @@ Flattens nested arrays into a single-column array.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FLATTEN.md
+- Spec file: specs/functions/FLATTEN.md
 
 
 ---
@@ -9893,8 +9893,8 @@ Flattens nested arrays into a single-column array.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_floor
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -9933,7 +9933,7 @@ Rounds a number down to nearest multiple of significance.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FLOOR.md
+- Spec file: specs/functions/FLOOR.md
 
 
 ---
@@ -9991,7 +9991,7 @@ Rounds a number down to nearest multiple with explicit precision mode.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FLOOR.MATH.md
+- Spec file: specs/functions/FLOOR.MATH.md
 
 
 ---
@@ -10049,7 +10049,7 @@ Rounds number down to nearest multiple with precise semantics.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FLOOR.PRECISE.md
+- Spec file: specs/functions/FLOOR.PRECISE.md
 
 
 ---
@@ -10107,7 +10107,7 @@ Predicts a value using linear trend from known data pairs.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORECAST.md
+- Spec file: specs/functions/FORECAST.md
 
 
 ---
@@ -10161,7 +10161,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORECAST.ETS.md
+- Spec file: specs/functions/FORECAST.ETS.md
 
 
 ---
@@ -10215,7 +10215,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORECAST.ETS.CONFINT.md
+- Spec file: specs/functions/FORECAST.ETS.CONFINT.md
 
 
 ---
@@ -10269,7 +10269,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORECAST.ETS.SEASONALITY.md
+- Spec file: specs/functions/FORECAST.ETS.SEASONALITY.md
 
 
 ---
@@ -10323,7 +10323,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORECAST.ETS.STAT.md
+- Spec file: specs/functions/FORECAST.ETS.STAT.md
 
 
 ---
@@ -10377,7 +10377,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORECAST.LINEAR.md
+- Spec file: specs/functions/FORECAST.LINEAR.md
 
 
 ---
@@ -10391,8 +10391,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_formulatext
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10430,7 +10430,7 @@ Returns the formula text of a referenced cell.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FORMULATEXT.md
+- Spec file: specs/functions/FORMULATEXT.md
 
 
 ---
@@ -10488,7 +10488,7 @@ Returns frequency counts for values across bins.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FREQUENCY.md
+- Spec file: specs/functions/FREQUENCY.md
 
 
 ---
@@ -10496,14 +10496,14 @@ Returns frequency counts for values across bins.
 ## FTEST — Lua Implementation Prompt
 
 ## Status
-- IronCalc: N
+- IronCalc: Y
 - Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
-- Missing in IronCalc: Yes
-- IronCalc Handler: fn_f_test
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/fisher.rs
+- Missing in IronCalc: No
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10541,7 +10541,7 @@ Performs two-variable F-test variance comparison.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FTEST.md
+- Spec file: specs/functions/FTEST.md
 
 
 ---
@@ -10555,8 +10555,8 @@ Performs two-variable F-test variance comparison.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_fv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10594,7 +10594,7 @@ Calculates future value of annuity streams.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FV.md
+- Spec file: specs/functions/FV.md
 
 
 ---
@@ -10652,7 +10652,7 @@ Future value after applying a schedule of interest rates.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/FVSCHEDULE.md
+- Spec file: specs/functions/FVSCHEDULE.md
 
 
 ---
@@ -10666,8 +10666,8 @@ Future value after applying a schedule of interest rates.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_gamma
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/gamma.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10705,7 +10705,7 @@ Returns the gamma function value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMA.md
+- Spec file: specs/functions/GAMMA.md
 
 
 ---
@@ -10763,7 +10763,7 @@ Returns gamma distribution cumulative or density values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMA.DIST.md
+- Spec file: specs/functions/GAMMA.DIST.md
 
 
 ---
@@ -10821,7 +10821,7 @@ Returns inverse gamma distribution quantile.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMA.INV.md
+- Spec file: specs/functions/GAMMA.INV.md
 
 
 ---
@@ -10829,14 +10829,14 @@ Returns inverse gamma distribution quantile.
 ## GAMMADIST — Lua Implementation Prompt
 
 ## Status
-- IronCalc: N
+- IronCalc: Y
 - Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
-- Missing in IronCalc: Yes
-- IronCalc Handler: fn_gamma_dist
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/gamma.rs
+- Missing in IronCalc: No
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10874,7 +10874,7 @@ Legacy alias for Gamma distribution cumulative/density behavior.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMADIST.md
+- Spec file: specs/functions/GAMMADIST.md
 
 
 ---
@@ -10882,14 +10882,14 @@ Legacy alias for Gamma distribution cumulative/density behavior.
 ## GAMMAINV — Lua Implementation Prompt
 
 ## Status
-- IronCalc: N
+- IronCalc: Y
 - Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
-- Missing in IronCalc: Yes
-- IronCalc Handler: fn_gamma_inv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/gamma.rs
+- Missing in IronCalc: No
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10927,7 +10927,7 @@ Returns inverse of gamma cumulative distribution.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMAINV.md
+- Spec file: specs/functions/GAMMAINV.md
 
 
 ---
@@ -10941,8 +10941,8 @@ Returns inverse of gamma cumulative distribution.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_gamma_ln
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/gamma.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -10980,7 +10980,7 @@ Returns the natural logarithm of the Gamma function.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMALN.md
+- Spec file: specs/functions/GAMMALN.md
 
 
 ---
@@ -11038,7 +11038,7 @@ Returns the natural logarithm of Gamma with precision emphasis.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAMMALN.PRECISE.md
+- Spec file: specs/functions/GAMMALN.PRECISE.md
 
 
 ---
@@ -11052,8 +11052,8 @@ Returns the natural logarithm of Gamma with precision emphasis.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_gauss
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/gauss.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11091,7 +11091,7 @@ Returns the standard normal cumulative distribution value shifted around mean 0.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GAUSS.md
+- Spec file: specs/functions/GAUSS.md
 
 
 ---
@@ -11105,8 +11105,8 @@ Returns the standard normal cumulative distribution value shifted around mean 0.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_gcd
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11144,7 +11144,7 @@ Returns greatest common divisor of one or more integers.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GCD.md
+- Spec file: specs/functions/GCD.md
 
 
 ---
@@ -11158,8 +11158,8 @@ Returns greatest common divisor of one or more integers.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_geomean
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/geomean.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11197,7 +11197,7 @@ Returns geometric mean of numeric values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GEOMEAN.md
+- Spec file: specs/functions/GEOMEAN.md
 
 
 ---
@@ -11211,8 +11211,8 @@ Returns geometric mean of numeric values.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_gestep
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/misc.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11251,7 +11251,7 @@ Returns 1 if number >= step, else 0.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GESTEP.md
+- Spec file: specs/functions/GESTEP.md
 
 
 ---
@@ -11309,7 +11309,7 @@ Extracts data from a pivot table structure by field/item pairs.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GETPIVOTDATA.md
+- Spec file: specs/functions/GETPIVOTDATA.md
 
 
 ---
@@ -11367,7 +11367,7 @@ Fetches finance data from online provider for ticker and attributes.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GOOGLEFINANCE.md
+- Spec file: specs/functions/GOOGLEFINANCE.md
 
 
 ---
@@ -11425,7 +11425,7 @@ Translates text between languages via service integration.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GOOGLETRANSLATE.md
+- Spec file: specs/functions/GOOGLETRANSLATE.md
 
 
 ---
@@ -11483,7 +11483,7 @@ Groups rows by key(s) and applies aggregation.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GROUPBY.md
+- Spec file: specs/functions/GROUPBY.md
 
 
 ---
@@ -11541,7 +11541,7 @@ Fits exponential trend and projects values for x inputs.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GROWTH.md
+- Spec file: specs/functions/GROWTH.md
 
 
 ---
@@ -11599,7 +11599,7 @@ Returns TRUE when first argument is greater than the second.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GT.md
+- Spec file: specs/functions/GT.md
 
 
 ---
@@ -11657,7 +11657,7 @@ Returns TRUE when first argument is greater than or equal to second.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/GTE.md
+- Spec file: specs/functions/GTE.md
 
 
 ---
@@ -11671,8 +11671,8 @@ Returns TRUE when first argument is greater than or equal to second.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_harmean
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11710,7 +11710,7 @@ Returns harmonic mean of values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HARMEAN.md
+- Spec file: specs/functions/HARMEAN.md
 
 
 ---
@@ -11724,8 +11724,8 @@ Returns harmonic mean of values.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_hex2bin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11763,7 +11763,7 @@ Converts a hexadecimal number to binary format.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HEX2BIN.md
+- Spec file: specs/functions/HEX2BIN.md
 
 
 ---
@@ -11777,8 +11777,8 @@ Converts a hexadecimal number to binary format.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_hex2dec
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11816,7 +11816,7 @@ Converts a hexadecimal number to decimal.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HEX2DEC.md
+- Spec file: specs/functions/HEX2DEC.md
 
 
 ---
@@ -11830,8 +11830,8 @@ Converts a hexadecimal number to decimal.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_hex2oct
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11872,7 +11872,7 @@ Invalid hex input or overflow returns a function/domain error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HEX2OCT.md
+- Spec file: specs/functions/HEX2OCT.md
 
 
 ---
@@ -11886,8 +11886,8 @@ Invalid hex input or overflow returns a function/domain error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_hlookup
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11928,7 +11928,7 @@ Invalid row index or unresolved key returns #N/A-like error behavior.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HLOOKUP.md
+- Spec file: specs/functions/HLOOKUP.md
 
 
 ---
@@ -11942,8 +11942,8 @@ Invalid row index or unresolved key returns #N/A-like error behavior.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_hour
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -11984,7 +11984,7 @@ Invalid datetime values return an argument error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HOUR.md
+- Spec file: specs/functions/HOUR.md
 
 
 ---
@@ -12050,7 +12050,7 @@ Mismatched array dimensions or invalid arguments return an error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HSTACK.md
+- Spec file: specs/functions/HSTACK.md
 
 
 ---
@@ -12116,7 +12116,7 @@ Invalid URL/text arguments return a value error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HYPERLINK.md
+- Spec file: specs/functions/HYPERLINK.md
 
 
 ---
@@ -12182,7 +12182,7 @@ Invalid draw/sample ranges return a domain error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HYPGEOM.DIST.md
+- Spec file: specs/functions/HYPGEOM.DIST.md
 
 
 ---
@@ -12190,14 +12190,14 @@ Invalid draw/sample ranges return a domain error.
 ## HYPGEOMDIST — Lua Implementation Prompt
 
 ## Status
-- IronCalc: N
+- IronCalc: Y
 - Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
-- Missing in IronCalc: Yes
-- IronCalc Handler: fn_hyp_geom_dist
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/hypegeom.rs
+- Missing in IronCalc: No
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12238,7 +12238,7 @@ Invalid range values and inconsistent parameters return domain errors.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/HYPGEOMDIST.md
+- Spec file: specs/functions/HYPGEOMDIST.md
 
 
 ---
@@ -12252,8 +12252,8 @@ Invalid range values and inconsistent parameters return domain errors.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_if
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12294,7 +12294,7 @@ Invalid argument count returns arity error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IF.md
+- Spec file: specs/functions/IF.md
 
 
 ---
@@ -12308,8 +12308,8 @@ Invalid argument count returns arity error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_iferror
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12350,7 +12350,7 @@ Non-error values pass through unchanged.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IFERROR.md
+- Spec file: specs/functions/IFERROR.md
 
 
 ---
@@ -12364,8 +12364,8 @@ Non-error values pass through unchanged.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ifna
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12406,7 +12406,7 @@ Only #N/A is intercepted; other errors pass through.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IFNA.md
+- Spec file: specs/functions/IFNA.md
 
 
 ---
@@ -12420,8 +12420,8 @@ Only #N/A is intercepted; other errors pass through.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ifs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12462,7 +12462,7 @@ No matching condition or odd argument count returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IFS.md
+- Spec file: specs/functions/IFS.md
 
 
 ---
@@ -12476,8 +12476,8 @@ No matching condition or odd argument count returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imabs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12518,7 +12518,7 @@ Invalid complex notation returns parser error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMABS.md
+- Spec file: specs/functions/IMABS.md
 
 
 ---
@@ -12584,7 +12584,7 @@ Invalid source URL/path should raise a value/runtime error in rendering mode.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMAGE.md
+- Spec file: specs/functions/IMAGE.md
 
 
 ---
@@ -12598,8 +12598,8 @@ Invalid source URL/path should raise a value/runtime error in rendering mode.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imaginary
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12640,7 +12640,7 @@ Invalid complex input returns #VALUE!-style error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMAGINARY.md
+- Spec file: specs/functions/IMAGINARY.md
 
 
 ---
@@ -12654,8 +12654,8 @@ Invalid complex input returns #VALUE!-style error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imargument
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12696,7 +12696,7 @@ Zero-length vector or invalid input produces error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMARGUMENT.md
+- Spec file: specs/functions/IMARGUMENT.md
 
 
 ---
@@ -12710,8 +12710,8 @@ Zero-length vector or invalid input produces error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imconjugate
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12752,7 +12752,7 @@ Malformed input returns parse error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCONJUGATE.md
+- Spec file: specs/functions/IMCONJUGATE.md
 
 
 ---
@@ -12766,8 +12766,8 @@ Malformed input returns parse error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imcos
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12808,7 +12808,7 @@ Non-complex input returns a parser/domain error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCOS.md
+- Spec file: specs/functions/IMCOS.md
 
 
 ---
@@ -12822,8 +12822,8 @@ Non-complex input returns a parser/domain error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imcosh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12864,7 +12864,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCOSH.md
+- Spec file: specs/functions/IMCOSH.md
 
 
 ---
@@ -12878,8 +12878,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imcot
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -12920,7 +12920,7 @@ Zero denominator or invalid input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCOT.md
+- Spec file: specs/functions/IMCOT.md
 
 
 ---
@@ -12986,7 +12986,7 @@ Zero denominator or invalid format returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCOTH.md
+- Spec file: specs/functions/IMCOTH.md
 
 
 ---
@@ -13000,8 +13000,8 @@ Zero denominator or invalid format returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imcsc
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13042,7 +13042,7 @@ Invalid complex input or undefined poles return errors.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCSC.md
+- Spec file: specs/functions/IMCSC.md
 
 
 ---
@@ -13056,8 +13056,8 @@ Invalid complex input or undefined poles return errors.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imcsch
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13098,7 +13098,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMCSCH.md
+- Spec file: specs/functions/IMCSCH.md
 
 
 ---
@@ -13112,8 +13112,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imdiv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13154,7 +13154,7 @@ Division by zero or malformed complex numbers returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMDIV.md
+- Spec file: specs/functions/IMDIV.md
 
 
 ---
@@ -13168,8 +13168,8 @@ Division by zero or malformed complex numbers returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imexp
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13210,7 +13210,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMEXP.md
+- Spec file: specs/functions/IMEXP.md
 
 
 ---
@@ -13224,8 +13224,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imln
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13266,7 +13266,7 @@ Non-complex/invalid input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMLN.md
+- Spec file: specs/functions/IMLN.md
 
 
 ---
@@ -13332,7 +13332,7 @@ Invalid base (<=0, 1) or invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMLOG.md
+- Spec file: specs/functions/IMLOG.md
 
 
 ---
@@ -13346,8 +13346,8 @@ Invalid base (<=0, 1) or invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imlog10
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13388,7 +13388,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMLOG10.md
+- Spec file: specs/functions/IMLOG10.md
 
 
 ---
@@ -13402,8 +13402,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imlog2
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13444,7 +13444,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMLOG2.md
+- Spec file: specs/functions/IMLOG2.md
 
 
 ---
@@ -13510,7 +13510,7 @@ Network or URL errors return fetch/runtime error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPORTDATA.md
+- Spec file: specs/functions/IMPORTDATA.md
 
 
 ---
@@ -13576,7 +13576,7 @@ Malformed feed URLs and connectivity issues return errors.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPORTFEED.md
+- Spec file: specs/functions/IMPORTFEED.md
 
 
 ---
@@ -13642,7 +13642,7 @@ Invalid selector or network failures return errors.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPORTHTML.md
+- Spec file: specs/functions/IMPORTHTML.md
 
 
 ---
@@ -13708,7 +13708,7 @@ Invalid permissions or external access failures return errors.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPORTRANGE.md
+- Spec file: specs/functions/IMPORTRANGE.md
 
 
 ---
@@ -13774,7 +13774,7 @@ Invalid XML/XPath or fetch errors return error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPORTXML.md
+- Spec file: specs/functions/IMPORTXML.md
 
 
 ---
@@ -13788,8 +13788,8 @@ Invalid XML/XPath or fetch errors return error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_impower
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13830,7 +13830,7 @@ Invalid exponentiation for poles or malformed inputs returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPOWER.md
+- Spec file: specs/functions/IMPOWER.md
 
 
 ---
@@ -13844,8 +13844,8 @@ Invalid exponentiation for poles or malformed inputs returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_improduct
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13886,7 +13886,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMPRODUCT.md
+- Spec file: specs/functions/IMPRODUCT.md
 
 
 ---
@@ -13900,8 +13900,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imreal
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13942,7 +13942,7 @@ Malformed complex input returns #VALUE!-style error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMREAL.md
+- Spec file: specs/functions/IMREAL.md
 
 
 ---
@@ -13956,8 +13956,8 @@ Malformed complex input returns #VALUE!-style error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsec
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -13998,7 +13998,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSEC.md
+- Spec file: specs/functions/IMSEC.md
 
 
 ---
@@ -14012,8 +14012,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsech
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14054,7 +14054,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSECH.md
+- Spec file: specs/functions/IMSECH.md
 
 
 ---
@@ -14068,8 +14068,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14110,7 +14110,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSIN.md
+- Spec file: specs/functions/IMSIN.md
 
 
 ---
@@ -14124,8 +14124,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsinh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14166,7 +14166,7 @@ Invalid complex input returns error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSINH.md
+- Spec file: specs/functions/IMSINH.md
 
 
 ---
@@ -14180,8 +14180,8 @@ Invalid complex input returns error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsqrt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14220,7 +14220,7 @@ Returns the square root of a complex number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSQRT.md
+- Spec file: specs/functions/IMSQRT.md
 
 
 ---
@@ -14234,8 +14234,8 @@ Returns the square root of a complex number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsub
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14274,7 +14274,7 @@ Returns the difference of two complex numbers.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSUB.md
+- Spec file: specs/functions/IMSUB.md
 
 
 ---
@@ -14288,8 +14288,8 @@ Returns the difference of two complex numbers.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imsum
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14328,7 +14328,7 @@ Returns the sum of multiple complex numbers.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMSUM.md
+- Spec file: specs/functions/IMSUM.md
 
 
 ---
@@ -14342,8 +14342,8 @@ Returns the sum of multiple complex numbers.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_imtan
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/complex.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14382,7 +14382,7 @@ Returns tangent of a complex number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMTAN.md
+- Spec file: specs/functions/IMTAN.md
 
 
 ---
@@ -14440,7 +14440,7 @@ Returns hyperbolic tangent of a complex number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IMTANH.md
+- Spec file: specs/functions/IMTANH.md
 
 
 ---
@@ -14454,8 +14454,8 @@ Returns hyperbolic tangent of a complex number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_index
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14484,7 +14484,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_index`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -14494,7 +14494,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/INDEX.md
+- Spec file: specs/functions/INDEX.md
 
 
 ---
@@ -14508,8 +14508,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_indirect
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14538,7 +14538,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_indirect`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -14548,7 +14548,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/INDIRECT.md
+- Spec file: specs/functions/INDIRECT.md
 
 
 ---
@@ -14562,8 +14562,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_info
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14602,7 +14602,7 @@ Returns metadata information about a formula or environment (where supported).
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/INFO.md
+- Spec file: specs/functions/INFO.md
 
 
 ---
@@ -14616,8 +14616,8 @@ Returns metadata information about a formula or environment (where supported).
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_int
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14657,7 +14657,7 @@ Rounds number down to nearest integer toward negative infinity.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/INT.md
+- Spec file: specs/functions/INT.md
 
 
 ---
@@ -14671,8 +14671,8 @@ Rounds number down to nearest integer toward negative infinity.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_intercept
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14713,7 +14713,7 @@ Returns the y-axis intercept from linear regression of known points.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/INTERCEPT.md
+- Spec file: specs/functions/INTERCEPT.md
 
 
 ---
@@ -14771,7 +14771,7 @@ Returns the interest rate for an investment over a period.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/INTRATE.md
+- Spec file: specs/functions/INTRATE.md
 
 
 ---
@@ -14785,8 +14785,8 @@ Returns the interest rate for an investment over a period.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ipmt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14825,7 +14825,7 @@ Returns interest payment for a specific period.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IPMT.md
+- Spec file: specs/functions/IPMT.md
 
 
 ---
@@ -14839,8 +14839,8 @@ Returns interest payment for a specific period.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_irr
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: column
@@ -14879,7 +14879,7 @@ Returns internal rate of return for periodic cash flows.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/IRR.md
+- Spec file: specs/functions/IRR.md
 
 
 ---
@@ -14937,7 +14937,7 @@ Returns TRUE if value is between two bounds.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISBETWEEN.md
+- Spec file: specs/functions/ISBETWEEN.md
 
 
 ---
@@ -14951,8 +14951,8 @@ Returns TRUE if value is between two bounds.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isblank
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -14991,7 +14991,7 @@ Checks whether a reference is empty.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISBLANK.md
+- Spec file: specs/functions/ISBLANK.md
 
 
 ---
@@ -15049,7 +15049,7 @@ Returns TRUE if value is a valid date.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISDATE.md
+- Spec file: specs/functions/ISDATE.md
 
 
 ---
@@ -15107,7 +15107,7 @@ Validates whether text is an email-like address.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISEMAIL.md
+- Spec file: specs/functions/ISEMAIL.md
 
 
 ---
@@ -15121,8 +15121,8 @@ Validates whether text is an email-like address.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_iserr
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15161,7 +15161,7 @@ Returns TRUE if value is any error except #N/A.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISERR.md
+- Spec file: specs/functions/ISERR.md
 
 
 ---
@@ -15175,8 +15175,8 @@ Returns TRUE if value is any error except #N/A.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_iserror
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15215,7 +15215,7 @@ Returns TRUE if value is any error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISERROR.md
+- Spec file: specs/functions/ISERROR.md
 
 
 ---
@@ -15229,8 +15229,8 @@ Returns TRUE if value is any error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_iseven
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15269,7 +15269,7 @@ Returns TRUE when number is even.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISEVEN.md
+- Spec file: specs/functions/ISEVEN.md
 
 
 ---
@@ -15283,8 +15283,8 @@ Returns TRUE when number is even.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isformula
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15323,7 +15323,7 @@ Checks whether referenced cell contains a formula.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISFORMULA.md
+- Spec file: specs/functions/ISFORMULA.md
 
 
 ---
@@ -15337,8 +15337,8 @@ Checks whether referenced cell contains a formula.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_islogical
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15377,7 +15377,7 @@ Returns TRUE if value is logical TRUE/FALSE.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISLOGICAL.md
+- Spec file: specs/functions/ISLOGICAL.md
 
 
 ---
@@ -15391,8 +15391,8 @@ Returns TRUE if value is logical TRUE/FALSE.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isna
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15431,7 +15431,7 @@ Checks if value is #N/A error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISNA.md
+- Spec file: specs/functions/ISNA.md
 
 
 ---
@@ -15445,8 +15445,8 @@ Checks if value is #N/A error.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isnontext
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15485,7 +15485,7 @@ Returns TRUE if value is not text.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISNONTEXT.md
+- Spec file: specs/functions/ISNONTEXT.md
 
 
 ---
@@ -15499,8 +15499,8 @@ Returns TRUE if value is not text.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isnumber
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15539,7 +15539,7 @@ Checks whether value is numeric.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISNUMBER.md
+- Spec file: specs/functions/ISNUMBER.md
 
 
 ---
@@ -15597,7 +15597,7 @@ Rounds value up to nearest multiple using ISO week-compatible numeric behavior.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISO.CEILING.md
+- Spec file: specs/functions/ISO.CEILING.md
 
 
 ---
@@ -15611,8 +15611,8 @@ Rounds value up to nearest multiple using ISO week-compatible numeric behavior.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isodd
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15651,7 +15651,7 @@ Returns TRUE if number is odd.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISODD.md
+- Spec file: specs/functions/ISODD.md
 
 
 ---
@@ -15709,7 +15709,7 @@ Returns TRUE for omitted arguments in array formulas or omitted value contexts.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISOMITTED.md
+- Spec file: specs/functions/ISOMITTED.md
 
 
 ---
@@ -15723,8 +15723,8 @@ Returns TRUE for omitted arguments in array formulas or omitted value contexts.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isoweeknum
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15763,7 +15763,7 @@ Returns the ISO week number for a date.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISOWEEKNUM.md
+- Spec file: specs/functions/ISOWEEKNUM.md
 
 
 ---
@@ -15777,8 +15777,8 @@ Returns the ISO week number for a date.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ispmt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15817,7 +15817,7 @@ Returns interest paid during a payment period on an interest-only loan.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISPMT.md
+- Spec file: specs/functions/ISPMT.md
 
 
 ---
@@ -15831,8 +15831,8 @@ Returns interest paid during a payment period on an interest-only loan.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_isref
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15871,7 +15871,7 @@ Returns TRUE if value is a reference.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISREF.md
+- Spec file: specs/functions/ISREF.md
 
 
 ---
@@ -15885,8 +15885,8 @@ Returns TRUE if value is a reference.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_istext
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -15925,7 +15925,7 @@ Returns TRUE when value is text.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISTEXT.md
+- Spec file: specs/functions/ISTEXT.md
 
 
 ---
@@ -15983,7 +15983,7 @@ Checks whether text resembles a URL.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ISURL.md
+- Spec file: specs/functions/ISURL.md
 
 
 ---
@@ -16041,7 +16041,7 @@ Converts text to Japanese Industrial Standards character set representation.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/JIS.md
+- Spec file: specs/functions/JIS.md
 
 
 ---
@@ -16099,7 +16099,7 @@ Concatenates strings with a delimiter.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/JOIN.md
+- Spec file: specs/functions/JOIN.md
 
 
 ---
@@ -16113,8 +16113,8 @@ Concatenates strings with a delimiter.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_kurt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16153,7 +16153,7 @@ Returns the kurtosis of a data set.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/KURT.md
+- Spec file: specs/functions/KURT.md
 
 
 ---
@@ -16207,7 +16207,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LAMBDA.md
+- Spec file: specs/functions/LAMBDA.md
 
 
 ---
@@ -16221,8 +16221,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_large
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16261,7 +16261,7 @@ Returns the k-th largest value in dataset.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LARGE.md
+- Spec file: specs/functions/LARGE.md
 
 
 ---
@@ -16275,8 +16275,8 @@ Returns the k-th largest value in dataset.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_lcm
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16315,7 +16315,7 @@ Returns least common multiple of integers.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LCM.md
+- Spec file: specs/functions/LCM.md
 
 
 ---
@@ -16329,8 +16329,8 @@ Returns least common multiple of integers.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_left
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16369,7 +16369,7 @@ Returns leftmost characters from a text string.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LEFT.md
+- Spec file: specs/functions/LEFT.md
 
 
 ---
@@ -16427,7 +16427,7 @@ Returns leftmost bytes from a text string.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LEFTB.md
+- Spec file: specs/functions/LEFTB.md
 
 
 ---
@@ -16441,8 +16441,8 @@ Returns leftmost bytes from a text string.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_len
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16481,7 +16481,7 @@ Returns character count of text.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LEN.md
+- Spec file: specs/functions/LEN.md
 
 
 ---
@@ -16539,7 +16539,7 @@ Returns byte length of a text string.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LENB.md
+- Spec file: specs/functions/LENB.md
 
 
 ---
@@ -16593,7 +16593,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LET.md
+- Spec file: specs/functions/LET.md
 
 
 ---
@@ -16651,7 +16651,7 @@ Returns regression statistics for x/y data.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LINEST.md
+- Spec file: specs/functions/LINEST.md
 
 
 ---
@@ -16665,8 +16665,8 @@ Returns regression statistics for x/y data.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ln
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16704,7 +16704,7 @@ Returns natural logarithm of a number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LN.md
+- Spec file: specs/functions/LN.md
 
 
 ---
@@ -16718,8 +16718,8 @@ Returns natural logarithm of a number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_log
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16757,7 +16757,7 @@ Returns logarithm of a number to a base.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOG.md
+- Spec file: specs/functions/LOG.md
 
 
 ---
@@ -16771,8 +16771,8 @@ Returns logarithm of a number to a base.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_log10
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -16810,7 +16810,7 @@ Returns base-10 logarithm.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOG10.md
+- Spec file: specs/functions/LOG10.md
 
 
 ---
@@ -16868,7 +16868,7 @@ Returns coefficients/statistics for log-linear fit.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOGEST.md
+- Spec file: specs/functions/LOGEST.md
 
 
 ---
@@ -16926,7 +16926,7 @@ Returns the lognormal distribution value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOGNORM.DIST.md
+- Spec file: specs/functions/LOGNORM.DIST.md
 
 
 ---
@@ -16984,7 +16984,7 @@ Returns inverse lognormal value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOGNORM.INV.md
+- Spec file: specs/functions/LOGNORM.INV.md
 
 
 ---
@@ -16998,8 +16998,8 @@ Returns inverse lognormal value.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_lookup
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17028,7 +17028,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_lookup`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -17038,7 +17038,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOOKUP.md
+- Spec file: specs/functions/LOOKUP.md
 
 
 ---
@@ -17052,8 +17052,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_lower
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17091,7 +17091,7 @@ Converts text to lowercase.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LOWER.md
+- Spec file: specs/functions/LOWER.md
 
 
 ---
@@ -17149,7 +17149,7 @@ Returns TRUE if value1 < value2.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LT.md
+- Spec file: specs/functions/LT.md
 
 
 ---
@@ -17207,7 +17207,7 @@ Returns TRUE if value1 <= value2.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/LTE.md
+- Spec file: specs/functions/LTE.md
 
 
 ---
@@ -17265,7 +17265,7 @@ Creates an array with lambda-generated values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MAKEARRAY.md
+- Spec file: specs/functions/MAKEARRAY.md
 
 
 ---
@@ -17323,7 +17323,7 @@ Applies lambda across arrays.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MAP.md
+- Spec file: specs/functions/MAP.md
 
 
 ---
@@ -17381,7 +17381,7 @@ Returns margin of error for estimate.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MARGINOFERROR.md
+- Spec file: specs/functions/MARGINOFERROR.md
 
 
 ---
@@ -17395,8 +17395,8 @@ Returns margin of error for estimate.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_match
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17425,7 +17425,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_match`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -17435,7 +17435,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MATCH.md
+- Spec file: specs/functions/MATCH.md
 
 
 ---
@@ -17449,8 +17449,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_max
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17488,7 +17488,7 @@ Returns maximum value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MAX.md
+- Spec file: specs/functions/MAX.md
 
 
 ---
@@ -17502,8 +17502,8 @@ Returns maximum value.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_maxa
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17541,7 +17541,7 @@ Returns maximum supporting text/logicals.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MAXA.md
+- Spec file: specs/functions/MAXA.md
 
 
 ---
@@ -17555,8 +17555,8 @@ Returns maximum supporting text/logicals.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_maxifs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17594,7 +17594,7 @@ Returns max with criteria conditions.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MAXIFS.md
+- Spec file: specs/functions/MAXIFS.md
 
 
 ---
@@ -17652,7 +17652,7 @@ Returns determinant of a square matrix.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MDETERM.md
+- Spec file: specs/functions/MDETERM.md
 
 
 ---
@@ -17710,7 +17710,7 @@ Returns modified bond duration.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MDURATION.md
+- Spec file: specs/functions/MDURATION.md
 
 
 ---
@@ -17724,8 +17724,8 @@ Returns modified bond duration.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_median
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17763,7 +17763,7 @@ Returns median value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MEDIAN.md
+- Spec file: specs/functions/MEDIAN.md
 
 
 ---
@@ -17777,8 +17777,8 @@ Returns median value.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_mid
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17816,7 +17816,7 @@ Returns substring from text.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MID.md
+- Spec file: specs/functions/MID.md
 
 
 ---
@@ -17874,7 +17874,7 @@ Returns byte-based substring.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MIDB.md
+- Spec file: specs/functions/MIDB.md
 
 
 ---
@@ -17888,8 +17888,8 @@ Returns byte-based substring.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_min
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17927,7 +17927,7 @@ Returns minimum value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MIN.md
+- Spec file: specs/functions/MIN.md
 
 
 ---
@@ -17941,8 +17941,8 @@ Returns minimum value.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_mina
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -17980,7 +17980,7 @@ Returns minimum including text/logicals.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MINA.md
+- Spec file: specs/functions/MINA.md
 
 
 ---
@@ -17994,8 +17994,8 @@ Returns minimum including text/logicals.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_minifs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18033,7 +18033,7 @@ Returns min with criteria conditions.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MINIFS.md
+- Spec file: specs/functions/MINIFS.md
 
 
 ---
@@ -18091,7 +18091,7 @@ Subtracts numbers.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MINUS.md
+- Spec file: specs/functions/MINUS.md
 
 
 ---
@@ -18105,8 +18105,8 @@ Subtracts numbers.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_minute
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18144,7 +18144,7 @@ Returns minute from time/date.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MINUTE.md
+- Spec file: specs/functions/MINUTE.md
 
 
 ---
@@ -18202,7 +18202,7 @@ Returns inverse of matrix.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MINVERSE.md
+- Spec file: specs/functions/MINVERSE.md
 
 
 ---
@@ -18216,8 +18216,8 @@ Returns inverse of matrix.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_mirr
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18255,7 +18255,7 @@ Modified internal rate of return.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MIRR.md
+- Spec file: specs/functions/MIRR.md
 
 
 ---
@@ -18313,7 +18313,7 @@ Returns matrix product.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MMULT.md
+- Spec file: specs/functions/MMULT.md
 
 
 ---
@@ -18327,8 +18327,8 @@ Returns matrix product.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_mod
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18366,7 +18366,7 @@ Returns remainder after division.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MOD.md
+- Spec file: specs/functions/MOD.md
 
 
 ---
@@ -18424,7 +18424,7 @@ Returns most frequent value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MODE.md
+- Spec file: specs/functions/MODE.md
 
 
 ---
@@ -18482,7 +18482,7 @@ Returns all most frequent values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MODE.MULT.md
+- Spec file: specs/functions/MODE.MULT.md
 
 
 ---
@@ -18540,7 +18540,7 @@ Returns single mode.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MODE.SNGL.md
+- Spec file: specs/functions/MODE.SNGL.md
 
 
 ---
@@ -18554,8 +18554,8 @@ Returns single mode.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_month
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18593,7 +18593,7 @@ Returns month number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MONTH.md
+- Spec file: specs/functions/MONTH.md
 
 
 ---
@@ -18607,8 +18607,8 @@ Returns month number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_mround
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18646,7 +18646,7 @@ Rounds to nearest multiple.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MROUND.md
+- Spec file: specs/functions/MROUND.md
 
 
 ---
@@ -18704,7 +18704,7 @@ Returns multinomial coefficient.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MULTINOMIAL.md
+- Spec file: specs/functions/MULTINOMIAL.md
 
 
 ---
@@ -18762,7 +18762,7 @@ Returns product of two numbers.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MULTIPLY.md
+- Spec file: specs/functions/MULTIPLY.md
 
 
 ---
@@ -18820,7 +18820,7 @@ Returns unit (identity) matrix.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/MUNIT.md
+- Spec file: specs/functions/MUNIT.md
 
 
 ---
@@ -18834,8 +18834,8 @@ Returns unit (identity) matrix.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_n
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18873,7 +18873,7 @@ Converts input to numeric value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/N.md
+- Spec file: specs/functions/N.md
 
 
 ---
@@ -18887,8 +18887,8 @@ Converts input to numeric value.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: <inline>
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mod.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -18931,7 +18931,7 @@ Returns #N/A error.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NA.md
+- Spec file: specs/functions/NA.md
 
 
 ---
@@ -18986,7 +18986,7 @@ Returns TRUE when values differ, FALSE when they are equal.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NE.md
+- Spec file: specs/functions/NE.md
 
 
 ---
@@ -19040,7 +19040,7 @@ Computes the negative binomial PMF/CDF depending on `cumulative`.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NEGBINOM.DIST.md
+- Spec file: specs/functions/NEGBINOM.DIST.md
 
 
 ---
@@ -19048,14 +19048,14 @@ Computes the negative binomial PMF/CDF depending on `cumulative`.
 ## NEGBINOMDIST — Lua Implementation Prompt
 
 ## Status
-- IronCalc: N
+- IronCalc: Y
 - Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
-- Missing in IronCalc: Yes
-- IronCalc Handler: fn_negbinom_dist
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs
+- Missing in IronCalc: No
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19084,7 +19084,7 @@ Returns the probability of a fixed number of failures before `r` successes.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_negbinom_dist`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs`
+- File: `base/src/functions/statistical/binom.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19094,7 +19094,7 @@ Returns the probability of a fixed number of failures before `r` successes.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NEGBINOMDIST.md
+- Spec file: specs/functions/NEGBINOMDIST.md
 
 
 ---
@@ -19108,8 +19108,8 @@ Returns the probability of a fixed number of failures before `r` successes.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_networkdays
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19138,7 +19138,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_networkdays`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19148,7 +19148,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NETWORKDAYS.md
+- Spec file: specs/functions/NETWORKDAYS.md
 
 
 ---
@@ -19202,7 +19202,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NETWORKDAYS.INTL.md
+- Spec file: specs/functions/NETWORKDAYS.INTL.md
 
 
 ---
@@ -19216,8 +19216,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_nominal
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19246,7 +19246,7 @@ Calculates nominal rate by scaling effective rate for compounding periods.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_nominal`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19256,7 +19256,7 @@ Calculates nominal rate by scaling effective rate for compounding periods.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NOMINAL.md
+- Spec file: specs/functions/NOMINAL.md
 
 
 ---
@@ -19310,7 +19310,7 @@ Returns density or cumulative probability for normal distribution.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NORM.DIST.md
+- Spec file: specs/functions/NORM.DIST.md
 
 
 ---
@@ -19364,7 +19364,7 @@ Returns x such that `NORM.DIST(x, mean, stdev, TRUE)=probability`.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NORM.INV.md
+- Spec file: specs/functions/NORM.INV.md
 
 
 ---
@@ -19418,7 +19418,7 @@ Computes distribution values for mean 0 and standard deviation 1.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NORM.S.DIST.md
+- Spec file: specs/functions/NORM.S.DIST.md
 
 
 ---
@@ -19472,7 +19472,7 @@ Returns z-score for the cumulative standard normal probability.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NORM.S.INV.md
+- Spec file: specs/functions/NORM.S.INV.md
 
 
 ---
@@ -19486,8 +19486,8 @@ Returns z-score for the cumulative standard normal probability.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_not
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19516,7 +19516,7 @@ Returns TRUE when input is FALSE and FALSE when input is TRUE.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_not`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs`
+- File: `base/src/functions/logical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19526,7 +19526,7 @@ Returns TRUE when input is FALSE and FALSE when input is TRUE.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NOT.md
+- Spec file: specs/functions/NOT.md
 
 
 ---
@@ -19540,8 +19540,8 @@ Returns TRUE when input is FALSE and FALSE when input is TRUE.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_now
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19570,7 +19570,7 @@ Returns the engine current timestamp at deterministic evaluation time.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_now`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19580,7 +19580,7 @@ Returns the engine current timestamp at deterministic evaluation time.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NOW.md
+- Spec file: specs/functions/NOW.md
 
 
 ---
@@ -19594,8 +19594,8 @@ Returns the engine current timestamp at deterministic evaluation time.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_nper
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19624,7 +19624,7 @@ Solves for number of periodic payments given rates and values.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_nper`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19634,7 +19634,7 @@ Solves for number of periodic payments given rates and values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NPER.md
+- Spec file: specs/functions/NPER.md
 
 
 ---
@@ -19648,8 +19648,8 @@ Solves for number of periodic payments given rates and values.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_npv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19678,7 +19678,7 @@ Discounts future payments with constant rate and sums present value.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_npv`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19688,7 +19688,7 @@ Discounts future payments with constant rate and sums present value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NPV.md
+- Spec file: specs/functions/NPV.md
 
 
 ---
@@ -19742,7 +19742,7 @@ Parses numeric text using explicit decimal and thousands separators.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/NUMBERVALUE.md
+- Spec file: specs/functions/NUMBERVALUE.md
 
 
 ---
@@ -19756,8 +19756,8 @@ Parses numeric text using explicit decimal and thousands separators.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_oct2bin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19786,7 +19786,7 @@ Converts signed octal string into binary representation.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_oct2bin`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs`
+- File: `base/src/functions/engineering/number_basis.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19796,7 +19796,7 @@ Converts signed octal string into binary representation.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/OCT2BIN.md
+- Spec file: specs/functions/OCT2BIN.md
 
 
 ---
@@ -19810,8 +19810,8 @@ Converts signed octal string into binary representation.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_oct2dec
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19840,7 +19840,7 @@ Converts octal value to base-10 number.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_oct2dec`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs`
+- File: `base/src/functions/engineering/number_basis.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19850,7 +19850,7 @@ Converts octal value to base-10 number.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/OCT2DEC.md
+- Spec file: specs/functions/OCT2DEC.md
 
 
 ---
@@ -19864,8 +19864,8 @@ Converts octal value to base-10 number.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_oct2hex
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19894,7 +19894,7 @@ Converts octal value to hexadecimal notation.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_oct2hex`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs`
+- File: `base/src/functions/engineering/number_basis.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19904,7 +19904,7 @@ Converts octal value to hexadecimal notation.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/OCT2HEX.md
+- Spec file: specs/functions/OCT2HEX.md
 
 
 ---
@@ -19918,8 +19918,8 @@ Converts octal value to hexadecimal notation.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_odd
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -19948,7 +19948,7 @@ Returns the nearest odd integer with magnitude >= input absolute value.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_odd`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -19958,7 +19958,7 @@ Returns the nearest odd integer with magnitude >= input absolute value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ODD.md
+- Spec file: specs/functions/ODD.md
 
 
 ---
@@ -20012,7 +20012,7 @@ Uses odd first coupon period conventions to calculate full-price bond value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ODDFPRICE.md
+- Spec file: specs/functions/ODDFPRICE.md
 
 
 ---
@@ -20066,7 +20066,7 @@ Computes yield for bonds with odd first period.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ODDFYIELD.md
+- Spec file: specs/functions/ODDFYIELD.md
 
 
 ---
@@ -20120,7 +20120,7 @@ Prices bonds where last period is not standard length.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ODDLPRICE.md
+- Spec file: specs/functions/ODDLPRICE.md
 
 
 ---
@@ -20174,7 +20174,7 @@ Computes yield for odd-last bond schedules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ODDLYIELD.md
+- Spec file: specs/functions/ODDLYIELD.md
 
 
 ---
@@ -20188,8 +20188,8 @@ Computes yield for odd-last bond schedules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_offset
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -20218,7 +20218,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_offset`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -20228,7 +20228,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/OFFSET.md
+- Spec file: specs/functions/OFFSET.md
 
 
 ---
@@ -20242,8 +20242,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_or
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -20272,7 +20272,7 @@ Returns TRUE if any argument evaluates to TRUE.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_or`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs`
+- File: `base/src/functions/logical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -20282,7 +20282,7 @@ Returns TRUE if any argument evaluates to TRUE.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/OR.md
+- Spec file: specs/functions/OR.md
 
 
 ---
@@ -20296,8 +20296,8 @@ Returns TRUE if any argument evaluates to TRUE.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_pduration
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -20326,7 +20326,7 @@ Computes weighted average time to receive cash flows for a zero-coupon bond appr
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_pduration`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -20336,7 +20336,7 @@ Computes weighted average time to receive cash flows for a zero-coupon bond appr
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PDURATION.md
+- Spec file: specs/functions/PDURATION.md
 
 
 ---
@@ -20350,8 +20350,8 @@ Computes weighted average time to receive cash flows for a zero-coupon bond appr
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_pearson
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/pearson.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -20380,7 +20380,7 @@ Calculates linear correlation between paired data ranges.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_pearson`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/pearson.rs`
+- File: `base/src/functions/statistical/pearson.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -20390,7 +20390,7 @@ Calculates linear correlation between paired data ranges.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PEARSON.md
+- Spec file: specs/functions/PEARSON.md
 
 
 ---
@@ -20444,7 +20444,7 @@ Computes percentile by Excel interpolation variant.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERCENTILE.md
+- Spec file: specs/functions/PERCENTILE.md
 
 
 ---
@@ -20498,7 +20498,7 @@ Computes exclusive percentile excluding min/max endpoints.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERCENTILE.EXC.md
+- Spec file: specs/functions/PERCENTILE.EXC.md
 
 
 ---
@@ -20552,7 +20552,7 @@ Computes inclusive percentile including min/max.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERCENTILE.INC.md
+- Spec file: specs/functions/PERCENTILE.INC.md
 
 
 ---
@@ -20606,7 +20606,7 @@ Finds percentile position of `x` with optional significance.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERCENTRANK.md
+- Spec file: specs/functions/PERCENTRANK.md
 
 
 ---
@@ -20660,7 +20660,7 @@ Calculates percentile with exclusive interpolation constraints.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERCENTRANK.EXC.md
+- Spec file: specs/functions/PERCENTRANK.EXC.md
 
 
 ---
@@ -20714,7 +20714,7 @@ Calculates percentile with inclusive interpolation constraints.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERCENTRANK.INC.md
+- Spec file: specs/functions/PERCENTRANK.INC.md
 
 
 ---
@@ -20768,7 +20768,7 @@ Counts ordered selections without repetition.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERMUT.md
+- Spec file: specs/functions/PERMUT.md
 
 
 ---
@@ -20822,7 +20822,7 @@ Counts ordered selections with repetition.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PERMUTATIONA.md
+- Spec file: specs/functions/PERMUTATIONA.md
 
 
 ---
@@ -20836,8 +20836,8 @@ Counts ordered selections with repetition.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_phi
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/phi.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -20866,7 +20866,7 @@ Computes standard normal PDF at x.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_phi`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/phi.rs`
+- File: `base/src/functions/statistical/phi.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -20876,7 +20876,7 @@ Computes standard normal PDF at x.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PHI.md
+- Spec file: specs/functions/PHI.md
 
 
 ---
@@ -20932,7 +20932,7 @@ Returns phonetic transcription for Japanese text.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PHONETIC.md
+- Spec file: specs/functions/PHONETIC.md
 
 
 ---
@@ -20946,8 +20946,8 @@ Returns phonetic transcription for Japanese text.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_pi
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -20978,7 +20978,7 @@ Returns the mathematical constant pi.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_pi`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -20988,7 +20988,7 @@ Returns the mathematical constant pi.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PI.md
+- Spec file: specs/functions/PI.md
 
 
 ---
@@ -21042,7 +21042,7 @@ Groups and reduces input data into a pivot table structure.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PIVOTBY.md
+- Spec file: specs/functions/PIVOTBY.md
 
 
 ---
@@ -21056,8 +21056,8 @@ Groups and reduces input data into a pivot table structure.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_pmt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -21086,7 +21086,7 @@ Calculates payment amount using amortization formula.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_pmt`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -21096,7 +21096,7 @@ Calculates payment amount using amortization formula.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PMT.md
+- Spec file: specs/functions/PMT.md
 
 
 ---
@@ -21150,7 +21150,7 @@ Computes Poisson probability mass or cumulative probability.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/POISSON.DIST.md
+- Spec file: specs/functions/POISSON.DIST.md
 
 
 ---
@@ -21204,7 +21204,7 @@ Equivalent to exponentiation operator.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/POW.md
+- Spec file: specs/functions/POW.md
 
 
 ---
@@ -21218,8 +21218,8 @@ Equivalent to exponentiation operator.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_power
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -21248,7 +21248,7 @@ Computes number raised to an exponent.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_power`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -21258,7 +21258,7 @@ Computes number raised to an exponent.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/POWER.md
+- Spec file: specs/functions/POWER.md
 
 
 ---
@@ -21272,8 +21272,8 @@ Computes number raised to an exponent.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_ppmt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -21302,7 +21302,7 @@ Computes principal portion of payment at period `per`.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_ppmt`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -21312,7 +21312,7 @@ Computes principal portion of payment at period `per`.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PPMT.md
+- Spec file: specs/functions/PPMT.md
 
 
 ---
@@ -21366,7 +21366,7 @@ Computes clean/dirty price depending on schedule assumptions.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PRICE.md
+- Spec file: specs/functions/PRICE.md
 
 
 ---
@@ -21420,7 +21420,7 @@ Prices bond with discount rate and redemption value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PRICEDISC.md
+- Spec file: specs/functions/PRICEDISC.md
 
 
 ---
@@ -21474,7 +21474,7 @@ Calculates price using issue date and annual rate context.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PRICEMAT.md
+- Spec file: specs/functions/PRICEMAT.md
 
 
 ---
@@ -21528,7 +21528,7 @@ Integrates discrete probabilities within optional limits.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PROB.md
+- Spec file: specs/functions/PROB.md
 
 
 ---
@@ -21542,8 +21542,8 @@ Integrates discrete probabilities within optional limits.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_product
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -21572,7 +21572,7 @@ Returns product of all numbers after coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_product`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -21582,7 +21582,7 @@ Returns product of all numbers after coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PRODUCT.md
+- Spec file: specs/functions/PRODUCT.md
 
 
 ---
@@ -21636,7 +21636,7 @@ Capitalizes each word in text; other characters become lower-case.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PROPER.md
+- Spec file: specs/functions/PROPER.md
 
 
 ---
@@ -21650,8 +21650,8 @@ Capitalizes each word in text; other characters become lower-case.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_pv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -21680,7 +21680,7 @@ Discounts future payments and optional future value to current value.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_pv`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -21690,7 +21690,7 @@ Discounts future payments and optional future value to current value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/PV.md
+- Spec file: specs/functions/PV.md
 
 
 ---
@@ -21744,7 +21744,7 @@ Returns one of 1st, 2nd, 3rd, or 4th quartiles.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/QUARTILE.md
+- Spec file: specs/functions/QUARTILE.md
 
 
 ---
@@ -21798,7 +21798,7 @@ Uses percentile method excluding dataset endpoints.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/QUARTILE.EXC.md
+- Spec file: specs/functions/QUARTILE.EXC.md
 
 
 ---
@@ -21852,7 +21852,7 @@ Uses percentile method including dataset endpoints.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/QUARTILE.INC.md
+- Spec file: specs/functions/QUARTILE.INC.md
 
 
 ---
@@ -21906,7 +21906,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/QUERY.md
+- Spec file: specs/functions/QUERY.md
 
 
 ---
@@ -21920,8 +21920,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_quotient
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -21950,7 +21950,7 @@ Truncates fractional part toward zero.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_quotient`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -21960,7 +21960,7 @@ Truncates fractional part toward zero.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/QUOTIENT.md
+- Spec file: specs/functions/QUOTIENT.md
 
 
 ---
@@ -21974,8 +21974,8 @@ Truncates fractional part toward zero.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_radians
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -22006,7 +22006,7 @@ Applies constant /180 conversion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_radians`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -22016,7 +22016,7 @@ Applies constant /180 conversion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RADIANS.md
+- Spec file: specs/functions/RADIANS.md
 
 
 ---
@@ -22030,8 +22030,8 @@ Applies constant /180 conversion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rand
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -22060,7 +22060,7 @@ Volatile function; implementation should be deterministic in seeded context.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rand`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -22070,7 +22070,7 @@ Volatile function; implementation should be deterministic in seeded context.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RAND.md
+- Spec file: specs/functions/RAND.md
 
 
 ---
@@ -22124,7 +22124,7 @@ Generates deterministic pseudo-random grid when context is seeded.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RANDARRAY.md
+- Spec file: specs/functions/RANDARRAY.md
 
 
 ---
@@ -22138,8 +22138,8 @@ Generates deterministic pseudo-random grid when context is seeded.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_randbetween
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -22168,7 +22168,7 @@ Volatile integer generation with inclusive bounds.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_randbetween`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -22178,7 +22178,7 @@ Volatile integer generation with inclusive bounds.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RANDBETWEEN.md
+- Spec file: specs/functions/RANDBETWEEN.md
 
 
 ---
@@ -22232,7 +22232,7 @@ Supports ascending or descending rank logic.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RANK.md
+- Spec file: specs/functions/RANK.md
 
 
 ---
@@ -22286,7 +22286,7 @@ When ties occur, average rank is returned.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RANK.AVG.md
+- Spec file: specs/functions/RANK.AVG.md
 
 
 ---
@@ -22340,7 +22340,7 @@ Equivalent to classic Excel/Sheets rank where tied values share same rank.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RANK.EQ.md
+- Spec file: specs/functions/RANK.EQ.md
 
 
 ---
@@ -22354,8 +22354,8 @@ Equivalent to classic Excel/Sheets rank where tied values share same rank.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rate
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -22384,7 +22384,7 @@ Solves for periodic rate using iterative method.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rate`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -22394,7 +22394,7 @@ Solves for periodic rate using iterative method.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RATE.md
+- Spec file: specs/functions/RATE.md
 
 
 ---
@@ -22448,7 +22448,7 @@ Computes redemption amount from investment and discount rate.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RECEIVED.md
+- Spec file: specs/functions/RECEIVED.md
 
 
 ---
@@ -22502,7 +22502,7 @@ Runs reducer left-to-right across array values.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REDUCE.md
+- Spec file: specs/functions/REDUCE.md
 
 
 ---
@@ -22556,7 +22556,7 @@ Returns first match string; errors if no match.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REGEXEXTRACT.md
+- Spec file: specs/functions/REGEXEXTRACT.md
 
 
 ---
@@ -22610,7 +22610,7 @@ Returns TRUE when a match exists.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REGEXMATCH.md
+- Spec file: specs/functions/REGEXMATCH.md
 
 
 ---
@@ -22664,7 +22664,7 @@ Substitutes first/all matches according to replacement text.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REGEXREPLACE.md
+- Spec file: specs/functions/REGEXREPLACE.md
 
 
 ---
@@ -22718,7 +22718,7 @@ Reserved extension-like compatibility function.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REGISTER.ID.md
+- Spec file: specs/functions/REGISTER.ID.md
 
 
 ---
@@ -22727,7 +22727,7 @@ Reserved extension-like compatibility function.
 
 ## Status
 - IronCalc: N
-- Excel: N
+- Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
@@ -22772,7 +22772,7 @@ Returns resulting text after segment replacement.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REPLACE.md
+- Spec file: specs/functions/REPLACE.md
 
 
 ---
@@ -22826,7 +22826,7 @@ Uses byte counts instead of character counts.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REPLACEB.md
+- Spec file: specs/functions/REPLACEB.md
 
 
 ---
@@ -22840,8 +22840,8 @@ Uses byte counts instead of character counts.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rept
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -22870,7 +22870,7 @@ Concatenates repeated text segments.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rept`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -22880,7 +22880,7 @@ Concatenates repeated text segments.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/REPT.md
+- Spec file: specs/functions/REPT.md
 
 
 ---
@@ -22894,8 +22894,8 @@ Concatenates repeated text segments.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_right
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -22924,7 +22924,7 @@ Returns trailing characters up to requested length.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_right`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -22934,7 +22934,7 @@ Returns trailing characters up to requested length.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RIGHT.md
+- Spec file: specs/functions/RIGHT.md
 
 
 ---
@@ -22988,7 +22988,7 @@ Uses byte count and supports multibyte text variants.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RIGHTB.md
+- Spec file: specs/functions/RIGHTB.md
 
 
 ---
@@ -23002,8 +23002,8 @@ Uses byte count and supports multibyte text variants.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_roman
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23032,7 +23032,7 @@ Converts Arabic number to Roman numeric string with optional compact form.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_roman`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23042,7 +23042,7 @@ Converts Arabic number to Roman numeric string with optional compact form.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ROMAN.md
+- Spec file: specs/functions/ROMAN.md
 
 
 ---
@@ -23056,8 +23056,8 @@ Converts Arabic number to Roman numeric string with optional compact form.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_round
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23086,7 +23086,7 @@ Rounds halfway cases away from zero.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_round`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23096,7 +23096,7 @@ Rounds halfway cases away from zero.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ROUND.md
+- Spec file: specs/functions/ROUND.md
 
 
 ---
@@ -23110,8 +23110,8 @@ Rounds halfway cases away from zero.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rounddown
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23140,7 +23140,7 @@ For negative and positive, moves magnitude down.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rounddown`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23150,7 +23150,7 @@ For negative and positive, moves magnitude down.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ROUNDDOWN.md
+- Spec file: specs/functions/ROUNDDOWN.md
 
 
 ---
@@ -23164,8 +23164,8 @@ For negative and positive, moves magnitude down.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_roundup
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23194,7 +23194,7 @@ Rounds magnitude up in magnitude direction.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_roundup`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23204,7 +23204,7 @@ Rounds magnitude up in magnitude direction.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ROUNDUP.md
+- Spec file: specs/functions/ROUNDUP.md
 
 
 ---
@@ -23218,8 +23218,8 @@ Rounds magnitude up in magnitude direction.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_row
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23248,7 +23248,7 @@ Default returns current row when reference omitted.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_row`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23258,7 +23258,7 @@ Default returns current row when reference omitted.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ROW.md
+- Spec file: specs/functions/ROW.md
 
 
 ---
@@ -23272,8 +23272,8 @@ Default returns current row when reference omitted.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rows
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23302,7 +23302,7 @@ Counts rows in array or range.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rows`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23312,7 +23312,7 @@ Counts rows in array or range.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/ROWS.md
+- Spec file: specs/functions/ROWS.md
 
 
 ---
@@ -23326,8 +23326,8 @@ Counts rows in array or range.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rri
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23356,7 +23356,7 @@ Derives growth rate per period from present to future value.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rri`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23366,7 +23366,7 @@ Derives growth rate per period from present to future value.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RRI.md
+- Spec file: specs/functions/RRI.md
 
 
 ---
@@ -23380,8 +23380,8 @@ Derives growth rate per period from present to future value.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_rsq
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/pearson.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23410,7 +23410,7 @@ Equivalent to `PEARSON(y,x)^2`.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_rsq`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/pearson.rs`
+- File: `base/src/functions/statistical/pearson.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23420,7 +23420,7 @@ Equivalent to `PEARSON(y,x)^2`.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RSQ.md
+- Spec file: specs/functions/RSQ.md
 
 
 ---
@@ -23474,7 +23474,7 @@ Not supported in deterministic offline engine; treat as external data dependency
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/RTD.md
+- Spec file: specs/functions/RTD.md
 
 
 ---
@@ -23528,7 +23528,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SCAN.md
+- Spec file: specs/functions/SCAN.md
 
 
 ---
@@ -23542,8 +23542,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_search
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23572,7 +23572,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_search`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23582,7 +23582,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SEARCH.md
+- Spec file: specs/functions/SEARCH.md
 
 
 ---
@@ -23636,7 +23636,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SEARCHB.md
+- Spec file: specs/functions/SEARCHB.md
 
 
 ---
@@ -23650,8 +23650,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sec
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23680,7 +23680,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sec`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23690,7 +23690,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SEC.md
+- Spec file: specs/functions/SEC.md
 
 
 ---
@@ -23704,8 +23704,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sech
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23734,7 +23734,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sech`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23744,7 +23744,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SECH.md
+- Spec file: specs/functions/SECH.md
 
 
 ---
@@ -23758,8 +23758,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_second
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23788,7 +23788,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_second`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23798,7 +23798,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SECOND.md
+- Spec file: specs/functions/SECOND.md
 
 
 ---
@@ -23852,7 +23852,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SEQUENCE.md
+- Spec file: specs/functions/SEQUENCE.md
 
 
 ---
@@ -23906,7 +23906,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SERIESSUM.md
+- Spec file: specs/functions/SERIESSUM.md
 
 
 ---
@@ -23920,8 +23920,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sheet
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -23950,7 +23950,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sheet`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs`
+- File: `base/src/functions/information.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -23960,7 +23960,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SHEET.md
+- Spec file: specs/functions/SHEET.md
 
 
 ---
@@ -23974,8 +23974,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sheets
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24004,7 +24004,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sheets`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs`
+- File: `base/src/functions/information.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24014,7 +24014,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SHEETS.md
+- Spec file: specs/functions/SHEETS.md
 
 
 ---
@@ -24028,8 +24028,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sign
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24061,7 +24061,7 @@ Single-argument utility function used in branching and normalization logic.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sign`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24071,7 +24071,7 @@ Single-argument utility function used in branching and normalization logic.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SIGN.md
+- Spec file: specs/functions/SIGN.md
 
 
 ---
@@ -24085,8 +24085,8 @@ Single-argument utility function used in branching and normalization logic.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24118,7 +24118,7 @@ Core trigonometric function for geometry and modeling formulas.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sin`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24128,7 +24128,7 @@ Core trigonometric function for geometry and modeling formulas.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SIN.md
+- Spec file: specs/functions/SIN.md
 
 
 ---
@@ -24142,8 +24142,8 @@ Core trigonometric function for geometry and modeling formulas.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sinh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24174,7 +24174,7 @@ Used in engineering and growth modeling contexts.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sinh`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24184,7 +24184,7 @@ Used in engineering and growth modeling contexts.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SINH.md
+- Spec file: specs/functions/SINH.md
 
 
 ---
@@ -24198,8 +24198,8 @@ Used in engineering and growth modeling contexts.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_skew
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24230,7 +24230,7 @@ Use for distribution-shape analysis where sample interpretation is required.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_skew`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs`
+- File: `base/src/functions/statistical/count_and_average.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24240,7 +24240,7 @@ Use for distribution-shape analysis where sample interpretation is required.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SKEW.md
+- Spec file: specs/functions/SKEW.md
 
 
 ---
@@ -24286,7 +24286,7 @@ Use for distribution-shape analysis in population mode.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_skew_p`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs`
+- File: `base/src/functions/statistical/count_and_average.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24296,7 +24296,7 @@ Use for distribution-shape analysis in population mode.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SKEW.P.md
+- Spec file: specs/functions/SKEW.P.md
 
 
 ---
@@ -24310,8 +24310,8 @@ Use for distribution-shape analysis in population mode.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sln
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24342,7 +24342,7 @@ Used for linear fixed depreciation schedules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sln`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24352,7 +24352,7 @@ Used for linear fixed depreciation schedules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SLN.md
+- Spec file: specs/functions/SLN.md
 
 
 ---
@@ -24366,8 +24366,8 @@ Used for linear fixed depreciation schedules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_slope
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24398,7 +24398,7 @@ Equivalent to LINEST slope for simple linear regression.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_slope`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs`
+- File: `base/src/functions/statistical/correl.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24408,7 +24408,7 @@ Equivalent to LINEST slope for simple linear regression.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SLOPE.md
+- Spec file: specs/functions/SLOPE.md
 
 
 ---
@@ -24422,8 +24422,8 @@ Equivalent to LINEST slope for simple linear regression.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_small
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24452,7 +24452,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_small`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs`
+- File: `base/src/functions/statistical/count_and_average.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24462,7 +24462,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SMALL.md
+- Spec file: specs/functions/SMALL.md
 
 
 ---
@@ -24516,7 +24516,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SORT.md
+- Spec file: specs/functions/SORT.md
 
 
 ---
@@ -24570,7 +24570,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SORTBY.md
+- Spec file: specs/functions/SORTBY.md
 
 
 ---
@@ -24624,7 +24624,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SORTN.md
+- Spec file: specs/functions/SORTN.md
 
 
 ---
@@ -24678,7 +24678,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SPARKLINE.md
+- Spec file: specs/functions/SPARKLINE.md
 
 
 ---
@@ -24704,14 +24704,14 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 Computes SPLIT semantics for spreadsheet formulas.
 
 ### Syntax
-- Excel: `SPLIT(...)`
-- Google Sheets: `SPLIT(...)`
+- Excel: not applicable (no direct Excel counterpart in this backlog)
+- Google Sheets: `SPLIT(text, delimiter, [split_by_each], [remove_empty_text])`
 
 ### Behavior
 Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 ### Examples
-- `...`
+- `SPLIT("a,b,c", ",")` -> `{"a","b","c"}`
 
 ### Error Cases
 - Invalid argument count, types, and impossible domains return a spreadsheet error.
@@ -24720,7 +24720,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Deterministic and version-stable behavior is required.
 
 ### Code Location
-- Proposed file: `base/src/functions/extensions.rs`
+- Proposed file: `base/src/functions/text.rs`
 - Proposed handler: `fn_split`
 - Pseudocode: validate inputs, apply deterministic coercion and return standardized errors.
 
@@ -24732,7 +24732,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SPLIT.md
+- Spec file: specs/functions/SPLIT.md
 
 
 ---
@@ -24746,8 +24746,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sqrt
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24776,7 +24776,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sqrt`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24786,7 +24786,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SQRT.md
+- Spec file: specs/functions/SQRT.md
 
 
 ---
@@ -24800,8 +24800,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sqrtpi
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24830,7 +24830,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sqrtpi`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24840,7 +24840,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SQRTPI.md
+- Spec file: specs/functions/SQRTPI.md
 
 
 ---
@@ -24854,8 +24854,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_standardize
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standardize.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -24884,7 +24884,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_standardize`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standardize.rs`
+- File: `base/src/functions/statistical/standardize.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -24894,7 +24894,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STANDARDIZE.md
+- Spec file: specs/functions/STANDARDIZE.md
 
 
 ---
@@ -24948,7 +24948,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STDEV.P.md
+- Spec file: specs/functions/STDEV.P.md
 
 
 ---
@@ -25002,7 +25002,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STDEV.S.md
+- Spec file: specs/functions/STDEV.S.md
 
 
 ---
@@ -25016,8 +25016,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_stdeva
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standard_dev.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25046,7 +25046,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_stdeva`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standard_dev.rs`
+- File: `base/src/functions/statistical/standard_dev.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25056,7 +25056,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STDEVA.md
+- Spec file: specs/functions/STDEVA.md
 
 
 ---
@@ -25070,8 +25070,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_stdevpa
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standard_dev.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25100,7 +25100,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_stdevpa`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standard_dev.rs`
+- File: `base/src/functions/statistical/standard_dev.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25110,7 +25110,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STDEVPA.md
+- Spec file: specs/functions/STDEVPA.md
 
 
 ---
@@ -25124,8 +25124,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_steyx
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25154,7 +25154,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_steyx`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs`
+- File: `base/src/functions/statistical/correl.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25164,7 +25164,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STEYX.md
+- Spec file: specs/functions/STEYX.md
 
 
 ---
@@ -25218,7 +25218,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/STOCKHISTORY.md
+- Spec file: specs/functions/STOCKHISTORY.md
 
 
 ---
@@ -25232,8 +25232,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_substitute
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25262,7 +25262,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_substitute`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25272,7 +25272,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUBSTITUTE.md
+- Spec file: specs/functions/SUBSTITUTE.md
 
 
 ---
@@ -25286,8 +25286,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_subtotal
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/subtotal.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25316,7 +25316,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_subtotal`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/subtotal.rs`
+- File: `base/src/functions/subtotal.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25326,7 +25326,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUBTOTAL.md
+- Spec file: specs/functions/SUBTOTAL.md
 
 
 ---
@@ -25340,8 +25340,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sum
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25370,7 +25370,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sum`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25380,7 +25380,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUM.md
+- Spec file: specs/functions/SUM.md
 
 
 ---
@@ -25394,8 +25394,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sumif
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25424,7 +25424,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sumif`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25434,7 +25434,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMIF.md
+- Spec file: specs/functions/SUMIF.md
 
 
 ---
@@ -25448,8 +25448,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sumifs
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25478,7 +25478,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sumifs`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25488,7 +25488,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMIFS.md
+- Spec file: specs/functions/SUMIFS.md
 
 
 ---
@@ -25514,14 +25514,14 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 Computes SUMPRODUCT semantics for spreadsheet formulas.
 
 ### Syntax
-- Excel: `SUMPRODUCT(...)`
-- Google Sheets: `SUMPRODUCT(...)`
+- Excel: `SUMPRODUCT(array1, [array2], [array3], ...)`
+- Google Sheets: `SUMPRODUCT(array1, [array2, ...])`
 
 ### Behavior
 Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 ### Examples
-- `...`
+- `SUMPRODUCT({1,2,3},{4,5,6})` -> `32`
 
 ### Error Cases
 - Invalid argument count, types, and impossible domains return a spreadsheet error.
@@ -25542,7 +25542,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMPRODUCT.md
+- Spec file: specs/functions/SUMPRODUCT.md
 
 
 ---
@@ -25556,8 +25556,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sumsq
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25586,7 +25586,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sumsq`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25596,7 +25596,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMSQ.md
+- Spec file: specs/functions/SUMSQ.md
 
 
 ---
@@ -25610,8 +25610,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sumx2my2
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25640,7 +25640,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sumx2my2`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs`
+- File: `base/src/functions/mathematical_sum.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25650,7 +25650,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMX2MY2.md
+- Spec file: specs/functions/SUMX2MY2.md
 
 
 ---
@@ -25664,8 +25664,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sumx2py2
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25694,7 +25694,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sumx2py2`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs`
+- File: `base/src/functions/mathematical_sum.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25704,7 +25704,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMX2PY2.md
+- Spec file: specs/functions/SUMX2PY2.md
 
 
 ---
@@ -25718,8 +25718,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_sumxmy2
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25748,7 +25748,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sumxmy2`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs`
+- File: `base/src/functions/mathematical_sum.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25758,7 +25758,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SUMXMY2.md
+- Spec file: specs/functions/SUMXMY2.md
 
 
 ---
@@ -25772,8 +25772,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_switch
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25802,7 +25802,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_switch`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs`
+- File: `base/src/functions/logical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25812,7 +25812,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SWITCH.md
+- Spec file: specs/functions/SWITCH.md
 
 
 ---
@@ -25826,8 +25826,8 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_syd
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25856,7 +25856,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_syd`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25866,7 +25866,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/SYD.md
+- Spec file: specs/functions/SYD.md
 
 
 ---
@@ -25880,8 +25880,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_t
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -25910,7 +25910,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_t`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -25920,7 +25920,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.md
+- Spec file: specs/functions/T.md
 
 
 ---
@@ -25974,7 +25974,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.DIST.md
+- Spec file: specs/functions/T.DIST.md
 
 
 ---
@@ -26028,7 +26028,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.DIST.2T.md
+- Spec file: specs/functions/T.DIST.2T.md
 
 
 ---
@@ -26082,7 +26082,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.DIST.RT.md
+- Spec file: specs/functions/T.DIST.RT.md
 
 
 ---
@@ -26136,7 +26136,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.INV.md
+- Spec file: specs/functions/T.INV.md
 
 
 ---
@@ -26190,7 +26190,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.INV.2T.md
+- Spec file: specs/functions/T.INV.2T.md
 
 
 ---
@@ -26244,7 +26244,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/T.TEST.md
+- Spec file: specs/functions/T.TEST.md
 
 
 ---
@@ -26298,7 +26298,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TAKE.md
+- Spec file: specs/functions/TAKE.md
 
 
 ---
@@ -26312,8 +26312,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_tan
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26342,7 +26342,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_tan`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26352,7 +26352,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TAN.md
+- Spec file: specs/functions/TAN.md
 
 
 ---
@@ -26366,8 +26366,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_tanh
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26396,7 +26396,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_tanh`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26406,7 +26406,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TANH.md
+- Spec file: specs/functions/TANH.md
 
 
 ---
@@ -26420,8 +26420,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_tbilleq
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26450,7 +26450,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_tbilleq`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26460,7 +26460,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TBILLEQ.md
+- Spec file: specs/functions/TBILLEQ.md
 
 
 ---
@@ -26474,8 +26474,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_tbillprice
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26504,7 +26504,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_tbillprice`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26514,7 +26514,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TBILLPRICE.md
+- Spec file: specs/functions/TBILLPRICE.md
 
 
 ---
@@ -26528,8 +26528,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_tbillyield
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26558,7 +26558,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_tbillyield`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26568,7 +26568,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TBILLYIELD.md
+- Spec file: specs/functions/TBILLYIELD.md
 
 
 ---
@@ -26582,8 +26582,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_text
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26612,7 +26612,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_text`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26622,7 +26622,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TEXT.md
+- Spec file: specs/functions/TEXT.md
 
 
 ---
@@ -26636,8 +26636,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_textafter
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26666,7 +26666,7 @@ Deterministic behavior is required with explicit evaluation order.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_textafter`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26676,7 +26676,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TEXTAFTER.md
+- Spec file: specs/functions/TEXTAFTER.md
 
 
 ---
@@ -26690,8 +26690,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_textbefore
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26720,7 +26720,7 @@ Deterministic behavior is required with explicit evaluation order.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_textbefore`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26730,7 +26730,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TEXTBEFORE.md
+- Spec file: specs/functions/TEXTBEFORE.md
 
 
 ---
@@ -26744,8 +26744,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_textjoin
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26774,7 +26774,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_textjoin`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26784,7 +26784,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TEXTJOIN.md
+- Spec file: specs/functions/TEXTJOIN.md
 
 
 ---
@@ -26838,7 +26838,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TEXTSPLIT.md
+- Spec file: specs/functions/TEXTSPLIT.md
 
 
 ---
@@ -26852,8 +26852,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_time
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26882,7 +26882,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_time`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26892,7 +26892,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TIME.md
+- Spec file: specs/functions/TIME.md
 
 
 ---
@@ -26906,8 +26906,8 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_timevalue
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -26936,7 +26936,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_timevalue`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -26946,7 +26946,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TIMEVALUE.md
+- Spec file: specs/functions/TIMEVALUE.md
 
 
 ---
@@ -27000,7 +27000,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TOCOL.md
+- Spec file: specs/functions/TOCOL.md
 
 
 ---
@@ -27014,8 +27014,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_today
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -27044,7 +27044,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_today`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -27054,7 +27054,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TODAY.md
+- Spec file: specs/functions/TODAY.md
 
 
 ---
@@ -27108,7 +27108,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TOROW.md
+- Spec file: specs/functions/TOROW.md
 
 
 ---
@@ -27162,7 +27162,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TO_DATE.md
+- Spec file: specs/functions/TO_DATE.md
 
 
 ---
@@ -27216,7 +27216,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TO_DOLLARS.md
+- Spec file: specs/functions/TO_DOLLARS.md
 
 
 ---
@@ -27270,7 +27270,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TO_PERCENT.md
+- Spec file: specs/functions/TO_PERCENT.md
 
 
 ---
@@ -27324,7 +27324,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TO_PURE_NUMBER.md
+- Spec file: specs/functions/TO_PURE_NUMBER.md
 
 
 ---
@@ -27378,7 +27378,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TO_TEXT.md
+- Spec file: specs/functions/TO_TEXT.md
 
 
 ---
@@ -27404,14 +27404,14 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 Computes TRANSPOSE semantics for spreadsheet formulas.
 
 ### Syntax
-- Excel: `TRANSPOSE(...)`
-- Google Sheets: `TRANSPOSE(...)`
+- Excel: `TRANSPOSE(array)`
+- Google Sheets: `TRANSPOSE(array_or_range)`
 
 ### Behavior
 Deterministic spreadsheet-compatible behavior with stable coercion.
 
 ### Examples
-- `...`
+- `TRANSPOSE({1,2;3,4})` -> `{1,3;2,4}`
 
 ### Error Cases
 - Invalid argument count or invalid domains return spreadsheet errors.
@@ -27420,7 +27420,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Deterministic and platform-stable behavior is required.
 
 ### Code Location
-- Proposed file: `base/src/functions/extensions.rs`
+- Proposed file: `base/src/functions/lookup_and_reference.rs`
 - Proposed handler: `fn_transpose`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 
@@ -27432,7 +27432,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TRANSPOSE.md
+- Spec file: specs/functions/TRANSPOSE.md
 
 
 ---
@@ -27486,7 +27486,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TREND.md
+- Spec file: specs/functions/TREND.md
 
 
 ---
@@ -27500,8 +27500,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_trim
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -27530,7 +27530,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_trim`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -27540,7 +27540,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TRIM.md
+- Spec file: specs/functions/TRIM.md
 
 
 ---
@@ -27594,7 +27594,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TRIMMEAN.md
+- Spec file: specs/functions/TRIMMEAN.md
 
 
 ---
@@ -27648,7 +27648,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TRIMRANGE.md
+- Spec file: specs/functions/TRIMRANGE.md
 
 
 ---
@@ -27662,8 +27662,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_true
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -27692,7 +27692,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_true`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs`
+- File: `base/src/functions/logical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -27702,7 +27702,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TRUE.md
+- Spec file: specs/functions/TRUE.md
 
 
 ---
@@ -27716,8 +27716,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_trunc
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -27746,7 +27746,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_trunc`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
+- File: `base/src/functions/mathematical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -27756,7 +27756,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TRUNC.md
+- Spec file: specs/functions/TRUNC.md
 
 
 ---
@@ -27764,14 +27764,14 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ## TTEST — Lua Implementation Prompt
 
 ## Status
-- IronCalc: N
+- IronCalc: Y
 - Excel: Y
 - Google Sheets: Y
 - HyperFormula: Y
 - Missing in HyperFormula: No
-- Missing in IronCalc: Yes
-- IronCalc Handler: fn_t_test
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/t_dist.rs
+- Missing in IronCalc: No
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -27782,14 +27782,14 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 Computes TTEST semantics for spreadsheet formulas.
 
 ### Syntax
-- Excel: `TTEST(...)`
-- Google Sheets: `TTEST(...)`
+- Excel: `TTEST(array1, array2, tails, type)`
+- Google Sheets: `T.TEST(range1, range2, tails, type)`
 
 ### Behavior
 Deterministic spreadsheet-compatible behavior with stable coercion.
 
 ### Examples
-- `...`
+- `TTEST(A2:A10,B2:B10,2,1)` -> `0.19602` (from documented sample data)
 
 ### Error Cases
 - Invalid argument count or invalid domains return spreadsheet errors.
@@ -27800,7 +27800,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_t_test`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/t_dist.rs`
+- File: `base/src/functions/statistical/t_dist.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -27810,7 +27810,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TTEST.md
+- Spec file: specs/functions/TTEST.md
 
 
 ---
@@ -27824,8 +27824,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_type
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -27854,7 +27854,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_type`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs`
+- File: `base/src/functions/information.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -27864,7 +27864,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/TYPE.md
+- Spec file: specs/functions/TYPE.md
 
 
 ---
@@ -27918,7 +27918,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UMINUS.md
+- Spec file: specs/functions/UMINUS.md
 
 
 ---
@@ -27972,7 +27972,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UNARY_PERCENT.md
+- Spec file: specs/functions/UNARY_PERCENT.md
 
 
 ---
@@ -27998,14 +27998,14 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 Computes UNICHAR semantics for spreadsheet formulas.
 
 ### Syntax
-- Excel: `UNICHAR(...)`
-- Google Sheets: `UNICHAR(...)`
+- Excel: `UNICHAR(number)`
+- Google Sheets: `UNICHAR(number)`
 
 ### Behavior
 Deterministic spreadsheet-compatible behavior with stable coercion.
 
 ### Examples
-- `...`
+- `UNICHAR(66)` -> `B`
 
 ### Error Cases
 - Invalid argument count or invalid domains return spreadsheet errors.
@@ -28026,7 +28026,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UNICHAR.md
+- Spec file: specs/functions/UNICHAR.md
 
 
 ---
@@ -28040,8 +28040,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_unicode
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28070,7 +28070,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_unicode`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28080,7 +28080,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UNICODE.md
+- Spec file: specs/functions/UNICODE.md
 
 
 ---
@@ -28134,7 +28134,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UNIQUE.md
+- Spec file: specs/functions/UNIQUE.md
 
 
 ---
@@ -28188,7 +28188,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UPLUS.md
+- Spec file: specs/functions/UPLUS.md
 
 
 ---
@@ -28202,8 +28202,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_upper
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28232,7 +28232,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_upper`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28242,7 +28242,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/UPPER.md
+- Spec file: specs/functions/UPPER.md
 
 
 ---
@@ -28256,8 +28256,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_value
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28286,7 +28286,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_value`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28296,7 +28296,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VALUE.md
+- Spec file: specs/functions/VALUE.md
 
 
 ---
@@ -28310,8 +28310,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_valuetotext
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28340,7 +28340,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_valuetotext`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs`
+- File: `base/src/functions/text.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28350,7 +28350,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VALUETOTEXT.md
+- Spec file: specs/functions/VALUETOTEXT.md
 
 
 ---
@@ -28404,7 +28404,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VAR.P.md
+- Spec file: specs/functions/VAR.P.md
 
 
 ---
@@ -28458,7 +28458,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VAR.S.md
+- Spec file: specs/functions/VAR.S.md
 
 
 ---
@@ -28472,8 +28472,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_vara
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/variance.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28502,7 +28502,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_vara`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/variance.rs`
+- File: `base/src/functions/statistical/variance.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28512,7 +28512,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VARA.md
+- Spec file: specs/functions/VARA.md
 
 
 ---
@@ -28526,8 +28526,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_varpa
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/variance.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28556,7 +28556,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_varpa`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/variance.rs`
+- File: `base/src/functions/statistical/variance.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28566,7 +28566,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VARPA.md
+- Spec file: specs/functions/VARPA.md
 
 
 ---
@@ -28620,7 +28620,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VDB.md
+- Spec file: specs/functions/VDB.md
 
 
 ---
@@ -28634,8 +28634,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_vlookup
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28664,7 +28664,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_vlookup`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
+- File: `base/src/functions/lookup_and_reference.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28674,7 +28674,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VLOOKUP.md
+- Spec file: specs/functions/VLOOKUP.md
 
 
 ---
@@ -28728,7 +28728,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/VSTACK.md
+- Spec file: specs/functions/VSTACK.md
 
 
 ---
@@ -28782,7 +28782,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WEBSERVICE.md
+- Spec file: specs/functions/WEBSERVICE.md
 
 
 ---
@@ -28796,8 +28796,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_weekday
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28826,7 +28826,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_weekday`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28836,7 +28836,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WEEKDAY.md
+- Spec file: specs/functions/WEEKDAY.md
 
 
 ---
@@ -28850,8 +28850,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_weeknum
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28880,7 +28880,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_weeknum`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28890,7 +28890,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WEEKNUM.md
+- Spec file: specs/functions/WEEKNUM.md
 
 
 ---
@@ -28944,7 +28944,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WEIBULL.DIST.md
+- Spec file: specs/functions/WEIBULL.DIST.md
 
 
 ---
@@ -28958,8 +28958,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_workday
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -28988,7 +28988,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_workday`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -28998,7 +28998,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WORKDAY.md
+- Spec file: specs/functions/WORKDAY.md
 
 
 ---
@@ -29052,7 +29052,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WORKDAY.INTL.md
+- Spec file: specs/functions/WORKDAY.INTL.md
 
 
 ---
@@ -29106,7 +29106,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WRAPCOLS.md
+- Spec file: specs/functions/WRAPCOLS.md
 
 
 ---
@@ -29160,7 +29160,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/WRAPROWS.md
+- Spec file: specs/functions/WRAPROWS.md
 
 
 ---
@@ -29174,8 +29174,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: N
 - Missing in HyperFormula: Yes
 - Missing in IronCalc: No
-- IronCalc Handler: fn_xirr
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: column
@@ -29204,7 +29204,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_xirr`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -29214,7 +29214,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/XIRR.md
+- Spec file: specs/functions/XIRR.md
 
 
 ---
@@ -29228,8 +29228,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_xlookup
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/xlookup.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -29258,7 +29258,7 @@ Deterministic behavior is required with explicit evaluation order.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_xlookup`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/xlookup.rs`
+- File: `base/src/functions/xlookup.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -29268,7 +29268,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/XLOOKUP.md
+- Spec file: specs/functions/XLOOKUP.md
 
 
 ---
@@ -29322,7 +29322,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/XMATCH.md
+- Spec file: specs/functions/XMATCH.md
 
 
 ---
@@ -29336,8 +29336,8 @@ Deterministic behavior is required with explicit evaluation order.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_xnpv
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -29366,7 +29366,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_xnpv`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
+- File: `base/src/functions/financial.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -29376,7 +29376,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/XNPV.md
+- Spec file: specs/functions/XNPV.md
 
 
 ---
@@ -29390,8 +29390,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_xor
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -29420,7 +29420,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_xor`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs`
+- File: `base/src/functions/logical.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -29430,7 +29430,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/XOR.md
+- Spec file: specs/functions/XOR.md
 
 
 ---
@@ -29444,8 +29444,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_year
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -29474,7 +29474,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_year`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -29484,7 +29484,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/YEAR.md
+- Spec file: specs/functions/YEAR.md
 
 
 ---
@@ -29498,8 +29498,8 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - HyperFormula: Y
 - Missing in HyperFormula: No
 - Missing in IronCalc: No
-- IronCalc Handler: fn_yearfrac
-- IronCalc File: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
+- IronCalc Handler: n/a
+- IronCalc File: n/a
 
 ## IO Shape
 - Input: scalar
@@ -29528,7 +29528,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 ### Code Location
 - Implemented in IronCalc.
 - Handler: `fn_yearfrac`
-- File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
+- File: `base/src/functions/date_and_time.rs`
 
 ## Implementation Checklist (Lua)
 - Parse and coerce arguments per Excel/Sheets semantics.
@@ -29538,7 +29538,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/YEARFRAC.md
+- Spec file: specs/functions/YEARFRAC.md
 
 
 ---
@@ -29592,7 +29592,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/YIELD.md
+- Spec file: specs/functions/YIELD.md
 
 
 ---
@@ -29646,7 +29646,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/YIELDDISC.md
+- Spec file: specs/functions/YIELDDISC.md
 
 
 ---
@@ -29700,7 +29700,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/YIELDMAT.md
+- Spec file: specs/functions/YIELDMAT.md
 
 
 ---
@@ -29754,7 +29754,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Add tests that mirror spec examples and error cases.
 
 ## Reference
-- Spec file: /Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/specs/functions/Z.TEST.md
+- Spec file: specs/functions/Z.TEST.md
 
 
 ---

@@ -1,5 +1,8 @@
 # Function Source Extraction Plan (Tables + Signatures)
 
+> Archived snapshot (2026-02-20). Historical planning note.
+> Current Lua workflow runs from `specs/lua_prompts.md`; detailed specs are optional.
+
 ## Goal
 Extract robust, deterministic function documentation from Microsoft and Google Sheets help pages so each function doc can include:
 - source signature candidates
@@ -8,7 +11,7 @@ Extract robust, deterministic function documentation from Microsoft and Google S
 - error behavior notes
 
 ## 1) Source URL resolution
-1. Keep canonical per-function URLs in `specs/functions/*/` `Sources` sections.
+1. Keep canonical per-function URLs in `specs/functions/<FUNCTION>.md` `Sources` sections (when those files exist).
 2. Build a daily refresh script that:
    - pulls Microsoft index once and maps visible function names to support pages
    - pulls Google Sheets index table and maps visible function names to answer pages

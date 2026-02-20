@@ -188,14 +188,14 @@ FORECAST.ETS.STAT,N,Y,N,N,Excel-only
 FORECAST.LINEAR,N,Y,Y,N,Excel+Sheets
 FORMULATEXT,Y,Y,Y,Y,Excel+Sheets
 FREQUENCY,N,Y,Y,N,Excel+Sheets
-FTEST,N,Y,Y,Y,Excel+Sheets
+FTEST,Y,Y,Y,Y,Excel+Sheets
 FV,Y,Y,Y,Y,Excel+Sheets
 FVSCHEDULE,N,Y,Y,Y,Excel+Sheets
 GAMMA,Y,Y,Y,Y,Excel+Sheets
 GAMMA.DIST,Y,Y,Y,Y,Excel+Sheets
 GAMMA.INV,Y,Y,Y,Y,Excel+Sheets
-GAMMADIST,N,Y,Y,Y,Excel+Sheets
-GAMMAINV,N,Y,Y,Y,Excel+Sheets
+GAMMADIST,Y,Y,Y,Y,Excel+Sheets
+GAMMAINV,Y,Y,Y,Y,Excel+Sheets
 GAMMALN,Y,Y,Y,Y,Excel+Sheets
 GAMMALN.PRECISE,Y,Y,Y,Y,Excel+Sheets
 GAUSS,Y,Y,Y,Y,Excel+Sheets
@@ -218,7 +218,7 @@ HOUR,Y,Y,Y,Y,Excel+Sheets
 HSTACK,N,Y,Y,N,Excel+Sheets
 HYPERLINK,N,Y,Y,Y,Excel+Sheets
 HYPGEOM.DIST,Y,Y,Y,Y,Excel+Sheets
-HYPGEOMDIST,N,Y,Y,Y,Excel+Sheets
+HYPGEOMDIST,Y,Y,Y,Y,Excel+Sheets
 IF,Y,Y,Y,Y,Excel+Sheets
 IFERROR,Y,Y,Y,Y,Excel+Sheets
 IFNA,Y,Y,Y,Y,Excel+Sheets
@@ -340,7 +340,7 @@ N,Y,Y,Y,Y,Excel+Sheets
 NA,Y,Y,Y,Y,Excel+Sheets
 NE,N,N,Y,N,Sheets-only
 NEGBINOM.DIST,Y,Y,Y,Y,Excel+Sheets
-NEGBINOMDIST,N,Y,Y,Y,Excel+Sheets
+NEGBINOMDIST,Y,Y,Y,Y,Excel+Sheets
 NETWORKDAYS,Y,Y,Y,Y,Excel+Sheets
 NETWORKDAYS.INTL,Y,Y,Y,Y,Excel+Sheets
 NOMINAL,Y,Y,Y,Y,Excel+Sheets
@@ -408,7 +408,7 @@ REGEXEXTRACT,N,Y,Y,N,Excel+Sheets
 REGEXMATCH,N,N,Y,N,Sheets-only
 REGEXREPLACE,N,Y,Y,N,Excel+Sheets
 REGISTER.ID,N,Y,N,N,Excel-only
-REPLACE,N,N,Y,Y,Sheets-only
+REPLACE,N,Y,Y,Y,Excel+Sheets
 REPLACEB,N,N,Y,N,Sheets-only
 REPT,Y,Y,Y,Y,Excel+Sheets
 RIGHT,Y,N,Y,Y,Sheets-only
@@ -501,7 +501,7 @@ TRIMMEAN,N,Y,Y,N,Excel+Sheets
 TRIMRANGE,N,Y,N,N,Excel-only
 TRUE,Y,Y,Y,Y,Excel+Sheets
 TRUNC,Y,Y,Y,Y,Excel+Sheets
-TTEST,N,Y,Y,Y,Excel+Sheets
+TTEST,Y,Y,Y,Y,Excel+Sheets
 TYPE,Y,Y,Y,N,Excel+Sheets
 UMINUS,N,N,Y,N,Sheets-only
 UNARY_PERCENT,N,N,Y,N,Sheets-only

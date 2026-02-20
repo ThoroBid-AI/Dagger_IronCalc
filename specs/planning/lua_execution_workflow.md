@@ -1,6 +1,12 @@
 # Lua Execution Workflow (Planning Only)
 
-This document defines the end-to-end workflow for implementing functions in Lua without performing any implementation yet. It is the single execution guide to follow once we begin coding.
+This document defines the end-to-end workflow for Lua-guided function implementation planning before coding begins. It is the single execution guide to follow once we begin coding.
+
+## 0) Runtime Contract
+- Implementation runtime in this repository is Rust (`base` crate).
+- `specs/lua_prompts.md` is the behavior guidance artifact.
+- See `specs/planning/implementation_runtime_contract.md`.
+- Follow `specs/planning/implementation_handoff_contract.md` as the execution checklist.
 
 ## 1) Inputs (Authoritative Sources)
 Use these files only:
@@ -12,6 +18,7 @@ Use these files only:
 - Grouped backlog: `specs/reports/ironcalc_missing_but_in_hf_grouped.csv`
 - Backlog plan: `specs/planning/lua_implementation_backlog.md`
 - Backlog tracker: `specs/reports/lua_backlog_status.csv`
+- Optional detailed specs (when present): `specs/functions/<FUNCTION>.md`
 
 ## 2) How To Choose What To Implement
 Follow the backlog plan order:
@@ -26,15 +33,16 @@ Only pick items from `ironcalc_missing_but_in_hf.csv`.
 ## 3) Per-Function Workflow (When We Start)
 For each function:
 1. Find the prompt in `specs/lua_prompts.md`.
-2. Read the spec: `specs/functions/<FUNCTION>.md`.
-3. Confirm Excel/Sheets behavior is clear.
-4. Implement in Lua.
-5. Add tests and fixtures.
-6. Update the tracker in `lua_backlog_status.csv`.
+2. Use the behavior sections in `specs/lua_prompts.md` as the primary function spec.
+3. If present, read the detailed spec: `specs/functions/<FUNCTION>.md`.
+4. Confirm Excel/Sheets behavior is clear.
+5. Implement in Rust engine code.
+6. Add tests and fixtures.
+7. Update the tracker in `lua_backlog_status.csv`.
 
 ## 4) Definition of Done (Per Function)
 A function is done when:
-- Lua implementation exists.
+- Rust implementation exists.
 - Tests exist and pass.
 - Fixtures are added if required.
 - Tracker shows `status_done=complete`.
@@ -53,4 +61,3 @@ In `specs/reports/lua_backlog_status.csv`:
 - Unit tests for core logic.
 - Conformance tests for Excel/Sheets parity.
 - Update `oracle_capture_status.csv` only when new oracle outputs are captured.
-

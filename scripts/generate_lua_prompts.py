@@ -56,13 +56,27 @@ def load_io_shapes(path: Path) -> Dict[str, Tuple[List[str], List[str]]]:
 def load_impl_map(path: Path) -> Dict[str, Tuple[str, str]]:
     if not path.exists():
         return {}
+
+    def normalize_file_path(value: str) -> str:
+        value = value.strip()
+        if not value:
+            return value
+        root_prefix = f"{ROOT.as_posix()}/"
+        if value.startswith(root_prefix):
+            return value[len(root_prefix) :]
+        for marker in ("/base/", "/xlsx/", "/bindings/", "/specs/", "/webapp/"):
+            if marker in value:
+                remainder = value.split(marker, 1)[1]
+                return f"{marker.strip('/')}/{remainder}"
+        return value
+
     with path.open(newline="") as f:
         reader = csv.DictReader(f)
         out = {}
         for row in reader:
             func = row.get("function", "").strip().upper()
             handler = row.get("handler", "").strip()
-            file_path = row.get("file_path", "").strip()
+            file_path = normalize_file_path(row.get("file_path", ""))
             if func:
                 out[func] = (handler, file_path)
         return out
@@ -133,7 +147,13 @@ def build_prompt(
             content_ascii += "\n\n- Note: Non-ASCII characters omitted. See spec for full text."
         return f"### {title}\n{content_ascii}\n"
 
-    spec_ref = spec_path.as_posix() if spec_path else "Spec not found"
+    if spec_path:
+        try:
+            spec_ref = spec_path.relative_to(ROOT).as_posix()
+        except ValueError:
+            spec_ref = spec_path.as_posix()
+    else:
+        spec_ref = "Spec not found"
 
     prompt = (
         f"# {func} — Lua Implementation Prompt\n\n"

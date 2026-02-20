@@ -8,6 +8,9 @@ This folder contains scripts for coverage, fixtures, and documentation workflows
 - `generate_lua_prompts.py`
 - `generate_hf_coverage_reports.py`
 
+Note:
+- `generate_lua_prompts.py` can enrich prompt metadata from `specs/reports/function_impl_mapping.csv` when that file exists, but it is optional.
+
 ## Legacy / Optional Workflows
 These rely on files in `specs/data/` and older batch tooling:
 - `generate_oracle_workbook.py`
