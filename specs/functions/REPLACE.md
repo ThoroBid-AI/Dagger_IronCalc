@@ -32,11 +32,13 @@ Returns resulting text after segment replacement.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Replaces part of text by position.
 
 - Signatures:
 
-  - `Not implemented for this provider per matrix metadata.`
+  - `REPLACE(old_text, start_num, num_chars, new_text)`
 
 - Examples:
 
@@ -48,45 +50,25 @@ Returns resulting text after segment replacement.
 
 
 
-- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
-
-
-
 ## Documentation (Google Sheets)
 
 
 
 - Source URL: https://support.google.com/docs/answer/3098247
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Replaces part of text by position.
 
 - Signatures:
 
-  - `REPLACE(text, position, length, new_text)`
+  - `REPLACE(old_text, start_num, num_chars, new_text)`
 
 - Examples:
 
-  - replace(/\-([a-z])
+  - REPLACE("abcdef",2,3,"ZZ")
 
-  - replace(RegExp("(^|[\\s]+)
-
-  - replace(/([?&](continue|followup)
-
-  - REPLACE("Spreadsheets", 1, 6, "Bed")
-
-  - REPLACE(text, position, length, new_text)
-
-  - replace(/"/g,""")
-
-  - replace(/'/g,"'")
-
-  - replace(/\+/g," ")
-
-  - replace(Gha,function(f,h)
-
-  - replace(/&([^;]+)
-
-- Notes: - This function returns text as the output. If a number is desired, try using the VALUE function in conjunction with this function.
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 

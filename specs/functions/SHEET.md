@@ -23,15 +23,19 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.microsoft.com/en-us/office/sheet-function-44718b6f-8b87-47a1-a9d6-b701c06cff24
 
-- Summary: Syntax: Sheet(value)
+- Source fetch status: failed after 4 attempts
+
+- Summary: Return worksheet index or name context.
 
 - Signatures:
 
-  - `SHEET(value)`
+  - `SHEET([reference])`
 
-- Examples: Copy the following entire table and paste it in cell A1 (and adjacent) of a new Excel worksheet. If you do not automatically see the results, select formula, press F2 and press Enter. Adjust column widths if needed to see everything. Formula Function (or failure) Result =SHEET(QSalesByRegion) Finds the number of the sheet called QSalesByRegion (having a scope that makes it available to the entire workbook). 2 =SHEET(Table1) Finds the sheet number containing the table named Table1... (who's scope makes it available to the entire workbook). 2 =SHEET(Hi_Temps) Returns the #NAME? error value because the sought name Hi_Temps is limited to the work…
+- Examples:
 
-- Notes: - SHEET locating/identification capability includes all worksheets (visible, hidden, or very hidden) in addition to all other sheet types (macro, chart, or dialog sheets). - If the value argument is not a valid reference, SHEET returns the #REF! error. For example, =SHEET(Sheet1!#REF) will return the #REF! error value. - If the value argument is not a valid sheet name, SHEET returns the #NA error value. For example, =SHEET(“badSheetName”) will return the #NA error value. - SHEET is not available in the Object Model (OM) because the Object Model already includes similar functionality.
+  - SHEET()
+
+- Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
 

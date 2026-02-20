@@ -1,66 +1,57 @@
 # SIGN
 ## SIGN
 ## Purpose
-Computes SIGN semantics for spreadsheet formulas.
+Returns the sign of a numeric value: 1 if positive, 0 if zero, and -1 if negative.
 ## Syntax
-- Excel: `SIGN(...)`
-- Google Sheets: `SIGN(...)`
+- Excel: `SIGN(number)`
+- Google Sheets: `SIGN(number)`
 ## Behavior
-Deterministic spreadsheet-compatible behavior with explicit coercion rules.
+SIGN is deterministic and only depends on numeric coercion of number. Empty cells resolve through normal engine coercion rules; if a coercion path is not defined, return an error.
 ## Examples (expected outputs)
-- `...`
+- `=SIGN(-7)` -> `-1`
+- `=SIGN(0)` -> `0`
+- `=SIGN(7)` -> `1`
 ## Error Cases
-- Invalid argument count, types, and impossible domains return a spreadsheet error.
+- `SIGN("text")` -> `#VALUE!`
+- Extra or missing arguments -> `#VALUE!`
 ## Notes
-- Deterministic and version-stable behavior is required.
+Single-argument utility function used in branching and normalization logic.
 ## Code Location
 - Implemented in IronCalc.
 - Handler: `fn_sign`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
 ## Documentation (Microsoft)
 
-
-
 - Source URL: https://support.microsoft.com/en-us/office/sign-function-109c932d-fcdc-4023-91f1-2dd0e916a1d8
 
-- Summary: The SIGN function determines the sign of a number. IT returns 1 if the number is positive, zero (0) if the number is 0, and -1 if the number is negative.
+- Summary: Returns the sign of a numeric value: 1 if positive, 0 if zero, and -1 if negative.
 
 - Signatures:
 
   - `SIGN(number)`
 
-- Examples: Copy the example data in the following table, and paste it in cell A1 of a new Excel worksheet. For formulas to show results, select them, press F2, and then press Enter. If you need to, you can adjust the column widths to see all the data. Formula Description Result =SIGN(10) Sign of a positive number. 1 =SIGN(4-4) Sign of the result of 4 minus 4 (zero). 0 =SIGN(-0.00001) Sign of a negative number. -1
+- Examples: `=SIGN(-7)` -> `-1`; `=SIGN(3.2)` -> `1`
 
-- Notes: =SIGN(10): Sign of a positive number. | 1 | =SIGN(4-4): Sign of the result of 4 minus 4 (zero). | 0 | =SIGN(-0.00001): Sign of a negative number. | -1
+- Notes: Single-argument utility function used in branching and normalization logic.
 
-- Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
-
+- Error behavior: #VALUE! for text or invalid argument counts.
 
 
 ## Documentation (Google Sheets)
 
-
-
 - Source URL: https://support.google.com/docs/answer/3093513
 
-- Summary: Given an input number, returns `-1` if it is negative, `1` if positive, and `0` if it is zero. Sample Usage SIGN(-42) SIGN(A2) Syntax SIGN(value) value - The value whose sign will be ev
+- Summary: Returns the sign of a numeric value: 1 if positive, 0 if zero, and -1 if negative.
 
 - Signatures:
 
   - `SIGN(value)`
 
-- Examples:
+- Examples: `=SIGN(-7)` -> `-1`; `=SIGN(3.2)` -> `1`
 
-  - SIGN(-42)
+- Notes: Single-argument utility function used in branching and normalization logic.
 
-  - SIGN(A2)
-
-  - SIGN(value)
-
-- Notes: Deterministic and version-stable behavior is required.
-
-- Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
-
+- Error behavior: #VALUE! for text or invalid argument counts.
 
 
 ## Sources

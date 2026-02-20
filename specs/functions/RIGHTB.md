@@ -32,11 +32,13 @@ Uses byte count and supports multibyte text variants.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Byte-length variant of RIGHT.
 
 - Signatures:
 
-  - `Not implemented for this provider per matrix metadata.`
+  - `RIGHTB(text, [num_bytes])`
 
 - Examples:
 
@@ -48,29 +50,25 @@ Uses byte count and supports multibyte text variants.
 
 
 
-- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
-
-
-
 ## Documentation (Google Sheets)
 
 
 
 - Source URL: https://support.google.com/docs/answer/9367697
 
-- Summary: The RIGHTB function returns the right portion of a string up to a certain number of bytes. Parts of a RIGHTB function RIGHTB(string, num_of_bytes) Part Description
+- Source fetch status: failed after 4 attempts
+
+- Summary: Byte-length variant of RIGHT.
 
 - Signatures:
 
-  - `RIGHTB(string, num_of_bytes)`
+  - `RIGHTB(text, [num_bytes])`
 
-  - `RIGHTB(A2, 2)`
+- Examples:
 
-  - `RIGHTB(A4, 2)`
+  - RIGHTB("hello",3)
 
-- Examples: A B C 1 Input Formula Output 2 Aeñ =RIGHTB(A2, 2) eñ 3 Aeñ =RIGHT(A3,2) eñ 4 熊本 =RIGHTB(A4, 2) 本 5 熊本 =RIGHT(A5,2) 熊本
-
-- Notes: - RIGHTB returns the same value as RIGHT if the input string has only single byte characters - num_of_bytes must be greater than or equal to zero. - If num_of_bytes is greater than the length of text in bytes, RIGHTB returns all of text. - If num_of_bytes is omitted, it is assumed to be 1.
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 

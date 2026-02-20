@@ -32,15 +32,19 @@ Default returns current row when reference omitted.
 
 - Source URL: https://support.microsoft.com/en-us/office/row-function-3a63b74a-c4d0-4093-b49a-e76eb49a6d8d
 
-- Summary: The ROW function in Excel returns the row number of a reference you enter in a formula. For example, =ROW(C10) returns row number 10. You can't use this function to insert or remove a row.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Returns row number of reference.
 
 - Signatures:
 
   - `ROW([reference])`
 
-- Examples: Copy the example data in the following table, and paste it in cell A1 of a new Excel worksheet. For formulas to show results, select them, press F2, and then press Enter. If you need to, you can adjust the column widths to see all the data. Formula Description Result =ROW() Row in which the formula appears 2 =ROW(C10) Row of the reference 10
+- Examples:
 
-- Notes: =ROW(): Row in which the formula appears | 2 | =ROW(C10): Row of the reference | 10
+  - ROW(A5)
+
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 
@@ -52,11 +56,13 @@ Default returns current row when reference omitted.
 
 - Source URL: https://support.google.com/docs/answer/3093316
 
-- Summary: Returns the row number of a specified cell. Sample Usage ROW(A9) Syntax ROW([cell_reference]) cell_reference - [ OPTIONAL - The cell in which the formula is entered by default
+- Source fetch status: failed after 4 attempts
+
+- Summary: Returns row number of reference.
 
 - Signatures:
 
-  - `ROW([cell_reference])`
+  - `ROW([reference])`
 
 - Examples:
 

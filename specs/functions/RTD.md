@@ -32,15 +32,19 @@ Not supported in deterministic offline engine; treat as external data dependency
 
 - Source URL: https://support.microsoft.com/en-us/office/rtd-function-e0cc001a-56f0-470a-9b19-9455dc0eb593
 
-- Summary: Retrieves real-time data from a program that supports COM automation.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Gets data from DDE/real-time data servers.
 
 - Signatures:
 
-  - `RTD(ProgID, server, topic1, [topic2], ...)`
+  - `RTD(prog_id, server, topic1, topic2, ...)`
 
-- Examples: Copy the example data in the following table, and paste it in cell A1 of a new Excel worksheet. For formulas to show results, select them, press F2, and then press Enter. If you need to, you can adjust the column widths to see all the data. Formula Description (Result) Result =RTD("mycomaddin.progid",,"Server_name","Price") Real-time data retrieved from a program that supports COM automation. #N/A Note The RTD COM automation add-in must be created and registered on a local computer. If you haven't installed a real-time data server, the RTD function returns the #N/A error message in a cell when you try to use the RTD function.
+- Examples:
 
-- Notes: - The RTD COM automation add-in must be created and registered on a local computer. If you haven't installed a real-time data server, you will get an error message in a cell when you try to use the RTD function. - When the server has been programmed to continually update results, unlike other functions, RTD formulas will change when Microsoft Excel is in automatic calculation mode.
+  - RTD("ProgID","",1)
+
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 

@@ -23,15 +23,19 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.microsoft.com/en-us/office/sheets-function-770515eb-e1e8-45ce-8066-b557e5e4b80b
 
-- Summary: Syntax: SHEETS(reference)
+- Source fetch status: failed after 4 attempts
+
+- Summary: Return number/list of sheets.
 
 - Signatures:
 
-  - `SHEETS(reference)`
+  - `SHEETS([reference])`
 
-- Examples: Copy the example data in the following table, and paste it in cell A1 of a new Excel worksheet. For formulas to show results, select them, press F2, and then press Enter. If you need to, you can adjust the column widths to see all the data. Formula Description Result =SHEETS() Because there is no Reference argument specified, the total number of sheets in the workbook is returned (3). 3 =SHEETS(My3DRef) Returns the number of sheets in a 3D reference with the defined name My3DRef, which includes Sheet2 and Sheet3 (2). 2 Top of Page
+- Examples:
 
-- Notes: - SHEETS includes all worksheets (visible, hidden, or very hidden) in addition to all other sheet types (macro, chart, or dialog sheets). - If reference is not a valid value, SHEETS returns the #REF! error value. - SHEETS is not available in the Object Model (OM) because the Object Model already includes similar functionality.
+  - SHEETS()
+
+- Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
 

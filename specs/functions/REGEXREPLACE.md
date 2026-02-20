@@ -32,17 +32,19 @@ Substitutes first/all matches according to replacement text.
 
 - Source URL: https://support.microsoft.com/en-us/office/regexreplace-function-9c030bb2-5e47-4efc-bad5-4582d7100897
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Replaces text based on regex match.
 
 - Signatures:
 
-  - `REGEXREPLACE(text, pattern, replacement, [occurrence], [case_sensitivity])`
+  - `REGEXREPLACE(text, regular_expression, replacement)`
 
 - Examples:
 
   - REGEXREPLACE("abc123","\d+","")
 
-- Notes: text (required): The text or the reference to a cell containing the text you want to replace strings within. | pattern (required): The regular expression ("regex") that describes the pattern of text you want to replace. | replacement (required): The text you want to replace instances of pattern. | occurrence: Specifies which instance of the pattern you want to replace. By default, occurrence is 0, which replaces all instances. A negative number replaces that instance, searching from the end.
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 
@@ -54,6 +56,8 @@ Substitutes first/all matches according to replacement text.
 
 - Source URL: https://support.google.com/docs/answer/3098245
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Replaces text based on regex match.
 
 - Signatures:
@@ -62,11 +66,9 @@ Substitutes first/all matches according to replacement text.
 
 - Examples:
 
-  - REGEXREPLACE("Spreadsheets", "S.*d", "Bed")
+  - REGEXREPLACE("abc123","\d+","")
 
-  - REGEXREPLACE(text, regular_expression, replacement)
-
-- Notes: - Google products use RE2 for regular expressions. Google Sheets supports RE2 except Unicode character class matching. Learn more on how to use RE2 expressions. - This function only works with text (not numbers) as input and returns text as output. If a number is desired as the output, try using the VALUE function in conjunction with this function. If numbers are used as input, convert them to text using the TEXT function.
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 

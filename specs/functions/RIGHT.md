@@ -32,11 +32,13 @@ Returns trailing characters up to requested length.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Returns rightmost characters from text.
 
 - Signatures:
 
-  - `Not implemented for this provider per matrix metadata.`
+  - `RIGHT(text, [num_chars])`
 
 - Examples:
 
@@ -48,31 +50,25 @@ Returns trailing characters up to requested length.
 
 
 
-- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
-
-
-
 ## Documentation (Google Sheets)
 
 
 
 - Source URL: https://support.google.com/docs/answer/3094087
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Returns rightmost characters from text.
 
 - Signatures:
 
-  - `RIGHT(string, [number_of_characters])`
+  - `RIGHT(text, [num_chars])`
 
 - Examples:
 
-  - RIGHT(A2,2)
+  - RIGHT("hello",2)
 
-  - RIGHT("lorem ipsum")
-
-  - RIGHT(string, [number_of_characters])
-
-- Notes: - 0 is a valid input for number_of_characters and will cause RIGHT to return the empty string.
+- Notes: Deterministic and ordered input handling required.
 
 - Error behavior: Invalid argument count/type/range yields errors per host semantics.
 

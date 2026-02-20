@@ -32,13 +32,17 @@ Reserved extension-like compatibility function.
 
 - Source URL: https://support.microsoft.com/en-us/office/register-id-function-f8f0af0f-fd66-4704-a0f2-87b27b175b50
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Converts account names to identifier format in financial contexts.
 
 - Signatures:
 
-  - `REGISTER.ID(module_text,procedure,[type_text])`
+  - `REGISTER.ID(text)`
 
-- Examples: The following formula registers the GetTickCount function from 32-bit Microsoft Windows and returns the register ID: REGISTER.ID("Kernel32", "GetTickCount", "J!") Assuming that GetTickCount was already registered on another sheet using the preceding formula, the following formula returns the register ID for GetTickCount: REGISTER.ID("Kernel32", "GetTickCount")
+- Examples:
+
+  - REGISTER.ID("AAPL")
 
 - Notes: Deterministic and ordered input handling required.
 
