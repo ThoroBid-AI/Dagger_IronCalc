@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Handler: `fn_type`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs`
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/type-function-45b4e688-4bc3-48b3-a105-ffa892995899
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TYPE semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TYPE(...)`
 
-- Examples:
-  - `=TYPE(1, 2)`,
-  - `=TYPE(A1, B1)`,
-  - `=TYPE(10, 20, 30)`,
+- Examples: `=TYPE(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3267375
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TYPE semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TYPE(...)`
 
-- Examples:
-  - `=TYPE(1, 2)`,
-  - `=TYPE(A1, B1)`,
-  - `=TYPE(10, 20, 30)`,
+- Examples: `=TYPE(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

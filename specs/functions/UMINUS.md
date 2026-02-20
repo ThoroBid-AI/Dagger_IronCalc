@@ -18,17 +18,20 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Proposed handler: `fn_uminus`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes UMINUS semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `UMINUS(...)`
 
-- Examples: No examples available for this function.
+- Examples: `=UMINUS(1)` -> `0`
 
 - Notes: Deterministic and platform-stable behavior is required.
 
@@ -37,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3093606
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes UMINUS semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `UMINUS(...)`
 
-- Examples:
-  - `=UMINUS(1, 2)`,
-  - `=UMINUS(A1, B1)`,
-  - `=UMINUS(10, 20, 30)`,
+- Examples: `=UMINUS(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

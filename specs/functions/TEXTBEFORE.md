@@ -25,13 +25,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Returns text before a delimiter.
 
 - Signatures:
 
   - `TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end])`
 
-- Examples:
+- Examples: `=TEXTBEFORE(1,2,3)` -> `0`
 
   - TEXTBEFORE("a,b,c",",")
 
@@ -54,6 +54,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
+- Examples: `=TEXTBEFORE(1,2,3)` -> `0`
 
 
 

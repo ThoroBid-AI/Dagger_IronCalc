@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Handler: `fn_vara`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/variance.rs`
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/vara-function-3de77469-fa3a-47b4-85fd-81758a1e1d07
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VARA behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VARA(...)`
 
-- Examples:
-  - `=VARA(1, 2)`,
-  - `=VARA(A1, B1)`,
-  - `=VARA(10, 20, 30)`,
+- Examples: `=VARA(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3094064
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VARA behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VARA(...)`
 
-- Examples:
-  - `=VARA(1, 2)`,
-  - `=VARA(A1, B1)`,
-  - `=VARA(10, 20, 30)`,
+- Examples: `=VARA(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.

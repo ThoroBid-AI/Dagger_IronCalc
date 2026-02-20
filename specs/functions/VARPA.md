@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Handler: `fn_varpa`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/variance.rs`
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/varpa-function-59a62635-4e89-4fad-88ac-ce4dc0513b96
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VARPA behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VARPA(...)`
 
-- Examples:
-  - `=VARPA(1, 2)`,
-  - `=VARPA(A1, B1)`,
-  - `=VARPA(10, 20, 30)`,
+- Examples: `=VARPA(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3094065
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VARPA behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VARPA(...)`
 
-- Examples:
-  - `=VARPA(1, 2)`,
-  - `=VARPA(A1, B1)`,
-  - `=VARPA(10, 20, 30)`,
+- Examples: `=VARPA(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.

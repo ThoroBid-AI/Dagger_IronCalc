@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns population variance.
 
 - Signatures:
 
   - `VAR.P(number1,...)`
 
-- Examples:
+- Examples: `=VAR.P(1, 2)` -> `0`
 
   - VAR.P({1,2,3})
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns population variance.
 
 - Signatures:
 
   - `VAR.P(number1,...)`
 
-- Examples:
+- Examples: `=VAR.P(1, 2)` -> `0`
 
   - VAR.P({1,2,3})
 

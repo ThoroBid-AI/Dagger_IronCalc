@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts text to upper case.
 
 - Signatures:
 
   - `UPPER(text)`
 
-- Examples:
+- Examples: `=UPPER(1)` -> `0`
 
   - UPPER("abc")
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts text to upper case.
 
 - Signatures:
 
   - `UPPER(text)`
 
-- Examples:
+- Examples: `=UPPER(1)` -> `0`
 
   - UPPER("abc")
 

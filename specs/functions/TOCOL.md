@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Proposed handler: `fn_tocol`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/tocol-function-22839d9b-0b55-4fc1-b4e6-2761f8f122ed
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TOCOL semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TOCOL(...)`
 
-- Examples:
-  - `=TOCOL(1, 2)`,
-  - `=TOCOL(A1, B1)`,
-  - `=TOCOL(10, 20, 30)`,
+- Examples: `=TOCOL(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/13187258
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TOCOL semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TOCOL(...)`
 
-- Examples:
-  - `=TOCOL(1, 2)`,
-  - `=TOCOL(A1, B1)`,
-  - `=TOCOL(10, 20, 30)`,
+- Examples: `=TOCOL(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

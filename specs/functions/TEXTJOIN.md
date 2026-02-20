@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Concatenates values with delimiter.
 
 - Signatures:
 
   - `TEXTJOIN(delimiter, ignore_empty, text1, ...)`
 
-- Examples:
+- Examples: `=TEXTJOIN(1,2,3)` -> `0`
 
   - TEXTJOIN(",",TRUE,"a","b")
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Concatenates values with delimiter.
 
 - Signatures:
 
   - `TEXTJOIN(delimiter, ignore_empty, text1, ...)`
 
-- Examples:
+- Examples: `=TEXTJOIN(1,2,3)` -> `0`
 
   - TEXTJOIN(",",TRUE,"a","b")
 

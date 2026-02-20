@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Handler: `fn_vlookup`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs`
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/vlookup-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VLOOKUP behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VLOOKUP(...)`
 
-- Examples:
-  - `=VLOOKUP(1, 2)`,
-  - `=VLOOKUP(A1, B1)`,
-  - `=VLOOKUP(10, 20, 30)`,
+- Examples: `=VLOOKUP(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3093318
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VLOOKUP behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VLOOKUP(...)`
 
-- Examples:
-  - `=VLOOKUP(1, 2)`,
-  - `=VLOOKUP(A1, B1)`,
-  - `=VLOOKUP(10, 20, 30)`,
+- Examples: `=VLOOKUP(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.

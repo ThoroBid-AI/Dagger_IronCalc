@@ -25,13 +25,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Returns unique values from array.
 
 - Signatures:
 
   - `UNIQUE(range_or_array, [by_col], [exactly_once])`
 
-- Examples:
+- Examples: `=UNIQUE(1,2,3)` -> `0`
 
   - UNIQUE({1,2,1})
 
@@ -49,13 +49,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Returns unique values from array.
 
 - Signatures:
 
   - `UNIQUE(range_or_array, [by_col], [exactly_once])`
 
-- Examples:
+- Examples: `=UNIQUE(1,2,3)` -> `0`
 
   - UNIQUE({1,2,1})
 

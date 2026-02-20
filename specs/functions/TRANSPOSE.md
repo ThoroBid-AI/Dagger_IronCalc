@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Proposed handler: `fn_transpose`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/transpose-function-ed039415-ed8a-4a81-93e9-4b6dfac76027
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TRANSPOSE semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TRANSPOSE(...)`
 
-- Examples:
-  - `=TRANSPOSE(1, 2)`,
-  - `=TRANSPOSE(A1, B1)`,
-  - `=TRANSPOSE(10, 20, 30)`,
+- Examples: `=TRANSPOSE(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3094262
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TRANSPOSE semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TRANSPOSE(...)`
 
-- Examples:
-  - `=TRANSPOSE(1, 2)`,
-  - `=TRANSPOSE(A1, B1)`,
-  - `=TRANSPOSE(10, 20, 30)`,
+- Examples: `=TRANSPOSE(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

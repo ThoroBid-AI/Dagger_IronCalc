@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Removes extra spaces from text.
 
 - Signatures:
 
   - `TRIM(text)`
 
-- Examples:
+- Examples: `=TRIM(1)` -> `0`
 
   - TRIM(" a b ")
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Removes extra spaces from text.
 
 - Signatures:
 
   - `TRIM(text)`
 
-- Examples:
+- Examples: `=TRIM(1)` -> `0`
 
   - TRIM(" a b ")
 

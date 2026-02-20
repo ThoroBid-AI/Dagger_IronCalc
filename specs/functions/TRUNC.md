@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Truncates number to integer/decimal places.
 
 - Signatures:
 
   - `TRUNC(number, [num_digits])`
 
-- Examples:
+- Examples: `=TRUNC(1, 2)` -> `0`
 
   - TRUNC(1.9)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Truncates number to integer/decimal places.
 
 - Signatures:
 
   - `TRUNC(number, [num_digits])`
 
-- Examples:
+- Examples: `=TRUNC(1, 2)` -> `0`
 
   - TRUNC(1.9)
 

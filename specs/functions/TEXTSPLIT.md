@@ -25,13 +25,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Splits text into array by delimiter.
 
 - Signatures:
 
   - `TEXTSPLIT(text, delimiter)`
 
-- Examples:
+- Examples: `=TEXTSPLIT(1, 2)` -> `0`
 
   - TEXTSPLIT("a,b,c",",")
 
@@ -54,6 +54,7 @@ Deterministic behavior is required with explicit evaluation order.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
+- Examples: `=TEXTSPLIT(1, 2)` -> `0`
 
 
 

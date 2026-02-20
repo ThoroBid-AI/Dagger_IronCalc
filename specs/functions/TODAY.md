@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns current date.
 
 - Signatures:
 
   - `TODAY()`
 
-- Examples:
+- Examples: `=TODAY(1)` -> `0`
 
   - TODAY()
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns current date.
 
 - Signatures:
 
   - `TODAY()`
 
-- Examples:
+- Examples: `=TODAY(1)` -> `0`
 
   - TODAY()
 

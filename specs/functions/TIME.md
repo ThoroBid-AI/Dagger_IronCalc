@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Converts hour minute second to serial time.
 
 - Signatures:
 
   - `TIME(hour, minute, second)`
 
-- Examples:
+- Examples: `=TIME(1,2,3)` -> `0`
 
   - TIME(1,30,0)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Converts hour minute second to serial time.
 
 - Signatures:
 
   - `TIME(hour, minute, second)`
 
-- Examples:
+- Examples: `=TIME(1,2,3)` -> `0`
 
   - TIME(1,30,0)
 

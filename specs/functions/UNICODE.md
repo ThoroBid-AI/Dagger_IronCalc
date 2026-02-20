@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns numeric codepoint for first character.
 
 - Signatures:
 
   - `UNICODE(text)`
 
-- Examples:
+- Examples: `=UNICODE(1)` -> `0`
 
   - UNICODE("A")
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns numeric codepoint for first character.
 
 - Signatures:
 
   - `UNICODE(text)`
 
-- Examples:
+- Examples: `=UNICODE(1)` -> `0`
 
   - UNICODE("A")
 

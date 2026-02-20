@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Proposed handler: `fn_torow`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/torow-function-b90d0964-a7d9-44b7-816b-ffa5c2fe2289
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TOROW semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TOROW(...)`
 
-- Examples:
-  - `=TOROW(1, 2)`,
-  - `=TOROW(A1, B1)`,
-  - `=TOROW(10, 20, 30)`,
+- Examples: `=TOROW(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/13187459
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TOROW semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TOROW(...)`
 
-- Examples:
-  - `=TOROW(1, 2)`,
-  - `=TOROW(A1, B1)`,
-  - `=TOROW(10, 20, 30)`,
+- Examples: `=TOROW(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

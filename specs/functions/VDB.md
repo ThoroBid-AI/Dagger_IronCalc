@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Depreciation by declining-balance method with period schedules.
 
 - Signatures:
 
   - `VDB(cost, salvage, life, start_period, end_period, factor, [no_switch])`
 
-- Examples:
+- Examples: `=VDB(1,2,3)` -> `0`
 
   - VDB(2400,300,10,0,1,1.5,TRUE)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Depreciation by declining-balance method with period schedules.
 
 - Signatures:
 
   - `VDB(cost, salvage, life, start_period, end_period, factor, [no_switch])`
 
-- Examples:
+- Examples: `=VDB(1,2,3)` -> `0`
 
   - VDB(2400,300,10,0,1,1.5,TRUE)
 

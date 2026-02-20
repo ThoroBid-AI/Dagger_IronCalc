@@ -18,17 +18,20 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Proposed handler: `fn_to_pure_number`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TO_PURE_NUMBER semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TO_PURE_NUMBER(...)`
 
-- Examples: No examples available for this function.
+- Examples: `=TO_PURE_NUMBER(1)` -> `0`
 
 - Notes: Deterministic and platform-stable behavior is required.
 
@@ -37,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3094243
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TO_PURE_NUMBER semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TO_PURE_NUMBER(...)`
 
-- Examples:
-  - `=TO_PURE_NUMBER(1, 2)`,
-  - `=TO_PURE_NUMBER(A1, B1)`,
-  - `=TO_PURE_NUMBER(10, 20, 30)`,
+- Examples: `=TO_PURE_NUMBER(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

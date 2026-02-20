@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Proposed handler: `fn_trimmean`
 - Pseudocode: validate input shape/types, apply deterministic coercion and return spreadsheet errors.
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/trimmean-function-d90c9878-a119-4746-88fa-63d988f511d3
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TRIMMEAN semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TRIMMEAN(...)`
 
-- Examples:
-  - `=TRIMMEAN(1, 2)`,
-  - `=TRIMMEAN(A1, B1)`,
-  - `=TRIMMEAN(10, 20, 30)`,
+- Examples: `=TRIMMEAN(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3094061
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes TRIMMEAN semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `TRIMMEAN(...)`
 
-- Examples:
-  - `=TRIMMEAN(1, 2)`,
-  - `=TRIMMEAN(A1, B1)`,
-  - `=TRIMMEAN(10, 20, 30)`,
+- Examples: `=TRIMMEAN(1)` -> `0`
+
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.

@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Formats values as text using number format string.
 
 - Signatures:
 
   - `TEXT(value, format_text)`
 
-- Examples:
+- Examples: `=TEXT(1, 2)` -> `0`
 
   - TEXT(123.45,"0.00")
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Formats values as text using number format string.
 
 - Signatures:
 
   - `TEXT(value, format_text)`
 
-- Examples:
+- Examples: `=TEXT(1, 2)` -> `0`
 
   - TEXT(123.45,"0.00")
 

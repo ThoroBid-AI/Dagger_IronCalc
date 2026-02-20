@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes VALUETOTEXT behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `VALUETOTEXT(...)`
 
-- Examples: No examples available for this function.
+- Examples: `=VALUETOTEXT(1)` -> `0`
 
 - Notes: Deterministic and reproducible behavior required.
 
@@ -52,6 +52,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
+- Examples: `=VALUETOTEXT(1)` -> `0`
 
 
 

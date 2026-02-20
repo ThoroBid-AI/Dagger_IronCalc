@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Stacks arrays vertically.
 
 - Signatures:
 
   - `VSTACK(value1, value2, ...)`
 
-- Examples:
+- Examples: `=VSTACK(1,2,3)` -> `0`
 
   - VSTACK({1,2},{3,4})
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Stacks arrays vertically.
 
 - Signatures:
 
   - `VSTACK(value1, value2, ...)`
 
-- Examples:
+- Examples: `=VSTACK(1,2,3)` -> `0`
 
   - VSTACK({1,2},{3,4})
 

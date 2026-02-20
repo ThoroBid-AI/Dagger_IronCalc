@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Converts time text to serial time.
 
 - Signatures:
 
   - `TIMEVALUE(time_text)`
 
-- Examples:
+- Examples: `=TIMEVALUE(1)` -> `0`
 
   - TIMEVALUE("13:30")
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Converts time text to serial time.
 
 - Signatures:
 
   - `TIMEVALUE(time_text)`
 
-- Examples:
+- Examples: `=TIMEVALUE(1)` -> `0`
 
   - TIMEVALUE("13:30")
 
