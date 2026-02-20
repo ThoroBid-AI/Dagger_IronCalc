@@ -32,33 +32,7 @@ use crate::{
 
 use chrono_tz::Tz;
 
-const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 10] = [
-    "ACCRINT",
-    "ACCRINTM",
-    "ADDRESS",
-    "AGGREGATE",
-    "AMORDEGRC",
-    "AMORLINC",
-    "ARRAYCONSTRAIN",
-    "ASC",
-    "AVERAGEWEIGHTED",
-    "BAHTTEXT",
-];
-
-fn normalize_function_name_for_batch1(name: &str) -> String {
-    name.trim()
-        .trim_start_matches("_xlfn.")
-        .replace('.', "")
-        .replace('_', "")
-        .to_ascii_uppercase()
-}
-
-fn is_batch1_unsupported_function(name: &str) -> bool {
-    let normalized = normalize_function_name_for_batch1(name);
-    NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS
-        .iter()
-        .any(|candidate| normalized == *candidate)
-}
+use crate::batch1_fallbacks::{evaluate_batch1_fallback, is_batch1_unsupported_function};
 
 #[cfg(test)]
 pub use crate::mock_time::get_milliseconds_since_epoch;
@@ -178,53 +152,6 @@ pub struct CellIndex {
 }
 
 impl<'a> Model<'a> {
-    fn evaluate_batch1_fallback(
-        &mut self,
-        name: &str,
-        args: &[Node],
-        cell: CellReferenceIndex,
-    ) -> Option<CalcResult> {
-        match normalize_function_name_for_batch1(name).as_str() {
-            "ADD" => {
-                if args.len() < 2 {
-                    Some(CalcResult::new_args_number_error(cell))
-                } else {
-                    Some(self.fn_sum(args, cell))
-                }
-            }
-            "BETAINVN" => Some(self.fn_beta_inv(args, cell)),
-            "AREAS" => {
-                if args.len() != 1 {
-                    Some(CalcResult::new_args_number_error(cell))
-                } else {
-                    match self.evaluate_node_in_context(&args[0], cell) {
-                        CalcResult::Range { .. } | CalcResult::Array(_) => {
-                            Some(CalcResult::Number(1.0))
-                        }
-                        CalcResult::Error { .. } => Some(CalcResult::new_error(
-                            Error::NIMPL,
-                            cell,
-                            "AREAS requires a valid reference in this version".to_string(),
-                        )),
-                        _ => Some(CalcResult::new_error(
-                            Error::VALUE,
-                            cell,
-                            "AREAS expects a reference".to_string(),
-                        )),
-                    }
-                }
-            }
-            "ARRAYFORMULA" => {
-                if args.len() != 1 {
-                    Some(CalcResult::new_args_number_error(cell))
-                } else {
-                    Some(self.evaluate_node_in_context(&args[0], cell))
-                }
-            }
-            _ => None,
-        }
-    }
-
     pub(crate) fn evaluate_node_with_reference(
         &mut self,
         node: &Node,
@@ -476,7 +403,7 @@ impl<'a> Model<'a> {
             }
             FunctionKind { kind, args } => self.evaluate_function(kind, args, cell),
             InvalidFunctionKind { name, args } => {
-                if let Some(result) = self.evaluate_batch1_fallback(name, args, cell) {
+                if let Some(result) = evaluate_batch1_fallback(self, name, args, cell) {
                     return result;
                 }
                 if is_batch1_unsupported_function(name) {

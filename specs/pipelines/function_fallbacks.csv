@@ -1,0 +1,15 @@
+batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,expected_text,setup,test_cell_2,test_formula_2,expected_text_2,setup_2
+1,ACCRINT,unimplemented,,,,"","","",
+1,ACCRINTM,unimplemented,,,,"","","",
+1,ADDRESS,unimplemented,,,,"","","",
+1,AGGREGATE,unimplemented,,,,"","","",
+1,AMORDEGRC,unimplemented,,,,"","","",
+1,AMORLINC,unimplemented,,,,"","","",
+1,AREAS,areas_simple,,1,1,B1,"=AREAS(A1:A2)",1,"A1=1;A2=2"
+1,ARRAYFORMULA,passthrough,,1,1,A1,"=ARRAYFORMULA(1+2)",3,
+1,ARRAY_CONSTRAIN,unimplemented,,,,"","","",
+1,ASC,unimplemented,,,,"","","",
+1,AVERAGE.WEIGHTED,unimplemented,,,,"","","",
+1,BAHTTEXT,unimplemented,,,,"","","",
+1,ADD,alias_sum,Sum,2,,A1,"=ADD(1,2,3)",6,,A2,"=ADD(1)","#ERROR!",
+1,BETA.INVN,alias_beta_inv,BetaInv,3,,A1,"=BETA.INVN(0.5,2,2,0,1)",0.5,
