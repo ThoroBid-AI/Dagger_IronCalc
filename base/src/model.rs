@@ -53,6 +53,7 @@ fn normalize_function_name_for_batch1(name: &str) -> String {
     name.trim()
         .trim_start_matches("_xlfn.")
         .replace('.', "")
+        .replace('_', "")
         .to_ascii_uppercase()
 }
 

@@ -5,7 +5,22 @@ use crate::test::util::new_empty_model;
 #[test]
 fn test_batch1_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
-    let functions = ["ACCRINT", "ACCRINTM", "AVERAGE.WEIGHTED", "BETA.INVN"];
+    let functions = [
+        "ACCRINT",
+        "ACCRINTM",
+        "ADD",
+        "ADDRESS",
+        "AGGREGATE",
+        "AMORDEGRC",
+        "AMORLINC",
+        "AREAS",
+        "ARRAYFORMULA",
+        "ARRAY_CONSTRAIN",
+        "ASC",
+        "AVERAGE.WEIGHTED",
+        "BAHTTEXT",
+        "BETA.INVN",
+    ];
 
     for (idx, function) in functions.iter().enumerate() {
         let cell = format!("A{}", idx + 1);
@@ -13,7 +28,7 @@ fn test_batch1_unsupported_functions_return_nimpl() {
     }
     model.evaluate();
 
-    for row in 1..=4 {
+    for row in 1..=functions.len() as i32 {
         let cell = format!("A{row}");
         assert_eq!(model._get_text(&cell), *"#N/IMPL!");
     }
