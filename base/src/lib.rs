@@ -40,7 +40,7 @@ pub mod worksheet;
 
 mod actions;
 mod arithmetic;
-mod batch1_fallbacks;
+mod batch_fallbacks;
 mod cast;
 mod constants;
 mod functions;

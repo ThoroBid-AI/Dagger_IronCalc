@@ -15,7 +15,7 @@ mod test_degrees_radians;
 mod test_error_propagation;
 mod test_fn_average;
 mod test_fn_averageifs;
-mod test_fn_batch1_unsupported;
+mod test_fn_batch_fallbacks;
 mod test_fn_choose;
 mod test_fn_concatenate;
 mod test_fn_count;

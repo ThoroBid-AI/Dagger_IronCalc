@@ -32,7 +32,7 @@ use crate::{
 
 use chrono_tz::Tz;
 
-use crate::batch1_fallbacks::{evaluate_batch1_fallback, is_batch1_unsupported_function};
+use crate::batch_fallbacks::{evaluate_batch_fallback, is_unsupported_function};
 
 #[cfg(test)]
 pub use crate::mock_time::get_milliseconds_since_epoch;
@@ -403,10 +403,10 @@ impl<'a> Model<'a> {
             }
             FunctionKind { kind, args } => self.evaluate_function(kind, args, cell),
             InvalidFunctionKind { name, args } => {
-                if let Some(result) = evaluate_batch1_fallback(self, name, args, cell) {
+                if let Some(result) = evaluate_batch_fallback(self, name, args, cell) {
                     return result;
                 }
-                if is_batch1_unsupported_function(name) {
+                if is_unsupported_function(name) {
                     CalcResult::new_error(
                         Error::NIMPL,
                         cell,
