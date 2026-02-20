@@ -37,7 +37,7 @@ Returns hyperbolic tangent of a complex number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMTANH("1")
+- Summary: Returns hyperbolic tangent of a complex number.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns hyperbolic tangent of a complex number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMTANH("1")
+- Summary: Returns hyperbolic tangent of a complex number.
 
 - Signatures:
 

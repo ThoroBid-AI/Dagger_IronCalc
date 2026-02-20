@@ -33,7 +33,7 @@ Returns the sum of multiple complex numbers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMSUM("1+i","2+3i")
+- Summary: Returns the sum of multiple complex numbers.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the sum of multiple complex numbers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMSUM("1+i","2+3i")
+- Summary: Returns the sum of multiple complex numbers.
 
 - Signatures:
 

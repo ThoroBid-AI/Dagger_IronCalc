@@ -33,7 +33,7 @@ Returns tangent of a complex number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMTAN("1")
+- Summary: Returns tangent of a complex number.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns tangent of a complex number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMTAN("1")
+- Summary: Returns tangent of a complex number.
 
 - Signatures:
 
