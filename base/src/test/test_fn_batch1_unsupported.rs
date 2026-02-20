@@ -18,7 +18,6 @@ fn test_batch1_unsupported_functions_return_nimpl() {
         "ASC",
         "AVERAGE.WEIGHTED",
         "BAHTTEXT",
-        "BETA.INVN",
     ];
 
     for (idx, function) in functions.iter().enumerate() {
@@ -51,4 +50,15 @@ fn test_add_fallback_uses_sum() {
 
     assert_eq!(model._get_text("A1"), *"6");
     assert_eq!(model._get_text("A2"), *"#ERROR!");
+}
+
+#[test]
+fn test_betainvn_alias_to_betainv() {
+    let mut model = new_empty_model();
+    model._set("A1", "=BETA.INVN(0.5, 2, 2, 0, 1)");
+    model._set("A2", "=BETAINVN(0.5, 2, 2, 0, 1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"0.5");
+    assert_eq!(model._get_text("A2"), *"0.5");
 }

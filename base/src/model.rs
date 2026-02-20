@@ -32,7 +32,7 @@ use crate::{
 
 use chrono_tz::Tz;
 
-const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 13] = [
+const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 12] = [
     "ACCRINT",
     "ACCRINTM",
     "ADDRESS",
@@ -45,7 +45,6 @@ const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 13] = [
     "ASC",
     "AVERAGEWEIGHTED",
     "BAHTTEXT",
-    "BETAINVN",
 ];
 
 fn normalize_function_name_for_batch1(name: &str) -> String {
@@ -195,6 +194,7 @@ impl<'a> Model<'a> {
                     Some(self.fn_sum(args, cell))
                 }
             }
+            "BETAINVN" => Some(self.fn_beta_inv(args, cell)),
             _ => None,
         }
     }
