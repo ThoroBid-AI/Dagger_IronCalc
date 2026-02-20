@@ -38,7 +38,7 @@ Returns most frequent value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns most frequent value.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns most frequent value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns most frequent value.
 
 - Signatures:
 

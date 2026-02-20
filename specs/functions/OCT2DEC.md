@@ -34,7 +34,7 @@ Converts octal value to base-10 number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts octal to decimal.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Converts octal value to base-10 number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts octal to decimal.
 
 - Signatures:
 

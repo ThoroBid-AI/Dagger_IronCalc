@@ -34,7 +34,7 @@ Computes the negative binomial PMF/CDF depending on `cumulative`.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns negative binomial distribution probabilities.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes the negative binomial PMF/CDF depending on `cumulative`.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns negative binomial distribution probabilities.
 
 - Signatures:
 

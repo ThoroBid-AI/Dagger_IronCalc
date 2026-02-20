@@ -33,7 +33,7 @@ Rounds to nearest multiple.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Rounds to nearest multiple.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Rounds to nearest multiple.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Rounds to nearest multiple.
 
 - Signatures:
 

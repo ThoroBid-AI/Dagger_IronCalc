@@ -34,7 +34,7 @@ Computes distribution values for mean 0 and standard deviation 1.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Standard normal distribution function.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes distribution values for mean 0 and standard deviation 1.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Standard normal distribution function.
 
 - Signatures:
 

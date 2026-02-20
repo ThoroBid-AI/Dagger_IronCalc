@@ -38,7 +38,7 @@ Returns #N/A error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns #N/A error.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns #N/A error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns #N/A error.
 
 - Signatures:
 

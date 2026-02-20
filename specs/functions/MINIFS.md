@@ -33,7 +33,7 @@ Returns min with criteria conditions.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns min with criteria conditions.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns min with criteria conditions.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns min with criteria conditions.
 
 - Signatures:
 

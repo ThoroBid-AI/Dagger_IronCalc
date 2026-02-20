@@ -34,7 +34,7 @@ Converts octal value to hexadecimal notation.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts octal to hexadecimal.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Converts octal value to hexadecimal notation.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts octal to hexadecimal.
 
 - Signatures:
 

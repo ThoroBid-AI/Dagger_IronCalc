@@ -34,7 +34,7 @@ Returns density or cumulative probability for normal distribution.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns normal distribution values.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns density or cumulative probability for normal distribution.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns normal distribution values.
 
 - Signatures:
 

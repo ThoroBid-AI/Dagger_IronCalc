@@ -33,7 +33,7 @@ Returns minute from time/date.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns minute from time/date.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns minute from time/date.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns minute from time/date.
 
 - Signatures:
 

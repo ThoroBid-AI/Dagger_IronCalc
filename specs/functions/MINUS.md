@@ -38,7 +38,7 @@ Subtracts numbers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Subtracts numbers.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Subtracts numbers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Subtracts numbers.
 
 - Signatures:
 

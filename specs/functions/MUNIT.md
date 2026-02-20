@@ -38,7 +38,7 @@ Returns unit (identity) matrix.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns unit (identity) matrix.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns unit (identity) matrix.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns unit (identity) matrix.
 
 - Signatures:
 

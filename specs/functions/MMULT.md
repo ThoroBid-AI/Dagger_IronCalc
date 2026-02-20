@@ -38,7 +38,7 @@ Returns matrix product.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns matrix product.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns matrix product.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns matrix product.
 
 - Signatures:
 

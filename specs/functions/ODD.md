@@ -34,7 +34,7 @@ Returns the nearest odd integer with magnitude >= input absolute value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Rounds away from zero to nearest odd integer.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns the nearest odd integer with magnitude >= input absolute value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Rounds away from zero to nearest odd integer.
 
 - Signatures:
 

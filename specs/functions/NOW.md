@@ -34,7 +34,7 @@ Returns the engine current timestamp at deterministic evaluation time.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns current date-time.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns the engine current timestamp at deterministic evaluation time.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns current date-time.
 
 - Signatures:
 

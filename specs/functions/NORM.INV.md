@@ -34,7 +34,7 @@ Returns x such that `NORM.DIST(x, mean, stdev, TRUE)=probability`.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns inverse of normal CDF.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns x such that `NORM.DIST(x, mean, stdev, TRUE)=probability`.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns inverse of normal CDF.
 
 - Signatures:
 

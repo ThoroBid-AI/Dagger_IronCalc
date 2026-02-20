@@ -34,7 +34,7 @@ Returns z-score for the cumulative standard normal probability.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Inverse of standard normal CDF.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns z-score for the cumulative standard normal probability.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Inverse of standard normal CDF.
 
 - Signatures:
 

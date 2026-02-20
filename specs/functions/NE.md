@@ -35,7 +35,7 @@ Returns TRUE when values differ, FALSE when they are equal.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Tests whether two values are not equal.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns TRUE when values differ, FALSE when they are equal.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Tests whether two values are not equal.
 
 - Signatures:
 

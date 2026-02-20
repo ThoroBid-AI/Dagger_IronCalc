@@ -38,7 +38,7 @@ Returns single mode.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns single mode.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns single mode.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns single mode.
 
 - Signatures:
 

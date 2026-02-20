@@ -34,7 +34,7 @@ Solves for number of periodic payments given rates and values.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns number of payment periods for a loan.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Solves for number of periodic payments given rates and values.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns number of payment periods for a loan.
 
 - Signatures:
 

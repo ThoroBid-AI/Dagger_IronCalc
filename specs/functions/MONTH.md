@@ -33,7 +33,7 @@ Returns month number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns month number.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns month number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns month number.
 
 - Signatures:
 

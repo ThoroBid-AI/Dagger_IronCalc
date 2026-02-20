@@ -33,7 +33,7 @@ Converts input to numeric value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Converts input to numeric value.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Converts input to numeric value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Converts input to numeric value.
 
 - Signatures:
 

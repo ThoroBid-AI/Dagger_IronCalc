@@ -34,7 +34,7 @@ Uses odd first coupon period conventions to calculate full-price bond value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns odd-first-period bond price.
 
 - Signatures:
 

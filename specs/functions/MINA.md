@@ -33,7 +33,7 @@ Returns minimum including text/logicals.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns minimum including text/logicals.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns minimum including text/logicals.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns minimum including text/logicals.
 
 - Signatures:
 

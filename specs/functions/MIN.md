@@ -33,7 +33,7 @@ Returns minimum value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns minimum value.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns minimum value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns minimum value.
 
 - Signatures:
 

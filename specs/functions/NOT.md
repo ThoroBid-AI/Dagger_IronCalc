@@ -34,7 +34,7 @@ Returns TRUE when input is FALSE and FALSE when input is TRUE.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Logical negation.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns TRUE when input is FALSE and FALSE when input is TRUE.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Logical negation.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Discounts future payments with constant rate and sums present value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Computes net present value of a cash flow stream.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Discounts future payments with constant rate and sums present value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Computes net present value of a cash flow stream.
 
 - Signatures:
 

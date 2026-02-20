@@ -34,7 +34,7 @@ Converts signed octal string into binary representation.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts octal to binary.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Converts signed octal string into binary representation.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts octal to binary.
 
 - Signatures:
 

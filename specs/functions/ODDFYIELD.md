@@ -34,7 +34,7 @@ Computes yield for bonds with odd first period.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns odd-first-period bond yield.
 
 - Signatures:
 

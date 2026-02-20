@@ -34,7 +34,7 @@ Returns the probability of a fixed number of failures before `r` successes.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Legacy Excel negative binomial distribution function.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns the probability of a fixed number of failures before `r` successes.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Legacy Excel negative binomial distribution function.
 
 - Signatures:
 

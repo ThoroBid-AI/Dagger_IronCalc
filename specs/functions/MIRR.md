@@ -33,7 +33,7 @@ Modified internal rate of return.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Modified internal rate of return.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Modified internal rate of return.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Modified internal rate of return.
 
 - Signatures:
 

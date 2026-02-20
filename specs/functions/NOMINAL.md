@@ -34,7 +34,7 @@ Calculates nominal rate by scaling effective rate for compounding periods.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts effective annual rate to nominal interest rate.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Calculates nominal rate by scaling effective rate for compounding periods.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts effective annual rate to nominal interest rate.
 
 - Signatures:
 

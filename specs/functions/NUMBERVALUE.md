@@ -34,7 +34,7 @@ Parses numeric text using explicit decimal and thousands separators.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts localized text into numeric value.
 
 - Signatures:
 
