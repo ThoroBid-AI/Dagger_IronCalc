@@ -2582,46 +2582,452 @@ pub(crate) fn evaluate_batch_fallback(
             Some(model.handle_arithmetic(&args[0], &args[1], cell, &|f1, f2| Ok(f1 - f2)))
         }
         "MINVERSE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let matrix = match array {
+                NumberOrArray::Number(f) => vec![vec![f]],
+                NumberOrArray::Array(a) => {
+                    let mut out: Vec<Vec<f64>> = Vec::new();
+                    for row in a {
+                        let mut out_row = Vec::new();
+                        for node in row {
+                            let value = match node {
+                                ArrayNode::Number(f) => f,
+                                ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => f,
+                                    None => {
+                                        return Some(CalcResult::new_error(
+                                            Error::VALUE,
+                                            cell,
+                                            "Invalid matrix value".to_string(),
+                                        ))
+                                    }
+                                },
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Matrix error".to_string()));
+                                }
+                            };
+                            out_row.push(value);
+                        }
+                        out.push(out_row);
+                    }
+                    out
+                }
+            };
+            let n = matrix.len();
+            if n == 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Empty matrix".to_string(),
+                ));
+            }
+            let m = matrix[0].len();
+            if n != m {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Matrix must be square".to_string(),
+                ));
+            }
+            for row in &matrix {
+                if row.len() != m {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged matrix".to_string(),
+                    ));
+                }
+            }
+            let mut aug = vec![vec![0.0; 2 * n]; n];
+            for i in 0..n {
+                for j in 0..n {
+                    aug[i][j] = matrix[i][j];
+                }
+                aug[i][n + i] = 1.0;
+            }
+            for i in 0..n {
+                let mut pivot = i;
+                let mut max = aug[pivot][i].abs();
+                for r in (i + 1)..n {
+                    let val = aug[r][i].abs();
+                    if val > max {
+                        max = val;
+                        pivot = r;
+                    }
+                }
+                if max == 0.0 {
+                    return Some(CalcResult::new_error(
+                        Error::NUM,
+                        cell,
+                        "Matrix is singular".to_string(),
+                    ));
+                }
+                if pivot != i {
+                    aug.swap(i, pivot);
+                }
+                let denom = aug[i][i];
+                for j in 0..(2 * n) {
+                    aug[i][j] /= denom;
+                }
+                for r in 0..n {
+                    if r == i {
+                        continue;
+                    }
+                    let factor = aug[r][i];
+                    if factor != 0.0 {
+                        for j in 0..(2 * n) {
+                            aug[r][j] -= factor * aug[i][j];
+                        }
+                    }
+                }
+            }
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for i in 0..n {
+                let mut row = Vec::new();
+                for j in 0..n {
+                    let mut value = aug[i][n + j];
+                    value = (value * 1.0e12).round() / 1.0e12;
+                    if value.abs() < 1.0e-12 {
+                        value = 0.0;
+                    }
+                    row.push(ArrayNode::Number(value));
+                }
+                out.push(row);
+            }
+            Some(CalcResult::Array(out))
         }
         "MMULT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let right = match model.get_number_or_array(&args[1], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let left = match left {
+                NumberOrArray::Number(f) => vec![vec![f]],
+                NumberOrArray::Array(a) => {
+                    let mut out: Vec<Vec<f64>> = Vec::new();
+                    for row in a {
+                        let mut out_row = Vec::new();
+                        for node in row {
+                            let value = match node {
+                                ArrayNode::Number(f) => f,
+                                ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => f,
+                                    None => {
+                                        return Some(CalcResult::new_error(
+                                            Error::VALUE,
+                                            cell,
+                                            "Invalid matrix value".to_string(),
+                                        ))
+                                    }
+                                },
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Matrix error".to_string()));
+                                }
+                            };
+                            out_row.push(value);
+                        }
+                        out.push(out_row);
+                    }
+                    out
+                }
+            };
+            let right = match right {
+                NumberOrArray::Number(f) => vec![vec![f]],
+                NumberOrArray::Array(a) => {
+                    let mut out: Vec<Vec<f64>> = Vec::new();
+                    for row in a {
+                        let mut out_row = Vec::new();
+                        for node in row {
+                            let value = match node {
+                                ArrayNode::Number(f) => f,
+                                ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => f,
+                                    None => {
+                                        return Some(CalcResult::new_error(
+                                            Error::VALUE,
+                                            cell,
+                                            "Invalid matrix value".to_string(),
+                                        ))
+                                    }
+                                },
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Matrix error".to_string()));
+                                }
+                            };
+                            out_row.push(value);
+                        }
+                        out.push(out_row);
+                    }
+                    out
+                }
+            };
+            let rows = left.len();
+            let cols = left.first().map(|r| r.len()).unwrap_or(0);
+            if rows == 0 || cols == 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Empty matrix".to_string(),
+                ));
+            }
+            for row in &left {
+                if row.len() != cols {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged matrix".to_string(),
+                    ));
+                }
+            }
+            let right_rows = right.len();
+            let right_cols = right.first().map(|r| r.len()).unwrap_or(0);
+            if right_rows == 0 || right_cols == 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Empty matrix".to_string(),
+                ));
+            }
+            for row in &right {
+                if row.len() != right_cols {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged matrix".to_string(),
+                    ));
+                }
+            }
+            if cols != right_rows {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Matrix dimensions do not align".to_string(),
+                ));
+            }
+            let mut out = vec![vec![ArrayNode::Number(0.0); right_cols]; rows];
+            for i in 0..rows {
+                for j in 0..right_cols {
+                    let mut sum = 0.0;
+                    for k in 0..cols {
+                        sum += left[i][k] * right[k][j];
+                    }
+                    out[i][j] = ArrayNode::Number(sum);
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "MODE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            for arg in args {
+                let value = match model.get_number_or_array(arg, cell) {
+                    Ok(v) => v,
+                    Err(e) => return Some(e),
+                };
+                match value {
+                    NumberOrArray::Number(f) => values.push(f),
+                    NumberOrArray::Array(a) => {
+                        for row in a {
+                            for node in row {
+                                match node {
+                                    ArrayNode::Number(f) => values.push(f),
+                                    ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                    ArrayNode::String(s) => {
+                                        if let Some(f) = model.cast_number(&s) {
+                                            values.push(f);
+                                        }
+                                    }
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Mode error".to_string()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let mut counts: Vec<(f64, usize)> = Vec::new();
+            for value in values {
+                if let Some(entry) = counts.iter_mut().find(|(v, _)| *v == value) {
+                    entry.1 += 1;
+                } else {
+                    counts.push((value, 1));
+                }
+            }
+            let mut best = counts[0];
+            for entry in counts.into_iter().skip(1) {
+                if entry.1 > best.1 {
+                    best = entry;
+                }
+            }
+            Some(CalcResult::Number(best.0))
         }
         "MODEMULT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            for arg in args {
+                let value = match model.get_number_or_array(arg, cell) {
+                    Ok(v) => v,
+                    Err(e) => return Some(e),
+                };
+                match value {
+                    NumberOrArray::Number(f) => values.push(f),
+                    NumberOrArray::Array(a) => {
+                        for row in a {
+                            for node in row {
+                                match node {
+                                    ArrayNode::Number(f) => values.push(f),
+                                    ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                    ArrayNode::String(s) => {
+                                        if let Some(f) = model.cast_number(&s) {
+                                            values.push(f);
+                                        }
+                                    }
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Mode error".to_string()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let mut counts: Vec<(f64, usize)> = Vec::new();
+            for value in values {
+                if let Some(entry) = counts.iter_mut().find(|(v, _)| *v == value) {
+                    entry.1 += 1;
+                } else {
+                    counts.push((value, 1));
+                }
+            }
+            let mut best = counts[0];
+            for entry in counts.into_iter().skip(1) {
+                if entry.1 > best.1 {
+                    best = entry;
+                }
+            }
+            Some(CalcResult::Number(best.0))
         }
         "MODESNGL" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            for arg in args {
+                let value = match model.get_number_or_array(arg, cell) {
+                    Ok(v) => v,
+                    Err(e) => return Some(e),
+                };
+                match value {
+                    NumberOrArray::Number(f) => values.push(f),
+                    NumberOrArray::Array(a) => {
+                        for row in a {
+                            for node in row {
+                                match node {
+                                    ArrayNode::Number(f) => values.push(f),
+                                    ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                    ArrayNode::String(s) => {
+                                        if let Some(f) = model.cast_number(&s) {
+                                            values.push(f);
+                                        }
+                                    }
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Mode error".to_string()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let mut counts: Vec<(f64, usize)> = Vec::new();
+            for value in values {
+                if let Some(entry) = counts.iter_mut().find(|(v, _)| *v == value) {
+                    entry.1 += 1;
+                } else {
+                    counts.push((value, 1));
+                }
+            }
+            let mut best = counts[0];
+            for entry in counts.into_iter().skip(1) {
+                if entry.1 > best.1 {
+                    best = entry;
+                }
+            }
+            Some(CalcResult::Number(best.0))
         }
         "MULTINOMIAL" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut total: u32 = 0;
+            let mut denom: f64 = 1.0;
+            for arg in args {
+                let value = match model.get_number_no_bools(arg, cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                };
+                if value < 0.0 || value.fract() != 0.0 {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Arguments must be non-negative integers".to_string(),
+                    ));
+                }
+                let n = value as u32;
+                total = total.saturating_add(n);
+                let mut acc = 1.0;
+                for i in 1..=n {
+                    acc *= i as f64;
+                }
+                denom *= acc;
+            }
+            let mut num = 1.0;
+            for i in 1..=total {
+                num *= i as f64;
+            }
+            Some(CalcResult::Number(num / denom))
         }
         "MULTIPLY" => {
             if args.len() != 2 {
@@ -2630,11 +3036,30 @@ pub(crate) fn evaluate_batch_fallback(
             Some(model.handle_arithmetic(&args[0], &args[1], cell, &|f1, f2| Ok(f1 * f2)))
         }
         "MUNIT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            if value <= 0.0 || value.fract() != 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Size must be positive integer".to_string(),
+                ));
+            }
+            let size = value as usize;
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for r in 0..size {
+                let mut row = Vec::new();
+                for c in 0..size {
+                    row.push(ArrayNode::Number(if r == c { 1.0 } else { 0.0 }));
+                }
+                out.push(row);
+            }
+            Some(CalcResult::Array(out))
         }
         "NE" => {
             if args.len() != 2 {
@@ -2691,17 +3116,23 @@ pub(crate) fn evaluate_batch_fallback(
             }
         }
         "ODDFPRICE" => {
+            if args.len() < 8 || args.len() > 9 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "ODDFPRICE is not supported".to_string(),
             ))
         }
         "ODDFYIELD" => {
+            if args.len() < 8 || args.len() > 9 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "ODDFYIELD is not supported".to_string(),
             ))
         }
         "ODDLPRICE" => {

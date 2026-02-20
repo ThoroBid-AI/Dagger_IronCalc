@@ -1198,55 +1198,55 @@ fn test_batch_fallback_minus_extra() {
 #[test]
 fn test_batch_fallback_minverse() {
     let mut model = new_empty_model();
-    model._set("A1", "=MINVERSE(1)");
+    model._set("A1", "=SUM(MINVERSE({1,2;3,4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0");
 }
 
 #[test]
 fn test_batch_fallback_mmult() {
     let mut model = new_empty_model();
-    model._set("A1", "=MMULT(1)");
+    model._set("A1", "=SUM(MMULT({1,2},{3;4}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"11");
 }
 
 #[test]
 fn test_batch_fallback_mode() {
     let mut model = new_empty_model();
-    model._set("A1", "=MODE(1)");
+    model._set("A1", "=MODE(1,2,2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_mode_mult() {
     let mut model = new_empty_model();
-    model._set("A1", "=MODE.MULT(1)");
+    model._set("A1", "=MODE.MULT(1,2,2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_mode_sngl() {
     let mut model = new_empty_model();
-    model._set("A1", "=MODE.SNGL(1)");
+    model._set("A1", "=MODE.SNGL(1,2,2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_multinomial() {
     let mut model = new_empty_model();
-    model._set("A1", "=MULTINOMIAL(1)");
+    model._set("A1", "=MULTINOMIAL(1,2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"60");
 }
 
 #[test]
@@ -1270,10 +1270,10 @@ fn test_batch_fallback_multiply_extra() {
 #[test]
 fn test_batch_fallback_munit() {
     let mut model = new_empty_model();
-    model._set("A1", "=MUNIT(1)");
+    model._set("A1", "=SUM(MUNIT(2))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
 }
 
 #[test]
@@ -1315,7 +1315,7 @@ fn test_batch_fallback_numbervalue_extra() {
 #[test]
 fn test_batch_fallback_oddfprice() {
     let mut model = new_empty_model();
-    model._set("A1", "=ODDFPRICE(1)");
+    model._set("A1", "=ODDFPRICE(1,2,3,4,0.05,100,2,0)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -1324,7 +1324,7 @@ fn test_batch_fallback_oddfprice() {
 #[test]
 fn test_batch_fallback_oddfyield() {
     let mut model = new_empty_model();
-    model._set("A1", "=ODDFYIELD(1)");
+    model._set("A1", "=ODDFYIELD(1,2,3,4,95,100,2,0)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
