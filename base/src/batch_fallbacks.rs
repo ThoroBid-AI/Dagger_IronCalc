@@ -19,33 +19,7 @@ use crate::{
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 168] = [
-    "ACCRINT",
-    "ACCRINTM",
-    "AGGREGATE",
-    "AMORDEGRC",
-    "AMORLINC",
-    "BAHTTEXT",
-    "BYCOL",
-    "BYROW",
-    "CALL",
-    "CHOOSECOLS",
-    "CHOOSEROWS",
-    "COPILOT",
-    "COUPDAYBS",
-    "COUPDAYS",
-    "COUPDAYSNC",
-    "COUPNCD",
-    "COUPNUM",
-    "COUPPCD",
-    "CRITBINOM",
-    "CUBEKPIMEMBER",
-    "CUBEMEMBER",
-    "CUBEMEMBERPROPERTY",
-    "CUBERANKEDMEMBER",
-    "CUBESET",
-    "CUBESETCOUNT",
-    "CUBEVALUE",
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 142] = [
     "DISC",
     "DURATION",
     "EUROCONVERT",
@@ -212,6 +186,20 @@ pub(crate) fn evaluate_batch_fallback(
     cell: CellReferenceIndex,
 ) -> Option<CalcResult> {
     match normalize_function_name_for_fallbacks(name).as_str() {
+        "ACCRINT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "ACCRINTM" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
         "ADD" => {
             if args.len() < 2 {
                 Some(CalcResult::new_args_number_error(cell))
@@ -296,6 +284,27 @@ pub(crate) fn evaluate_batch_fallback(
                 }
             }
             Some(CalcResult::String(address))
+        }
+        "AGGREGATE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "AMORDEGRC" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "AMORLINC" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
         }
         "AREAS" => {
             if args.len() < 1 || args.len() > 1 {
@@ -443,7 +452,35 @@ pub(crate) fn evaluate_batch_fallback(
             }
             Some(CalcResult::Number(weighted_sum / total_weight))
         }
+        "BAHTTEXT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
         "BETAINVN" => Some(model.fn_beta_inv(args, cell)),
+        "BYCOL" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "BYROW" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CALL" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
         "CHAR" => {
             if args.len() != 1 {
                 return Some(CalcResult::new_args_number_error(cell));
@@ -470,6 +507,117 @@ pub(crate) fn evaluate_batch_fallback(
                 }
             };
             Some(CalcResult::String(ch.to_string()))
+        }
+        "CHOOSECOLS" => {
+            if args.len() < 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            if array.is_empty() {
+                return Some(CalcResult::Array(array));
+            }
+            let row_len = array.len();
+            let col_len = array[0].len();
+            let mut indices: Vec<usize> = Vec::new();
+            for idx_node in &args[1..] {
+                let raw = match model.get_number_no_bools(idx_node, cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                };
+                if raw == 0 {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Index cannot be zero".to_string(),
+                    ));
+                }
+                let resolved = if raw > 0 {
+                    (raw - 1) as i32
+                } else {
+                    col_len as i32 + raw
+                };
+                if resolved < 0 || resolved >= col_len as i32 {
+                    return Some(CalcResult::new_error(
+                        Error::REF,
+                        cell,
+                        "Column index out of range".to_string(),
+                    ));
+                }
+                indices.push(resolved as usize);
+            }
+            let mut out = Vec::new();
+            for row in array.into_iter().take(row_len) {
+                let mut out_row = Vec::new();
+                for idx in &indices {
+                    if *idx >= row.len() {
+                        return Some(CalcResult::new_error(
+                            Error::REF,
+                            cell,
+                            "Column index out of range".to_string(),
+                        ));
+                    }
+                    out_row.push(row[*idx].clone());
+                }
+                out.push(out_row);
+            }
+            Some(CalcResult::Array(out))
+        }
+        "CHOOSEROWS" => {
+            if args.len() < 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            if array.is_empty() {
+                return Some(CalcResult::Array(array));
+            }
+            let row_len = array.len();
+            let mut indices: Vec<usize> = Vec::new();
+            for idx_node in &args[1..] {
+                let raw = match model.get_number_no_bools(idx_node, cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                };
+                if raw == 0 {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Index cannot be zero".to_string(),
+                    ));
+                }
+                let resolved = if raw > 0 {
+                    (raw - 1) as i32
+                } else {
+                    row_len as i32 + raw
+                };
+                if resolved < 0 || resolved >= row_len as i32 {
+                    return Some(CalcResult::new_error(
+                        Error::REF,
+                        cell,
+                        "Row index out of range".to_string(),
+                    ));
+                }
+                indices.push(resolved as usize);
+            }
+            let mut out = Vec::new();
+            for idx in indices {
+                if idx >= array.len() {
+                    return Some(CalcResult::new_error(
+                        Error::REF,
+                        cell,
+                        "Row index out of range".to_string(),
+                    ));
+                }
+                out.push(array[idx].clone());
+            }
+            Some(CalcResult::Array(out))
         }
         "CLEAN" => {
             if args.len() != 1 {
@@ -502,6 +650,13 @@ pub(crate) fn evaluate_batch_fallback(
                 }
             };
             Some(CalcResult::Number(ch as u32 as f64))
+        }
+        "COPILOT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
         }
         "COUNTUNIQUE" => {
             if args.is_empty() {
@@ -585,6 +740,104 @@ pub(crate) fn evaluate_batch_fallback(
                 }
             }
             Some(CalcResult::Number(seen.len() as f64))
+        }
+        "COUPDAYBS" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "COUPDAYS" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "COUPDAYSNC" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "COUPNCD" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "COUPNUM" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "COUPPCD" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CRITBINOM" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBEKPIMEMBER" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBEMEMBER" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBEMEMBERPROPERTY" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBERANKEDMEMBER" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBESET" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBESETCOUNT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "CUBEVALUE" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
         }
         "DBCS" => {
             if args.len() != 1 {

@@ -8,32 +8,6 @@ use crate::test::util::new_empty_model;
 fn test_batch_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
     let functions = [
-        "ACCRINT",
-        "ACCRINTM",
-        "AGGREGATE",
-        "AMORDEGRC",
-        "AMORLINC",
-        "BAHTTEXT",
-        "BYCOL",
-        "BYROW",
-        "CALL",
-        "CHOOSECOLS",
-        "CHOOSEROWS",
-        "COPILOT",
-        "COUPDAYBS",
-        "COUPDAYS",
-        "COUPDAYSNC",
-        "COUPNCD",
-        "COUPNUM",
-        "COUPPCD",
-        "CRITBINOM",
-        "CUBEKPIMEMBER",
-        "CUBEMEMBER",
-        "CUBEMEMBERPROPERTY",
-        "CUBERANKEDMEMBER",
-        "CUBESET",
-        "CUBESETCOUNT",
-        "CUBEVALUE",
         "DISC",
         "DURATION",
         "EUROCONVERT",
@@ -200,6 +174,24 @@ fn test_unknown_function_returns_name_error() {
 }
 
 #[test]
+fn test_batch_fallback_accrint() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ACCRINT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_accrintm() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ACCRINTM(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
 fn test_batch_fallback_add() {
     let mut model = new_empty_model();
     model._set("A1", "=ADD(1,2,3)");
@@ -233,6 +225,33 @@ fn test_batch_fallback_address_extra() {
     model.evaluate();
 
     assert_eq!(model._get_text("A2"), *"C2");
+}
+
+#[test]
+fn test_batch_fallback_aggregate() {
+    let mut model = new_empty_model();
+    model._set("A1", "=AGGREGATE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_amordegrc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=AMORDEGRC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_amorlinc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=AMORLINC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
 }
 
 #[test]
@@ -283,6 +302,15 @@ fn test_batch_fallback_average_weighted() {
 }
 
 #[test]
+fn test_batch_fallback_bahttext() {
+    let mut model = new_empty_model();
+    model._set("A1", "=BAHTTEXT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
 fn test_batch_fallback_beta_invn() {
     let mut model = new_empty_model();
     model._set("A1", "=BETA.INVN(0.5,2,2,0,1)");
@@ -292,12 +320,75 @@ fn test_batch_fallback_beta_invn() {
 }
 
 #[test]
+fn test_batch_fallback_bycol() {
+    let mut model = new_empty_model();
+    model._set("A1", "=BYCOL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_byrow() {
+    let mut model = new_empty_model();
+    model._set("A1", "=BYROW(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_call() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CALL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
 fn test_batch_fallback_char() {
     let mut model = new_empty_model();
     model._set("A1", "=CHAR(65)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"A");
+}
+
+#[test]
+fn test_batch_fallback_choosecols() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SUM(CHOOSECOLS({1,2;3,4},2))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"6");
+}
+
+#[test]
+fn test_batch_fallback_choosecols_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=SUM(CHOOSECOLS({1,2,3;4,5,6},-1))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"9");
+}
+
+#[test]
+fn test_batch_fallback_chooserows() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SUM(CHOOSEROWS({1,2;3,4},2))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"7");
+}
+
+#[test]
+fn test_batch_fallback_chooserows_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=SUM(CHOOSEROWS({1,2;3,4},-1))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"7");
 }
 
 #[test]
@@ -319,6 +410,15 @@ fn test_batch_fallback_code() {
 }
 
 #[test]
+fn test_batch_fallback_copilot() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COPILOT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
 fn test_batch_fallback_countunique() {
     let mut model = new_empty_model();
     model._set("A1", "1");
@@ -329,6 +429,132 @@ fn test_batch_fallback_countunique() {
     model.evaluate();
 
     assert_eq!(model._get_text("B1"), *"3");
+}
+
+#[test]
+fn test_batch_fallback_coupdaybs() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COUPDAYBS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_coupdays() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COUPDAYS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_coupdaysnc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COUPDAYSNC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_coupncd() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COUPNCD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_coupnum() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COUPNUM(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_couppcd() {
+    let mut model = new_empty_model();
+    model._set("A1", "=COUPPCD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_critbinom() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CRITBINOM(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cubekpimember() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBEKPIMEMBER(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cubemember() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBEMEMBER(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cubememberproperty() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBEMEMBERPROPERTY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cuberankedmember() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBERANKEDMEMBER(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cubeset() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBESET(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cubesetcount() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBESETCOUNT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_cubevalue() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CUBEVALUE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
 }
 
 #[test]
