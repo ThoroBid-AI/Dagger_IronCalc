@@ -33,7 +33,7 @@ Checks whether referenced cell contains a formula.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISFORMULA(A1)
+- Summary: Checks whether referenced cell contains a formula.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Checks whether referenced cell contains a formula.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISFORMULA(A1)
+- Summary: Checks whether referenced cell contains a formula.
 
 - Signatures:
 

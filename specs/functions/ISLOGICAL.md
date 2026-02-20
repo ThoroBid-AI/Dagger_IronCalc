@@ -33,7 +33,7 @@ Returns TRUE if value is logical TRUE/FALSE.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISLOGICAL(TRUE)
+- Summary: Returns TRUE if value is logical TRUE/FALSE.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE if value is logical TRUE/FALSE.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISLOGICAL(TRUE)
+- Summary: Returns TRUE if value is logical TRUE/FALSE.
 
 - Signatures:
 
