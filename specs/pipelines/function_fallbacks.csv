@@ -55,7 +55,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 2,CEILING.MATH,implemented,,,,,,,,,,,,yes,fn_ceiling_math,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 2,CEILING.PRECISE,implemented,,,,,,,,,,,,yes,fn_ceiling_precise,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 2,CELL,implemented,,,,,,,,,,,,yes,fn_cell,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-2,CHAR,unimplemented,,,,,,,,,,,,no,,
+2,CHAR,char_basic,,,,A1,=CHAR(65),A,,,,,,no,,
 2,CHISQ.DIST,implemented,,,,,,,,,,,,yes,fn_chisq_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/chisq.rs
 2,CHISQ.DIST.RT,implemented,,,,,,,,,,,,yes,fn_chisq_dist_rt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/chisq.rs
 2,CHISQ.INV,implemented,,,,,,,,,,,,yes,fn_chisq_inv,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/chisq.rs
@@ -64,8 +64,8 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 2,CHOOSE,implemented,,,,,,,,,,,,yes,fn_choose,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
 2,CHOOSECOLS,unimplemented,,,,,,,,,,,,no,,
 2,CHOOSEROWS,unimplemented,,,,,,,,,,,,no,,
-2,CLEAN,unimplemented,,,,,,,,,,,,no,,
-2,CODE,unimplemented,,,,,,,,,,,,no,,
+2,CLEAN,clean_basic,,,,A1,"=CLEAN(""A"")",A,,,,,,no,,
+2,CODE,code_basic,,,,A1,"=CODE(""A"")",65,,,,,,no,,
 2,COLUMN,implemented,,,,,,,,,,,,yes,fn_column,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
 2,COLUMNS,implemented,,,,,,,,,,,,yes,fn_columns,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
 2,COMBIN,implemented,,,,,,,,,,,,yes,fn_combin,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs

@@ -12,7 +12,7 @@ use crate::{
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 180] = [
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 177] = [
     "ACCRINT",
     "ACCRINTM",
     "AGGREGATE",
@@ -22,11 +22,8 @@ const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 180] = [
     "BYCOL",
     "BYROW",
     "CALL",
-    "CHAR",
     "CHOOSECOLS",
     "CHOOSEROWS",
-    "CLEAN",
-    "CODE",
     "COPILOT",
     "COUNTUNIQUE",
     "COUPDAYBS",
@@ -449,6 +446,65 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(weighted_sum / total_weight))
         }
         "BETAINVN" => Some(model.fn_beta_inv(args, cell)),
+        "CHAR" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let code = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f.trunc() as i64,
+                Err(e) => return Some(e),
+            };
+            if code <= 0 || code > 0x10FFFF {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid character code".to_string(),
+                ));
+            }
+            let ch = match char::from_u32(code as u32) {
+                Some(c) => c,
+                None => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid character code".to_string(),
+                    ))
+                }
+            };
+            Some(CalcResult::String(ch.to_string()))
+        }
+        "CLEAN" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let filtered: String = text.chars().filter(|c| (*c as u32) > 0x1F).collect();
+            Some(CalcResult::String(filtered))
+        }
+        "CODE" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let mut chars = text.chars();
+            let ch = match chars.next() {
+                Some(c) => c,
+                None => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Empty string".to_string(),
+                    ))
+                }
+            };
+            Some(CalcResult::Number(ch as u32 as f64))
+        }
         _ => None,
     }
 }

@@ -16,11 +16,11 @@ batch_id,function_name,implemented_in_code,handler,file_path,action
 2,BYCOL,no,,,unimplemented
 2,BYROW,no,,,unimplemented
 2,CALL,no,,,unimplemented
-2,CHAR,no,,,unimplemented
+2,CHAR,no,,,char_basic
 2,CHOOSECOLS,no,,,unimplemented
 2,CHOOSEROWS,no,,,unimplemented
-2,CLEAN,no,,,unimplemented
-2,CODE,no,,,unimplemented
+2,CLEAN,no,,,clean_basic
+2,CODE,no,,,code_basic
 2,COPILOT,no,,,unimplemented
 3,COUNTUNIQUE,no,,,unimplemented
 3,COUPDAYBS,no,,,unimplemented

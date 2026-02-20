@@ -17,11 +17,8 @@ fn test_batch_unsupported_functions_return_nimpl() {
         "BYCOL",
         "BYROW",
         "CALL",
-        "CHAR",
         "CHOOSECOLS",
         "CHOOSEROWS",
-        "CLEAN",
-        "CODE",
         "COPILOT",
         "COUNTUNIQUE",
         "COUPDAYBS",
@@ -301,4 +298,31 @@ fn test_batch_fallback_beta_invn() {
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"0.5");
+}
+
+#[test]
+fn test_batch_fallback_char() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CHAR(65)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"A");
+}
+
+#[test]
+fn test_batch_fallback_clean() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CLEAN(\"A\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"A");
+}
+
+#[test]
+fn test_batch_fallback_code() {
+    let mut model = new_empty_model();
+    model._set("A1", "=CODE(\"A\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"65");
 }
