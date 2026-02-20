@@ -33,7 +33,7 @@ Returns TRUE if value is not text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISNONTEXT(5)
+- Summary: Returns TRUE if value is not text.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE if value is not text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISNONTEXT(5)
+- Summary: Returns TRUE if value is not text.
 
 - Signatures:
 

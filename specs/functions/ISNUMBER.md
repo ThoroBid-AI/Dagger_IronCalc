@@ -33,7 +33,7 @@ Checks whether value is numeric.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISNUMBER("3")
+- Summary: Checks whether value is numeric.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Checks whether value is numeric.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISNUMBER("3")
+- Summary: Checks whether value is numeric.
 
 - Signatures:
 

@@ -33,7 +33,7 @@ Returns TRUE if number is odd.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISODD(3)
+- Summary: Returns TRUE if number is odd.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE if number is odd.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISODD(3)
+- Summary: Returns TRUE if number is odd.
 
 - Signatures:
 

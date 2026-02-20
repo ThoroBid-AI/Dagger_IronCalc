@@ -37,7 +37,7 @@ Rounds value up to nearest multiple using ISO week-compatible numeric behavior.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISO.CEILING(12.2)
+- Summary: Rounds value up to nearest multiple using ISO week-compatible numeric behavior.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Rounds value up to nearest multiple using ISO week-compatible numeric behavior.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISO.CEILING(12.2)
+- Summary: Rounds value up to nearest multiple using ISO week-compatible numeric behavior.
 
 - Signatures:
 

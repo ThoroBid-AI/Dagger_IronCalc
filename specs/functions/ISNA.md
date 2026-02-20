@@ -33,7 +33,7 @@ Checks if value is #N/A error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISNA(#N/A)
+- Summary: Checks if value is #N/A error.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Checks if value is #N/A error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISNA(#N/A)
+- Summary: Checks if value is #N/A error.
 
 - Signatures:
 
