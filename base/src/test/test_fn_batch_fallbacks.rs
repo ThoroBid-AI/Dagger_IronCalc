@@ -723,7 +723,7 @@ fn test_batch_fallback_getpivotdata() {
 #[test]
 fn test_batch_fallback_googlefinance() {
     let mut model = new_empty_model();
-    model._set("A1", "=GOOGLEFINANCE(1)");
+    model._set("A1", "=GOOGLEFINANCE(\"AAPL\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -732,7 +732,7 @@ fn test_batch_fallback_googlefinance() {
 #[test]
 fn test_batch_fallback_googletranslate() {
     let mut model = new_empty_model();
-    model._set("A1", "=GOOGLETRANSLATE(1)");
+    model._set("A1", "=GOOGLETRANSLATE(\"Hello\",\"en\",\"es\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -741,7 +741,7 @@ fn test_batch_fallback_googletranslate() {
 #[test]
 fn test_batch_fallback_groupby() {
     let mut model = new_empty_model();
-    model._set("A1", "=GROUPBY(1)");
+    model._set("A1", "=GROUPBY(A1:B2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -750,7 +750,13 @@ fn test_batch_fallback_groupby() {
 #[test]
 fn test_batch_fallback_growth() {
     let mut model = new_empty_model();
-    model._set("A1", "=GROWTH(1)");
+    model._set("A1", "1");
+    model._set("A2", "2");
+    model._set("A3", "3");
+    model._set("B1", "1");
+    model._set("B2", "2");
+    model._set("B3", "3");
+    model._set("A1", "=GROWTH(A1:A3,B1:B3,4)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -813,19 +819,28 @@ fn test_batch_fallback_hstack_extra() {
 #[test]
 fn test_batch_fallback_hyperlink() {
     let mut model = new_empty_model();
-    model._set("A1", "=HYPERLINK(1)");
+    model._set("A1", "=HYPERLINK(\"https://example.com\",\"Example\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"Example");
+}
+
+#[test]
+fn test_batch_fallback_hyperlink_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=HYPERLINK(\"https://example.com\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"https://example.com");
 }
 
 #[test]
 fn test_batch_fallback_image() {
     let mut model = new_empty_model();
-    model._set("A1", "=IMAGE(1)");
+    model._set("A1", "=IMAGE(\"https://example.com/image.png\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"https://example.com/image.png");
 }
 
 #[test]

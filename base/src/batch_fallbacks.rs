@@ -1977,38 +1977,53 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(value))
         }
         "GETPIVOTDATA" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "GETPIVOTDATA is not supported".to_string(),
             ))
         }
         "GOOGLEFINANCE" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "GOOGLEFINANCE is not supported".to_string(),
             ))
         }
         "GOOGLETRANSLATE" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "GOOGLETRANSLATE is not supported".to_string(),
             ))
         }
         "GROUPBY" => {
+            if args.len() < 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "GROUPBY is not supported".to_string(),
             ))
         }
         "GROWTH" => {
+            if args.len() < 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "GROWTH is not supported".to_string(),
             ))
         }
         "GT" => {
@@ -2083,31 +2098,51 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "HYPERLINK" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let link = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            if args.len() == 2 {
+                let friendly = match model.get_string(&args[1], cell) {
+                    Ok(s) => s,
+                    Err(e) => return Some(e),
+                };
+                Some(CalcResult::String(friendly))
+            } else {
+                Some(CalcResult::String(link))
+            }
         }
         "IMAGE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let url = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            Some(CalcResult::String(url))
         }
         "IMCOTH" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMCOTH is not supported".to_string(),
             ))
         }
         "IMLOG" => {
+            if args.is_empty() || args.len() > 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMLOG is not supported".to_string(),
             ))
         }
         "IMPORTDATA" => {

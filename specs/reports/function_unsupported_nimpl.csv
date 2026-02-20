@@ -1,13 +1,4 @@
 batch_id,function_name,action,implemented_in_code,handler,file_path
-6,GETPIVOTDATA,unsupported_nimpl,no,,
-6,GOOGLEFINANCE,unsupported_nimpl,no,,
-6,GOOGLETRANSLATE,unsupported_nimpl,no,,
-6,GROUPBY,unsupported_nimpl,no,,
-6,GROWTH,unsupported_nimpl,no,,
-6,HYPERLINK,unsupported_nimpl,no,,
-6,IMAGE,unsupported_nimpl,no,,
-6,IMCOTH,unsupported_nimpl,no,,
-6,IMLOG,unsupported_nimpl,no,,
 7,IMPORTDATA,unsupported_nimpl,no,,
 7,IMPORTFEED,unsupported_nimpl,no,,
 7,IMPORTHTML,unsupported_nimpl,no,,
