@@ -12,7 +12,6 @@ fn test_batch1_unsupported_functions_return_nimpl() {
         "AGGREGATE",
         "AMORDEGRC",
         "AMORLINC",
-        "AREAS",
         "ARRAY_CONSTRAIN",
         "ASC",
         "AVERAGE.WEIGHTED",
@@ -71,4 +70,15 @@ fn test_arrayformula_passthrough() {
 
     assert_eq!(model._get_text("A1"), *"3");
     assert_eq!(model._get_text("A2"), *"1");
+}
+
+#[test]
+fn test_areas_returns_one_for_simple_reference() {
+    let mut model = new_empty_model();
+    model._set("A1", "1");
+    model._set("A2", "2");
+    model._set("A3", "=AREAS(A1:A2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A3"), *"1");
 }

@@ -32,14 +32,13 @@ use crate::{
 
 use chrono_tz::Tz;
 
-const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 11] = [
+const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 10] = [
     "ACCRINT",
     "ACCRINTM",
     "ADDRESS",
     "AGGREGATE",
     "AMORDEGRC",
     "AMORLINC",
-    "AREAS",
     "ARRAYCONSTRAIN",
     "ASC",
     "AVERAGEWEIGHTED",
@@ -194,6 +193,27 @@ impl<'a> Model<'a> {
                 }
             }
             "BETAINVN" => Some(self.fn_beta_inv(args, cell)),
+            "AREAS" => {
+                if args.len() != 1 {
+                    Some(CalcResult::new_args_number_error(cell))
+                } else {
+                    match self.evaluate_node_in_context(&args[0], cell) {
+                        CalcResult::Range { .. } | CalcResult::Array(_) => {
+                            Some(CalcResult::Number(1.0))
+                        }
+                        CalcResult::Error { .. } => Some(CalcResult::new_error(
+                            Error::NIMPL,
+                            cell,
+                            "AREAS requires a valid reference in this version".to_string(),
+                        )),
+                        _ => Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "AREAS expects a reference".to_string(),
+                        )),
+                    }
+                }
+            }
             "ARRAYFORMULA" => {
                 if args.len() != 1 {
                     Some(CalcResult::new_args_number_error(cell))
