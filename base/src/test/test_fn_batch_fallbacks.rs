@@ -1351,28 +1351,28 @@ fn test_batch_fallback_oddlyield() {
 #[test]
 fn test_batch_fallback_percentile() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERCENTILE(1)");
+    model._set("A1", "=PERCENTILE({1,2,3,4},0.5)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2.5");
 }
 
 #[test]
 fn test_batch_fallback_percentile_exc() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERCENTILE.EXC(1)");
+    model._set("A1", "=PERCENTILE.EXC({1,2,3,4},0.2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1");
 }
 
 #[test]
 fn test_batch_fallback_percentile_inc() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERCENTILE.INC(1)");
+    model._set("A1", "=PERCENTILE.INC({1,2,3,4},0.25)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1.75");
 }
 
 #[test]
@@ -1405,19 +1405,19 @@ fn test_batch_fallback_percentrank_inc() {
 #[test]
 fn test_batch_fallback_permut() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERMUT(1)");
+    model._set("A1", "=PERMUT(5,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"20");
 }
 
 #[test]
 fn test_batch_fallback_permutationa() {
     let mut model = new_empty_model();
-    model._set("A1", "=PERMUTATIONA(1)");
+    model._set("A1", "=PERMUTATIONA(2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"8");
 }
 
 #[test]
@@ -1513,28 +1513,28 @@ fn test_batch_fallback_proper_extra() {
 #[test]
 fn test_batch_fallback_quartile() {
     let mut model = new_empty_model();
-    model._set("A1", "=QUARTILE(1)");
+    model._set("A1", "=QUARTILE({1,2,3,4},1)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1.75");
 }
 
 #[test]
 fn test_batch_fallback_quartile_exc() {
     let mut model = new_empty_model();
-    model._set("A1", "=QUARTILE.EXC(1)");
+    model._set("A1", "=QUARTILE.EXC({1,2,3,4},1)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1.25");
 }
 
 #[test]
 fn test_batch_fallback_quartile_inc() {
     let mut model = new_empty_model();
-    model._set("A1", "=QUARTILE.INC(1)");
+    model._set("A1", "=QUARTILE.INC({1,2,3,4},3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3.25");
 }
 
 #[test]
@@ -1558,10 +1558,10 @@ fn test_batch_fallback_randarray() {
 #[test]
 fn test_batch_fallback_rank() {
     let mut model = new_empty_model();
-    model._set("A1", "=RANK(1)");
+    model._set("A1", "=RANK(3,{1,2,3,4,5})");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]
