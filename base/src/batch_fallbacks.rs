@@ -4658,10 +4658,63 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "XMATCH" => {
+            if args.len() < 2 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let lookup = model.evaluate_node_in_context(&args[0], cell);
+            if lookup.is_error() {
+                return Some(lookup);
+            }
+            if args.len() >= 3 {
+                let mode = match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                };
+                if mode != 0.0 {
+                    return Some(CalcResult::new_error(
+                        Error::NIMPL,
+                        cell,
+                        "Only exact match supported".to_string(),
+                    ));
+                }
+            }
+            let data = match model.get_number_or_array(&args[1], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let mut items: Vec<ArrayNode> = Vec::new();
+            match data {
+                NumberOrArray::Number(f) => items.push(ArrayNode::Number(f)),
+                NumberOrArray::Array(a) => {
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Xmatch error".to_string()));
+                                }
+                                _ => items.push(node),
+                            }
+                        }
+                    }
+                }
+            }
+            for (idx, node) in items.iter().enumerate() {
+                let matches = match (node, &lookup) {
+                    (ArrayNode::Number(a), CalcResult::Number(b)) => (a - b).abs() < f64::EPSILON,
+                    (ArrayNode::Boolean(a), CalcResult::Boolean(b)) => a == b,
+                    (ArrayNode::Boolean(a), CalcResult::Number(b)) => (*a && *b == 1.0) || (!*a && *b == 0.0),
+                    (ArrayNode::Number(a), CalcResult::Boolean(b)) => (*b && *a == 1.0) || (!*b && *a == 0.0),
+                    (ArrayNode::String(a), CalcResult::String(b)) => a == b,
+                    _ => false,
+                };
+                if matches {
+                    return Some(CalcResult::Number((idx + 1) as f64));
+                }
+            }
             Some(CalcResult::new_error(
-                Error::NIMPL,
+                Error::NA,
                 cell,
-                "Function not supported yet".to_string(),
+                "Not found".to_string(),
             ))
         }
         "YIELD" => {

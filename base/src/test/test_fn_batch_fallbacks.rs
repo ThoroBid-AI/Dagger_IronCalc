@@ -2008,10 +2008,10 @@ fn test_batch_fallback_wraprows() {
 #[test]
 fn test_batch_fallback_xmatch() {
     let mut model = new_empty_model();
-    model._set("A1", "=XMATCH(1)");
+    model._set("A1", "=XMATCH(3,{1,2,3,4,5})");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]

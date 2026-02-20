@@ -32,7 +32,6 @@ batch_id,function_name,action,test_formula,expected_result
 13,UNIQUE,unsupported_nimpl,=UNIQUE(1),
 13,VDB,unsupported_nimpl,=VDB(1),
 14,WEBSERVICE,unsupported_nimpl,=WEBSERVICE(1),
-14,XMATCH,unsupported_nimpl,=XMATCH(1),
 14,YIELD,unsupported_nimpl,=YIELD(1),
 14,YIELDDISC,unsupported_nimpl,=YIELDDISC(1),
 14,YIELDMAT,unsupported_nimpl,=YIELDMAT(1),

@@ -529,7 +529,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 14,WRAPROWS,wraprows_basic,,,,A1,"=SUM(WRAPROWS({1,2,3,4},2))",10,,,,,,no,,
 14,XIRR,implemented,,,,,,,,,,,,yes,fn_xirr,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 14,XLOOKUP,implemented,,,,,,,,,,,,yes,fn_xlookup,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/xlookup.rs
-14,XMATCH,unsupported_nimpl,,,,A1,=XMATCH(1),#N/IMPL!,,,,,,no,,
+14,XMATCH,xmatch_basic,,,,A1,"=XMATCH(3,{1,2,3,4,5})",3,,,,,,no,,
 14,XNPV,implemented,,,,,,,,,,,,yes,fn_xnpv,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 14,XOR,implemented,,,,,,,,,,,,yes,fn_xor,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
 14,YEAR,implemented,,,,,,,,,,,,yes,fn_year,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
