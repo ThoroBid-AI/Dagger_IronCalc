@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns bond yield based on price and terms.
 
 - Signatures:
 
   - `YIELD(settlement,maturity,rate,pr,redemption,frequency,[basis])`
 
-- Examples:
+- Examples: `YIELD(1,2,3)` -> `0`
 
   - YIELD("2026-01-01","2027-01-01",0.05,95,100,2)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns bond yield based on price and terms.
 
 - Signatures:
 
   - `YIELD(settlement,maturity,rate,pr,redemption,frequency,[basis])`
 
-- Examples:
+- Examples: `YIELD(1,2,3)` -> `0`
 
   - YIELD("2026-01-01","2027-01-01",0.05,95,100,2)
 

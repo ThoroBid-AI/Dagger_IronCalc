@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Returns workday date with custom weekend schedule.
 
 - Signatures:
 
   - `WORKDAY.INTL(start_date, days, [weekend], [holidays])`
 
-- Examples:
+- Examples: `WORKDAY.INTL(1,2,3)` -> `0`
 
   - WORKDAY.INTL("2026-01-01",10,1)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Returns workday date with custom weekend schedule.
 
 - Signatures:
 
   - `WORKDAY.INTL(start_date, days, [weekend], [holidays])`
 
-- Examples:
+- Examples: `WORKDAY.INTL(1,2,3)` -> `0`
 
   - WORKDAY.INTL("2026-01-01",10,1)
 

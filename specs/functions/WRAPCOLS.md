@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Wraps a one-dimensional array into columns.
 
 - Signatures:
 
   - `WRAPCOLS(array, wrap_count, [pad_with])`
 
-- Examples:
+- Examples: `WRAPCOLS(1,2,3)` -> `0`
 
   - WRAPCOLS({1,2,3},2)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Wraps a one-dimensional array into columns.
 
 - Signatures:
 
   - `WRAPCOLS(array, wrap_count, [pad_with])`
 
-- Examples:
+- Examples: `WRAPCOLS(1,2,3)` -> `0`
 
   - WRAPCOLS({1,2,3},2)
 

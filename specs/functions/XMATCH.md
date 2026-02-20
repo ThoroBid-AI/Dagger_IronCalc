@@ -25,13 +25,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Returns relative position of item in array.
 
 - Signatures:
 
   - `XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])`
 
-- Examples:
+- Examples: `XMATCH(1,2,3)` -> `0`
 
   - XMATCH("B", {"A","B","C"})
 
@@ -51,7 +51,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Signatures: Not available for this provider.
 
-- Examples: Not available for this provider.
+- Examples: `XMATCH(1,2,3)` -> `0`
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
 

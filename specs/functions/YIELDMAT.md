@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns annual yield of bond with maturity date.
 
 - Signatures:
 
   - `YIELDMAT(settlement,maturity,issue,first_coupon,rate,yield,redemption,frequency,[basis])`
 
-- Examples:
+- Examples: `YIELDMAT(1,2,3)` -> `0`
 
   - YIELDMAT("2026-01-01","2027-01-01","2025-01-01",0.5,0.05,100,100,2)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns annual yield of bond with maturity date.
 
 - Signatures:
 
   - `YIELDMAT(settlement,maturity,issue,first_coupon,rate,yield,redemption,frequency,[basis])`
 
-- Examples:
+- Examples: `YIELDMAT(1,2,3)` -> `0`
 
   - YIELDMAT("2026-01-01","2027-01-01","2025-01-01",0.5,0.05,100,100,2)
 

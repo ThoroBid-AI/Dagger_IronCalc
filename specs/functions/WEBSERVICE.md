@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Fetches content from a URL.
 
 - Signatures:
 
   - `WEBSERVICE(url)`
 
-- Examples:
+- Examples: `WEBSERVICE(1)` -> `0`
 
   - WEBSERVICE("https://...")
 
@@ -51,7 +51,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Signatures: Not available for this provider.
 
-- Examples: Not available for this provider.
+- Examples: `WEBSERVICE(1)` -> `0`
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
 

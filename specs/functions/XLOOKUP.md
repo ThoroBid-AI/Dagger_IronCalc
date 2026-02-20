@@ -25,13 +25,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Searches a range for a match and returns corresponding value.
 
 - Signatures:
 
   - `XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])`
 
-- Examples:
+- Examples: `XLOOKUP(1,2,3)` -> `0`
 
   - XLOOKUP("B", {"A","B","C"}, {1,2,3})
 
@@ -49,13 +49,13 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Searches a range for a match and returns corresponding value.
 
 - Signatures:
 
   - `XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])`
 
-- Examples:
+- Examples: `XLOOKUP(1,2,3)` -> `0`
 
   - XLOOKUP("B", {"A","B","C"}, {1,2,3})
 

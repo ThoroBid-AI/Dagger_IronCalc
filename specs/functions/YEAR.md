@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Handler: `fn_year`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs`
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/year-function-c64f017a-1354-490d-981f-578e8ec8d3b9
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes YEAR behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `YEAR(...)`
 
-- Examples:
-  - `=YEAR(1, 2)`,
-  - `=YEAR(A1, B1)`,
-  - `=YEAR(10, 20, 30)`,
+- Examples: `YEAR(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3093061
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes YEAR behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `YEAR(...)`
 
-- Examples:
-  - `=YEAR(1, 2)`,
-  - `=YEAR(A1, B1)`,
-  - `=YEAR(10, 20, 30)`,
+- Examples: `YEAR(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.

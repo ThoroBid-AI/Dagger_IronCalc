@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Returns workday date after specified days.
 
 - Signatures:
 
   - `WORKDAY(start_date, days, [holidays])`
 
-- Examples:
+- Examples: `WORKDAY(1,2,3)` -> `0`
 
   - WORKDAY("2026-01-01",10)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Returns workday date after specified days.
 
 - Signatures:
 
   - `WORKDAY(start_date, days, [holidays])`
 
-- Examples:
+- Examples: `WORKDAY(1,2,3)` -> `0`
 
   - WORKDAY("2026-01-01",10)
 

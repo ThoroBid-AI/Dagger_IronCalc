@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns z-test p-value.
 
 - Signatures:
 
   - `Z.TEST(array, x, [sigma])`
 
-- Examples:
+- Examples: `Z.TEST(1,2,3)` -> `0`
 
   - Z.TEST({1,2,3},2)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns z-test p-value.
 
 - Signatures:
 
   - `Z.TEST(array, x, [sigma])`
 
-- Examples:
+- Examples: `Z.TEST(1,2,3)` -> `0`
 
   - Z.TEST({1,2,3},2)
 

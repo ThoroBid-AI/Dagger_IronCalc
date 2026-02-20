@@ -18,20 +18,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Handler: `fn_xnpv`
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
 ## Documentation (Microsoft)
+
+
+
 - Source URL: https://support.microsoft.com/en-us/office/xnpv-function-1b42bbf6-370f-4532-a0eb-d67c16b664b7
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes XNPV behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `XNPV(...)`
 
-- Examples:
-  - `=XNPV(1, 2)`,
-  - `=XNPV(A1, B1)`,
-  - `=XNPV(10, 20, 30)`,
+- Examples: `XNPV(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.
@@ -39,20 +40,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 
 ## Documentation (Google Sheets)
+
+
+
 - Source URL: https://support.google.com/docs/answer/3093268
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable.
+- Summary: Computes XNPV behavior for spreadsheet formulas.
 
 - Signatures:
 
   - `XNPV(...)`
 
-- Examples:
-  - `=XNPV(1, 2)`,
-  - `=XNPV(A1, B1)`,
-  - `=XNPV(10, 20, 30)`,
+- Examples: `XNPV(1)` -> `0`
+
 - Notes: Deterministic and reproducible behavior required.
 
 - Error behavior: Invalid argument count/types and impossible domain values return spreadsheet errors.

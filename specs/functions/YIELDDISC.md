@@ -25,13 +25,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns discounted bond yield.
 
 - Signatures:
 
   - `YIELDDISC(settlement,maturity,pr,redemption,[basis])`
 
-- Examples:
+- Examples: `YIELDDISC(1,2,3)` -> `0`
 
   - YIELDDISC("2026-01-01","2027-01-01",98,100,0)
 
@@ -49,13 +49,13 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible behavior required.
+- Summary: Returns discounted bond yield.
 
 - Signatures:
 
   - `YIELDDISC(settlement,maturity,pr,redemption,[basis])`
 
-- Examples:
+- Examples: `YIELDDISC(1,2,3)` -> `0`
 
   - YIELDDISC("2026-01-01","2027-01-01",98,100,0)
 
