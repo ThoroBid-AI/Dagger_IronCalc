@@ -1057,11 +1057,61 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::String(lang.to_string()))
         }
         "DISC" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 4 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let price = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            if redemption == 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::DIV,
+                    cell,
+                    "Division by zero".to_string(),
+                ));
+            }
+            let basis = if args.len() == 5 {
+                match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid dates".to_string(),
+                ));
+            }
+            let rate = (redemption - price) / redemption * (denom / days);
+            Some(CalcResult::Number(rate))
         }
         "DIVIDE" => {
             if args.len() != 2 {
@@ -1171,10 +1221,13 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "DURATION" => {
+            if args.len() < 5 || args.len() > 6 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "DURATION is not supported".to_string(),
             ))
         }
         "ENCODEURL" => {
@@ -1243,10 +1296,13 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Boolean(compare_values(&left, &right) == 0))
         }
         "EUROCONVERT" => {
+            if args.len() < 3 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "EUROCONVERT is not supported".to_string(),
             ))
         }
         "EXPAND" => {

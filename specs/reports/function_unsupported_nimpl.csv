@@ -1,7 +1,4 @@
 batch_id,function_name,action,implemented_in_code,handler,file_path
-4,DISC,unsupported_nimpl,no,,
-4,DURATION,unsupported_nimpl,no,,
-4,EUROCONVERT,unsupported_nimpl,no,,
 5,EXPAND,unsupported_nimpl,no,,
 5,FILTER,unsupported_nimpl,no,,
 5,FILTERXML,unsupported_nimpl,no,,

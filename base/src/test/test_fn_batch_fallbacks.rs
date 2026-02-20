@@ -444,10 +444,10 @@ fn test_batch_fallback_detectlanguage() {
 #[test]
 fn test_batch_fallback_disc() {
     let mut model = new_empty_model();
-    model._set("A1", "=DISC(1)");
+    model._set("A1", "=DISC(1,361,50,100)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.5");
 }
 
 #[test]
@@ -507,7 +507,7 @@ fn test_batch_fallback_drop_extra() {
 #[test]
 fn test_batch_fallback_duration() {
     let mut model = new_empty_model();
-    model._set("A1", "=DURATION(1)");
+    model._set("A1", "=DURATION(1,2,0.1,0.1,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -561,7 +561,7 @@ fn test_batch_fallback_eq_extra() {
 #[test]
 fn test_batch_fallback_euroconvert() {
     let mut model = new_empty_model();
-    model._set("A1", "=EUROCONVERT(1)");
+    model._set("A1", "=EUROCONVERT(1,\"EUR\",\"USD\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
