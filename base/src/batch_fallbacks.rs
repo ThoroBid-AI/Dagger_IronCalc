@@ -4,21 +4,20 @@
 use crate::{
     calc_result::CalcResult,
     expressions::parser::Node,
+    expressions::parser::ArrayNode,
     expressions::token::Error,
     expressions::types::CellReferenceIndex,
+    expressions::utils::number_to_column,
+    cast::NumberOrArray,
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 184] = [
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 180] = [
     "ACCRINT",
     "ACCRINTM",
-    "ADDRESS",
     "AGGREGATE",
     "AMORDEGRC",
     "AMORLINC",
-    "ARRAYCONSTRAIN",
-    "ASC",
-    "AVERAGEWEIGHTED",
     "BAHTTEXT",
     "BYCOL",
     "BYROW",
@@ -225,6 +224,84 @@ pub(crate) fn evaluate_batch_fallback(
                 Some(model.fn_sum(args, cell))
             }
         }
+        "ADDRESS" => {
+            let arg_count = args.len();
+            if arg_count < 2 || arg_count > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let row = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let col = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if row <= 0 || col <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Row and column must be positive".to_string(),
+                ));
+            }
+            let abs_num = if arg_count >= 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1
+            };
+            let use_a1 = if arg_count >= 4 {
+                match model.get_boolean(&args[3], cell) {
+                    Ok(b) => b,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                true
+            };
+            if !use_a1 {
+                return Some(CalcResult::new_error(
+                    Error::NIMPL,
+                    cell,
+                    "R1C1 addressing not implemented".to_string(),
+                ));
+            }
+            let column = match number_to_column(col) {
+                Some(c) => c,
+                None => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid column".to_string(),
+                    ))
+                }
+            };
+            let (col_prefix, row_prefix) = match abs_num {
+                1 => ("$", "$"),
+                2 => ("", "$"),
+                3 => ("$", ""),
+                4 => ("", ""),
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid abs_num".to_string(),
+                    ))
+                }
+            };
+            let mut address = format!("{col_prefix}{column}{row_prefix}{row}");
+            if arg_count == 5 {
+                let sheet_text = match model.get_string(&args[4], cell) {
+                    Ok(s) => s,
+                    Err(e) => return Some(e),
+                };
+                if !sheet_text.is_empty() {
+                    address = format!("{sheet_text}!{address}");
+                }
+            }
+            Some(CalcResult::String(address))
+        }
         "AREAS" => {
             if args.len() < 1 || args.len() > 1 {
                 Some(CalcResult::new_args_number_error(cell))
@@ -252,6 +329,124 @@ pub(crate) fn evaluate_batch_fallback(
             } else {
                 Some(model.evaluate_node_in_context(&args[0], cell))
             }
+        }
+        "ARRAYCONSTRAIN" => {
+            if args.len() != 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let rows = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let cols = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if rows <= 0 || cols <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Rows and columns must be positive".to_string(),
+                ));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let row_limit = rows as usize;
+            let col_limit = cols as usize;
+            let mut out = Vec::new();
+            for row in array.into_iter().take(row_limit) {
+                let mut out_row = Vec::new();
+                for value in row.into_iter().take(col_limit) {
+                    out_row.push(value);
+                }
+                out.push(out_row);
+            }
+            Some(CalcResult::Array(out))
+        }
+        "ASC" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let mut out = String::new();
+            for ch in text.chars() {
+                let code = ch as u32;
+                if code == 0x3000 {
+                    out.push(' ');
+                } else if (0xFF01..=0xFF5E).contains(&code) {
+                    let mapped = char::from_u32(code - 0xFEE0).unwrap_or(ch);
+                    out.push(mapped);
+                } else {
+                    out.push(ch);
+                }
+            }
+            Some(CalcResult::String(out))
+        }
+        "AVERAGEWEIGHTED" => {
+            if args.len() < 2 || args.len() % 2 != 0 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut weighted_sum = 0.0;
+            let mut total_weight = 0.0;
+            let mut pair_idx = 0;
+            while pair_idx < args.len() {
+                let values = match model.get_number_or_array(&args[pair_idx], cell) {
+                    Ok(NumberOrArray::Number(f)) => vec![Some(f)],
+                    Ok(NumberOrArray::Array(a)) => match model.values_from_array(a) {
+                        Ok(v) => v,
+                        Err(e) => {
+                            return Some(CalcResult::new_error(
+                                e,
+                                cell,
+                                "Error in values array".to_string(),
+                            ))
+                        }
+                    },
+                    Err(e) => return Some(e),
+                };
+                let weights = match model.get_number_or_array(&args[pair_idx + 1], cell) {
+                    Ok(NumberOrArray::Number(f)) => vec![Some(f)],
+                    Ok(NumberOrArray::Array(a)) => match model.values_from_array(a) {
+                        Ok(v) => v,
+                        Err(e) => {
+                            return Some(CalcResult::new_error(
+                                e,
+                                cell,
+                                "Error in weights array".to_string(),
+                            ))
+                        }
+                    },
+                    Err(e) => return Some(e),
+                };
+                if values.len() != weights.len() {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Values and weights must have the same length".to_string(),
+                    ));
+                }
+                for idx in 0..values.len() {
+                    if let (Some(v), Some(w)) = (values[idx], weights[idx]) {
+                        weighted_sum += v * w;
+                        total_weight += w;
+                    }
+                }
+                pair_idx += 2;
+            }
+            if total_weight == 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::DIV,
+                    cell,
+                    "Total weight is zero".to_string(),
+                ));
+            }
+            Some(CalcResult::Number(weighted_sum / total_weight))
         }
         "BETAINVN" => Some(model.fn_beta_inv(args, cell)),
         _ => None,

@@ -10,13 +10,9 @@ fn test_batch_unsupported_functions_return_nimpl() {
     let functions = [
         "ACCRINT",
         "ACCRINTM",
-        "ADDRESS",
         "AGGREGATE",
         "AMORDEGRC",
         "AMORLINC",
-        "ARRAY_CONSTRAIN",
-        "ASC",
-        "AVERAGE.WEIGHTED",
         "BAHTTEXT",
         "BYCOL",
         "BYROW",
@@ -234,6 +230,24 @@ fn test_batch_fallback_add_extra() {
 }
 
 #[test]
+fn test_batch_fallback_address() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ADDRESS(2,3)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"$C$2");
+}
+
+#[test]
+fn test_batch_fallback_address_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=ADDRESS(2,3,4)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"C2");
+}
+
+#[test]
 fn test_batch_fallback_areas() {
     let mut model = new_empty_model();
     model._set("A1", "1");
@@ -251,6 +265,33 @@ fn test_batch_fallback_arrayformula() {
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"3");
+}
+
+#[test]
+fn test_batch_fallback_array_constrain() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SUM(ARRAY_CONSTRAIN({1,2;3,4;5,6},2,1))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"4");
+}
+
+#[test]
+fn test_batch_fallback_asc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ASC(\"ＡＢＣ\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"ABC");
+}
+
+#[test]
+fn test_batch_fallback_average_weighted() {
+    let mut model = new_empty_model();
+    model._set("A1", "=AVERAGE.WEIGHTED({10,20,30},{1,2,3})");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"23.333333333");
 }
 
 #[test]
