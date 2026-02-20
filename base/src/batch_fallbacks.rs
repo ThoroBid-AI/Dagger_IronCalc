@@ -1205,39 +1205,103 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "ISBETWEEN" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 3 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = model.evaluate_node_in_context(&args[0], cell);
+            if value.is_error() {
+                return Some(value);
+            }
+            let lower = model.evaluate_node_in_context(&args[1], cell);
+            if lower.is_error() {
+                return Some(lower);
+            }
+            let upper = model.evaluate_node_in_context(&args[2], cell);
+            if upper.is_error() {
+                return Some(upper);
+            }
+            let lower_inclusive = if args.len() >= 4 {
+                match model.get_boolean(&args[3], cell) {
+                    Ok(b) => b,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                true
+            };
+            let upper_inclusive = if args.len() >= 5 {
+                match model.get_boolean(&args[4], cell) {
+                    Ok(b) => b,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                true
+            };
+            let cmp_lower = compare_values(&value, &lower);
+            let cmp_upper = compare_values(&value, &upper);
+            let lower_ok = if lower_inclusive { cmp_lower >= 0 } else { cmp_lower > 0 };
+            let upper_ok = if upper_inclusive { cmp_upper <= 0 } else { cmp_upper < 0 };
+            Some(CalcResult::Boolean(lower_ok && upper_ok))
         }
         "ISDATE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = model.evaluate_node_in_context(&args[0], cell);
+            if value.is_error() {
+                return Some(value);
+            }
+            match model.fn_datevalue(args, cell) {
+                CalcResult::Error { .. } => Some(CalcResult::Boolean(false)),
+                _ => Some(CalcResult::Boolean(true)),
+            }
         }
         "ISEMAIL" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let trimmed = text.trim();
+            if trimmed.contains(' ') {
+                return Some(CalcResult::Boolean(false));
+            }
+            let parts: Vec<&str> = trimmed.split('@').collect();
+            if parts.len() != 2 {
+                return Some(CalcResult::Boolean(false));
+            }
+            if parts[0].is_empty() || parts[1].is_empty() {
+                return Some(CalcResult::Boolean(false));
+            }
+            if !parts[1].contains('.') {
+                return Some(CalcResult::Boolean(false));
+            }
+            Some(CalcResult::Boolean(true))
         }
         "ISOMITTED" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() == 0 {
+                return Some(CalcResult::Boolean(true));
+            }
+            if args.len() == 1 {
+                return Some(CalcResult::Boolean(false));
+            }
+            Some(CalcResult::new_args_number_error(cell))
         }
         "ISURL" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let trimmed = text.trim().to_lowercase();
+            let is_url = trimmed.starts_with("http://")
+                || trimmed.starts_with("https://")
+                || trimmed.starts_with("ftp://")
+                || trimmed.starts_with("www.");
+            Some(CalcResult::Boolean(is_url))
         }
         "JIS" => {
             Some(CalcResult::new_error(
@@ -1247,11 +1311,67 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "JOIN" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let delimiter = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let mut values = Vec::new();
+            for arg in &args[1..] {
+                match model.evaluate_node_in_context(arg, cell) {
+                    CalcResult::Number(value) => values.push(format!("{value}")),
+                    CalcResult::String(value) => {
+                        if !value.is_empty() {
+                            values.push(value);
+                        }
+                    }
+                    CalcResult::Boolean(value) => {
+                        values.push(if value { "TRUE".to_string() } else { "FALSE".to_string() });
+                    }
+                    CalcResult::EmptyCell => {}
+                    CalcResult::Range { left, right } => {
+                        if left.sheet != right.sheet {
+                            return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Ranges are in different sheets".to_string(),
+                            ));
+                        }
+                        for row in left.row..=right.row {
+                            for column in left.column..=right.column {
+                                match model.evaluate_cell(CellReferenceIndex {
+                                    sheet: left.sheet,
+                                    row,
+                                    column,
+                                }) {
+                                    CalcResult::Number(v) => values.push(format!("{v}")),
+                                    CalcResult::String(v) => {
+                                        if !v.is_empty() { values.push(v); }
+                                    }
+                                    CalcResult::Boolean(b) => {
+                                        values.push(if b { "TRUE".to_string() } else { "FALSE".to_string() });
+                                    }
+                                    CalcResult::EmptyCell => {}
+                                    error @ CalcResult::Error { .. } => return Some(error),
+                                    _ => {}
+                                }
+                            }
+                        }
+                    }
+                    error @ CalcResult::Error { .. } => return Some(error),
+                    CalcResult::EmptyArg => {}
+                    CalcResult::Array(_) => {
+                        return Some(CalcResult::new_error(
+                            Error::NIMPL,
+                            cell,
+                            "Arrays not supported yet".to_string(),
+                        ));
+                    }
+                }
+            }
+            Some(CalcResult::String(values.join(&delimiter)))
         }
         "LAMBDA" => {
             Some(CalcResult::new_error(
@@ -1441,11 +1561,44 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Boolean(compare_values(&left, &right) != 0))
         }
         "NUMBERVALUE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let decimal_sep = if args.len() >= 2 {
+                match model.get_string(&args[1], cell) {
+                    Ok(s) => s,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                String::new()
+            };
+            let group_sep = if args.len() >= 3 {
+                match model.get_string(&args[2], cell) {
+                    Ok(s) => s,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                String::new()
+            };
+            let mut cleaned = text.clone();
+            if !group_sep.is_empty() {
+                cleaned = cleaned.replace(&group_sep, "");
+            }
+            if !decimal_sep.is_empty() {
+                cleaned = cleaned.replace(&decimal_sep, ".");
+            }
+            match model.cast_number(&cleaned) {
+                Some(f) => Some(CalcResult::Number(f)),
+                None => Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid number".to_string(),
+                )),
+            }
         }
         "ODDFPRICE" => {
             Some(CalcResult::new_error(
@@ -1580,11 +1733,29 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "PROPER" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let mut out = String::new();
+            let mut new_word = true;
+            for ch in text.chars() {
+                if ch.is_alphanumeric() {
+                    if new_word {
+                        out.extend(ch.to_uppercase());
+                    } else {
+                        out.extend(ch.to_lowercase());
+                    }
+                    new_word = false;
+                } else {
+                    out.push(ch);
+                    new_word = true;
+                }
+            }
+            Some(CalcResult::String(out))
         }
         "QUARTILE" => {
             Some(CalcResult::new_error(
@@ -1864,39 +2035,56 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(vec![out_row]))
         }
         "TODATE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = model.evaluate_node_in_context(&args[0], cell);
+            if value.is_error() {
+                return Some(value);
+            }
+            match model.fn_datevalue(args, cell) {
+                CalcResult::Error { .. } => Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid date".to_string(),
+                )),
+                result => Some(result),
+            }
         }
         "TODOLLARS" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            Some(CalcResult::Number(value))
         }
         "TOPERCENT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            Some(CalcResult::Number(value))
         }
         "TOPURENUMBER" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            match model.get_number(&args[0], cell) {
+                Ok(f) => Some(CalcResult::Number(f)),
+                Err(e) => Some(e),
+            }
         }
         "TOTEXT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            Some(model.fn_valuetotext(args, cell))
         }
         "TRANSPOSE" => {
             if args.len() != 1 {

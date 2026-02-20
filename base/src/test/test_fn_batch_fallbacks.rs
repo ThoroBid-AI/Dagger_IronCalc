@@ -885,28 +885,55 @@ fn test_batch_fallback_intrate() {
 #[test]
 fn test_batch_fallback_isbetween() {
     let mut model = new_empty_model();
-    model._set("A1", "=ISBETWEEN(1)");
+    model._set("A1", "=ISBETWEEN(5,1,10)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_isbetween_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=ISBETWEEN(5,1,4)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
 fn test_batch_fallback_isdate() {
     let mut model = new_empty_model();
-    model._set("A1", "=ISDATE(1)");
+    model._set("A1", "=ISDATE(\"2024-02-29\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_isdate_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=ISDATE(\"not a date\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
 fn test_batch_fallback_isemail() {
     let mut model = new_empty_model();
-    model._set("A1", "=ISEMAIL(1)");
+    model._set("A1", "=ISEMAIL(\"test@example.com\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_isemail_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=ISEMAIL(\"bad-email\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
@@ -915,16 +942,25 @@ fn test_batch_fallback_isomitted() {
     model._set("A1", "=ISOMITTED(1)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"FALSE");
 }
 
 #[test]
 fn test_batch_fallback_isurl() {
     let mut model = new_empty_model();
-    model._set("A1", "=ISURL(1)");
+    model._set("A1", "=ISURL(\"https://example.com\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_isurl_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=ISURL(\"not a url\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
@@ -939,10 +975,20 @@ fn test_batch_fallback_jis() {
 #[test]
 fn test_batch_fallback_join() {
     let mut model = new_empty_model();
-    model._set("A1", "=JOIN(1)");
+    model._set("A1", "=JOIN(\",\",1,2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1,2,3");
+}
+
+#[test]
+fn test_batch_fallback_join_extra() {
+    let mut model = new_empty_model();
+    model._set("A1", "1");
+    model._set("A2", "=JOIN(\"-\",A1:A1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"1");
 }
 
 #[test]
@@ -1209,10 +1255,19 @@ fn test_batch_fallback_ne_extra() {
 #[test]
 fn test_batch_fallback_numbervalue() {
     let mut model = new_empty_model();
-    model._set("A1", "=NUMBERVALUE(1)");
+    model._set("A1", "=NUMBERVALUE(\"1,234.5\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1234.5");
+}
+
+#[test]
+fn test_batch_fallback_numbervalue_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=NUMBERVALUE(\"123\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"123");
 }
 
 #[test]
@@ -1398,10 +1453,19 @@ fn test_batch_fallback_prob() {
 #[test]
 fn test_batch_fallback_proper() {
     let mut model = new_empty_model();
-    model._set("A1", "=PROPER(1)");
+    model._set("A1", "=PROPER(\"hello world\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"Hello World");
+}
+
+#[test]
+fn test_batch_fallback_proper_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=PROPER(\"mIxEd\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"Mixed");
 }
 
 #[test]
@@ -1695,46 +1759,46 @@ fn test_batch_fallback_torow() {
 #[test]
 fn test_batch_fallback_to_date() {
     let mut model = new_empty_model();
-    model._set("A1", "=TO_DATE(1)");
+    model._set("A1", "=TO_DATE(\"2024-02-29\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"45351");
 }
 
 #[test]
 fn test_batch_fallback_to_dollars() {
     let mut model = new_empty_model();
-    model._set("A1", "=TO_DOLLARS(1)");
+    model._set("A1", "=TO_DOLLARS(123.45)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"123.45");
 }
 
 #[test]
 fn test_batch_fallback_to_percent() {
     let mut model = new_empty_model();
-    model._set("A1", "=TO_PERCENT(1)");
+    model._set("A1", "=TO_PERCENT(0.5)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.5");
 }
 
 #[test]
 fn test_batch_fallback_to_pure_number() {
     let mut model = new_empty_model();
-    model._set("A1", "=TO_PURE_NUMBER(1)");
+    model._set("A1", "=TO_PURE_NUMBER(\"1,234.5\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1234.5");
 }
 
 #[test]
 fn test_batch_fallback_to_text() {
     let mut model = new_empty_model();
-    model._set("A1", "=TO_TEXT(1)");
+    model._set("A1", "=TO_TEXT(123.45)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"123.45");
 }
 
 #[test]

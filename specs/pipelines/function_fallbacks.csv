@@ -265,10 +265,10 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 7,INTRATE,unsupported_nimpl,,,,A1,=INTRATE(1),#N/IMPL!,,,,,,no,,
 7,IPMT,implemented,,,,,,,,,,,,yes,fn_ipmt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 7,IRR,implemented,,,,,,,,,,,,yes,fn_irr,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
-7,ISBETWEEN,unsupported_nimpl,,,,A1,=ISBETWEEN(1),#N/IMPL!,,,,,,no,,
+7,ISBETWEEN,isbetween_basic,,,,A1,"=ISBETWEEN(5,1,10)",TRUE,,A2,"=ISBETWEEN(5,1,4)",FALSE,,no,,
 7,ISBLANK,implemented,,,,,,,,,,,,yes,fn_isblank,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-7,ISDATE,unsupported_nimpl,,,,A1,=ISDATE(1),#N/IMPL!,,,,,,no,,
-7,ISEMAIL,unsupported_nimpl,,,,A1,=ISEMAIL(1),#N/IMPL!,,,,,,no,,
+7,ISDATE,isdate_basic,,,,A1,"=ISDATE(""2024-02-29"")",TRUE,,A2,"=ISDATE(""not a date"")",FALSE,,no,,
+7,ISEMAIL,isemail_basic,,,,A1,"=ISEMAIL(""test@example.com"")",TRUE,,A2,"=ISEMAIL(""bad-email"")",FALSE,,no,,
 7,ISERR,implemented,,,,,,,,,,,,yes,fn_iserr,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 7,ISERROR,implemented,,,,,,,,,,,,yes,fn_iserror,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 7,ISEVEN,implemented,,,,,,,,,,,,yes,fn_iseven,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
@@ -279,14 +279,14 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 7,ISNUMBER,implemented,,,,,,,,,,,,yes,fn_isnumber,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 7,ISO.CEILING,implemented,,,,,,,,,,,,yes,fn_iso_ceiling,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 7,ISODD,implemented,,,,,,,,,,,,yes,fn_isodd,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-8,ISOMITTED,unsupported_nimpl,,,,A1,=ISOMITTED(1),#N/IMPL!,,,,,,no,,
+8,ISOMITTED,isomitted_basic,,,,A1,=ISOMITTED(1),FALSE,,,,,,no,,
 8,ISOWEEKNUM,implemented,,,,,,,,,,,,yes,fn_isoweeknum,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 8,ISPMT,implemented,,,,,,,,,,,,yes,fn_ispmt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 8,ISREF,implemented,,,,,,,,,,,,yes,fn_isref,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 8,ISTEXT,implemented,,,,,,,,,,,,yes,fn_istext,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-8,ISURL,unsupported_nimpl,,,,A1,=ISURL(1),#N/IMPL!,,,,,,no,,
+8,ISURL,isurl_basic,,,,A1,"=ISURL(""https://example.com"")",TRUE,,A2,"=ISURL(""not a url"")",FALSE,,no,,
 8,JIS,unsupported_nimpl,,,,A1,=JIS(1),#N/IMPL!,,,,,,no,,
-8,JOIN,unsupported_nimpl,,,,A1,=JOIN(1),#N/IMPL!,,,,,,no,,
+8,JOIN,join_basic,,,,A1,"=JOIN("","",1,2,3)","1,2,3",,A2,"=JOIN(""-"",A1:A1)","1",A1=1,no,,
 8,KURT,implemented,,,,,,,,,,,,yes,fn_kurt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
 8,LAMBDA,unsupported_nimpl,,,,A1,=LAMBDA(1),#N/IMPL!,,,,,,no,,
 8,LARGE,implemented,,,,,,,,,,,,yes,fn_large,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
@@ -352,7 +352,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 9,NOW,implemented,,,,,,,,,,,,yes,fn_now,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 9,NPER,implemented,,,,,,,,,,,,yes,fn_nper,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 9,NPV,implemented,,,,,,,,,,,,yes,fn_npv,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
-9,NUMBERVALUE,unsupported_nimpl,,,,A1,=NUMBERVALUE(1),#N/IMPL!,,,,,,no,,
+9,NUMBERVALUE,numbervalue_basic,,,,A1,"=NUMBERVALUE(""1,234.5"")",1234.5,,A2,"=NUMBERVALUE(""123"")",123,,no,,
 9,OCT2BIN,implemented,,,,,,,,,,,,yes,fn_oct2bin,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
 9,OCT2DEC,implemented,,,,,,,,,,,,yes,fn_oct2dec,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
 9,OCT2HEX,implemented,,,,,,,,,,,,yes,fn_oct2hex,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
@@ -387,7 +387,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 10,PRICEMAT,unsupported_nimpl,,,,A1,=PRICEMAT(1),#N/IMPL!,,,,,,no,,
 10,PROB,unsupported_nimpl,,,,A1,=PROB(1),#N/IMPL!,,,,,,no,,
 10,PRODUCT,implemented,,,,,,,,,,,,yes,fn_product,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
-10,PROPER,unsupported_nimpl,,,,A1,=PROPER(1),#N/IMPL!,,,,,,no,,
+10,PROPER,proper_basic,,,,A1,"=PROPER(""hello world"")",Hello World,,A2,"=PROPER(""mIxEd"")",Mixed,,no,,
 10,PV,implemented,,,,,,,,,,,,yes,fn_pv,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 10,QUARTILE,unsupported_nimpl,,,,A1,=QUARTILE(1),#N/IMPL!,,,,,,no,,
 10,QUARTILE.EXC,unsupported_nimpl,,,,A1,=QUARTILE.EXC(1),#N/IMPL!,,,,,,no,,
@@ -489,11 +489,11 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 13,TOCOL,tocol_basic,,,,A1,"=SUM(TOCOL({1,2;3,4}))",10,,,,,,no,,
 13,TODAY,implemented,,,,,,,,,,,,yes,fn_today,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 13,TOROW,torow_basic,,,,A1,"=SUM(TOROW({1,2;3,4}))",10,,,,,,no,,
-13,TO_DATE,unsupported_nimpl,,,,A1,=TO_DATE(1),#N/IMPL!,,,,,,no,,
-13,TO_DOLLARS,unsupported_nimpl,,,,A1,=TO_DOLLARS(1),#N/IMPL!,,,,,,no,,
-13,TO_PERCENT,unsupported_nimpl,,,,A1,=TO_PERCENT(1),#N/IMPL!,,,,,,no,,
-13,TO_PURE_NUMBER,unsupported_nimpl,,,,A1,=TO_PURE_NUMBER(1),#N/IMPL!,,,,,,no,,
-13,TO_TEXT,unsupported_nimpl,,,,A1,=TO_TEXT(1),#N/IMPL!,,,,,,no,,
+13,TO_DATE,to_date_basic,,,,A1,"=TO_DATE(""2024-02-29"")",45351,,,,,,no,,
+13,TO_DOLLARS,to_dollars_basic,,,,A1,=TO_DOLLARS(123.45),123.45,,,,,,no,,
+13,TO_PERCENT,to_percent_basic,,,,A1,=TO_PERCENT(0.5),0.5,,,,,,no,,
+13,TO_PURE_NUMBER,to_pure_number_basic,,,,A1,"=TO_PURE_NUMBER(""1,234.5"")",1234.5,,,,,,no,,
+13,TO_TEXT,to_text_basic,,,,A1,=TO_TEXT(123.45),123.45,,,,,,no,,
 13,TRANSPOSE,transpose_basic,,,,A1,"=SUM(TRANSPOSE({1,2;3,4}))",10,,,,,,no,,
 13,TREND,unsupported_nimpl,,,,A1,=TREND(1),#N/IMPL!,,,,,,no,,
 13,TRIM,implemented,,,,,,,,,,,,yes,fn_trim,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
