@@ -1729,7 +1729,7 @@ fn test_batch_fallback_sparkline() {
 #[test]
 fn test_batch_fallback_split() {
     let mut model = new_empty_model();
-    model._set("A1", "=SPLIT(1)");
+    model._set("A1", "=SPLIT(\"a,b,c\",\",\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -1747,10 +1747,10 @@ fn test_batch_fallback_stockhistory() {
 #[test]
 fn test_batch_fallback_sumproduct() {
     let mut model = new_empty_model();
-    model._set("A1", "=SUMPRODUCT(1)");
+    model._set("A1", "=SUMPRODUCT({1,2,3},{4,5,6})");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"32");
 }
 
 #[test]

@@ -4016,11 +4016,43 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "SPLIT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let delimiter = match model.get_string(&args[1], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            if delimiter.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Delimiter cannot be empty".to_string(),
+                ));
+            }
+            let remove_empty = if args.len() >= 4 {
+                match model.get_number_no_bools(&args[3], cell) {
+                    Ok(f) => f != 0.0,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                false
+            };
+            let mut row: Vec<ArrayNode> = Vec::new();
+            for part in text.split(&delimiter) {
+                if remove_empty && part.is_empty() {
+                    continue;
+                }
+                row.push(ArrayNode::String(part.to_string()));
+            }
+            if row.is_empty() {
+                row.push(ArrayNode::String(String::new()));
+            }
+            Some(CalcResult::Array(vec![row]))
         }
         "STOCKHISTORY" => {
             Some(CalcResult::new_error(
@@ -4030,11 +4062,89 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "SUMPRODUCT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut matrices: Vec<Vec<Vec<f64>>> = Vec::new();
+            let mut target: Option<(usize, usize)> = None;
+            for arg in args {
+                let value = match model.get_number_or_array(arg, cell) {
+                    Ok(v) => v,
+                    Err(e) => return Some(e),
+                };
+                let matrix = match value {
+                    NumberOrArray::Number(f) => vec![vec![f]],
+                    NumberOrArray::Array(a) => {
+                        let mut out: Vec<Vec<f64>> = Vec::new();
+                        for row in a {
+                            let mut out_row = Vec::new();
+                            for node in row {
+                                let value = match node {
+                                    ArrayNode::Number(f) => f,
+                                    ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                                    ArrayNode::String(s) => match model.cast_number(&s) {
+                                        Some(f) => f,
+                                        None => 0.0,
+                                    },
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Sumproduct error".to_string()));
+                                    }
+                                };
+                                out_row.push(value);
+                            }
+                            out.push(out_row);
+                        }
+                        out
+                    }
+                };
+                let rows = matrix.len();
+                let cols = matrix.first().map(|r| r.len()).unwrap_or(0);
+                if rows == 0 || cols == 0 {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Empty array".to_string(),
+                    ));
+                }
+                for row in &matrix {
+                    if row.len() != cols {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Ragged array".to_string(),
+                        ));
+                    }
+                }
+                if let Some((tr, tc)) = target {
+                    if (rows, cols) != (tr, tc) && !(rows == 1 && cols == 1) {
+                        return Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "Array dimensions must match".to_string(),
+                        ));
+                    }
+                } else if rows > 1 || cols > 1 {
+                    target = Some((rows, cols));
+                }
+                matrices.push(matrix);
+            }
+            let (rows, cols) = target.unwrap_or((1, 1));
+            let mut sum = 0.0;
+            for r in 0..rows {
+                for c in 0..cols {
+                    let mut product = 1.0;
+                    for matrix in &matrices {
+                        let value = if matrix.len() == 1 && matrix[0].len() == 1 {
+                            matrix[0][0]
+                        } else {
+                            matrix[r][c]
+                        };
+                        product *= value;
+                    }
+                    sum += product;
+                }
+            }
+            Some(CalcResult::Number(sum))
         }
         "TAKE" => {
             if args.len() < 2 || args.len() > 3 {

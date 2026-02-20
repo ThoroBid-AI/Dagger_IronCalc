@@ -444,7 +444,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 12,SORTBY,unsupported_nimpl,,,,A1,=SORTBY(1),#N/IMPL!,,,,,,no,,
 12,SORTN,unsupported_nimpl,,,,A1,=SORTN(1),#N/IMPL!,,,,,,no,,
 12,SPARKLINE,unsupported_nimpl,,,,A1,=SPARKLINE(1),#N/IMPL!,,,,,,no,,
-12,SPLIT,unsupported_nimpl,,,,A1,=SPLIT(1),#N/IMPL!,,,,,,no,,
+12,SPLIT,split_basic,,,,A1,"=SPLIT(""a,b,c"","","")",#N/IMPL!,,,,,,no,,
 12,SQRT,implemented,,,,,,,,,,,,yes,fn_sqrt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 12,SQRTPI,implemented,,,,,,,,,,,,yes,fn_sqrtpi,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 12,STANDARDIZE,implemented,,,,,,,,,,,,yes,fn_standardize,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/standardize.rs
@@ -459,7 +459,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 12,SUM,implemented,,,,,,,,,,,,yes,fn_sum,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 12,SUMIF,implemented,,,,,,,,,,,,yes,fn_sumif,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 12,SUMIFS,implemented,,,,,,,,,,,,yes,fn_sumifs,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
-12,SUMPRODUCT,unsupported_nimpl,,,,A1,=SUMPRODUCT(1),#N/IMPL!,,,,,,no,,
+12,SUMPRODUCT,sumproduct_basic,,,,A1,"=SUMPRODUCT({1,2,3},{4,5,6})",32,,,,,,no,,
 12,SUMSQ,implemented,,,,,,,,,,,,yes,fn_sumsq,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 12,SUMX2MY2,implemented,,,,,,,,,,,,yes,fn_sumx2my2,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs
 12,SUMX2PY2,implemented,,,,,,,,,,,,yes,fn_sumx2py2,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical_sum.rs
