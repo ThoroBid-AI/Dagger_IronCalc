@@ -300,7 +300,7 @@ fn test_batch_fallback_countunique() {
 #[test]
 fn test_batch_fallback_coupdaybs() {
     let mut model = new_empty_model();
-    model._set("A1", "=COUPDAYBS(1)");
+    model._set("A1", "=COUPDAYBS(1,2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -309,7 +309,7 @@ fn test_batch_fallback_coupdaybs() {
 #[test]
 fn test_batch_fallback_coupdays() {
     let mut model = new_empty_model();
-    model._set("A1", "=COUPDAYS(1)");
+    model._set("A1", "=COUPDAYS(1,2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -318,7 +318,7 @@ fn test_batch_fallback_coupdays() {
 #[test]
 fn test_batch_fallback_coupdaysnc() {
     let mut model = new_empty_model();
-    model._set("A1", "=COUPDAYSNC(1)");
+    model._set("A1", "=COUPDAYSNC(1,2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -327,7 +327,7 @@ fn test_batch_fallback_coupdaysnc() {
 #[test]
 fn test_batch_fallback_coupncd() {
     let mut model = new_empty_model();
-    model._set("A1", "=COUPNCD(1)");
+    model._set("A1", "=COUPNCD(1,2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -336,7 +336,7 @@ fn test_batch_fallback_coupncd() {
 #[test]
 fn test_batch_fallback_coupnum() {
     let mut model = new_empty_model();
-    model._set("A1", "=COUPNUM(1)");
+    model._set("A1", "=COUPNUM(1,2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -345,7 +345,7 @@ fn test_batch_fallback_coupnum() {
 #[test]
 fn test_batch_fallback_couppcd() {
     let mut model = new_empty_model();
-    model._set("A1", "=COUPPCD(1)");
+    model._set("A1", "=COUPPCD(1,2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -354,10 +354,10 @@ fn test_batch_fallback_couppcd() {
 #[test]
 fn test_batch_fallback_critbinom() {
     let mut model = new_empty_model();
-    model._set("A1", "=CRITBINOM(1)");
+    model._set("A1", "=CRITBINOM(10,0.5,0.5)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"5");
 }
 
 #[test]

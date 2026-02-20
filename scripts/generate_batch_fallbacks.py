@@ -199,6 +199,8 @@ def gen_fallbacks_rs(rows: List[Dict[str, str]]) -> str:
                 lines.append(f'        "{normalized}" => Some(model.fn_sum(args, cell)),')
         elif action == "alias_beta_inv":
             lines.append(f'        "{normalized}" => Some(model.fn_beta_inv(args, cell)),')
+        elif action == "alias_binom_inv":
+            lines.append(f'        "{normalized}" => Some(model.fn_binom_inv(args, cell)),')
         elif action == "passthrough":
             min_args = int(row.get("min_args", "1") or "1")
             max_args = int(row.get("max_args", "1") or "1")
@@ -1684,6 +1686,28 @@ def gen_fallbacks_rs(rows: List[Dict[str, str]]) -> str:
             lines.append("                Error::NIMPL,")
             lines.append("                cell,")
             lines.append('                \"COPILOT is not supported\".to_string(),')
+            lines.append("            ))")
+            lines.append("        }")
+        elif action == "coupon_basic":
+            lines.append(f'        \"{normalized}\" => {{')
+            lines.append("            if args.len() < 3 || args.len() > 4 {")
+            lines.append("                return Some(CalcResult::new_args_number_error(cell));")
+            lines.append("            }")
+            lines.append("            Some(CalcResult::new_error(")
+            lines.append("                Error::NIMPL,")
+            lines.append("                cell,")
+            lines.append('                \"COUP functions are not supported\".to_string(),')
+            lines.append("            ))")
+            lines.append("        }")
+        elif action == "cube_basic":
+            lines.append(f'        \"{normalized}\" => {{')
+            lines.append("            if args.is_empty() {")
+            lines.append("                return Some(CalcResult::new_args_number_error(cell));")
+            lines.append("            }")
+            lines.append("            Some(CalcResult::new_error(")
+            lines.append("                Error::NIMPL,")
+            lines.append("                cell,")
+            lines.append('                \"CUBE functions are not supported\".to_string(),')
             lines.append("            ))")
             lines.append("        }")
         elif action == "proper_basic":

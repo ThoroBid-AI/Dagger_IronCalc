@@ -893,101 +893,134 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(seen.len() as f64))
         }
         "COUPDAYBS" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COUP functions are not supported".to_string(),
             ))
         }
         "COUPDAYS" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COUP functions are not supported".to_string(),
             ))
         }
         "COUPDAYSNC" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COUP functions are not supported".to_string(),
             ))
         }
         "COUPNCD" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COUP functions are not supported".to_string(),
             ))
         }
         "COUPNUM" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COUP functions are not supported".to_string(),
             ))
         }
         "COUPPCD" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COUP functions are not supported".to_string(),
             ))
         }
-        "CRITBINOM" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
-        }
+        "CRITBINOM" => Some(model.fn_binom_inv(args, cell)),
         "CUBEKPIMEMBER" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "CUBEMEMBER" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "CUBEMEMBERPROPERTY" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "CUBERANKEDMEMBER" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "CUBESET" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "CUBESETCOUNT" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "CUBEVALUE" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CUBE functions are not supported".to_string(),
             ))
         }
         "DBCS" => {
