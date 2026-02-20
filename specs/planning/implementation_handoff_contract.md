@@ -8,7 +8,8 @@ This is the single execution contract for handing backlog implementation to anot
 ## Runtime + Scope (Locked)
 - Runtime target is the Rust engine in `base/`.
 - `specs/lua_prompts.md` is a behavior/spec guidance artifact, not executable Lua runtime code.
-- Implement only functions tracked in `specs/reports/lua_backlog_status.csv` unless explicitly expanded.
+- Implement only functions tracked in `specs/reports/lua_backlog_status.csv` and listed in `specs/planning/lua_implementation_backlog.md` unless explicitly expanded.
+- Placeholder metadata in non-backlog `specs/functions/*.md` files is out-of-scope for implementation work.
 
 ## Source Inputs (Use In This Order)
 1. `specs/reports/lua_backlog_status.csv` (what is pending)
@@ -29,6 +30,7 @@ This is the single execution contract for handing backlog implementation to anot
 6. Implement handler logic in the correct module under `base/src/functions/` (or create one if needed).
 7. Add or update tests under `base/src/test/` and/or relevant function test modules.
 8. Run validation commands that are available in the execution environment.
+ - Minimum doc guard: `make validate-backlog-specs`
 9. Update tracker row in `specs/reports/lua_backlog_status.csv`:
 - `status_impl=complete`
 - `status_tests=complete`

@@ -5,6 +5,10 @@ lint:
 	cd webapp/IronCalc/ && npm install && npm run check
 	cd webapp/app.ironcalc.com/frontend/ && npm install && npm run check
 
+.PHONY: validate-backlog-specs
+validate-backlog-specs:
+	./scripts/validate_backlog_specs.sh
+
 .PHONY: format
 format:
 	cargo fmt

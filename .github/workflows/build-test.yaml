@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Validate backlog specs
+        run: make validate-backlog-specs
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
       - name: Setup Node
