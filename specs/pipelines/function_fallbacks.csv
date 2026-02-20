@@ -87,7 +87,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 3,COUNTBLANK,implemented,,,,,,,,,,,,yes,fn_countblank,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
 3,COUNTIF,implemented,,,,,,,,,,,,yes,fn_countif,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
 3,COUNTIFS,implemented,,,,,,,,,,,,yes,fn_countifs,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
-3,COUNTUNIQUE,unimplemented,,,,,,,,,,,,no,,
+3,COUNTUNIQUE,countunique,,,,B1,=COUNTUNIQUE(A1:A4),3,A1=1;A2=2;A3=2;A4=3,,,,,no,,
 3,COUPDAYBS,unimplemented,,,,,,,,,,,,no,,
 3,COUPDAYS,unimplemented,,,,,,,,,,,,no,,
 3,COUPDAYSNC,unimplemented,,,,,,,,,,,,no,,
@@ -116,7 +116,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 3,DAYS,implemented,,,,,,,,,,,,yes,fn_days,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 3,DAYS360,implemented,,,,,,,,,,,,yes,fn_days360,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 3,DB,implemented,,,,,,,,,,,,yes,fn_db,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
-3,DBCS,unimplemented,,,,,,,,,,,,no,,
+3,DBCS,dbcs,,,,A1,"=DBCS(""ABC"")",ＡＢＣ,,,,,,no,,
 3,DCOUNT,implemented,,,,,,,,,,,,yes,fn_dcount,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 3,DCOUNTA,implemented,,,,,,,,,,,,yes,fn_dcounta,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DDB,implemented,,,,,,,,,,,,yes,fn_ddb,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs

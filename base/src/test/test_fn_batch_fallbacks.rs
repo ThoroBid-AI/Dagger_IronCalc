@@ -20,7 +20,6 @@ fn test_batch_unsupported_functions_return_nimpl() {
         "CHOOSECOLS",
         "CHOOSEROWS",
         "COPILOT",
-        "COUNTUNIQUE",
         "COUPDAYBS",
         "COUPDAYS",
         "COUPDAYSNC",
@@ -35,7 +34,6 @@ fn test_batch_unsupported_functions_return_nimpl() {
         "CUBESET",
         "CUBESETCOUNT",
         "CUBEVALUE",
-        "DBCS",
         "DETECTLANGUAGE",
         "DISC",
         "DIVIDE",
@@ -325,4 +323,26 @@ fn test_batch_fallback_code() {
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"65");
+}
+
+#[test]
+fn test_batch_fallback_countunique() {
+    let mut model = new_empty_model();
+    model._set("A1", "1");
+    model._set("A2", "2");
+    model._set("A3", "2");
+    model._set("A4", "3");
+    model._set("B1", "=COUNTUNIQUE(A1:A4)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("B1"), *"3");
+}
+
+#[test]
+fn test_batch_fallback_dbcs() {
+    let mut model = new_empty_model();
+    model._set("A1", "=DBCS(\"ABC\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"ＡＢＣ");
 }

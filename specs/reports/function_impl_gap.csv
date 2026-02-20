@@ -22,7 +22,7 @@ batch_id,function_name,implemented_in_code,handler,file_path,action
 2,CLEAN,no,,,clean_basic
 2,CODE,no,,,code_basic
 2,COPILOT,no,,,unimplemented
-3,COUNTUNIQUE,no,,,unimplemented
+3,COUNTUNIQUE,no,,,countunique
 3,COUPDAYBS,no,,,unimplemented
 3,COUPDAYS,no,,,unimplemented
 3,COUPDAYSNC,no,,,unimplemented
@@ -37,7 +37,7 @@ batch_id,function_name,implemented_in_code,handler,file_path,action
 3,CUBESET,no,,,unimplemented
 3,CUBESETCOUNT,no,,,unimplemented
 3,CUBEVALUE,no,,,unimplemented
-3,DBCS,no,,,unimplemented
+3,DBCS,no,,,dbcs
 4,DETECTLANGUAGE,no,,,unimplemented
 4,DISC,no,,,unimplemented
 4,DIVIDE,no,,,unimplemented
