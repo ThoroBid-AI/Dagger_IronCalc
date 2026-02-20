@@ -32,6 +32,37 @@ use crate::{
 
 use chrono_tz::Tz;
 
+const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 14] = [
+    "ACCRINT",
+    "ACCRINTM",
+    "ADD",
+    "ADDRESS",
+    "AGGREGATE",
+    "AMORDEGRC",
+    "AMORLINC",
+    "AREAS",
+    "ARRAYFORMULA",
+    "ARRAYCONSTRAIN",
+    "ASC",
+    "AVERAGEWEIGHTED",
+    "BAHTTEXT",
+    "BETAINVN",
+];
+
+fn normalize_function_name_for_batch1(name: &str) -> String {
+    name.trim()
+        .trim_start_matches("_xlfn.")
+        .replace('.', "")
+        .to_ascii_uppercase()
+}
+
+fn is_batch1_unsupported_function(name: &str) -> bool {
+    let normalized = normalize_function_name_for_batch1(name);
+    NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS
+        .iter()
+        .any(|candidate| normalized == *candidate)
+}
+
 #[cfg(test)]
 pub use crate::mock_time::get_milliseconds_since_epoch;
 
@@ -401,7 +432,15 @@ impl<'a> Model<'a> {
             }
             FunctionKind { kind, args } => self.evaluate_function(kind, args, cell),
             InvalidFunctionKind { name, args: _ } => {
-                CalcResult::new_error(Error::NAME, cell, format!("Invalid function: {name}"))
+                if is_batch1_unsupported_function(name) {
+                    CalcResult::new_error(
+                        Error::NIMPL,
+                        cell,
+                        format!("Function not yet implemented: {name}"),
+                    )
+                } else {
+                    CalcResult::new_error(Error::NAME, cell, format!("Invalid function: {name}"))
+                }
             }
             ArrayKind(s) => CalcResult::Array(s.to_owned()),
             DefinedNameKind((name, scope, _)) => {
