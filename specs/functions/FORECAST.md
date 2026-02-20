@@ -38,7 +38,7 @@ Predicts a value using linear trend from known data pairs.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Predicts a value using linear trend from known data pairs.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Predicts a value using linear trend from known data pairs.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Predicts a value using linear trend from known data pairs.
 
 - Signatures:
 

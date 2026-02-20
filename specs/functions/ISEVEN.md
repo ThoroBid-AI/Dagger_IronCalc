@@ -33,7 +33,7 @@ Returns TRUE when number is even.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISEVEN(4)
+- Summary: Returns TRUE when number is even.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE when number is even.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISEVEN(4)
+- Summary: Returns TRUE when number is even.
 
 - Signatures:
 

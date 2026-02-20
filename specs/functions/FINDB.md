@@ -38,7 +38,7 @@ Byte-level text search equivalent to FIND.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Byte-level text search equivalent to FIND.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Byte-level text search equivalent to FIND.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Byte-level text search equivalent to FIND.
 
 - Signatures:
 

@@ -38,7 +38,7 @@ Formats a number to fixed decimals as text with optional thousands separators an
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Formats a number to fixed decimals as text with optional thousands separators and rounding.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Formats a number to fixed decimals as text with optional thousands separators an
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Formats a number to fixed decimals as text with optional thousands separators and rounding.
 
 - Signatures:
 

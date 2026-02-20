@@ -38,7 +38,7 @@ Returns frequency counts for values across bins.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns frequency counts for values across bins.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns frequency counts for values across bins.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns frequency counts for values across bins.
 
 - Signatures:
 

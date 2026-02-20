@@ -38,7 +38,7 @@ Flattens nested arrays into a single-column array.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Flattens nested arrays into a single-column array.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Flattens nested arrays into a single-column array.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Flattens nested arrays into a single-column array.
 
 - Signatures:
 

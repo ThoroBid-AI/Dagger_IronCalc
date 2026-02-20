@@ -38,7 +38,7 @@ Parses XML text and returns queried content using a path expression.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Parses XML text and returns queried content using a path expression.
 
 - Signatures:
 

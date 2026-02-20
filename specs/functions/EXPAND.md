@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: EXPAND({1,2}, 2, 3, 0)
+- Summary: Expands input to a larger array with fill values.
 
 - Signatures:
 

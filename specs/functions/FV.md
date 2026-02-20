@@ -33,7 +33,7 @@ Calculates future value of annuity streams.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Calculates future value of annuity streams.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Calculates future value of annuity streams.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Calculates future value of annuity streams.
 
 - Signatures:
 

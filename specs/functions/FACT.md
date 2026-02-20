@@ -34,7 +34,7 @@ Returns the factorial of an integer argument.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the factorial of an integer argument.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Returns the factorial of an integer argument.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the factorial of an integer argument.
 
 - Signatures:
 

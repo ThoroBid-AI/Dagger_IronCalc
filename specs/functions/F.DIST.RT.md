@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.DIST.RT(1.5, 5, 10)
+- Summary: Returns the right-tail probability of the F distribution.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.DIST.RT(1.5, 5, 10)
+- Summary: Returns the right-tail probability of the F distribution.
 
 - Signatures:
 

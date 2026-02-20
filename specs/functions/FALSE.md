@@ -33,7 +33,7 @@ Returns the FALSE logical constant.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the FALSE logical constant.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the FALSE logical constant.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the FALSE logical constant.
 
 - Signatures:
 

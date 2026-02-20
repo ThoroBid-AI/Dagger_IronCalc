@@ -38,7 +38,7 @@ Rounds number down to nearest multiple with precise semantics.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Rounds number down to nearest multiple with precise semantics.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Rounds number down to nearest multiple with precise semantics.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Rounds number down to nearest multiple with precise semantics.
 
 - Signatures:
 

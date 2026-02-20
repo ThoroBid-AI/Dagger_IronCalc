@@ -33,7 +33,7 @@ Performs two-variable F-test variance comparison.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Performs two-variable F-test variance comparison.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Performs two-variable F-test variance comparison.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Performs two-variable F-test variance comparison.
 
 - Signatures:
 

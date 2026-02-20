@@ -34,7 +34,7 @@ Returns the double factorial of a number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the double factorial of a number.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Returns the double factorial of a number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the double factorial of a number.
 
 - Signatures:
 

@@ -33,7 +33,7 @@ Returns the natural logarithm of the Gamma function.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the natural logarithm of the Gamma function.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the natural logarithm of the Gamma function.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the natural logarithm of the Gamma function.
 
 - Signatures:
 

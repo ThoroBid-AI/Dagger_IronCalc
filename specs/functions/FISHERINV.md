@@ -33,7 +33,7 @@ Returns the inverse Fisher transform.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the inverse Fisher transform.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the inverse Fisher transform.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the inverse Fisher transform.
 
 - Signatures:
 

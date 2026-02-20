@@ -33,7 +33,7 @@ Returns the standard normal cumulative distribution value shifted around mean 0.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the standard normal cumulative distribution value shifted around mean 0.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the standard normal cumulative distribution value shifted around mean 0.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the standard normal cumulative distribution value shifted around mean 0.
 
 - Signatures:
 

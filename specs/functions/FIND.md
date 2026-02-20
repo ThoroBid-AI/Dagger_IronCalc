@@ -33,7 +33,7 @@ Returns the position of a substring inside text (case-sensitive).
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the position of a substring inside text (case-sensitive).
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the position of a substring inside text (case-sensitive).
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the position of a substring inside text (case-sensitive).
 
 - Signatures:
 

@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.INV(0.05, 5, 10)
+- Summary: Returns inverse of F distribution CDF (given cumulative probability).
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.INV(0.05, 5, 10)
+- Summary: Returns inverse of F distribution CDF (given cumulative probability).
 
 - Signatures:
 

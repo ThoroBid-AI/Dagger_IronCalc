@@ -25,7 +25,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Returns regression statistic for ETS forecast.
 
 - Signatures:
 

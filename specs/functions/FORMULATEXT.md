@@ -33,7 +33,7 @@ Returns the formula text of a referenced cell.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the formula text of a referenced cell.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the formula text of a referenced cell.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns the formula text of a referenced cell.
 
 - Signatures:
 

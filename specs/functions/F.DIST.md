@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.DIST(1.5, 5, 10, TRUE)
+- Summary: Returns values of the F distribution CDF and inverse behavior via variant args.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.DIST(1.5, 5, 10, TRUE)
+- Summary: Returns values of the F distribution CDF and inverse behavior via variant args.
 
 - Signatures:
 

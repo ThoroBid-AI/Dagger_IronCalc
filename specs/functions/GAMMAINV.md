@@ -33,7 +33,7 @@ Returns inverse of gamma cumulative distribution.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns inverse of gamma cumulative distribution.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns inverse of gamma cumulative distribution.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns inverse of gamma cumulative distribution.
 
 - Signatures:
 

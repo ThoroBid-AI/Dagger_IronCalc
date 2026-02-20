@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: EXPON.DIST(1, 0.5, TRUE)
+- Summary: Calculates exponential distribution cumulative or density values.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: EXPON.DIST(1, 0.5, TRUE)
+- Summary: Calculates exponential distribution cumulative or density values.
 
 - Signatures:
 

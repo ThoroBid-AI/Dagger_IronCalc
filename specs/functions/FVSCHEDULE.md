@@ -38,7 +38,7 @@ Future value after applying a schedule of interest rates.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Future value after applying a schedule of interest rates.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Future value after applying a schedule of interest rates.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Future value after applying a schedule of interest rates.
 
 - Signatures:
 

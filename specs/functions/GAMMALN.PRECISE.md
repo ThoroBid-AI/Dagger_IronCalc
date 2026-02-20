@@ -38,7 +38,7 @@ Returns the natural logarithm of Gamma with precision emphasis.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns the natural logarithm of Gamma with precision emphasis.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns the natural logarithm of Gamma with precision emphasis.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns the natural logarithm of Gamma with precision emphasis.
 
 - Signatures:
 

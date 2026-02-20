@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.TEST({1,2,3},{4,5,6})
+- Summary: Returns right-tailed F-test probability for two variances.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: F.TEST({1,2,3},{4,5,6})
+- Summary: Returns right-tailed F-test probability for two variances.
 
 - Signatures:
 

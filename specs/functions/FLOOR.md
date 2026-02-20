@@ -34,7 +34,7 @@ Rounds a number down to nearest multiple of significance.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Rounds a number down to nearest multiple of significance.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Rounds a number down to nearest multiple of significance.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Rounds a number down to nearest multiple of significance.
 
 - Signatures:
 

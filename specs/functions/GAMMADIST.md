@@ -33,7 +33,7 @@ Legacy alias for Gamma distribution cumulative/density behavior.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Legacy alias for Gamma distribution cumulative/density behavior.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Legacy alias for Gamma distribution cumulative/density behavior.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Legacy alias for Gamma distribution cumulative/density behavior.
 
 - Signatures:
 

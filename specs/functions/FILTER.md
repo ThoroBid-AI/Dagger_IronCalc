@@ -25,7 +25,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Filters array values by condition.
 
 - Signatures:
 
@@ -49,7 +49,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible under seeded execution context.
+- Summary: Filters array values by condition.
 
 - Signatures:
 

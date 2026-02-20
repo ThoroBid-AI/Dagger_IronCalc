@@ -38,7 +38,7 @@ Returns gamma distribution cumulative or density values.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns gamma distribution cumulative or density values.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns gamma distribution cumulative or density values.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns gamma distribution cumulative or density values.
 
 - Signatures:
 

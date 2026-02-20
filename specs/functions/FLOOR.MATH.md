@@ -38,7 +38,7 @@ Rounds a number down to nearest multiple with explicit precision mode.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Rounds a number down to nearest multiple with explicit precision mode.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Rounds a number down to nearest multiple with explicit precision mode.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Rounds a number down to nearest multiple with explicit precision mode.
 
 - Signatures:
 
