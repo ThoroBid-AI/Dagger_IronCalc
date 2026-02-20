@@ -221,6 +221,7 @@ Mod,fn_mod,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronC
 Month,fn_month,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 Mround,fn_mround,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 N,fn_n,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
+Na,<inline>,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mod.rs
 NegbinomDist,fn_negbinom_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs
 Networkdays,fn_networkdays,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 NetworkdaysIntl,fn_networkdays_intl,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs

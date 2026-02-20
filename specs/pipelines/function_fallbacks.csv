@@ -337,7 +337,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 9,MULTIPLY,unimplemented,,,,,,,,,,,,no,,
 9,MUNIT,unimplemented,,,,,,,,,,,,no,,
 9,N,implemented,,,,,,,,,,,,yes,fn_n,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-9,NA,implemented,,,,,,,,,,,,no,,
+9,NA,implemented,,,,,,,,,,,,yes,<inline>,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mod.rs
 9,NE,unimplemented,,,,,,,,,,,,no,,
 9,NEGBINOM.DIST,implemented,,,,,,,,,,,,yes,fn_negbinom_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs
 9,NEGBINOMDIST,implemented,,,,,,,,,,,,yes,fn_negbinom_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs

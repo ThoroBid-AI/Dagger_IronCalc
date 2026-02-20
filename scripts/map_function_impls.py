@@ -10,7 +10,9 @@ FUNCS_DIR = ROOT / "base" / "src" / "functions"
 REPORT = ROOT / "specs" / "reports" / "function_impl_mapping.csv"
 LOG = ROOT / "specs" / "reports" / "function_impl_mapping.log"
 
-MATCH_RE = re.compile(r"Function::([A-Za-z0-9_]+)\s*=>\s*self\.([A-Za-z0-9_]+)\(")
+MATCH_RE = re.compile(
+    r"Function::([A-Za-z0-9_]+)\s*=>\s*(?:self\.([A-Za-z0-9_]+)\(|CalcResult::)"
+)
 FN_RE = re.compile(r"\bfn\s+([A-Za-z0-9_]+)\s*\(")
 MACRO_RE = re.compile(r"\b[A-Za-z0-9_]+!\(\s*(fn_[A-Za-z0-9_]+)")
 
@@ -22,7 +24,7 @@ def load_handlers() -> dict:
     text = MOD_RS.read_text()
     for m in MATCH_RE.finditer(text):
         func = m.group(1)
-        handler = m.group(2)
+        handler = m.group(2) or "<inline>"
         handlers[func] = handler
     return handlers
 
@@ -60,7 +62,7 @@ def main() -> int:
         missing = 0
         for func in sorted(handlers):
             handler = handlers[func]
-            path = defs.get(handler)
+            path = defs.get(handler) if handler != "<inline>" else MOD_RS
             if not path:
                 missing += 1
                 log_lines.append(f"Missing handler location: Function::{func} -> {handler} (not found in {FUNCS_DIR})")
