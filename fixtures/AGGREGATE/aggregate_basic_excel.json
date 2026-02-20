@@ -1,0 +1,12 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "AGGREGATE",
+  "case_id": "aggregate_basic",
+  "inputs": [],
+  "formula": "=AGGREGATE(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "TODO: capture oracle output"
+}

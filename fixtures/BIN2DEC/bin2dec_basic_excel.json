@@ -1,0 +1,12 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "BIN2DEC",
+  "case_id": "bin2dec_basic",
+  "inputs": [],
+  "formula": "=BIN2DEC(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "TODO: capture oracle output"
+}

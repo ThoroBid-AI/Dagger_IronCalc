@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Sheets 2026-02-20",
+  "locale": "en-US",
+  "function": "ARRAYFORMULA",
+  "case_id": "arrayformula_basic",
+  "inputs": [],
+  "formula": "=ARRAYFORMULA(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "TODO: capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "BAHTTEXT",
+  "case_id": "bahttext_basic",
+  "inputs": [],
+  "formula": "=BAHTTEXT(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "TODO: capture oracle output"
+}

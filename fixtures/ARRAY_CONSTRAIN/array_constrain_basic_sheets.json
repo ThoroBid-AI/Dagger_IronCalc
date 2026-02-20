@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Sheets 2026-02-20",
+  "locale": "en-US",
+  "function": "ARRAY_CONSTRAIN",
+  "case_id": "array_constrain_basic",
+  "inputs": [],
+  "formula": "=ARRAY_CONSTRAIN(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "TODO: capture oracle output"
+}

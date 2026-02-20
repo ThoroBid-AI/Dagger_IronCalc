@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Sheets 2026-02-20",
+  "locale": "en-US",
+  "function": "ATAN2",
+  "case_id": "atan2_basic",
+  "inputs": [],
+  "formula": "=ATAN2(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "TODO: capture oracle output"
+}
