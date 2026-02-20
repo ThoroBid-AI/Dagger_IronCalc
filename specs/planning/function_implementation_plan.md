@@ -1,9 +1,11 @@
-# Function Implementation Plan
+# Function Implementation Plan (Rust)
 
 ## Scope
 - Target oracles: Excel 365 (current) and Google Sheets.
 - Locale: en-US.
 - Coverage includes all functions in `specs/matrices/function_matrix_normalized.csv`.
+- Documentation is authoritative and validated by `scripts/validate_function_docs.py`.
+- Current gap list is tracked in `specs/reports/function_unsupported_nimpl.csv`.
 
 ## Complexity Buckets
 **Easy**
@@ -18,19 +20,79 @@
 **Hard**
 - Dynamic arrays, iterative calculations, or complex statistical/financial behavior.
 - Functions with cross‑engine behavioral differences.
+- External data dependencies or side effects (e.g., network functions).
+
+## Implementation Workflow (Per Function)
+- Review the function doc in `specs/functions/<FN>.md` and extract canonical behavior.
+- Add unit tests that mirror the doc examples and error cases.
+- Add conformance fixtures when Excel/Sheets behavior differs.
+- Implement in Rust in the correct module under `base/src/functions/`.
+- Update `specs/pipelines/function_fallbacks.csv`:
+  - Set `action=implemented` and add `handler` + `file_path`.
+  - Remove any fallback tests specific to the old placeholder behavior.
+- Regenerate fallbacks/tests with `scripts/generate_batch_fallbacks.py --batch all`.
+- Run tests:
+  - `cargo test -p ironcalc_base batch_fallback -- --nocapture`
+  - Targeted unit tests for the function module.
+- Verify validator still passes:
+  - `python scripts/validate_function_docs.py`
 
 ## Dependencies & Shared Helpers (Build First)
-1. **Type coercion & error rules**
-   - Numeric/text/boolean coercion.
-   - Error propagation and precedence.
-2. **Array/spill mechanics**
-   - Shape validation, broadcasting rules.
-3. **Date/time engine**
-   - Serial date conversion, leap‑year handling, time zones (if applicable).
-4. **Statistical distributions**
-   - Shared PDF/CDF helpers and numerical stability.
-5. **Lookup helpers**
-   - Match modes, binary search, sort order utilities.
+- Type coercion & error rules
+- Array/spill mechanics
+- Date/time engine
+- Statistical distributions
+- Lookup helpers
+- Formatting utilities (numeric, date, currency)
+
+## Phased Rust Implementation Plan
+**Phase 0: Baseline readiness**
+- Lock down current behavior with tests for existing implementations.
+- Confirm `function_unsupported_nimpl.csv` matches current source state.
+- Ensure fallback coverage remains stable while implementations land.
+
+**Phase 1: Deterministic core functions**
+- Target: math, text, basic logic, simple stats.
+- Goal: fastest parity wins with low edge‑case risk.
+- Output: implemented Rust functions + conformance fixtures.
+
+**Phase 2: Array and dynamic‑array functions**
+- Target: array transforms, SORT/UNIQUE‑class, TAKE/DROP, MAP/REDUCE.
+- Requires: array shape rules, broadcasting, spill handling.
+- Output: array‑aware behavior aligned with docs.
+
+**Phase 3: Date/time and lookup**
+- Target: DATE/TIME families, lookup variants, reference helpers.
+- Requires: consistent date serial conversions and locale rules.
+
+**Phase 4: Statistical & financial**
+- Target: distributions, regressions, financial instruments.
+- Requires: numeric stability, tolerance‑based tests.
+
+**Phase 5: External/side‑effect functions**
+- Target: GOOGLEFINANCE, IMPORTXML, WEBSERVICE, etc.
+- Policy: isolate behind feature flags or service boundaries.
+- Provide deterministic mocks for tests.
+
+## Batch Execution Strategy
+- Use `specs/planning/function_batches.csv` as the execution order.
+- For each batch:
+  - Convert `unsupported_nimpl` entries to real implementations.
+  - Keep fallbacks only as temporary safety nets.
+  - Deliver tests + conformance fixtures alongside code.
+
+## Testing Strategy
+- Unit tests: validate examples, edge cases, error propagation.
+- Conformance tests: Excel/Sheets oracles with deterministic fixtures.
+- Regression tests: ensure prior functions remain unchanged.
+- Determinism checks: outputs stable across platforms.
+
+## Definition of Done (Per Function)
+- Rust implementation in correct module.
+- Unit tests added and passing.
+- Conformance tests added if behavior differs by provider.
+- `function_fallbacks.csv` updated to `implemented`.
+- Documentation already validated by `validate_function_docs.py`.
 
 ## Batch Plan (Estimated Effort)
 **Batch 1: Easy functions (40)**
@@ -84,3 +146,4 @@
 - `specs/function_implementation_plan.md`
 - Batch coverage reports (per batch)
 - Test fixtures and conformance suite updates
+- Updated `specs/pipelines/function_fallbacks.csv` per function
