@@ -1,10 +1,4 @@
 batch_id,function_name,action,implemented_in_code,handler,file_path
-1,ACCRINT,unsupported_nimpl,no,,
-1,ACCRINTM,unsupported_nimpl,no,,
-1,AGGREGATE,unsupported_nimpl,no,,
-1,AMORDEGRC,unsupported_nimpl,no,,
-1,AMORLINC,unsupported_nimpl,no,,
-1,BAHTTEXT,unsupported_nimpl,no,,
 2,BYCOL,unsupported_nimpl,no,,
 2,BYROW,unsupported_nimpl,no,,
 2,CALL,unsupported_nimpl,no,,

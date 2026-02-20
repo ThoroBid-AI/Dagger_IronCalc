@@ -1,16 +1,16 @@
 batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,expected_text,setup,test_cell_2,test_formula_2,expected_text_2,setup_2,implemented_in_code,handler,file_path
 1,ABS,implemented,,,,,,,,,,,,yes,fn_abs,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
-1,ACCRINT,unsupported_nimpl,,,,A1,=ACCRINT(1),#N/IMPL!,,,,,,no,,
-1,ACCRINTM,unsupported_nimpl,,,,A1,=ACCRINTM(1),#N/IMPL!,,,,,,no,,
+1,ACCRINT,accrint_basic,,,,A1,"=ACCRINT(1,2,37,0.1,100,1,0)",1,,,,,,no,,
+1,ACCRINTM,accrintm_basic,,,,A1,"=ACCRINTM(1,37,0.1,100,0)",1,,,,,,no,,
 1,ACOS,implemented,,,,,,,,,,,,yes,fn_acos,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 1,ACOSH,implemented,,,,,,,,,,,,yes,fn_acosh,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 1,ACOT,implemented,,,,,,,,,,,,yes,fn_acot,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 1,ACOTH,implemented,,,,,,,,,,,,yes,fn_acoth,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 1,ADD,alias_sum,Sum,2,,A1,"=ADD(1,2,3)",6,,A2,=ADD(1),#ERROR!,,no,,
 1,ADDRESS,address_basic,,,,A1,"=ADDRESS(2,3)",$C$2,,A2,"=ADDRESS(2,3,4)",C2,,no,,
-1,AGGREGATE,unsupported_nimpl,,,,A1,=AGGREGATE(1),#N/IMPL!,,,,,,no,,
-1,AMORDEGRC,unsupported_nimpl,,,,A1,=AMORDEGRC(1),#N/IMPL!,,,,,,no,,
-1,AMORLINC,unsupported_nimpl,,,,A1,=AMORLINC(1),#N/IMPL!,,,,,,no,,
+1,AGGREGATE,aggregate_basic,,,,A1,"=AGGREGATE(9,0,1,2,3)",6,,A2,"=AGGREGATE(1,0,1,2,3)",2,,no,,
+1,AMORDEGRC,amordegrc_basic,,,,A1,"=AMORDEGRC(1000,1,2,100,2,0.1)",81,,,,,,no,,
+1,AMORLINC,amorlinc_basic,,,,A1,"=AMORLINC(1000,1,2,100,2,0.1)",90,,,,,,no,,
 1,AND,implemented,,,,,,,,,,,,yes,fn_and,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
 1,ARABIC,implemented,,,,,,,,,,,,yes,fn_arabic,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 1,AREAS,areas_simple,,1,1,B1,=AREAS(A1:A2),1,A1=1;A2=2,,,,,no,,
@@ -28,7 +28,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 1,AVERAGEA,implemented,,,,,,,,,,,,yes,fn_averagea,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
 1,AVERAGEIF,implemented,,,,,,,,,,,,yes,fn_averageif,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
 1,AVERAGEIFS,implemented,,,,,,,,,,,,yes,fn_averageifs,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
-1,BAHTTEXT,unsupported_nimpl,,,,A1,=BAHTTEXT(1),#N/IMPL!,,,,,,no,,
+1,BAHTTEXT,bahttext_basic,,,,A1,=BAHTTEXT(123),123 BAHT,,,,,,no,,
 1,BASE,implemented,,,,,,,,,,,,yes,fn_base,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 1,BESSELI,implemented,,,,,,,,,,,,yes,fn_besseli,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
 1,BESSELJ,implemented,,,,,,,,,,,,yes,fn_besselj,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
@@ -286,7 +286,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 8,ISTEXT,implemented,,,,,,,,,,,,yes,fn_istext,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 8,ISURL,isurl_basic,,,,A1,"=ISURL(""https://example.com"")",TRUE,,A2,"=ISURL(""not a url"")",FALSE,,no,,
 8,JIS,unsupported_nimpl,,,,A1,=JIS(1),#N/IMPL!,,,,,,no,,
-8,JOIN,join_basic,,,,A1,"=JOIN("","",1,2,3)","1,2,3",,A2,"=JOIN(""-"",A1:A1)","1",A1=1,no,,
+8,JOIN,join_basic,,,,A1,"=JOIN("","",1,2,3)","1,2,3",,A2,"=JOIN(""-"",A1:A1)",1,A1=1,no,,
 8,KURT,implemented,,,,,,,,,,,,yes,fn_kurt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
 8,LAMBDA,unsupported_nimpl,,,,A1,=LAMBDA(1),#N/IMPL!,,,,,,no,,
 8,LARGE,implemented,,,,,,,,,,,,yes,fn_large,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs

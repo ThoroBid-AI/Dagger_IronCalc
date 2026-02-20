@@ -45,18 +45,104 @@ pub(crate) fn evaluate_batch_fallback(
 ) -> Option<CalcResult> {
     match normalize_function_name_for_fallbacks(name).as_str() {
         "ACCRINT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 5 || args.len() > 8 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let issue = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let settlement = match model.get_number(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let par = match model.get_number(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() >= 7 {
+                match model.get_number(&args[6], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ));
+                }
+            };
+            let days = settlement - issue;
+            if days < 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Settlement before issue".to_string(),
+                ));
+            }
+            let interest = par * rate * days / denom;
+            Some(CalcResult::Number(interest))
         }
         "ACCRINTM" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 4 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let issue = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let par = match model.get_number(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 5 {
+                match model.get_number(&args[4], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ));
+                }
+            };
+            let days = maturity - issue;
+            if days < 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Maturity before issue".to_string(),
+                ));
+            }
+            let interest = par * rate * days / denom;
+            Some(CalcResult::Number(interest))
         }
         "ADD" => {
             if args.len() < 2 {
@@ -144,25 +230,215 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::String(address))
         }
         "AGGREGATE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let func_num = match model.get_number(&args[0], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let mut numbers: Vec<f64> = Vec::new();
+            let mut counta: i32 = 0;
+            for arg in &args[2..] {
+                match model.evaluate_node_in_context(arg, cell) {
+                    CalcResult::Number(value) => {
+                        numbers.push(value);
+                        counta += 1;
+                    }
+                    CalcResult::String(value) => {
+                        if !value.is_empty() {
+                            counta += 1;
+                        }
+                    }
+                    CalcResult::Boolean(value) => {
+                        numbers.push(if value { 1.0 } else { 0.0 });
+                        counta += 1;
+                    }
+                    CalcResult::EmptyCell | CalcResult::EmptyArg => {}
+                    CalcResult::Range { left, right } => {
+                        if left.sheet != right.sheet {
+                            return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Ranges are in different sheets".to_string(),
+                            ));
+                        }
+                        for row in left.row..=right.row {
+                            for column in left.column..=right.column {
+                                match model.evaluate_cell(CellReferenceIndex {
+                                    sheet: left.sheet,
+                                    row,
+                                    column,
+                                }) {
+                                    CalcResult::Number(v) => {
+                                        numbers.push(v);
+                                        counta += 1;
+                                    }
+                                    CalcResult::String(v) => {
+                                        if !v.is_empty() {
+                                            counta += 1;
+                                        }
+                                    }
+                                    CalcResult::Boolean(b) => {
+                                        numbers.push(if b { 1.0 } else { 0.0 });
+                                        counta += 1;
+                                    }
+                                    CalcResult::EmptyCell => {}
+                                    error @ CalcResult::Error { .. } => return Some(error),
+                                    _ => {}
+                                }
+                            }
+                        }
+                    }
+                    error @ CalcResult::Error { .. } => return Some(error),
+                    CalcResult::Array(_) => {
+                        return Some(CalcResult::new_error(
+                            Error::NIMPL,
+                            cell,
+                            "Arrays not supported yet".to_string(),
+                        ));
+                    }
+                }
+            }
+            match func_num {
+                1 => {
+                    if numbers.is_empty() {
+                        Some(CalcResult::new_error(
+                            Error::DIV,
+                            cell,
+                            "Divide by zero".to_string(),
+                        ))
+                    } else {
+                        let sum: f64 = numbers.iter().sum();
+                        Some(CalcResult::Number(sum / numbers.len() as f64))
+                    }
+                }
+                2 => Some(CalcResult::Number(numbers.len() as f64)),
+                3 => Some(CalcResult::Number(counta as f64)),
+                4 => {
+                    if numbers.is_empty() {
+                        Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "No numeric values".to_string(),
+                        ))
+                    } else {
+                        let mut max = numbers[0];
+                        for v in &numbers[1..] {
+                            if *v > max { max = *v; }
+                        }
+                        Some(CalcResult::Number(max))
+                    }
+                }
+                5 => {
+                    if numbers.is_empty() {
+                        Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "No numeric values".to_string(),
+                        ))
+                    } else {
+                        let mut min = numbers[0];
+                        for v in &numbers[1..] {
+                            if *v < min { min = *v; }
+                        }
+                        Some(CalcResult::Number(min))
+                    }
+                }
+                6 => {
+                    let mut product = 1.0;
+                    let mut has_value = false;
+                    for v in &numbers {
+                        product *= *v;
+                        has_value = true;
+                    }
+                    if !has_value {
+                        Some(CalcResult::new_error(
+                            Error::VALUE,
+                            cell,
+                            "No numeric values".to_string(),
+                        ))
+                    } else {
+                        Some(CalcResult::Number(product))
+                    }
+                }
+                9 => {
+                    let sum: f64 = numbers.iter().sum();
+                    Some(CalcResult::Number(sum))
+                }
+                _ => Some(CalcResult::new_error(
+                    Error::NIMPL,
+                    cell,
+                    "Function number not supported yet".to_string(),
+                )),
+            }
         }
         "AMORDEGRC" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 6 || args.len() > 7 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let cost = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let salvage = match model.get_number(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let period = match model.get_number(&args[4], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number(&args[5], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            if period <= 0 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let base = cost - salvage;
+            if base <= 0.0 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let factor = (1.0 - rate).powi(period - 1);
+            let dep = base * rate * factor;
+            let dep = if dep > base { base } else { dep };
+            Some(CalcResult::Number(dep))
         }
         "AMORLINC" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 6 || args.len() > 7 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let cost = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let salvage = match model.get_number(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let period = match model.get_number(&args[4], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number(&args[5], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            if period <= 0 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let base = cost - salvage;
+            if base <= 0.0 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let per = base * rate;
+            let remaining = base - per * (period as f64 - 1.0);
+            if remaining <= 0.0 {
+                return Some(CalcResult::Number(0.0));
+            }
+            let dep = if remaining < per { remaining } else { per };
+            Some(CalcResult::Number(dep))
         }
         "AREAS" => {
             if args.len() < 1 || args.len() > 1 {
@@ -311,11 +587,16 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(weighted_sum / total_weight))
         }
         "BAHTTEXT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let mut text = format!("{value}");
+            text.push_str(" BAHT");
+            Some(CalcResult::String(text))
         }
         "BETAINVN" => Some(model.fn_beta_inv(args, cell)),
         "BYCOL" => {

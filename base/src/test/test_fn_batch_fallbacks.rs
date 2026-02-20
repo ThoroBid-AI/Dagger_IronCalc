@@ -33,19 +33,19 @@ fn test_unknown_function_returns_name_error() {
 #[test]
 fn test_batch_fallback_accrint() {
     let mut model = new_empty_model();
-    model._set("A1", "=ACCRINT(1)");
+    model._set("A1", "=ACCRINT(1,2,37,0.1,100,1,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1");
 }
 
 #[test]
 fn test_batch_fallback_accrintm() {
     let mut model = new_empty_model();
-    model._set("A1", "=ACCRINTM(1)");
+    model._set("A1", "=ACCRINTM(1,37,0.1,100,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1");
 }
 
 #[test]
@@ -87,28 +87,37 @@ fn test_batch_fallback_address_extra() {
 #[test]
 fn test_batch_fallback_aggregate() {
     let mut model = new_empty_model();
-    model._set("A1", "=AGGREGATE(1)");
+    model._set("A1", "=AGGREGATE(9,0,1,2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"6");
+}
+
+#[test]
+fn test_batch_fallback_aggregate_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=AGGREGATE(1,0,1,2,3)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_amordegrc() {
     let mut model = new_empty_model();
-    model._set("A1", "=AMORDEGRC(1)");
+    model._set("A1", "=AMORDEGRC(1000,1,2,100,2,0.1)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"81");
 }
 
 #[test]
 fn test_batch_fallback_amorlinc() {
     let mut model = new_empty_model();
-    model._set("A1", "=AMORLINC(1)");
+    model._set("A1", "=AMORLINC(1000,1,2,100,2,0.1)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"90");
 }
 
 #[test]
@@ -161,10 +170,10 @@ fn test_batch_fallback_average_weighted() {
 #[test]
 fn test_batch_fallback_bahttext() {
     let mut model = new_empty_model();
-    model._set("A1", "=BAHTTEXT(1)");
+    model._set("A1", "=BAHTTEXT(123)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"123 BAHT");
 }
 
 #[test]
