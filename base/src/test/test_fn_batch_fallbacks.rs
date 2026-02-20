@@ -8,20 +8,6 @@ use crate::test::util::new_empty_model;
 fn test_batch_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
     let functions = [
-        "EXPAND",
-        "FILTER",
-        "FILTERXML",
-        "FINDB",
-        "FIXED",
-        "FLATTEN",
-        "FORECAST",
-        "FORECAST.ETS",
-        "FORECAST.ETS.CONFINT",
-        "FORECAST.ETS.SEASONALITY",
-        "FORECAST.ETS.STAT",
-        "FORECAST.LINEAR",
-        "FREQUENCY",
-        "FVSCHEDULE",
         "GETPIVOTDATA",
         "GOOGLEFINANCE",
         "GOOGLETRANSLATE",
@@ -693,6 +679,132 @@ fn test_batch_fallback_eq_extra() {
 fn test_batch_fallback_euroconvert() {
     let mut model = new_empty_model();
     model._set("A1", "=EUROCONVERT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_expand() {
+    let mut model = new_empty_model();
+    model._set("A1", "=EXPAND(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_filter() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FILTER(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_filterxml() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FILTERXML(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_findb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FINDB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_fixed() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FIXED(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_flatten() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FLATTEN(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_forecast() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FORECAST(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_forecast_ets() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FORECAST.ETS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_forecast_ets_confint() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FORECAST.ETS.CONFINT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_forecast_ets_seasonality() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FORECAST.ETS.SEASONALITY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_forecast_ets_stat() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FORECAST.ETS.STAT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_forecast_linear() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FORECAST.LINEAR(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_frequency() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FREQUENCY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_fvschedule() {
+    let mut model = new_empty_model();
+    model._set("A1", "=FVSCHEDULE(1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");

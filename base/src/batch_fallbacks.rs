@@ -19,21 +19,7 @@ use crate::{
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 139] = [
-    "EXPAND",
-    "FILTER",
-    "FILTERXML",
-    "FINDB",
-    "FIXED",
-    "FLATTEN",
-    "FORECAST",
-    "FORECASTETS",
-    "FORECASTETSCONFINT",
-    "FORECASTETSSEASONALITY",
-    "FORECASTETSSTAT",
-    "FORECASTLINEAR",
-    "FREQUENCY",
-    "FVSCHEDULE",
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 125] = [
     "GETPIVOTDATA",
     "GOOGLEFINANCE",
     "GOOGLETRANSLATE",
@@ -1056,6 +1042,104 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Boolean(compare_values(&left, &right) == 0))
         }
         "EUROCONVERT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "EXPAND" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FILTER" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FILTERXML" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FINDB" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FIXED" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FLATTEN" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FORECAST" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FORECASTETS" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FORECASTETSCONFINT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FORECASTETSSEASONALITY" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FORECASTETSSTAT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FORECASTLINEAR" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FREQUENCY" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
+        "FVSCHEDULE" => {
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
