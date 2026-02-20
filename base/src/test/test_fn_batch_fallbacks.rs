@@ -864,7 +864,7 @@ fn test_batch_fallback_imlog() {
 #[test]
 fn test_batch_fallback_importdata() {
     let mut model = new_empty_model();
-    model._set("A1", "=IMPORTDATA(1)");
+    model._set("A1", "=IMPORTDATA(\"https://example.com\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -873,7 +873,7 @@ fn test_batch_fallback_importdata() {
 #[test]
 fn test_batch_fallback_importfeed() {
     let mut model = new_empty_model();
-    model._set("A1", "=IMPORTFEED(1)");
+    model._set("A1", "=IMPORTFEED(\"https://example.com\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -882,7 +882,7 @@ fn test_batch_fallback_importfeed() {
 #[test]
 fn test_batch_fallback_importhtml() {
     let mut model = new_empty_model();
-    model._set("A1", "=IMPORTHTML(1)");
+    model._set("A1", "=IMPORTHTML(\"https://example.com\",\"table\",1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -891,7 +891,7 @@ fn test_batch_fallback_importhtml() {
 #[test]
 fn test_batch_fallback_importrange() {
     let mut model = new_empty_model();
-    model._set("A1", "=IMPORTRANGE(1)");
+    model._set("A1", "=IMPORTRANGE(\"key\",\"Sheet1!A1\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -900,7 +900,7 @@ fn test_batch_fallback_importrange() {
 #[test]
 fn test_batch_fallback_importxml() {
     let mut model = new_empty_model();
-    model._set("A1", "=IMPORTXML(1)");
+    model._set("A1", "=IMPORTXML(\"https://example.com\",\"//a\")");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -918,10 +918,10 @@ fn test_batch_fallback_imtanh() {
 #[test]
 fn test_batch_fallback_intrate() {
     let mut model = new_empty_model();
-    model._set("A1", "=INTRATE(1)");
+    model._set("A1", "=INTRATE(1,361,98,100)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.020408163");
 }
 
 #[test]

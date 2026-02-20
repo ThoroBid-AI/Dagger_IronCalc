@@ -1,11 +1,4 @@
 batch_id,function_name,action,implemented_in_code,handler,file_path
-7,IMPORTDATA,unsupported_nimpl,no,,
-7,IMPORTFEED,unsupported_nimpl,no,,
-7,IMPORTHTML,unsupported_nimpl,no,,
-7,IMPORTRANGE,unsupported_nimpl,no,,
-7,IMPORTXML,unsupported_nimpl,no,,
-7,IMTANH,unsupported_nimpl,no,,
-7,INTRATE,unsupported_nimpl,no,,
 8,JIS,unsupported_nimpl,no,,
 8,LAMBDA,unsupported_nimpl,no,,
 8,LEFTB,unsupported_nimpl,no,,

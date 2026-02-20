@@ -2146,53 +2146,114 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "IMPORTDATA" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMPORTDATA is not supported".to_string(),
             ))
         }
         "IMPORTFEED" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMPORTFEED is not supported".to_string(),
             ))
         }
         "IMPORTHTML" => {
+            if args.len() < 3 || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMPORTHTML is not supported".to_string(),
             ))
         }
         "IMPORTRANGE" => {
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMPORTRANGE is not supported".to_string(),
             ))
         }
         "IMPORTXML" => {
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMPORTXML is not supported".to_string(),
             ))
         }
         "IMTANH" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "IMTANH is not supported".to_string(),
             ))
         }
         "INTRATE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 4 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let investment = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 5 {
+                match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 || investment == 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid inputs".to_string(),
+                ));
+            }
+            let rate = (redemption - investment) / investment * (denom / days);
+            Some(CalcResult::Number(rate))
         }
         "ISBETWEEN" => {
             if args.len() < 3 || args.len() > 5 {
