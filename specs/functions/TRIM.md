@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TRIM(text)`
 
-- Examples: `=TRIM(1)` -> `0`
+- Examples:
 
   - TRIM(" a b ")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TRIM(text)`
 
-- Examples: `=TRIM(1)` -> `0`
+- Examples:
 
   - TRIM(" a b ")
 

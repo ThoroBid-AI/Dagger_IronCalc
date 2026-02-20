@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])`
 
-- Examples: `XLOOKUP(1,2,3)` -> `0`
+- Examples:
 
   - XLOOKUP("B", {"A","B","C"}, {1,2,3})
 
@@ -55,7 +55,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])`
 
-- Examples: `XLOOKUP(1,2,3)` -> `0`
+- Examples:
 
   - XLOOKUP("B", {"A","B","C"}, {1,2,3})
 

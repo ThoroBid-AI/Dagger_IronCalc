@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TBILLPRICE(settlement,maturity,discount)`
 
-- Examples: `=TBILLPRICE(1, 2, 3)` -> `0`
+- Examples:
 
   - TBILLPRICE("2026-01-01","2026-07-01",0.05)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TBILLPRICE(settlement,maturity,discount)`
 
-- Examples: `=TBILLPRICE(1, 2, 3)` -> `0`
+- Examples:
 
   - TBILLPRICE("2026-01-01","2026-07-01",0.05)
 

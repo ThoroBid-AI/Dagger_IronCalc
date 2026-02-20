@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `TIME(hour, minute, second)`
 
-- Examples: `=TIME(1,2,3)` -> `0`
+- Examples:
 
   - TIME(1,30,0)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `TIME(hour, minute, second)`
 
-- Examples: `=TIME(1,2,3)` -> `0`
+- Examples:
 
   - TIME(1,30,0)
 

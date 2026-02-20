@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end])`
 
-- Examples: `=TEXTBEFORE(1,2,3)` -> `0`
+- Examples:
 
   - TEXTBEFORE("a,b,c",",")
 
@@ -54,7 +54,6 @@ Deterministic behavior is required with explicit evaluation order.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
-- Examples: `=TEXTBEFORE(1,2,3)` -> `0`
 
 
 

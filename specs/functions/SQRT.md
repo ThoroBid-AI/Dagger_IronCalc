@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
   - `SQRT(number)`
 
-- Examples: `=SQRT(1)` -> `0`
+- Examples:
 
   - SQRT(9)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
   - `SQRT(number)`
 
-- Examples: `=SQRT(1)` -> `0`
+- Examples:
 
   - SQRT(9)
 

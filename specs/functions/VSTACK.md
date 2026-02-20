@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VSTACK(value1, value2, ...)`
 
-- Examples: `=VSTACK(1,2,3)` -> `0`
+- Examples:
 
   - VSTACK({1,2},{3,4})
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VSTACK(value1, value2, ...)`
 
-- Examples: `=VSTACK(1,2,3)` -> `0`
+- Examples:
 
   - VSTACK({1,2},{3,4})
 

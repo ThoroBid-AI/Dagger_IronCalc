@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `T(value)`
 
-- Examples: `=T(1)` -> `0`
+- Examples:
 
   - T("x")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `T(value)`
 
-- Examples: `=T(1)` -> `0`
+- Examples:
 
   - T("x")
 

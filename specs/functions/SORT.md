@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `SORT(range, sort_index, [sort_order])`
 
-- Examples: `=SORT(1, 2, 3)` -> `0`
+- Examples:
 
   - SORT({{3,1},{2,0}}, 1, TRUE)
 
@@ -55,7 +55,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `SORT(range, sort_index, [sort_order])`
 
-- Examples: `=SORT(1, 2, 3)` -> `0`
+- Examples:
 
   - SORT({{3,1},{2,0}}, 1, TRUE)
 

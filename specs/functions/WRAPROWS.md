@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `WRAPROWS(array, wrap_count, [pad_with])`
 
-- Examples: `WRAPROWS(1,2,3)` -> `0`
+- Examples:
 
   - WRAPROWS({1,2,3},2)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `WRAPROWS(array, wrap_count, [pad_with])`
 
-- Examples: `WRAPROWS(1,2,3)` -> `0`
+- Examples:
 
   - WRAPROWS({1,2,3},2)
 

@@ -23,19 +23,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes UPLUS semantics for spreadsheet formulas.
+- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
 
 - Signatures:
 
-  - `UPLUS(...)`
+  - `Not implemented for this provider per matrix metadata.`
 
-- Examples: `=UPLUS(1)` -> `0`
+- Examples: No examples captured from source page or local docs.
 
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+
+
+
+- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
 
 
 
@@ -45,15 +47,19 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/3093608
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes UPLUS semantics for spreadsheet formulas.
+- Summary: Returns a specified number, unchanged. Sample Usage UPLUS(-4) UPLUS(A2) Syntax UPLUS(value) value - The number to return. See Also
 
 - Signatures:
 
-  - `UPLUS(...)`
+  - `UPLUS(value)`
 
-- Examples: `=UPLUS(1)` -> `0`
+- Examples:
+
+  - UPLUS(-4)
+
+  - UPLUS(A2)
+
+  - UPLUS(value)
 
 - Notes: Deterministic and platform-stable behavior is required.
 

@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VAR.S(number1,...)`
 
-- Examples: `=VAR.S(1, 2)` -> `0`
+- Examples:
 
   - VAR.S({1,2,3})
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VAR.S(number1,...)`
 
-- Examples: `=VAR.S(1, 2)` -> `0`
+- Examples:
 
   - VAR.S({1,2,3})
 

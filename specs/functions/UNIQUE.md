@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `UNIQUE(range_or_array, [by_col], [exactly_once])`
 
-- Examples: `=UNIQUE(1,2,3)` -> `0`
+- Examples:
 
   - UNIQUE({1,2,1})
 
@@ -55,7 +55,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `UNIQUE(range_or_array, [by_col], [exactly_once])`
 
-- Examples: `=UNIQUE(1,2,3)` -> `0`
+- Examples:
 
   - UNIQUE({1,2,1})
 

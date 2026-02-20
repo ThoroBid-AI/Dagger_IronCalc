@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `YIELDDISC(settlement,maturity,pr,redemption,[basis])`
 
-- Examples: `YIELDDISC(1,2,3)` -> `0`
+- Examples:
 
   - YIELDDISC("2026-01-01","2027-01-01",98,100,0)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `YIELDDISC(settlement,maturity,pr,redemption,[basis])`
 
-- Examples: `YIELDDISC(1,2,3)` -> `0`
+- Examples:
 
   - YIELDDISC("2026-01-01","2027-01-01",98,100,0)
 

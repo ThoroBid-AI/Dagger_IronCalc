@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `TEXTSPLIT(text, delimiter)`
 
-- Examples: `=TEXTSPLIT(1, 2)` -> `0`
+- Examples:
 
   - TEXTSPLIT("a,b,c",",")
 
@@ -54,7 +54,6 @@ Deterministic behavior is required with explicit evaluation order.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
-- Examples: `=TEXTSPLIT(1, 2)` -> `0`
 
 
 

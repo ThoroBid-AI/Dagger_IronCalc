@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TEXT(value, format_text)`
 
-- Examples: `=TEXT(1, 2)` -> `0`
+- Examples:
 
   - TEXT(123.45,"0.00")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TEXT(value, format_text)`
 
-- Examples: `=TEXT(1, 2)` -> `0`
+- Examples:
 
   - TEXT(123.45,"0.00")
 

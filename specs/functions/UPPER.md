@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `UPPER(text)`
 
-- Examples: `=UPPER(1)` -> `0`
+- Examples:
 
   - UPPER("abc")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `UPPER(text)`
 
-- Examples: `=UPPER(1)` -> `0`
+- Examples:
 
   - UPPER("abc")
 

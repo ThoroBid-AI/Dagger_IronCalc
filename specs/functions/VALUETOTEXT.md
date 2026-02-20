@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VALUETOTEXT(...)`
 
-- Examples: `=VALUETOTEXT(1)` -> `0`
+- Examples: No examples available for this function.
 
 - Notes: Deterministic and reproducible behavior required.
 
@@ -52,7 +52,6 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
-- Examples: `=VALUETOTEXT(1)` -> `0`
 
 
 

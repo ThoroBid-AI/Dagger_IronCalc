@@ -23,19 +23,19 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/take-function-25382ff1-5da1-4f78-ab43-f33bd2e4e003
 
-- Source fetch status: failed after 4 attempts
-
 - Summary: Computes TAKE semantics for spreadsheet formulas.
 
 - Signatures:
 
-  - `TAKE(...)`
+  - `TAKE(array, rows,[columns])`
 
-- Examples: `=TAKE(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - TAKE(array, rows,[columns])
 
-- Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+- Notes: Current Channel Monthly Enterprise Channel Semi-Annual Enterprise Channel Semi-Annual Enterprise Channel (Preview) Office for Mac Returns a specified number of contiguous rows or columns from the start or end of an array.
+
+- Error behavior: - Excel returns a #CALC! error to indicate an empty array when either rows or columns is 0. - Excel returns a #NUM when array is too large.
 
 
 
@@ -49,7 +49,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Signatures: Not available for this provider.
 
-- Examples: `=TAKE(1)` -> `0`
+- Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
 

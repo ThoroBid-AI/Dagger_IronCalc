@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])`
 
-- Examples: `XMATCH(1,2,3)` -> `0`
+- Examples:
 
   - XMATCH("B", {"A","B","C"})
 
@@ -51,7 +51,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Signatures: Not available for this provider.
 
-- Examples: `XMATCH(1,2,3)` -> `0`
+- Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
 

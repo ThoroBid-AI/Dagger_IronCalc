@@ -22,7 +22,11 @@ Core trigonometric function for geometry and modeling formulas.
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
 ## Documentation (Microsoft)
 
+
+
 - Source URL: https://support.microsoft.com/en-us/office/sin-function-cf0e3432-8b9e-483c-bc55-a76651c95602
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the sine of an angle measured in radians.
 
@@ -30,28 +34,42 @@ Core trigonometric function for geometry and modeling formulas.
 
   - `SIN(number)`
 
-- Examples: `=SIN(0)` -> `0`; `=SIN(PI()/2)` -> `1`
+- Examples:
 
-- Notes: Core trigonometric function for geometry and modeling formulas.
+  - SIN(0)
 
-- Error behavior: #VALUE! when input cannot be parsed as a number.
+  - SIN(PI()
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: `SIN("abc")` -> `#VALUE!`
+
 
 
 ## Documentation (Google Sheets)
 
+
+
 - Source URL: https://support.google.com/docs/answer/3093447
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the sine of an angle measured in radians.
 
 - Signatures:
 
-  - `SIN(angle)`
+  - `SIN(number)`
 
-- Examples: `=SIN(0)` -> `0`; `=SIN(PI()/2)` -> `1`
+- Examples:
 
-- Notes: Core trigonometric function for geometry and modeling formulas.
+  - SIN(0)
 
-- Error behavior: #VALUE! when input cannot be parsed as a number.
+  - SIN(PI()
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: `SIN("abc")` -> `#VALUE!`
+
 
 
 ## Sources

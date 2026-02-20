@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TEXTJOIN(delimiter, ignore_empty, text1, ...)`
 
-- Examples: `=TEXTJOIN(1,2,3)` -> `0`
+- Examples:
 
   - TEXTJOIN(",",TRUE,"a","b")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TEXTJOIN(delimiter, ignore_empty, text1, ...)`
 
-- Examples: `=TEXTJOIN(1,2,3)` -> `0`
+- Examples:
 
   - TEXTJOIN(",",TRUE,"a","b")
 

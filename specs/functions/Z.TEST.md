@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `Z.TEST(array, x, [sigma])`
 
-- Examples: `Z.TEST(1,2,3)` -> `0`
+- Examples:
 
   - Z.TEST({1,2,3},2)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `Z.TEST(array, x, [sigma])`
 
-- Examples: `Z.TEST(1,2,3)` -> `0`
+- Examples:
 
   - Z.TEST({1,2,3},2)
 

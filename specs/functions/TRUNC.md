@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TRUNC(number, [num_digits])`
 
-- Examples: `=TRUNC(1, 2)` -> `0`
+- Examples:
 
   - TRUNC(1.9)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TRUNC(number, [num_digits])`
 
-- Examples: `=TRUNC(1, 2)` -> `0`
+- Examples:
 
   - TRUNC(1.9)
 

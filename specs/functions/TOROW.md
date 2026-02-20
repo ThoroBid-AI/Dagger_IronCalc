@@ -23,19 +23,19 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/torow-function-b90d0964-a7d9-44b7-816b-ffa5c2fe2289
 
-- Source fetch status: failed after 4 attempts
-
 - Summary: Computes TOROW semantics for spreadsheet formulas.
 
 - Signatures:
 
-  - `TOROW(...)`
+  - `TOROW(array, [ignore], [scan_by_column])`
 
-- Examples: `=TOROW(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - TOROW(array, [ignore], [scan_by_column])
 
-- Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+- Notes: Current Channel Monthly Enterprise Channel Semi-Annual Enterprise Channel Semi-Annual Enterprise Channel (Preview) Office for Mac Returns the array in a single row.
+
+- Error behavior: - Excel returns a #VALUE! when an array constant contains one or more numbers that are not a whole number. - Excel returns a #NUM when array is too large.
 
 
 
@@ -45,15 +45,23 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/13187459
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TOROW semantics for spreadsheet formulas.
+- Summary: This function transforms an array or range of cells into a single row. TOROW can scan values: By column, top to bottom By row, left to right The scan_by_column argument is a boolean value that
 
 - Signatures:
 
-  - `TOROW(...)`
+  - `TOROW(array_or_range, [ignore], [scan_by_column])`
 
-- Examples: `=TOROW(1)` -> `0`
+- Examples:
+
+  - TOROW(A1:C3)
+
+  - TOROW(A1:C3, 1, TRUE)
+
+  - TOROW(array_or_range, [ignore], [scan_by_column])
+
+  - TOROW(A1:C3, 1)
+
+  - TOROW(A1:C3, 0, TRUE)
 
 - Notes: Deterministic and platform-stable behavior is required.
 

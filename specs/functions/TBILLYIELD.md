@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TBILLYIELD(settlement,maturity,price)`
 
-- Examples: `=TBILLYIELD(1, 2, 3)` -> `0`
+- Examples:
 
   - TBILLYIELD("2026-01-01","2026-07-01",98)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TBILLYIELD(settlement,maturity,price)`
 
-- Examples: `=TBILLYIELD(1, 2, 3)` -> `0`
+- Examples:
 
   - TBILLYIELD("2026-01-01","2026-07-01",98)
 

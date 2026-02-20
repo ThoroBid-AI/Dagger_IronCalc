@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TAN(number)`
 
-- Examples: `=TAN(1)` -> `0`
+- Examples:
 
   - TAN(0)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TAN(number)`
 
-- Examples: `=TAN(1)` -> `0`
+- Examples:
 
   - TAN(0)
 

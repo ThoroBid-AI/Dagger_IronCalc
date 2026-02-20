@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TRUE()`
 
-- Examples: `=TRUE(1)` -> `0`
+- Examples:
 
   - TRUE()
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TRUE()`
 
-- Examples: `=TRUE(1)` -> `0`
+- Examples:
 
   - TRUE()
 

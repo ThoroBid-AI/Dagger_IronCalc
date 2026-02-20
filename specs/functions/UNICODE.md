@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `UNICODE(text)`
 
-- Examples: `=UNICODE(1)` -> `0`
+- Examples:
 
   - UNICODE("A")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `UNICODE(text)`
 
-- Examples: `=UNICODE(1)` -> `0`
+- Examples:
 
   - UNICODE("A")
 

@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TANH(number)`
 
-- Examples: `=TANH(1)` -> `0`
+- Examples:
 
   - TANH(0)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TANH(number)`
 
-- Examples: `=TANH(1)` -> `0`
+- Examples:
 
   - TANH(0)
 

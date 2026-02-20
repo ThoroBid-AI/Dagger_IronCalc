@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `TIMEVALUE(time_text)`
 
-- Examples: `=TIMEVALUE(1)` -> `0`
+- Examples:
 
   - TIMEVALUE("13:30")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `TIMEVALUE(time_text)`
 
-- Examples: `=TIMEVALUE(1)` -> `0`
+- Examples:
 
   - TIMEVALUE("13:30")
 

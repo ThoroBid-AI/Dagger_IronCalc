@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `WEIBULL.DIST(x, alpha, beta, cumulative)`
 
-- Examples: `WEIBULL.DIST(1,2,3)` -> `0`
+- Examples:
 
   - WEIBULL.DIST(2,1,1,TRUE)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `WEIBULL.DIST(x, alpha, beta, cumulative)`
 
-- Examples: `WEIBULL.DIST(1,2,3)` -> `0`
+- Examples:
 
   - WEIBULL.DIST(2,1,1,TRUE)
 

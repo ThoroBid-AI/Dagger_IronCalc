@@ -23,19 +23,23 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes SPLIT semantics for spreadsheet formulas.
+- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
 
 - Signatures:
 
-  - `SPLIT(...)`
+  - `Not implemented for this provider per matrix metadata.`
 
-- Examples: `=SPLIT(1)` -> `0`
+- Examples:
+
+  - split('; ')
 
 - Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
+
+
+
+- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
 
 
 
@@ -45,17 +49,17 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.google.com/docs/answer/3094136
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes SPLIT semantics for spreadsheet formulas.
+- Summary: Divides text around a specified character or string, and puts each fragment into a separate cell in the row. Examples Make a copy
 
 - Signatures:
 
-  - `SPLIT(...)`
+  - `SPLIT(text, delimiter, [split_by_each], [remove_empty_text])`
 
-- Examples: `=SPLIT(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and version-stable behavior is required.
+  - SPLIT(text, delimiter, [split_by_each], [remove_empty_text])
+
+- Notes: - Note that the character or characters to split the string around will not be contained in the result themselves.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
 

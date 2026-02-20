@@ -23,17 +23,23 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/trimrange-function-d7812248-3bc5-4c6b-901c-1afa9564f999
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TRIMRANGE semantics for spreadsheet formulas.
+- Summary: The TRIMRANGE function excludes all empty rows and/or columns from the outer edges of a range or array.​​​​​​​​​​​​​​
 
 - Signatures:
 
-  - `TRIMRANGE(...)`
+  - `TRIMRANGE(range,[trim_rows],[trim_cols])`
 
-- Examples: `=TRIMRANGE(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - TRIMRANGE(range,[trim_rows],[trim_cols])
+
+  - TRIMRANGE(A1:E10,3,3)
+
+  - TRIMRANGE(A1:E10,2,2)
+
+  - TRIMRANGE(A1:E10,1,1)
+
+- Notes: range Required: The range (or array) to be trimmed | trim_rows: Determines which rows should be trimmed 0 - None 1 - Trims leading blank rows 2 - Trims trailing blank rows 3 - Trims both leading and trailing blank rows (default) | trim_columns: Determines which columns should be trimmed 0 - None 1 - Trims leading blank columns 2 - Trims trailing blank columns 3 - Trims both leading and trailing blank columns (default) | Trim All (.:.): A1.:.E10 | TRIMRANGE(A1:E10,3,3) | Trim leading and trailing blanks
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 
@@ -52,7 +58,6 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 - Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
-- Examples: `=TRIMRANGE(1)` -> `0`
 
 
 

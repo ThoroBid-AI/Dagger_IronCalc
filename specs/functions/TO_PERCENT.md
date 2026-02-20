@@ -23,19 +23,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TO_PERCENT semantics for spreadsheet formulas.
+- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
 
 - Signatures:
 
-  - `TO_PERCENT(...)`
+  - `Not implemented for this provider per matrix metadata.`
 
-- Examples: `=TO_PERCENT(1)` -> `0`
+- Examples: No examples captured from source page or local docs.
 
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+
+
+
+- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
 
 
 
@@ -45,17 +47,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/3094284
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TO_PERCENT semantics for spreadsheet formulas.
+- Summary: Converts a provided number to a percentage. Sample Usage TO_PERCENT(A2) TO_PERCENT(0.40826) Syntax TO_PERCENT(value) value - The argument or reference to a cell to be converted
 
 - Signatures:
 
-  - `TO_PERCENT(...)`
+  - `TO_PERCENT(value)`
 
-- Examples: `=TO_PERCENT(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - TO_PERCENT(A2)
+
+  - TO_PERCENT(0.40826)
+
+  - TO_PERCENT(value)
+
+- Notes: - Because dates and percentages are both numbers, TO_PERCENT will convert dates to percentages successfully. However, these conversions are not typically meaningful. - TO_PERCENT is equivalent to clicking Format Number Percent from the menu bar.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 

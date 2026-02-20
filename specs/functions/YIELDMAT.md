@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `YIELDMAT(settlement,maturity,issue,first_coupon,rate,yield,redemption,frequency,[basis])`
 
-- Examples: `YIELDMAT(1,2,3)` -> `0`
+- Examples:
 
   - YIELDMAT("2026-01-01","2027-01-01","2025-01-01",0.5,0.05,100,100,2)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `YIELDMAT(settlement,maturity,issue,first_coupon,rate,yield,redemption,frequency,[basis])`
 
-- Examples: `YIELDMAT(1,2,3)` -> `0`
+- Examples:
 
   - YIELDMAT("2026-01-01","2027-01-01","2025-01-01",0.5,0.05,100,100,2)
 

@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TODAY()`
 
-- Examples: `=TODAY(1)` -> `0`
+- Examples:
 
   - TODAY()
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TODAY()`
 
-- Examples: `=TODAY(1)` -> `0`
+- Examples:
 
   - TODAY()
 

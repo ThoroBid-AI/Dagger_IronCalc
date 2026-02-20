@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `YIELD(settlement,maturity,rate,pr,redemption,frequency,[basis])`
 
-- Examples: `YIELD(1,2,3)` -> `0`
+- Examples:
 
   - YIELD("2026-01-01","2027-01-01",0.05,95,100,2)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `YIELD(settlement,maturity,rate,pr,redemption,frequency,[basis])`
 
-- Examples: `YIELD(1,2,3)` -> `0`
+- Examples:
 
   - YIELD("2026-01-01","2027-01-01",0.05,95,100,2)
 

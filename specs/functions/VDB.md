@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VDB(cost, salvage, life, start_period, end_period, factor, [no_switch])`
 
-- Examples: `=VDB(1,2,3)` -> `0`
+- Examples:
 
   - VDB(2400,300,10,0,1,1.5,TRUE)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VDB(cost, salvage, life, start_period, end_period, factor, [no_switch])`
 
-- Examples: `=VDB(1,2,3)` -> `0`
+- Examples:
 
   - VDB(2400,300,10,0,1,1.5,TRUE)
 

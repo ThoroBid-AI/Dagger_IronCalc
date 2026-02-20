@@ -22,7 +22,11 @@ Single-argument utility function used in branching and normalization logic.
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
 ## Documentation (Microsoft)
 
+
+
 - Source URL: https://support.microsoft.com/en-us/office/sign-function-109c932d-fcdc-4023-91f1-2dd0e916a1d8
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the sign of a numeric value: 1 if positive, 0 if zero, and -1 if negative.
 
@@ -30,28 +34,46 @@ Single-argument utility function used in branching and normalization logic.
 
   - `SIGN(number)`
 
-- Examples: `=SIGN(-7)` -> `-1`; `=SIGN(3.2)` -> `1`
+- Examples:
 
-- Notes: Single-argument utility function used in branching and normalization logic.
+  - SIGN(-7)
 
-- Error behavior: #VALUE! for text or invalid argument counts.
+  - SIGN(0)
+
+  - SIGN(7)
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: `SIGN("text")` -> `#VALUE!`
+
 
 
 ## Documentation (Google Sheets)
 
+
+
 - Source URL: https://support.google.com/docs/answer/3093513
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the sign of a numeric value: 1 if positive, 0 if zero, and -1 if negative.
 
 - Signatures:
 
-  - `SIGN(value)`
+  - `SIGN(number)`
 
-- Examples: `=SIGN(-7)` -> `-1`; `=SIGN(3.2)` -> `1`
+- Examples:
 
-- Notes: Single-argument utility function used in branching and normalization logic.
+  - SIGN(-7)
 
-- Error behavior: #VALUE! for text or invalid argument counts.
+  - SIGN(0)
+
+  - SIGN(7)
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: `SIGN("text")` -> `#VALUE!`
+
 
 
 ## Sources

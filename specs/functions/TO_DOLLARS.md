@@ -23,19 +23,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TO_DOLLARS semantics for spreadsheet formulas.
+- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
 
 - Signatures:
 
-  - `TO_DOLLARS(...)`
+  - `Not implemented for this provider per matrix metadata.`
 
-- Examples: `=TO_DOLLARS(1)` -> `0`
+- Examples: No examples captured from source page or local docs.
 
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+
+
+
+- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
 
 
 
@@ -45,17 +47,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/3094241
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TO_DOLLARS semantics for spreadsheet formulas.
+- Summary: Converts a provided number to a dollar value. Sample Usage TO_DOLLARS(A2) TO_DOLLARS(40826.43) Syntax TO_DOLLARS(value) value - The argument or reference to a cell to be convert
 
 - Signatures:
 
-  - `TO_DOLLARS(...)`
+  - `TO_DOLLARS(value)`
 
-- Examples: `=TO_DOLLARS(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - TO_DOLLARS(A2)
+
+  - TO_DOLLARS(40826.43)
+
+  - TO_DOLLARS(value)
+
+- Notes: - Because dates and percentages are backed by numbers, TO_DOLLARS will convert them successfully. However, these conversions are not typically meaningful. - TO_DOLLARS is equivalent to applying Format -> Number -> Currency from the menu bar. - TO_DOLLARS differs from the related function DOLLAR in that DOLLAR outputs text rather than applying a cell format to a number. - TO_DOLLARS does not convert from other currencies into US Dollars. Please use the GoogleFinance function to convert currencies at current exchange rates.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 

@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `WORKDAY.INTL(start_date, days, [weekend], [holidays])`
 
-- Examples: `WORKDAY.INTL(1,2,3)` -> `0`
+- Examples:
 
   - WORKDAY.INTL("2026-01-01",10,1)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `WORKDAY.INTL(start_date, days, [weekend], [holidays])`
 
-- Examples: `WORKDAY.INTL(1,2,3)` -> `0`
+- Examples:
 
   - WORKDAY.INTL("2026-01-01",10,1)
 

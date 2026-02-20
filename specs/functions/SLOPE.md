@@ -21,7 +21,11 @@ Equivalent to LINEST slope for simple linear regression.
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs`
 ## Documentation (Microsoft)
 
+
+
 - Source URL: https://support.microsoft.com/en-us/office/slope-function-11fb8f97-3117-4813-98aa-61d7e01276b9
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the slope of the linear regression line through known data points.
 
@@ -29,28 +33,42 @@ Equivalent to LINEST slope for simple linear regression.
 
   - `SLOPE(known_ys, known_xs)`
 
-- Examples: `=SLOPE({2,4,6}, {1,2,3})` -> `2`
+- Examples:
 
-- Notes: Equivalent to LINEST slope for simple linear regression.
+  - SLOPE({2,4,6}, {1,2,3})
 
-- Error behavior: #DIV/0! when x variance is zero; #N/A for size mismatches.
+  - SLOPE({5,7,9}, {1,2,3})
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: Mismatched range sizes -> `#N/A`.
+
 
 
 ## Documentation (Google Sheets)
 
+
+
 - Source URL: https://support.google.com/docs/answer/3094048
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the slope of the linear regression line through known data points.
 
 - Signatures:
 
-  - `SLOPE(known_y, known_x)`
+  - `SLOPE(known_ys, known_xs)`
 
-- Examples: `=SLOPE({2,4,6}, {1,2,3})` -> `2`
+- Examples:
 
-- Notes: Equivalent to LINEST slope for simple linear regression.
+  - SLOPE({2,4,6}, {1,2,3})
 
-- Error behavior: #DIV/0! when x variance is zero; #N/A for size mismatches.
+  - SLOPE({5,7,9}, {1,2,3})
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: Mismatched range sizes -> `#N/A`.
+
 
 
 ## Sources

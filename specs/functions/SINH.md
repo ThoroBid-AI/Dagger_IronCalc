@@ -21,7 +21,11 @@ Used in engineering and growth modeling contexts.
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs`
 ## Documentation (Microsoft)
 
+
+
 - Source URL: https://support.microsoft.com/en-us/office/sinh-function-1e4e8b9f-2b65-43fc-ab8a-0a37f4081fa7
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the hyperbolic sine of a real number.
 
@@ -29,28 +33,42 @@ Used in engineering and growth modeling contexts.
 
   - `SINH(number)`
 
-- Examples: `=SINH(0)` -> `0`; `=SINH(1)` -> `1.1752011936438`
+- Examples:
 
-- Notes: Used in engineering and growth modeling contexts.
+  - SINH(0)
 
-- Error behavior: #VALUE! when non-numeric values are supplied.
+  - SINH(1)
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: `SINH("abc")` -> `#VALUE!`
+
 
 
 ## Documentation (Google Sheets)
 
+
+
 - Source URL: https://support.google.com/docs/answer/3093517
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the hyperbolic sine of a real number.
 
 - Signatures:
 
-  - `SINH(value)`
+  - `SINH(number)`
 
-- Examples: `=SINH(0)` -> `0`; `=SINH(1)` -> `1.1752011936438`
+- Examples:
 
-- Notes: Used in engineering and growth modeling contexts.
+  - SINH(0)
 
-- Error behavior: #VALUE! when non-numeric values are supplied.
+  - SINH(1)
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: `SINH("abc")` -> `#VALUE!`
+
 
 
 ## Sources

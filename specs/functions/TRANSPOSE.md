@@ -23,15 +23,19 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/transpose-function-ed039415-ed8a-4a81-93e9-4b6dfac76027
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TRANSPOSE semantics for spreadsheet formulas.
+- Summary: How to use the TRANSPOSE function in Excel to switch or rotate cells.
 
 - Signatures:
 
-  - `TRANSPOSE(...)`
+  - `TRANSPOSE(array)`
 
-- Examples: `=TRANSPOSE(1)` -> `0`
+- Examples:
+
+  - TRANSPOSE(A1:B4)
+
+  - TRANSPOSE(array)
+
+  - Transpose (rotate)
 
 - Notes: Deterministic and platform-stable behavior is required.
 
@@ -45,17 +49,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/3094262
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes TRANSPOSE semantics for spreadsheet formulas.
+- Summary: Transposes the rows and columns of an array or range of cells. Sample Usage TRANSPOSE({1,2;3,4;5,6}) TRANSPOSE(A2:F9) Syntax TRANSPOSE(array_or_range) array_or_range - The array or rang
 
 - Signatures:
 
-  - `TRANSPOSE(...)`
+  - `TRANSPOSE(array_or_range)`
 
-- Examples: `=TRANSPOSE(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - TRANSPOSE({1,2;3,4;5,6})
+
+  - TRANSPOSE(A2:F9)
+
+  - TRANSPOSE(array_or_range)
+
+- Notes: - Transposition operates such that the value in the nth row and mth column will become the value in the mth row and nth column. E.g. the value in the fourth row and second column will be put into the second row and fourth column. The result of a transposition on a range of size m rows by n columns is therefore n rows by m columns.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 

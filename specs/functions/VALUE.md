@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VALUE(text)`
 
-- Examples: `=VALUE(1)` -> `0`
+- Examples:
 
   - VALUE("123")
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `VALUE(text)`
 
-- Examples: `=VALUE(1)` -> `0`
+- Examples:
 
   - VALUE("123")
 

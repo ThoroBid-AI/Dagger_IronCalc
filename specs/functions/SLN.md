@@ -21,7 +21,11 @@ Used for linear fixed depreciation schedules.
 - File: `/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs`
 ## Documentation (Microsoft)
 
+
+
 - Source URL: https://support.microsoft.com/en-us/office/sln-function-cdb666e5-c1c6-40a7-806a-e695edc2f1c8
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the periodic straight-line depreciation amount.
 
@@ -29,28 +33,42 @@ Used for linear fixed depreciation schedules.
 
   - `SLN(cost, salvage_value, life)`
 
-- Examples: `=SLN(30000, 0, 10)` -> `3000`
+- Examples:
 
-- Notes: Used for linear fixed depreciation schedules.
+  - SLN(30000, 0, 10)
 
-- Error behavior: #NUM! for zero/negative life; #VALUE! for invalid argument count or types.
+  - SLN(5000, 500, 5)
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: Negative or zero life -> `#NUM!`.
+
 
 
 ## Documentation (Google Sheets)
 
+
+
 - Source URL: https://support.google.com/docs/answer/3093245
+
+- Source fetch status: failed after 4 attempts
 
 - Summary: Returns the periodic straight-line depreciation amount.
 
 - Signatures:
 
-  - `SLN(cost, salvage, life)`
+  - `SLN(cost, salvage_value, life)`
 
-- Examples: `=SLN(30000, 0, 10)` -> `3000`
+- Examples:
 
-- Notes: Used for linear fixed depreciation schedules.
+  - SLN(30000, 0, 10)
 
-- Error behavior: #NUM! for zero/negative life; #VALUE! for invalid argument count or types.
+  - SLN(5000, 500, 5)
+
+- Notes: Source temporarily unavailable. Use local documentation details only.
+
+- Error behavior: Negative or zero life -> `#NUM!`.
+
 
 
 ## Sources

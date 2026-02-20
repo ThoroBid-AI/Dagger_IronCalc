@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `WORKDAY(start_date, days, [holidays])`
 
-- Examples: `WORKDAY(1,2,3)` -> `0`
+- Examples:
 
   - WORKDAY("2026-01-01",10)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
   - `WORKDAY(start_date, days, [holidays])`
 
-- Examples: `WORKDAY(1,2,3)` -> `0`
+- Examples:
 
   - WORKDAY("2026-01-01",10)
 

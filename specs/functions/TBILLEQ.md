@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TBILLEQ(settlement, maturity, discount)`
 
-- Examples: `=TBILLEQ(1, 2, 3)` -> `0`
+- Examples:
 
   - TBILLEQ("2026-01-01","2026-07-01",0.05)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `TBILLEQ(settlement, maturity, discount)`
 
-- Examples: `=TBILLEQ(1, 2, 3)` -> `0`
+- Examples:
 
   - TBILLEQ("2026-01-01","2026-07-01",0.05)
 

@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `WEBSERVICE(url)`
 
-- Examples: `WEBSERVICE(1)` -> `0`
+- Examples:
 
   - WEBSERVICE("https://...")
 
@@ -51,7 +51,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Signatures: Not available for this provider.
 
-- Examples: `WEBSERVICE(1)` -> `0`
+- Examples: Not available for this provider.
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
 

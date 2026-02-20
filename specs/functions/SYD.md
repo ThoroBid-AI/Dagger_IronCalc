@@ -31,7 +31,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `SYD(cost, salvage, life, period)`
 
-- Examples: `=SYD(1, 2, 3)` -> `0`
+- Examples:
 
   - SYD(3000,1000,10,1)
 
@@ -55,7 +55,7 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
   - `SYD(cost, salvage, life, period)`
 
-- Examples: `=SYD(1, 2, 3)` -> `0`
+- Examples:
 
   - SYD(3000,1000,10,1)
 

@@ -23,19 +23,21 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes UNARY_PERCENT semantics for spreadsheet formulas.
+- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
 
 - Signatures:
 
-  - `UNARY_PERCENT(...)`
+  - `Not implemented for this provider per matrix metadata.`
 
-- Examples: `=UNARY_PERCENT(1)` -> `0`
+- Examples: No examples captured from source page or local docs.
 
 - Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
+
+
+
+- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
 
 
 
@@ -45,17 +47,23 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/3093982
 
-- Source fetch status: failed after 4 attempts
-
-- Summary: Computes UNARY_PERCENT semantics for spreadsheet formulas.
+- Summary: Returns a value interpreted as a percentage; that is, `UNARY_PERCENT(100)` equals `1`. Sample Usage UNARY_PERCENT(A2) UNARY_PERCENT(93) Syntax UNARY_PERCENT(percentage) percentage - The
 
 - Signatures:
 
-  - `UNARY_PERCENT(...)`
+  - `UNARY_PERCENT(percentage)`
 
-- Examples: `=UNARY_PERCENT(1)` -> `0`
+- Examples:
 
-- Notes: Deterministic and platform-stable behavior is required.
+  - UNARY_PERCENT(100)
+
+  - UNARY_PERCENT(A2)
+
+  - UNARY_PERCENT(93)
+
+  - UNARY_PERCENT(percentage)
+
+- Notes: - UNARY_PERCENT is roughly equivalent to the inverse of TO_PERCENT.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 
