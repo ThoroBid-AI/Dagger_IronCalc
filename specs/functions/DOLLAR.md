@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DOLLAR(1234.567, 2)
+- Summary: Converts a number to currency-format text with a fixed decimal count.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DOLLAR(1234.567, 2)
+- Summary: Converts a number to currency-format text with a fixed decimal count.
 
 - Signatures:
 

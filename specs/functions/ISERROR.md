@@ -33,7 +33,7 @@ Returns TRUE if value is any error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISERROR(#N/A)
+- Summary: Returns TRUE if value is any error.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE if value is any error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISERROR(#N/A)
+- Summary: Returns TRUE if value is any error.
 
 - Signatures:
 

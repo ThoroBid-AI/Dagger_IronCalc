@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DOLLARDE(1,8)
+- Summary: Converts a fractional dollar price to decimal representation.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DOLLARDE(1,8)
+- Summary: Converts a fractional dollar price to decimal representation.
 
 - Signatures:
 

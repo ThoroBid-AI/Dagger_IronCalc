@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DMIN(db, "Sales", criteria)
+- Summary: Returns the minimum value in a database field matching criteria.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DMIN(db, "Sales", criteria)
+- Summary: Returns the minimum value in a database field matching criteria.
 
 - Signatures:
 

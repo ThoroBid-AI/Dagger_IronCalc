@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEGREES(PI()
+- Summary: Converts radians to degrees.
 
 - Signatures:
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEGREES(PI()
+- Summary: Converts radians to degrees.
 
 - Signatures:
 

@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DECIMAL("FF", 16)
+- Summary: Converts base-N text into decimal number.
 
 - Signatures:
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DECIMAL("FF", 16)
+- Summary: Converts base-N text into decimal number.
 
 - Signatures:
 

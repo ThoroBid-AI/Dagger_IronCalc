@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DOLLARFR(1.5,16)
+- Summary: Converts a decimal number to dollar-fractions format.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DOLLARFR(1.5,16)
+- Summary: Converts a decimal number to dollar-fractions format.
 
 - Signatures:
 

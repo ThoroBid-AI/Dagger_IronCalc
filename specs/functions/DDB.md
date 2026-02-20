@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DDB(10000,1000,5,1)
+- Summary: Returns double declining balance depreciation for period.
 
 - Signatures:
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DDB(10000,1000,5,1)
+- Summary: Returns double declining balance depreciation for period.
 
 - Signatures:
 

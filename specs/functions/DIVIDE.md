@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DIVIDE(10,4)
+- Summary: Divides one number by another.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DIVIDE(10,4)
+- Summary: Divides one number by another.
 
 - Signatures:
 

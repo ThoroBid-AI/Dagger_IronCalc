@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns the complementary error function with higher precision behavior.
 
 - Signatures:
 
@@ -51,7 +51,7 @@ Function behavior and implementation details to be added as part of batch implem
 
   - ERFC.PRECISE(1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count returns an evaluation error.
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns the complementary error function with higher precision behavior.
 
 - Signatures:
 
@@ -75,7 +75,7 @@ Function behavior and implementation details to be added as part of batch implem
 
   - ERFC.PRECISE(1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count returns an evaluation error.
 

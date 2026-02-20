@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns a date shifted by a number of months.
 
 - Signatures:
 
@@ -46,7 +46,7 @@ Implemented in IronCalc.
 
   - EDATE("1/31/2026", 2)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count returns an evaluation error.
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns a date shifted by a number of months.
 
 - Signatures:
 
@@ -70,7 +70,7 @@ Implemented in IronCalc.
 
   - EDATE("1/31/2026", 2)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count returns an evaluation error.
 

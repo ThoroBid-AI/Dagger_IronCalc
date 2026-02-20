@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DGET({"A1:A4"},"field","criteria")
+- Summary: Returns one matching value from a database-like table filtered by criteria.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DGET({"A1:A4"},"field","criteria")
+- Summary: Returns one matching value from a database-like table filtered by criteria.
 
 - Signatures:
 

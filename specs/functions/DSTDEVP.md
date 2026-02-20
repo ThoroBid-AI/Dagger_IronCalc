@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DSTDEVP(db, "Qty", criteria)
+- Summary: Returns the population standard deviation of database values matching criteria.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DSTDEVP(db, "Qty", criteria)
+- Summary: Returns the population standard deviation of database values matching criteria.
 
 - Signatures:
 

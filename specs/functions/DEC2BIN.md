@@ -34,7 +34,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEC2BIN(255, 8)
+- Summary: Converts decimal to binary text.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEC2BIN(255, 8)
+- Summary: Converts decimal to binary text.
 
 - Signatures:
 

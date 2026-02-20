@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DETECTLANGUAGE("bonjour")
+- Summary: Detects the probable language of text and returns a language code.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DETECTLANGUAGE("bonjour")
+- Summary: Detects the probable language of text and returns a language code.
 
 - Signatures:
 

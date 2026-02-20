@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns e raised to the power of a number.
 
 - Signatures:
 
@@ -46,7 +46,7 @@ Implemented in IronCalc.
 
   - EXP(1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count returns an evaluation error.
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Returns e raised to the power of a number.
 
 - Signatures:
 
@@ -70,7 +70,7 @@ Implemented in IronCalc.
 
   - EXP(1)
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid argument count returns an evaluation error.
 

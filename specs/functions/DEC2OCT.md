@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEC2OCT(8,2)
+- Summary: Converts decimal to octal text.
 
 - Signatures:
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEC2OCT(8,2)
+- Summary: Converts decimal to octal text.
 
 - Signatures:
 

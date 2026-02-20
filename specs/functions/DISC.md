@@ -41,7 +41,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DISC("01/01/2026", "01/01/2027", 95, 100, 0)
+- Summary: Returns the discount for a security at settlement and maturity.
 
 - Signatures:
 
@@ -65,7 +65,7 @@ Function behavior and implementation details to be added as part of batch implem
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DISC("01/01/2026", "01/01/2027", 95, 100, 0)
+- Summary: Returns the discount for a security at settlement and maturity.
 
 - Signatures:
 

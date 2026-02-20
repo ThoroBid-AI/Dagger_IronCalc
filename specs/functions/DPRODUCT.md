@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DPRODUCT(db, "Qty", criteria)
+- Summary: Multiplies selected database field values after applying criteria.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DPRODUCT(db, "Qty", criteria)
+- Summary: Multiplies selected database field values after applying criteria.
 
 - Signatures:
 

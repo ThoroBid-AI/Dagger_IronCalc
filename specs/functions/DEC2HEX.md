@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEC2HEX(255,2)
+- Summary: Converts decimal to hexadecimal text.
 
 - Signatures:
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEC2HEX(255,2)
+- Summary: Converts decimal to hexadecimal text.
 
 - Signatures:
 

@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEVSQ(2,4,4,4,5,5,7,9)
+- Summary: Returns the sum of squares of deviations from the mean.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DEVSQ(2,4,4,4,5,5,7,9)
+- Summary: Returns the sum of squares of deviations from the mean.
 
 - Signatures:
 

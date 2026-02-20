@@ -35,7 +35,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DELTA(10,10)
+- Summary: Returns 1 when two values equal else 0.
 
 - Signatures:
 
@@ -59,7 +59,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DELTA(10,10)
+- Summary: Returns 1 when two values equal else 0.
 
 - Signatures:
 

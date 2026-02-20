@@ -36,7 +36,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DSUM(db, "Qty", criteria)
+- Summary: Sums database field values matching criteria.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: DSUM(db, "Qty", criteria)
+- Summary: Sums database field values matching criteria.
 
 - Signatures:
 
