@@ -13,7 +13,6 @@ fn test_batch1_unsupported_functions_return_nimpl() {
         "AMORDEGRC",
         "AMORLINC",
         "AREAS",
-        "ARRAYFORMULA",
         "ARRAY_CONSTRAIN",
         "ASC",
         "AVERAGE.WEIGHTED",
@@ -61,4 +60,15 @@ fn test_betainvn_alias_to_betainv() {
 
     assert_eq!(model._get_text("A1"), *"0.5");
     assert_eq!(model._get_text("A2"), *"0.5");
+}
+
+#[test]
+fn test_arrayformula_passthrough() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ARRAYFORMULA(1+2)");
+    model._set("A2", "=ARRAYFORMULA(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"3");
+    assert_eq!(model._get_text("A2"), *"1");
 }

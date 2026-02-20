@@ -32,7 +32,7 @@ use crate::{
 
 use chrono_tz::Tz;
 
-const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 12] = [
+const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 11] = [
     "ACCRINT",
     "ACCRINTM",
     "ADDRESS",
@@ -40,7 +40,6 @@ const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 12] = [
     "AMORDEGRC",
     "AMORLINC",
     "AREAS",
-    "ARRAYFORMULA",
     "ARRAYCONSTRAIN",
     "ASC",
     "AVERAGEWEIGHTED",
@@ -195,6 +194,13 @@ impl<'a> Model<'a> {
                 }
             }
             "BETAINVN" => Some(self.fn_beta_inv(args, cell)),
+            "ARRAYFORMULA" => {
+                if args.len() != 1 {
+                    Some(CalcResult::new_args_number_error(cell))
+                } else {
+                    Some(self.evaluate_node_in_context(&args[0], cell))
+                }
+            }
             _ => None,
         }
     }
