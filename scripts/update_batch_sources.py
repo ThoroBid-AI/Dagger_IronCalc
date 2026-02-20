@@ -14,7 +14,7 @@ from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parents[1]
 MATRIX_PATH = ROOT / "specs" / "matrices" / "function_matrix_normalized.csv"
-BATCH_PATH = ROOT / "specs" / "planning" / "function_batches.csv"
+BATCH_PATH = ROOT / "specs" / "data" / "function_batches.csv"
 DOCS_DIR = ROOT / "specs" / "functions"
 REPORT = ROOT / "specs" / "reports" / "batch_source_updates.csv"
 EXCEL_INDEX = "https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188"

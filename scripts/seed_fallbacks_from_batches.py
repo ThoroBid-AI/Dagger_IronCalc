@@ -5,7 +5,7 @@ from typing import Dict, List
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BATCHES_CSV = ROOT / "specs" / "planning" / "function_batches.csv"
+BATCHES_CSV = ROOT / "specs" / "data" / "function_batches.csv"
 FALLBACKS_CSV = ROOT / "specs" / "pipelines" / "function_fallbacks.csv"
 LANGUAGE_JSON = ROOT / "base" / "src" / "language" / "language.json"
 IMPL_MAPPING_CSV = ROOT / "specs" / "reports" / "function_impl_mapping.csv"

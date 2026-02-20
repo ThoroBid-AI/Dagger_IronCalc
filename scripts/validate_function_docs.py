@@ -364,8 +364,8 @@ def load_batch_filter() -> Tuple[str, Set[str]]:
     if not batch:
         return "ALL", set()
     # Primary batching source used for operational rollups.
-    primary_batch_file = ROOT / "specs" / "planning" / "function_batches.csv"
-    fallback_batch_file = ROOT / "specs" / "planning" / "function_complexity_map.csv"
+    primary_batch_file = ROOT / "specs" / "data" / "function_batches.csv"
+    fallback_batch_file = ROOT / "specs" / "data" / "function_complexity_map.csv"
     if not primary_batch_file.exists() and not fallback_batch_file.exists():
         raise FileNotFoundError(f"Missing batch files: {primary_batch_file} and {fallback_batch_file}")
 

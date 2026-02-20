@@ -11,7 +11,7 @@ from typing import Dict, Iterable, List, Set, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
 MATRIX_PATH = ROOT / "specs" / "matrices" / "function_matrix_normalized.csv"
-BATCH_PATH = ROOT / "specs" / "planning" / "function_batches.csv"
+BATCH_PATH = ROOT / "specs" / "data" / "function_batches.csv"
 DOCS_DIR = ROOT / "specs" / "functions"
 REPORT = ROOT / "specs" / "reports" / "batch_doc_enrichment.csv"
 VALIDATION_REPORT = ROOT / "specs" / "reports" / "function_doc_validation.csv"
