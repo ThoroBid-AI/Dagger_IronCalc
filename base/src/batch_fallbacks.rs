@@ -5,6 +5,10 @@ use std::collections::HashSet;
 
 use chrono::{Datelike, DateTime, Timelike, Utc};
 
+use regex::Regex;
+
+use rand::random;
+
 use crate::{
     calc_result::CalcResult,
     constants::EXCEL_DATE_BASE,
@@ -3136,18 +3140,136 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "ODDLPRICE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 7 || args.len() > 8 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let yield_rate = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[5], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let frequency = match model.get_number_no_bools(&args[6], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if frequency <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid frequency".to_string(),
+                ));
+            }
+            let basis = if args.len() == 8 {
+                match model.get_number_no_bools(&args[7], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid dates".to_string(),
+                ));
+            }
+            let year_frac = days / denom;
+            let price = (redemption + rate * 100.0 * year_frac) / (1.0 + yield_rate * year_frac);
+            Some(CalcResult::Number(price))
         }
         "ODDLYIELD" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 7 || args.len() > 8 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let price = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[5], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let frequency = match model.get_number_no_bools(&args[6], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if frequency <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid frequency".to_string(),
+                ));
+            }
+            let basis = if args.len() == 8 {
+                match model.get_number_no_bools(&args[7], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 || price <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                        "Invalid inputs".to_string(),
+                ));
+            }
+            let year_frac = days / denom;
+            let yield_rate = (redemption + rate * 100.0 * year_frac - price) / price * (1.0 / year_frac);
+            Some(CalcResult::Number(yield_rate))
         }
         "PERCENTILE" => {
             if args.len() != 2 {
@@ -3658,13 +3780,18 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(result))
         }
         "PHONETIC" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            match model.get_string(&args[0], cell) {
+                Ok(s) => Some(CalcResult::String(s)),
+                Err(e) => Some(e),
+            }
         }
         "PIVOTBY" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4184,6 +4311,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(result))
         }
         "QUERY" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4191,11 +4321,88 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "RANDARRAY" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let rows = if args.len() >= 1 {
+                match model.get_number_no_bools(&args[0], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1.0
+            };
+            let cols = if args.len() >= 2 {
+                match model.get_number_no_bools(&args[1], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1.0
+            };
+            let min = if args.len() >= 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0.0
+            };
+            let max = if args.len() >= 4 {
+                match model.get_number_no_bools(&args[3], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1.0
+            };
+            let whole = if args.len() >= 5 {
+                match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f != 0.0,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                false
+            };
+            if rows <= 0.0 || cols <= 0.0 || rows.fract() != 0.0 || cols.fract() != 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Rows and columns must be positive integers".to_string(),
+                ));
+            }
+            if max < min {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Max must be >= min".to_string(),
+                ));
+            }
+            let rows = rows as usize;
+            let cols = cols as usize;
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for _r in 0..rows {
+                let mut row = Vec::new();
+                for _c in 0..cols {
+                    let value = if whole {
+                        let span = (max - min).floor();
+                        if span <= 0.0 {
+                            min.floor()
+                        } else {
+                            (random::<f64>() * (span + 1.0)).floor() + min.floor()
+                        }
+                    } else {
+                        if (max - min).abs() < f64::EPSILON {
+                            min
+                        } else {
+                            min + random::<f64>() * (max - min)
+                        }
+                    };
+                    row.push(ArrayNode::Number(value));
+                }
+                out.push(row);
+            }
+            Some(CalcResult::Array(out))
         }
         "RANK" => {
             if args.len() < 2 || args.len() > 3 {
@@ -4326,6 +4533,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(received))
         }
         "REDUCE" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4333,27 +4543,108 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "REGEXEXTRACT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let pattern = match model.get_string(&args[1], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let re = match Regex::new(&pattern) {
+                Ok(r) => r,
+                Err(_) => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid regular expression".to_string(),
+                    ));
+                }
+            };
+            let caps = match re.captures(&text) {
+                Some(c) => c,
+                None => {
+                    return Some(CalcResult::new_error(
+                        Error::NA,
+                        cell,
+                        "No match".to_string(),
+                    ));
+                }
+            };
+            let value = if caps.len() > 1 {
+                caps.get(1).map(|m| m.as_str().to_string())
+            } else {
+                caps.get(0).map(|m| m.as_str().to_string())
+            };
+            match value {
+                Some(s) => Some(CalcResult::String(s)),
+                None => Some(CalcResult::new_error(
+                    Error::NA,
+                    cell,
+                    "No match".to_string(),
+                )),
+            }
         }
         "REGEXMATCH" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let pattern = match model.get_string(&args[1], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let re = match Regex::new(&pattern) {
+                Ok(r) => r,
+                Err(_) => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid regular expression".to_string(),
+                    ));
+                }
+            };
+            Some(CalcResult::Boolean(re.is_match(&text)))
         }
         "REGEXREPLACE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let pattern = match model.get_string(&args[1], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let replacement = match model.get_string(&args[2], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let re = match Regex::new(&pattern) {
+                Ok(r) => r,
+                Err(_) => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid regular expression".to_string(),
+                    ));
+                }
+            };
+            let out = re.replace_all(&text, replacement.as_str()).to_string();
+            Some(CalcResult::String(out))
         }
         "REGISTERID" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4436,6 +4727,9 @@ pub(crate) fn evaluate_batch_fallback(
         }
         "RIGHTB" => Some(model.fn_right(args, cell)),
         "RTD" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4443,6 +4737,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "SCAN" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4791,6 +5088,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "SPARKLINE" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4837,6 +5137,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(vec![row]))
         }
         "STOCKHISTORY" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -4976,11 +5279,88 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "TEXTSPLIT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 6 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let col_delim = match model.get_string(&args[1], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            if col_delim.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Column delimiter cannot be empty".to_string(),
+                ));
+            }
+            let row_delim = if args.len() >= 3 {
+                match model.get_string(&args[2], cell) {
+                    Ok(s) => s,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                String::new()
+            };
+            let ignore_empty = if args.len() >= 4 {
+                match model.get_number_no_bools(&args[3], cell) {
+                    Ok(f) => f != 0.0,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                false
+            };
+            if args.len() >= 5 {
+                let _match_mode = match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                };
+            }
+            let pad_with = if args.len() >= 6 {
+                match model.get_string(&args[5], cell) {
+                    Ok(s) => s,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                String::new()
+            };
+            let rows: Vec<String> = if row_delim.is_empty() {
+                vec![text]
+            } else {
+                text.split(&row_delim).map(|s| s.to_string()).collect()
+            };
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            let mut max_cols = 0usize;
+            for row_text in rows {
+                if ignore_empty && row_text.is_empty() {
+                    continue;
+                }
+                let mut row: Vec<ArrayNode> = Vec::new();
+                for part in row_text.split(&col_delim) {
+                    if ignore_empty && part.is_empty() {
+                        continue;
+                    }
+                    row.push(ArrayNode::String(part.to_string()));
+                }
+                if row.is_empty() {
+                    row.push(ArrayNode::String(String::new()));
+                }
+                max_cols = usize::max(max_cols, row.len());
+                out.push(row);
+            }
+            if out.is_empty() {
+                out.push(vec![ArrayNode::String(String::new())]);
+            } else {
+                for row in &mut out {
+                    while row.len() < max_cols {
+                        row.push(ArrayNode::String(pad_with.clone()));
+                    }
+                }
+            }
+            Some(CalcResult::Array(out))
         }
         "TOCOL" => {
             if args.is_empty() || args.len() > 3 {
@@ -5315,11 +5695,74 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(mean))
         }
         "TRIMRANGE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            if array.is_empty() {
+                return Some(CalcResult::Array(array));
+            }
+            let cols = array.first().map(|r| r.len()).unwrap_or(0);
+            for row in &array {
+                if row.len() != cols {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged array".to_string(),
+                    ));
+                }
+            }
+            let is_empty = |node: &ArrayNode| matches!(node, ArrayNode::String(s) if s.is_empty());
+            let mut top: Option<usize> = None;
+            let mut bottom: Option<usize> = None;
+            for (idx, row) in array.iter().enumerate() {
+                if row.iter().any(|n| !is_empty(n)) {
+                    top = Some(idx);
+                    break;
+                }
+            }
+            for (idx, row) in array.iter().enumerate().rev() {
+                if row.iter().any(|n| !is_empty(n)) {
+                    bottom = Some(idx);
+                    break;
+                }
+            }
+            let (top, bottom) = match (top, bottom) {
+                (Some(t), Some(b)) => (t, b),
+                _ => {
+                    return Some(CalcResult::Array(vec![vec![ArrayNode::String(String::new())]]));
+                }
+            };
+            let mut left = cols;
+            let mut right = 0usize;
+            for row in &array[top..=bottom] {
+                for (c, node) in row.iter().enumerate() {
+                    if !is_empty(node) {
+                        if c < left {
+                            left = c;
+                        }
+                        if c > right {
+                            right = c;
+                        }
+                    }
+                }
+            }
+            if left >= cols {
+                return Some(CalcResult::Array(vec![vec![ArrayNode::String(String::new())]]));
+            }
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for row in array.into_iter().skip(top).take(bottom - top + 1) {
+                let mut out_row = Vec::new();
+                for node in row.into_iter().skip(left).take(right - left + 1) {
+                    out_row.push(node);
+                }
+                out.push(out_row);
+            }
+            Some(CalcResult::Array(out))
         }
         "UMINUS" => {
             if args.len() != 1 {
@@ -5480,11 +5923,96 @@ pub(crate) fn evaluate_batch_fallback(
             }
         }
         "VDB" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 5 || args.len() > 7 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let cost = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let salvage = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let life = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let start = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let end = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let factor = if args.len() >= 6 {
+                match model.get_number_no_bools(&args[5], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                2.0
+            };
+            if args.len() == 7 {
+                let _no_switch = match model.get_number_no_bools(&args[6], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                };
+            }
+            if cost < 0.0 || salvage < 0.0 || life <= 0.0 || factor <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid inputs".to_string(),
+                ));
+            }
+            if start < 0.0 || end < 0.0 || end < start {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid period range".to_string(),
+                ));
+            }
+            if start.fract() != 0.0 || end.fract() != 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Periods must be integers".to_string(),
+                ));
+            }
+            if end == start {
+                return Some(CalcResult::Number(0.0));
+            }
+            if end > life {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "End period exceeds life".to_string(),
+                ));
+            }
+            let mut rate = factor / life;
+            if rate > 1.0 {
+                rate = 1.0;
+            }
+            let mut total = 0.0;
+            let start_i = start as i32;
+            let end_i = end as i32;
+            for period in (start_i + 1)..=end_i {
+                let value = if rate == 1.0 {
+                    if period == 1 {
+                        cost
+                    } else {
+                        0.0
+                    }
+                } else {
+                    cost * (1.0 - rate).powf((period - 1) as f64)
+                };
+                let new_value = cost * (1.0 - rate).powf(period as f64);
+                let depreciation = f64::max(value - f64::max(salvage, new_value), 0.0);
+                total += depreciation;
+            }
+            Some(CalcResult::Number(total))
         }
         "VSTACK" => {
             if args.is_empty() {
@@ -5521,6 +6049,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "WEBSERVICE" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,

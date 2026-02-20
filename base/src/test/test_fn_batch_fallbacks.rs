@@ -1333,19 +1333,19 @@ fn test_batch_fallback_oddfyield() {
 #[test]
 fn test_batch_fallback_oddlprice() {
     let mut model = new_empty_model();
-    model._set("A1", "=ODDLPRICE(1)");
+    model._set("A1", "=ODDLPRICE(0,360,300,0.1,0.1,100,1,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"100");
 }
 
 #[test]
 fn test_batch_fallback_oddlyield() {
     let mut model = new_empty_model();
-    model._set("A1", "=ODDLYIELD(1)");
+    model._set("A1", "=ODDLYIELD(0,360,300,0.1,100,100,1,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.1");
 }
 
 #[test]
@@ -1423,10 +1423,10 @@ fn test_batch_fallback_permutationa() {
 #[test]
 fn test_batch_fallback_phonetic() {
     let mut model = new_empty_model();
-    model._set("A1", "=PHONETIC(1)");
+    model._set("A1", "=PHONETIC(\"abc\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"abc");
 }
 
 #[test]
@@ -1549,10 +1549,10 @@ fn test_batch_fallback_query() {
 #[test]
 fn test_batch_fallback_randarray() {
     let mut model = new_empty_model();
-    model._set("A1", "=RANDARRAY(1)");
+    model._set("A1", "=SUM(RANDARRAY(2,2,5,5,1))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"20");
 }
 
 #[test]
@@ -1585,28 +1585,28 @@ fn test_batch_fallback_reduce() {
 #[test]
 fn test_batch_fallback_regexextract() {
     let mut model = new_empty_model();
-    model._set("A1", "=REGEXEXTRACT(1)");
+    model._set("A1", "=REGEXEXTRACT(\"abc123\",\"[0-9]+\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"123");
 }
 
 #[test]
 fn test_batch_fallback_regexmatch() {
     let mut model = new_empty_model();
-    model._set("A1", "=REGEXMATCH(1)");
+    model._set("A1", "=REGEXMATCH(\"abc123\",\"[0-9]+\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
 }
 
 #[test]
 fn test_batch_fallback_regexreplace() {
     let mut model = new_empty_model();
-    model._set("A1", "=REGEXREPLACE(1)");
+    model._set("A1", "=REGEXREPLACE(\"abc123\",\"[0-9]+\",\"\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"abc");
 }
 
 #[test]
@@ -1774,10 +1774,10 @@ fn test_batch_fallback_take_extra() {
 #[test]
 fn test_batch_fallback_textsplit() {
     let mut model = new_empty_model();
-    model._set("A1", "=TEXTSPLIT(1)");
+    model._set("A1", "=SUMPRODUCT(TEXTSPLIT(\"1,2\",\",\"))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]
@@ -1873,10 +1873,10 @@ fn test_batch_fallback_trimmean() {
 #[test]
 fn test_batch_fallback_trimrange() {
     let mut model = new_empty_model();
-    model._set("A1", "=TRIMRANGE(1)");
+    model._set("A1", "=SUM(TAKE(TRIMRANGE({\"\",1;\"\",2}),1,1))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"1");
 }
 
 #[test]
@@ -1954,10 +1954,10 @@ fn test_batch_fallback_uplus_extra() {
 #[test]
 fn test_batch_fallback_vdb() {
     let mut model = new_empty_model();
-    model._set("A1", "=VDB(1)");
+    model._set("A1", "=VDB(1000,0,5,0,1,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"400");
 }
 
 #[test]

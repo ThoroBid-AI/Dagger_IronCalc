@@ -82,6 +82,10 @@ $ python -m http.server
 
 And visit <http://0.0.0.0:8000/ironcalc/>
 
+# Compatibility Notes
+
+See `specs/unsupported_functions.md` for functions that currently return `#N/IMPL!` and the rationale for deferring their implementation.
+
 # Simple example
 
 Add the dependency to `Cargo.toml`:
