@@ -8,7 +8,6 @@ fn test_batch1_unsupported_functions_return_nimpl() {
     let functions = [
         "ACCRINT",
         "ACCRINTM",
-        "ADD",
         "ADDRESS",
         "AGGREGATE",
         "AMORDEGRC",
@@ -41,4 +40,15 @@ fn test_unknown_function_returns_name_error() {
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#NAME?");
+}
+
+#[test]
+fn test_add_fallback_uses_sum() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ADD(1,2,3)");
+    model._set("A2", "=ADD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"6");
+    assert_eq!(model._get_text("A2"), *"#ERROR!");
 }

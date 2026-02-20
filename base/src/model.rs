@@ -32,10 +32,9 @@ use crate::{
 
 use chrono_tz::Tz;
 
-const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 14] = [
+const NORMALIZED_BATCH1_UNIMPLEMENTED_FUNCTIONS: [&str; 13] = [
     "ACCRINT",
     "ACCRINTM",
-    "ADD",
     "ADDRESS",
     "AGGREGATE",
     "AMORDEGRC",
@@ -182,6 +181,24 @@ pub struct CellIndex {
 }
 
 impl<'a> Model<'a> {
+    fn evaluate_batch1_fallback(
+        &mut self,
+        name: &str,
+        args: &[Node],
+        cell: CellReferenceIndex,
+    ) -> Option<CalcResult> {
+        match normalize_function_name_for_batch1(name).as_str() {
+            "ADD" => {
+                if args.len() < 2 {
+                    Some(CalcResult::new_args_number_error(cell))
+                } else {
+                    Some(self.fn_sum(args, cell))
+                }
+            }
+            _ => None,
+        }
+    }
+
     pub(crate) fn evaluate_node_with_reference(
         &mut self,
         node: &Node,
@@ -432,7 +449,10 @@ impl<'a> Model<'a> {
                 self.handle_arithmetic(left, right, cell, &|f1, f2| Ok(f1.powf(f2)))
             }
             FunctionKind { kind, args } => self.evaluate_function(kind, args, cell),
-            InvalidFunctionKind { name, args: _ } => {
+            InvalidFunctionKind { name, args } => {
+                if let Some(result) = self.evaluate_batch1_fallback(name, args, cell) {
+                    return result;
+                }
                 if is_batch1_unsupported_function(name) {
                     CalcResult::new_error(
                         Error::NIMPL,
