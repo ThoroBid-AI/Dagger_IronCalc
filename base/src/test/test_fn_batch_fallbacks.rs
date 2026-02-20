@@ -1459,28 +1459,28 @@ fn test_batch_fallback_pow_extra() {
 #[test]
 fn test_batch_fallback_price() {
     let mut model = new_empty_model();
-    model._set("A1", "=PRICE(1)");
+    model._set("A1", "=PRICE(0,360,0.1,0.1,100,1,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"100");
 }
 
 #[test]
 fn test_batch_fallback_pricedisc() {
     let mut model = new_empty_model();
-    model._set("A1", "=PRICEDISC(1)");
+    model._set("A1", "=PRICEDISC(0,360,0.2,100,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"80");
 }
 
 #[test]
 fn test_batch_fallback_pricemat() {
     let mut model = new_empty_model();
-    model._set("A1", "=PRICEMAT(1)");
+    model._set("A1", "=PRICEMAT(0,360,0,0.1,0.1,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"100");
 }
 
 #[test]
@@ -1567,10 +1567,10 @@ fn test_batch_fallback_rank() {
 #[test]
 fn test_batch_fallback_received() {
     let mut model = new_empty_model();
-    model._set("A1", "=RECEIVED(1)");
+    model._set("A1", "=RECEIVED(0,360,80,0.2,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"100");
 }
 
 #[test]
@@ -2017,26 +2017,26 @@ fn test_batch_fallback_xmatch() {
 #[test]
 fn test_batch_fallback_yield() {
     let mut model = new_empty_model();
-    model._set("A1", "=YIELD(1)");
+    model._set("A1", "=YIELD(0,360,0.1,100,100,1,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.1");
 }
 
 #[test]
 fn test_batch_fallback_yielddisc() {
     let mut model = new_empty_model();
-    model._set("A1", "=YIELDDISC(1)");
+    model._set("A1", "=YIELDDISC(0,360,80,100,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.25");
 }
 
 #[test]
 fn test_batch_fallback_yieldmat() {
     let mut model = new_empty_model();
-    model._set("A1", "=YIELDMAT(1)");
+    model._set("A1", "=YIELDMAT(0,360,0,0.1,100,0)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.1");
 }

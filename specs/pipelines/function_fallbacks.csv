@@ -382,9 +382,9 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 10,POW,pow_basic,,,,A1,"=POW(2,3)",8,,A2,"=POW(9,0.5)",3,,no,,
 10,POWER,implemented,,,,,,,,,,,,yes,fn_power,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 10,PPMT,implemented,,,,,,,,,,,,yes,fn_ppmt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
-10,PRICE,unsupported_nimpl,,,,A1,=PRICE(1),#N/IMPL!,,,,,,no,,
-10,PRICEDISC,unsupported_nimpl,,,,A1,=PRICEDISC(1),#N/IMPL!,,,,,,no,,
-10,PRICEMAT,unsupported_nimpl,,,,A1,=PRICEMAT(1),#N/IMPL!,,,,,,no,,
+10,PRICE,price_basic,,,,A1,"=PRICE(0,360,0.1,0.1,100,1,0)",100,,,,,,no,,
+10,PRICEDISC,pricedisc_basic,,,,A1,"=PRICEDISC(0,360,0.2,100,0)",80,,,,,,no,,
+10,PRICEMAT,pricemat_basic,,,,A1,"=PRICEMAT(0,360,0,0.1,0.1,0)",100,,,,,,no,,
 10,PROB,prob_basic,,,,A1,"=PROB({1,2,3},{0.2,0.5,0.3},1,2)",0.7,,,,,,no,,
 10,PRODUCT,implemented,,,,,,,,,,,,yes,fn_product,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 10,PROPER,proper_basic,,,,A1,"=PROPER(""hello world"")",Hello World,,A2,"=PROPER(""mIxEd"")",Mixed,,no,,
@@ -402,7 +402,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 11,RANK.AVG,implemented,,,,,,,,,,,,yes,fn_rank_avg,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/rank_eq_avg.rs
 11,RANK.EQ,implemented,,,,,,,,,,,,yes,fn_rank_eq,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/rank_eq_avg.rs
 11,RATE,implemented,,,,,,,,,,,,yes,fn_rate,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
-11,RECEIVED,unsupported_nimpl,,,,A1,=RECEIVED(1),#N/IMPL!,,,,,,no,,
+11,RECEIVED,received_basic,,,,A1,"=RECEIVED(0,360,80,0.2,0)",100,,,,,,no,,
 11,REDUCE,unsupported_nimpl,,,,A1,=REDUCE(1),#N/IMPL!,,,,,,no,,
 11,REGEXEXTRACT,unsupported_nimpl,,,,A1,=REGEXEXTRACT(1),#N/IMPL!,,,,,,no,,
 11,REGEXMATCH,unsupported_nimpl,,,,A1,=REGEXMATCH(1),#N/IMPL!,,,,,,no,,
@@ -534,7 +534,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 14,XOR,implemented,,,,,,,,,,,,yes,fn_xor,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
 14,YEAR,implemented,,,,,,,,,,,,yes,fn_year,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 14,YEARFRAC,implemented,,,,,,,,,,,,yes,fn_yearfrac,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
-14,YIELD,unsupported_nimpl,,,,A1,=YIELD(1),#N/IMPL!,,,,,,no,,
-14,YIELDDISC,unsupported_nimpl,,,,A1,=YIELDDISC(1),#N/IMPL!,,,,,,no,,
-14,YIELDMAT,unsupported_nimpl,,,,A1,=YIELDMAT(1),#N/IMPL!,,,,,,no,,
+14,YIELD,yield_basic,,,,A1,"=YIELD(0,360,0.1,100,100,1,0)",0.1,,,,,,no,,
+14,YIELDDISC,yielddisc_basic,,,,A1,"=YIELDDISC(0,360,80,100,0)",0.25,,,,,,no,,
+14,YIELDMAT,yieldmat_basic,,,,A1,"=YIELDMAT(0,360,0,0.1,100,0)",0.1,,,,,,no,,
 14,Z.TEST,implemented,,,,,,,,,,,,yes,fn_z_test,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/z_test.rs

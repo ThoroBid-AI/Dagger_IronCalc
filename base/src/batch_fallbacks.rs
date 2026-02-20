@@ -3678,25 +3678,175 @@ pub(crate) fn evaluate_batch_fallback(
             Some(model.handle_arithmetic(&args[0], &args[1], cell, &|f1, f2| Ok(f1.powf(f2))))
         }
         "PRICE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 6 || args.len() > 7 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let yield_rate = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let frequency = match model.get_number_no_bools(&args[5], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if frequency <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid frequency".to_string(),
+                ));
+            }
+            let basis = if args.len() == 7 {
+                match model.get_number_no_bools(&args[6], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid dates".to_string(),
+                ));
+            }
+            let year_frac = days / denom;
+            let price = (redemption + rate * 100.0 * year_frac) / (1.0 + yield_rate * year_frac);
+            Some(CalcResult::Number(price))
         }
         "PRICEDISC" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 4 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let discount = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 5 {
+                match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid dates".to_string(),
+                ));
+            }
+            let price = redemption - discount * redemption * days / denom;
+            Some(CalcResult::Number(price))
         }
         "PRICEMAT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 5 || args.len() > 6 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let _issue = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let yield_rate = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 6 {
+                match model.get_number_no_bools(&args[5], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                        "Invalid dates".to_string(),
+                ));
+            }
+            let year_frac = days / denom;
+            let price = 100.0 * (1.0 + rate * year_frac) / (1.0 + yield_rate * year_frac);
+            Some(CalcResult::Number(price))
         }
         "PROB" => {
             if args.len() < 3 || args.len() > 4 {
@@ -4118,11 +4268,62 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(rank as f64))
         }
         "RECEIVED" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 4 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let investment = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let discount = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 5 {
+                match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid dates".to_string(),
+                ));
+            }
+            let denom_factor = 1.0 - discount * days / denom;
+            if denom_factor <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid discount".to_string(),
+                ));
+            }
+            let received = investment / denom_factor;
+            Some(CalcResult::Number(received))
         }
         "REDUCE" => {
             Some(CalcResult::new_error(
@@ -5094,25 +5295,175 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "YIELD" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 6 || args.len() > 7 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let price = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let frequency = match model.get_number_no_bools(&args[5], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if frequency <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid frequency".to_string(),
+                ));
+            }
+            let basis = if args.len() == 7 {
+                match model.get_number_no_bools(&args[6], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 || price <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid inputs".to_string(),
+                ));
+            }
+            let year_frac = days / denom;
+            let yield_rate = (redemption + rate * 100.0 * year_frac - price) / price * (1.0 / year_frac);
+            Some(CalcResult::Number(yield_rate))
         }
         "YIELDDISC" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 4 || args.len() > 5 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let price = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let redemption = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 5 {
+                match model.get_number_no_bools(&args[4], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 || price <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Invalid inputs".to_string(),
+                ));
+            }
+            let yield_rate = (redemption - price) / price * (denom / days);
+            Some(CalcResult::Number(yield_rate))
         }
         "YIELDMAT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 5 || args.len() > 6 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let settlement = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let maturity = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let _issue = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let rate = match model.get_number_no_bools(&args[3], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let price = match model.get_number_no_bools(&args[4], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let basis = if args.len() == 6 {
+                match model.get_number_no_bools(&args[5], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let denom = match basis {
+                0 | 2 | 4 => 360.0,
+                1 | 3 => 365.0,
+                _ => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid basis".to_string(),
+                    ))
+                }
+            };
+            let days = maturity - settlement;
+            if days <= 0.0 || price <= 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                        "Invalid inputs".to_string(),
+                ));
+            }
+            let year_frac = days / denom;
+            let yield_rate = ((100.0 + rate * 100.0 * year_frac) / price - 1.0) * (1.0 / year_frac);
+            Some(CalcResult::Number(yield_rate))
         }
         _ => None,
     }
