@@ -322,7 +322,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 9,MIN,implemented,,,,,,,,,,,,yes,fn_min,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 9,MINA,implemented,,,,,,,,,,,,yes,fn_mina,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
 9,MINIFS,implemented,,,,,,,,,,,,yes,fn_minifs,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/if_ifs.rs
-9,MINUS,unsupported_nimpl,,,,A1,=MINUS(1),#N/IMPL!,,,,,,no,,
+9,MINUS,minus_basic,,,,A1,"=MINUS(5,3)",2,,A2,"=MINUS(3,5)",-2,,no,,
 9,MINUTE,implemented,,,,,,,,,,,,yes,fn_minute,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 9,MINVERSE,unsupported_nimpl,,,,A1,=MINVERSE(1),#N/IMPL!,,,,,,no,,
 9,MIRR,implemented,,,,,,,,,,,,yes,fn_mirr,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
@@ -334,7 +334,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 9,MONTH,implemented,,,,,,,,,,,,yes,fn_month,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
 9,MROUND,implemented,,,,,,,,,,,,yes,fn_mround,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 9,MULTINOMIAL,unsupported_nimpl,,,,A1,=MULTINOMIAL(1),#N/IMPL!,,,,,,no,,
-9,MULTIPLY,unsupported_nimpl,,,,A1,=MULTIPLY(1),#N/IMPL!,,,,,,no,,
+9,MULTIPLY,multiply_basic,,,,A1,"=MULTIPLY(2,3)",6,,A2,"=MULTIPLY(-2,3)",-6,,no,,
 9,MUNIT,unsupported_nimpl,,,,A1,=MUNIT(1),#N/IMPL!,,,,,,no,,
 9,N,implemented,,,,,,,,,,,,yes,fn_n,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 9,NA,implemented,,,,,,,,,,,,yes,<inline>,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mod.rs
@@ -379,7 +379,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 10,PIVOTBY,unsupported_nimpl,,,,A1,=PIVOTBY(1),#N/IMPL!,,,,,,no,,
 10,PMT,implemented,,,,,,,,,,,,yes,fn_pmt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 10,POISSON.DIST,implemented,,,,,,,,,,,,yes,fn_poisson_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/poisson.rs
-10,POW,unsupported_nimpl,,,,A1,=POW(1),#N/IMPL!,,,,,,no,,
+10,POW,pow_basic,,,,A1,"=POW(2,3)",8,,A2,"=POW(9,0.5)",3,,no,,
 10,POWER,implemented,,,,,,,,,,,,yes,fn_power,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 10,PPMT,implemented,,,,,,,,,,,,yes,fn_ppmt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 10,PRICE,unsupported_nimpl,,,,A1,=PRICE(1),#N/IMPL!,,,,,,no,,
@@ -503,12 +503,12 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 13,TRUNC,implemented,,,,,,,,,,,,yes,fn_trunc,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 13,TTEST,implemented,,,,,,,,,,,,yes,fn_t_test,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/t_dist.rs
 13,TYPE,implemented,,,,,,,,,,,,yes,fn_type,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-13,UMINUS,unsupported_nimpl,,,,A1,=UMINUS(1),#N/IMPL!,,,,,,no,,
-13,UNARY_PERCENT,unsupported_nimpl,,,,A1,=UNARY_PERCENT(1),#N/IMPL!,,,,,,no,,
+13,UMINUS,uminus_basic,,,,A1,=UMINUS(3),-3,,A2,=UMINUS(-2),2,,no,,
+13,UNARY_PERCENT,unary_percent_basic,,,,A1,=UNARY_PERCENT(50),0.5,,A2,=UNARY_PERCENT(1),0.01,,no,,
 13,UNICHAR,unsupported_nimpl,,,,A1,=UNICHAR(1),#N/IMPL!,,,,,,no,,
 13,UNICODE,implemented,,,,,,,,,,,,yes,fn_unicode,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
 13,UNIQUE,unsupported_nimpl,,,,A1,=UNIQUE(1),#N/IMPL!,,,,,,no,,
-13,UPLUS,unsupported_nimpl,,,,A1,=UPLUS(1),#N/IMPL!,,,,,,no,,
+13,UPLUS,uplus_basic,,,,A1,=UPLUS(-3),-3,,A2,=UPLUS(0),0,,no,,
 13,UPPER,implemented,,,,,,,,,,,,yes,fn_upper,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
 13,VALUE,implemented,,,,,,,,,,,,yes,fn_value,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
 13,VALUETOTEXT,implemented,,,,,,,,,,,,yes,fn_valuetotext,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs

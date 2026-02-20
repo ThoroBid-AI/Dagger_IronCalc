@@ -1083,10 +1083,19 @@ fn test_batch_fallback_midb() {
 #[test]
 fn test_batch_fallback_minus() {
     let mut model = new_empty_model();
-    model._set("A1", "=MINUS(1)");
+    model._set("A1", "=MINUS(5,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
+}
+
+#[test]
+fn test_batch_fallback_minus_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=MINUS(3,5)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"-2");
 }
 
 #[test]
@@ -1146,10 +1155,19 @@ fn test_batch_fallback_multinomial() {
 #[test]
 fn test_batch_fallback_multiply() {
     let mut model = new_empty_model();
-    model._set("A1", "=MULTIPLY(1)");
+    model._set("A1", "=MULTIPLY(2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"6");
+}
+
+#[test]
+fn test_batch_fallback_multiply_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=MULTIPLY(-2,3)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"-6");
 }
 
 #[test]
@@ -1317,10 +1335,19 @@ fn test_batch_fallback_pivotby() {
 #[test]
 fn test_batch_fallback_pow() {
     let mut model = new_empty_model();
-    model._set("A1", "=POW(1)");
+    model._set("A1", "=POW(2,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"8");
+}
+
+#[test]
+fn test_batch_fallback_pow_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=POW(9,0.5)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"3");
 }
 
 #[test]
@@ -1731,19 +1758,37 @@ fn test_batch_fallback_trimrange() {
 #[test]
 fn test_batch_fallback_uminus() {
     let mut model = new_empty_model();
-    model._set("A1", "=UMINUS(1)");
+    model._set("A1", "=UMINUS(3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"-3");
+}
+
+#[test]
+fn test_batch_fallback_uminus_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=UMINUS(-2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_unary_percent() {
     let mut model = new_empty_model();
-    model._set("A1", "=UNARY_PERCENT(1)");
+    model._set("A1", "=UNARY_PERCENT(50)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"0.5");
+}
+
+#[test]
+fn test_batch_fallback_unary_percent_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=UNARY_PERCENT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"0.01");
 }
 
 #[test]
@@ -1767,10 +1812,19 @@ fn test_batch_fallback_unique() {
 #[test]
 fn test_batch_fallback_uplus() {
     let mut model = new_empty_model();
-    model._set("A1", "=UPLUS(1)");
+    model._set("A1", "=UPLUS(-3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"-3");
+}
+
+#[test]
+fn test_batch_fallback_uplus_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=UPLUS(0)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"0");
 }
 
 #[test]

@@ -1330,11 +1330,10 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MINUS" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            Some(model.handle_arithmetic(&args[0], &args[1], cell, &|f1, f2| Ok(f1 - f2)))
         }
         "MINVERSE" => {
             Some(CalcResult::new_error(
@@ -1379,11 +1378,10 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MULTIPLY" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            Some(model.handle_arithmetic(&args[0], &args[1], cell, &|f1, f2| Ok(f1 * f2)))
         }
         "MUNIT" => {
             Some(CalcResult::new_error(
@@ -1512,11 +1510,10 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "POW" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            Some(model.handle_arithmetic(&args[0], &args[1], cell, &|f1, f2| Ok(f1.powf(f2))))
         }
         "PRICE" => {
             Some(CalcResult::new_error(
@@ -1834,18 +1831,68 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "UMINUS" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match value {
+                NumberOrArray::Number(f) => Some(CalcResult::Number(-f)),
+                NumberOrArray::Array(array) => {
+                    let mut out = Vec::new();
+                    for row in array {
+                        let mut out_row = Vec::new();
+                        for node in row {
+                            let mapped = match node {
+                                ArrayNode::Number(f) => ArrayNode::Number(-f),
+                                ArrayNode::Boolean(b) => ArrayNode::Number(if b { -1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => ArrayNode::Number(-f),
+                                    None => ArrayNode::Error(Error::VALUE),
+                                },
+                                ArrayNode::Error(e) => ArrayNode::Error(e),
+                            };
+                            out_row.push(mapped);
+                        }
+                        out.push(out_row);
+                    }
+                    Some(CalcResult::Array(out))
+                }
+            }
         }
         "UNARYPERCENT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match value {
+                NumberOrArray::Number(f) => Some(CalcResult::Number(f / 100.0)),
+                NumberOrArray::Array(array) => {
+                    let mut out = Vec::new();
+                    for row in array {
+                        let mut out_row = Vec::new();
+                        for node in row {
+                            let mapped = match node {
+                                ArrayNode::Number(f) => ArrayNode::Number(f / 100.0),
+                                ArrayNode::Boolean(b) => ArrayNode::Number(if b { 0.01 } else { 0.0 }),
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => ArrayNode::Number(f / 100.0),
+                                    None => ArrayNode::Error(Error::VALUE),
+                                },
+                                ArrayNode::Error(e) => ArrayNode::Error(e),
+                            };
+                            out_row.push(mapped);
+                        }
+                        out.push(out_row);
+                    }
+                    Some(CalcResult::Array(out))
+                }
+            }
         }
         "UNICHAR" => {
             Some(CalcResult::new_error(
@@ -1862,11 +1909,36 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "UPLUS" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match value {
+                NumberOrArray::Number(f) => Some(CalcResult::Number(f)),
+                NumberOrArray::Array(array) => {
+                    let mut out = Vec::new();
+                    for row in array {
+                        let mut out_row = Vec::new();
+                        for node in row {
+                            let mapped = match node {
+                                ArrayNode::Number(f) => ArrayNode::Number(f),
+                                ArrayNode::Boolean(b) => ArrayNode::Number(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => ArrayNode::Number(f),
+                                    None => ArrayNode::Error(Error::VALUE),
+                                },
+                                ArrayNode::Error(e) => ArrayNode::Error(e),
+                            };
+                            out_row.push(mapped);
+                        }
+                        out.push(out_row);
+                    }
+                    Some(CalcResult::Array(out))
+                }
+            }
         }
         "VDB" => {
             Some(CalcResult::new_error(
