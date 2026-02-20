@@ -732,19 +732,37 @@ fn test_batch_fallback_growth() {
 #[test]
 fn test_batch_fallback_gt() {
     let mut model = new_empty_model();
-    model._set("A1", "=GT(1)");
+    model._set("A1", "=GT(5,3)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_gt_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=GT(2,2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
 fn test_batch_fallback_gte() {
     let mut model = new_empty_model();
-    model._set("A1", "=GTE(1)");
+    model._set("A1", "=GTE(2,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_gte_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=GTE(1,2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
@@ -975,19 +993,37 @@ fn test_batch_fallback_logest() {
 #[test]
 fn test_batch_fallback_lt() {
     let mut model = new_empty_model();
-    model._set("A1", "=LT(1)");
+    model._set("A1", "=LT(1,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_lt_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=LT(2,1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
 fn test_batch_fallback_lte() {
     let mut model = new_empty_model();
-    model._set("A1", "=LTE(1)");
+    model._set("A1", "=LTE(2,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_lte_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=LTE(3,2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]
@@ -1128,10 +1164,19 @@ fn test_batch_fallback_munit() {
 #[test]
 fn test_batch_fallback_ne() {
     let mut model = new_empty_model();
-    model._set("A1", "=NE(1)");
+    model._set("A1", "=NE(1,2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"TRUE");
+}
+
+#[test]
+fn test_batch_fallback_ne_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=NE(2,2)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"FALSE");
 }
 
 #[test]

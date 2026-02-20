@@ -1057,18 +1057,32 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "GT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = model.evaluate_node_in_context(&args[0], cell);
+            if left.is_error() {
+                return Some(left);
+            }
+            let right = model.evaluate_node_in_context(&args[1], cell);
+            if right.is_error() {
+                return Some(right);
+            }
+            Some(CalcResult::Boolean(compare_values(&left, &right) == 1))
         }
         "GTE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = model.evaluate_node_in_context(&args[0], cell);
+            if left.is_error() {
+                return Some(left);
+            }
+            let right = model.evaluate_node_in_context(&args[1], cell);
+            if right.is_error() {
+                return Some(right);
+            }
+            Some(CalcResult::Boolean(compare_values(&left, &right) >= 0))
         }
         "HSTACK" => {
             Some(CalcResult::new_error(
@@ -1246,18 +1260,32 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "LT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = model.evaluate_node_in_context(&args[0], cell);
+            if left.is_error() {
+                return Some(left);
+            }
+            let right = model.evaluate_node_in_context(&args[1], cell);
+            if right.is_error() {
+                return Some(right);
+            }
+            Some(CalcResult::Boolean(compare_values(&left, &right) == -1))
         }
         "LTE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = model.evaluate_node_in_context(&args[0], cell);
+            if left.is_error() {
+                return Some(left);
+            }
+            let right = model.evaluate_node_in_context(&args[1], cell);
+            if right.is_error() {
+                return Some(right);
+            }
+            Some(CalcResult::Boolean(compare_values(&left, &right) <= 0))
         }
         "MAKEARRAY" => {
             Some(CalcResult::new_error(
@@ -1365,11 +1393,18 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "NE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let left = model.evaluate_node_in_context(&args[0], cell);
+            if left.is_error() {
+                return Some(left);
+            }
+            let right = model.evaluate_node_in_context(&args[1], cell);
+            if right.is_error() {
+                return Some(right);
+            }
+            Some(CalcResult::Boolean(compare_values(&left, &right) != 0))
         }
         "NUMBERVALUE" => {
             Some(CalcResult::new_error(

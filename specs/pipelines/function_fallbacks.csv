@@ -207,8 +207,8 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 6,GOOGLETRANSLATE,unsupported_nimpl,,,,A1,=GOOGLETRANSLATE(1),#N/IMPL!,,,,,,no,,
 6,GROUPBY,unsupported_nimpl,,,,A1,=GROUPBY(1),#N/IMPL!,,,,,,no,,
 6,GROWTH,unsupported_nimpl,,,,A1,=GROWTH(1),#N/IMPL!,,,,,,no,,
-6,GT,unsupported_nimpl,,,,A1,=GT(1),#N/IMPL!,,,,,,no,,
-6,GTE,unsupported_nimpl,,,,A1,=GTE(1),#N/IMPL!,,,,,,no,,
+6,GT,gt_basic,,,,A1,"=GT(5,3)",TRUE,,A2,"=GT(2,2)",FALSE,,no,,
+6,GTE,gte_basic,,,,A1,"=GTE(2,2)",TRUE,,A2,"=GTE(1,2)",FALSE,,no,,
 6,HARMEAN,implemented,,,,,,,,,,,,yes,fn_harmean,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
 6,HEX2BIN,implemented,,,,,,,,,,,,yes,fn_hex2bin,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
 6,HEX2DEC,implemented,,,,,,,,,,,,yes,fn_hex2dec,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/number_basis.rs
@@ -305,8 +305,8 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 8,LOGNORM.INV,implemented,,,,,,,,,,,,yes,fn_log_norm_inv,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/log_normal.rs
 8,LOOKUP,implemented,,,,,,,,,,,,yes,fn_lookup,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/lookup_and_reference.rs
 8,LOWER,implemented,,,,,,,,,,,,yes,fn_lower,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
-8,LT,unsupported_nimpl,,,,A1,=LT(1),#N/IMPL!,,,,,,no,,
-8,LTE,unsupported_nimpl,,,,A1,=LTE(1),#N/IMPL!,,,,,,no,,
+8,LT,lt_basic,,,,A1,"=LT(1,2)",TRUE,,A2,"=LT(2,1)",FALSE,,no,,
+8,LTE,lte_basic,,,,A1,"=LTE(2,2)",TRUE,,A2,"=LTE(3,2)",FALSE,,no,,
 8,MAKEARRAY,unsupported_nimpl,,,,A1,=MAKEARRAY(1),#N/IMPL!,,,,,,no,,
 8,MAP,unsupported_nimpl,,,,A1,=MAP(1),#N/IMPL!,,,,,,no,,
 8,MARGINOFERROR,unsupported_nimpl,,,,A1,=MARGINOFERROR(1),#N/IMPL!,,,,,,no,,
@@ -338,7 +338,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 9,MUNIT,unsupported_nimpl,,,,A1,=MUNIT(1),#N/IMPL!,,,,,,no,,
 9,N,implemented,,,,,,,,,,,,yes,fn_n,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
 9,NA,implemented,,,,,,,,,,,,yes,<inline>,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mod.rs
-9,NE,unsupported_nimpl,,,,A1,=NE(1),#N/IMPL!,,,,,,no,,
+9,NE,ne_basic,,,,A1,"=NE(1,2)",TRUE,,A2,"=NE(2,2)",FALSE,,no,,
 9,NEGBINOM.DIST,implemented,,,,,,,,,,,,yes,fn_negbinom_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs
 9,NEGBINOMDIST,implemented,,,,,,,,,,,,yes,fn_negbinom_dist,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/binom.rs
 9,NETWORKDAYS,implemented,,,,,,,,,,,,yes,fn_networkdays,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
