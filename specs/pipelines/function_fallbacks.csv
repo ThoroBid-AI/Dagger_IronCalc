@@ -48,9 +48,9 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 2,BITOR,implemented,,,,,,,,,,,,yes,fn_bitor,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
 2,BITRSHIFT,implemented,,,,,,,,,,,,yes,fn_bitrshift,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
 2,BITXOR,implemented,,,,,,,,,,,,yes,fn_bitxor,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bit_operations.rs
-2,BYCOL,unsupported_nimpl,,,,A1,=BYCOL(1),#N/IMPL!,,,,,,no,,
-2,BYROW,unsupported_nimpl,,,,A1,=BYROW(1),#N/IMPL!,,,,,,no,,
-2,CALL,unsupported_nimpl,,,,A1,=CALL(1),#N/IMPL!,,,,,,no,,
+2,BYCOL,bycol_basic,,,,A1,"=BYCOL(A1:B2,1)",#N/IMPL!,,,,,,no,,
+2,BYROW,byrow_basic,,,,A1,"=BYROW(A1:B2,1)",#N/IMPL!,,,,,,no,,
+2,CALL,call_basic,,,,A1,=CALL(1),#N/IMPL!,,,,,,no,,
 2,CEILING,implemented,,,,,,,,,,,,yes,fn_ceiling,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 2,CEILING.MATH,implemented,,,,,,,,,,,,yes,fn_ceiling_math,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 2,CEILING.PRECISE,implemented,,,,,,,,,,,,yes,fn_ceiling_precise,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
@@ -76,7 +76,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 2,CONFIDENCE.NORM,implemented,,,,,,,,,,,,yes,fn_confidence_norm,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/normal.rs
 2,CONFIDENCE.T,implemented,,,,,,,,,,,,yes,fn_confidence_t,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/normal.rs
 2,CONVERT,implemented,,,,,,,,,,,,yes,fn_convert,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/convert.rs
-2,COPILOT,unsupported_nimpl,,,,A1,=COPILOT(1),#N/IMPL!,,,,,,no,,
+2,COPILOT,copilot_basic,,,,A1,=COPILOT(1),#N/IMPL!,,,,,,no,,
 2,CORREL,implemented,,,,,,,,,,,,yes,fn_correl,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs
 2,COS,implemented,,,,,,,,,,,,yes,fn_cos,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 3,COSH,implemented,,,,,,,,,,,,yes,fn_cosh,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs

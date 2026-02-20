@@ -600,24 +600,33 @@ pub(crate) fn evaluate_batch_fallback(
         }
         "BETAINVN" => Some(model.fn_beta_inv(args, cell)),
         "BYCOL" => {
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "BYCOL requires LAMBDA support".to_string(),
             ))
         }
         "BYROW" => {
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "BYROW requires LAMBDA support".to_string(),
             ))
         }
         "CALL" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "CALL is not supported".to_string(),
             ))
         }
         "CHAR" => {
@@ -791,10 +800,13 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(ch as u32 as f64))
         }
         "COPILOT" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
-                "Function not supported yet".to_string(),
+                "COPILOT is not supported".to_string(),
             ))
         }
         "COUNTUNIQUE" => {

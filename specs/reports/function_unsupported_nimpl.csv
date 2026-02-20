@@ -1,8 +1,4 @@
 batch_id,function_name,action,implemented_in_code,handler,file_path
-2,BYCOL,unsupported_nimpl,no,,
-2,BYROW,unsupported_nimpl,no,,
-2,CALL,unsupported_nimpl,no,,
-2,COPILOT,unsupported_nimpl,no,,
 3,COUPDAYBS,unsupported_nimpl,no,,
 3,COUPDAYS,unsupported_nimpl,no,,
 3,COUPDAYSNC,unsupported_nimpl,no,,

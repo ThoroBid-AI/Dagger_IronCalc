@@ -188,7 +188,7 @@ fn test_batch_fallback_beta_invn() {
 #[test]
 fn test_batch_fallback_bycol() {
     let mut model = new_empty_model();
-    model._set("A1", "=BYCOL(1)");
+    model._set("A1", "=BYCOL(A1:B2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
@@ -197,7 +197,7 @@ fn test_batch_fallback_bycol() {
 #[test]
 fn test_batch_fallback_byrow() {
     let mut model = new_empty_model();
-    model._set("A1", "=BYROW(1)");
+    model._set("A1", "=BYROW(A1:B2,1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
