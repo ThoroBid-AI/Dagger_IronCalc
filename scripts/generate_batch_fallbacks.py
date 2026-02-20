@@ -2699,6 +2699,17 @@ def gen_fallbacks_rs(rows: List[Dict[str, str]]) -> str:
             lines.append("            let rate = (redemption - investment) / investment * (denom / days);")
             lines.append("            Some(CalcResult::Number(rate))")
             lines.append("        }")
+        elif action == "nimpl_basic":
+            lines.append(f'        \"{normalized}\" => {{')
+            lines.append("            if args.is_empty() {")
+            lines.append("                return Some(CalcResult::new_args_number_error(cell));")
+            lines.append("            }")
+            lines.append("            Some(CalcResult::new_error(")
+            lines.append("                Error::NIMPL,")
+            lines.append("                cell,")
+            lines.append('                \"Function not supported yet\".to_string(),')
+            lines.append("            ))")
+            lines.append("        }")
         elif action == "proper_basic":
             lines.append(f'        \"{normalized}\" => {{')
             lines.append("            if args.len() != 1 {")

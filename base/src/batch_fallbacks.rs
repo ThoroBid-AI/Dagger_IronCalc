@@ -2355,6 +2355,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Boolean(is_url))
         }
         "JIS" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2425,6 +2428,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::String(values.join(&delimiter)))
         }
         "LAMBDA" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2432,6 +2438,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "LEFTB" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2439,6 +2448,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "LENB" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2446,6 +2458,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "LET" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2453,6 +2468,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "LINEST" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2460,6 +2478,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "LOGEST" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2495,6 +2516,9 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Boolean(compare_values(&left, &right) <= 0))
         }
         "MAKEARRAY" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2502,6 +2526,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MAP" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2509,6 +2536,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MARGINOFERROR" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2516,6 +2546,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MDETERM" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2523,6 +2556,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MDURATION" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
@@ -2530,6 +2566,9 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "MIDB" => {
+            if args.is_empty() {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
             Some(CalcResult::new_error(
                 Error::NIMPL,
                 cell,
