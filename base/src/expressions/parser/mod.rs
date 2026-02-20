@@ -777,11 +777,13 @@ impl<'a> Parser<'a> {
                         };
                     }
                     // We should do this *only* importing functions from xlsx
-                    if let Some(function_kind) = self
-                        .language
-                        .functions
-                        .lookup(name.trim_start_matches("_xlfn."))
-                    {
+                    let function_name = name.trim_start_matches("_xlfn.");
+                    let normalized_name = function_name.replace('.', "");
+                    let mut function_kind = self.language.functions.lookup(function_name);
+                    if function_kind.is_none() && normalized_name != function_name {
+                        function_kind = self.language.functions.lookup(&normalized_name);
+                    }
+                    if let Some(function_kind) = function_kind {
                         return Node::FunctionKind {
                             kind: function_kind,
                             args,

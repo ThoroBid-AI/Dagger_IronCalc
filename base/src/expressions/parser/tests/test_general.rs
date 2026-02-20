@@ -406,6 +406,23 @@ fn test_parser_excel_xlfn() {
 }
 
 #[test]
+fn test_parser_dotted_function_name_lookup() {
+    let worksheets = vec!["Sheet1".to_string(), "Second2".to_string()];
+    let mut parser = new_parser(worksheets, vec![], HashMap::new());
+
+    let cell_reference = CellReferenceRC {
+        sheet: "Sheet1".to_string(),
+        row: 1,
+        column: 1,
+    };
+
+    let t = parser.parse("BETA.DIST(0.5, 1, 2, TRUE)", &cell_reference);
+    assert!(matches!(t, Node::FunctionKind { .. }));
+    let t_no_prefix = parser.parse("AVERAGE.WEIGHTED(A1:A3, B1:B3, C1:C3)", &cell_reference);
+    assert!(matches!(t_no_prefix, Node::InvalidFunctionKind { .. }));
+}
+
+#[test]
 fn test_to_string_displaced() {
     let context = &CellReferenceRC {
         sheet: "Sheet1".to_string(),
