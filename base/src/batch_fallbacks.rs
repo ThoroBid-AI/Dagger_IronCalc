@@ -3,19 +3,23 @@
 
 use std::collections::HashSet;
 
+use chrono::{Datelike, DateTime, Timelike, Utc};
+
 use crate::{
     calc_result::CalcResult,
+    constants::EXCEL_DATE_BASE,
     expressions::parser::Node,
     expressions::parser::ArrayNode,
     expressions::token::Error,
     expressions::types::CellReferenceIndex,
+    formatter::format::format_number,
     expressions::utils::number_to_column,
     functions::util::compare_values,
     cast::NumberOrArray,
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 173] = [
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 168] = [
     "ACCRINT",
     "ACCRINTM",
     "AGGREGATE",
@@ -42,13 +46,8 @@ const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 173] = [
     "CUBESET",
     "CUBESETCOUNT",
     "CUBEVALUE",
-    "DETECTLANGUAGE",
     "DISC",
-    "DOLLAR",
-    "DROP",
     "DURATION",
-    "ENCODEURL",
-    "EPOCHTODATE",
     "EUROCONVERT",
     "EXPAND",
     "FILTER",
@@ -609,6 +608,17 @@ pub(crate) fn evaluate_batch_fallback(
             }
             Some(CalcResult::String(out))
         }
+        "DETECTLANGUAGE" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let lang = if text.is_ascii() { "en" } else { "und" };
+            Some(CalcResult::String(lang.to_string()))
+        }
         "DIVIDE" => {
             if args.len() != 2 {
                 return Some(CalcResult::new_args_number_error(cell));
@@ -629,6 +639,143 @@ pub(crate) fn evaluate_batch_fallback(
                 ));
             }
             Some(CalcResult::Number(numerator / denominator))
+        }
+        "DOLLAR" => {
+            if args.is_empty() || args.len() > 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let value = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let decimals = if args.len() == 2 {
+                match model.get_number_no_bools(&args[1], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                2
+            };
+            let decimals = if decimals < 0 { 0 } else { decimals };
+            let mut format_code = String::from("$#,##0");
+            if decimals > 0 {
+                format_code.push('.');
+                format_code.push_str(&"0".repeat(decimals as usize));
+            }
+            let formatted = format_number(value, &format_code, model.locale);
+            if formatted.error.is_some() {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid format".to_string(),
+                ));
+            }
+            Some(CalcResult::String(formatted.text))
+        }
+        "DROP" => {
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let rows = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            let cols = if args.len() == 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                0
+            };
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![vec![ArrayNode::Number(f)]],
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            if array.is_empty() {
+                return Some(CalcResult::Array(array));
+            }
+            let row_len = array.len();
+            let col_len = array[0].len();
+            let (row_start, row_end) = if rows >= 0 {
+                let start = usize::min(rows as usize, row_len);
+                (start, row_len)
+            } else {
+                let drop = usize::min(rows.unsigned_abs() as usize, row_len);
+                (0, row_len.saturating_sub(drop))
+            };
+            let (col_start, col_end) = if cols >= 0 {
+                let start = usize::min(cols as usize, col_len);
+                (start, col_len)
+            } else {
+                let drop = usize::min(cols.unsigned_abs() as usize, col_len);
+                (0, col_len.saturating_sub(drop))
+            };
+            let mut out = Vec::new();
+            for row in array.into_iter().skip(row_start).take(row_end.saturating_sub(row_start)) {
+                if row.is_empty() {
+                    out.push(row);
+                    continue;
+                }
+                let mut out_row = Vec::new();
+                for value in row.into_iter().skip(col_start).take(col_end.saturating_sub(col_start)) {
+                    out_row.push(value);
+                }
+                out.push(out_row);
+            }
+            Some(CalcResult::Array(out))
+        }
+        "ENCODEURL" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let mut out = String::new();
+            for byte in text.as_bytes() {
+                let ch = *byte as char;
+                let keep = (ch >= 'A' && ch <= 'Z')
+                    || (ch >= 'a' && ch <= 'z')
+                    || (ch >= '0' && ch <= '9')
+                    || matches!(ch, '-' | '_' | '.' | '~');
+                if keep {
+                    out.push(ch);
+                } else {
+                    out.push_str(&format!("%{:02X}", *byte));
+                }
+            }
+            Some(CalcResult::String(out))
+        }
+        "EPOCHTODATE" => {
+            if args.len() != 1 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let seconds = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let secs = seconds.floor() as i64;
+            let frac = seconds - secs as f64;
+            let nanos = (frac.abs() * 1_000_000_000.0).round() as u32;
+            let dt = match DateTime::<Utc>::from_timestamp(secs, nanos) {
+                Some(d) => d.naive_utc(),
+                None => {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Invalid epoch timestamp".to_string(),
+                    ))
+                }
+            };
+            let days_from_ce = dt.date().num_days_from_ce() as i64;
+            let seconds_in_day = dt.time().num_seconds_from_midnight() as f64
+                + (dt.time().nanosecond() as f64 / 1_000_000_000.0);
+            let fraction = seconds_in_day / 86_400.0;
+            let serial = (days_from_ce - EXCEL_DATE_BASE as i64) as f64 + fraction;
+            Some(CalcResult::Number(serial))
         }
         "EQ" => {
             if args.len() != 2 {

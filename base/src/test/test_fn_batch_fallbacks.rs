@@ -34,13 +34,8 @@ fn test_batch_unsupported_functions_return_nimpl() {
         "CUBESET",
         "CUBESETCOUNT",
         "CUBEVALUE",
-        "DETECTLANGUAGE",
         "DISC",
-        "DOLLAR",
-        "DROP",
         "DURATION",
-        "ENCODEURL",
-        "EPOCHTODATE",
         "EUROCONVERT",
         "EXPAND",
         "FILTER",
@@ -346,6 +341,15 @@ fn test_batch_fallback_dbcs() {
 }
 
 #[test]
+fn test_batch_fallback_detectlanguage() {
+    let mut model = new_empty_model();
+    model._set("A1", "=DETECTLANGUAGE(\"Hello\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"en");
+}
+
+#[test]
 fn test_batch_fallback_divide() {
     let mut model = new_empty_model();
     model._set("A1", "=DIVIDE(10,2)");
@@ -361,6 +365,69 @@ fn test_batch_fallback_divide_extra() {
     model.evaluate();
 
     assert_eq!(model._get_text("A2"), *"#DIV/0!");
+}
+
+#[test]
+fn test_batch_fallback_dollar() {
+    let mut model = new_empty_model();
+    model._set("A1", "=DOLLAR(1234.5)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"$1,234.50");
+}
+
+#[test]
+fn test_batch_fallback_dollar_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=DOLLAR(1.236,1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"$1.2");
+}
+
+#[test]
+fn test_batch_fallback_drop() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SUM(DROP({1,2;3,4},1,1))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"4");
+}
+
+#[test]
+fn test_batch_fallback_drop_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=SUM(DROP({1,2;3,4},-1,-1))");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"1");
+}
+
+#[test]
+fn test_batch_fallback_encodeurl() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ENCODEURL(\"https://example.com/hello world\")");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"https%3A%2F%2Fexample.com%2Fhello%20world");
+}
+
+#[test]
+fn test_batch_fallback_epochtodate() {
+    let mut model = new_empty_model();
+    model._set("A1", "=EPOCHTODATE(0)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"25569");
+}
+
+#[test]
+fn test_batch_fallback_epochtodate_extra() {
+    let mut model = new_empty_model();
+    model._set("A2", "=EPOCHTODATE(86400)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A2"), *"25570");
 }
 
 #[test]
