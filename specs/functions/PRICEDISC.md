@@ -34,7 +34,7 @@ Prices bond with discount rate and redemption value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns discounted security price.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Prices bond with discount rate and redemption value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns discounted security price.
 
 - Signatures:
 

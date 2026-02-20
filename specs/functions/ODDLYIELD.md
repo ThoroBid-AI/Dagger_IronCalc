@@ -34,7 +34,7 @@ Computes yield for odd-last bond schedules.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns odd-last-period bond yield.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Calculates linear correlation between paired data ranges.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns Pearson product-moment correlation coefficient.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Calculates linear correlation between paired data ranges.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns Pearson product-moment correlation coefficient.
 
 - Signatures:
 

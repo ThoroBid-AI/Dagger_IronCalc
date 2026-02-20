@@ -34,7 +34,7 @@ Computes inclusive percentile including min/max.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns percentile with inclusive interpolation.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes inclusive percentile including min/max.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns percentile with inclusive interpolation.
 
 - Signatures:
 

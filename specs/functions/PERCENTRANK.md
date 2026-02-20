@@ -34,7 +34,7 @@ Finds percentile position of `x` with optional significance.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns rank percentile of a value in a data set.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Finds percentile position of `x` with optional significance.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns rank percentile of a value in a data set.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Computes exclusive percentile excluding min/max endpoints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns percentile using exclusive interpolation.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes exclusive percentile excluding min/max endpoints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns percentile using exclusive interpolation.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Calculates percentile with exclusive interpolation constraints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns exclusive percentile rank.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Calculates percentile with exclusive interpolation constraints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns exclusive percentile rank.
 
 - Signatures:
 

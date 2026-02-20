@@ -34,7 +34,7 @@ Computes percentile by Excel interpolation variant.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns the k-th percentile of data.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes percentile by Excel interpolation variant.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns the k-th percentile of data.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Supports ascending or descending rank logic.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns rank of a number in a dataset.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Supports ascending or descending rank logic.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns rank of a number in a dataset.
 
 - Signatures:
 

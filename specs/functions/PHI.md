@@ -34,7 +34,7 @@ Computes standard normal PDF at x.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns the density of standard normal distribution.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes standard normal PDF at x.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns the density of standard normal distribution.
 
 - Signatures:
 

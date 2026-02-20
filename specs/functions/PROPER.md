@@ -34,7 +34,7 @@ Capitalizes each word in text; other characters become lower-case.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Converts text to proper case (title case).
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Capitalizes each word in text; other characters become lower-case.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Converts text to proper case (title case).
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Volatile integer generation with inclusive bounds.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns random integer within a range.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Volatile integer generation with inclusive bounds.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns random integer within a range.
 
 - Signatures:
 

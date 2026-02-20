@@ -34,7 +34,7 @@ Integrates discrete probabilities within optional limits.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns cumulative probability from a list, given bounds.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Integrates discrete probabilities within optional limits.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns cumulative probability from a list, given bounds.
 
 - Signatures:
 

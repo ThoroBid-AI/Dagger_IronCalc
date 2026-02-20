@@ -34,7 +34,7 @@ Applies constant π/180 conversion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Converts degrees to radians.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Applies constant π/180 conversion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Converts degrees to radians.
 
 - Signatures:
 

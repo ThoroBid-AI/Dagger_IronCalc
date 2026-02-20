@@ -34,7 +34,7 @@ Returns the mathematical constant pi.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns the value of π.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns the mathematical constant pi.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns the value of π.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Returns phonetic transcription for Japanese text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Converts text to phonetic reading.
 
 - Signatures:
 

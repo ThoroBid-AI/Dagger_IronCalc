@@ -34,7 +34,7 @@ Counts ordered selections with repetition.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns number of permutations with repetition.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Counts ordered selections with repetition.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns number of permutations with repetition.
 
 - Signatures:
 

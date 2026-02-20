@@ -34,7 +34,7 @@ Equivalent to exponentiation operator.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Raises base to a power.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Equivalent to exponentiation operator.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Raises base to a power.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Uses percentile method excluding dataset endpoints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns exclusive quartile value.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Uses percentile method excluding dataset endpoints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns exclusive quartile value.
 
 - Signatures:
 

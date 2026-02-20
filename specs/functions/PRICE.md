@@ -34,7 +34,7 @@ Computes clean/dirty price depending on schedule assumptions.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns price of a bond per $100 face value.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes clean/dirty price depending on schedule assumptions.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns price of a bond per $100 face value.
 
 - Signatures:
 

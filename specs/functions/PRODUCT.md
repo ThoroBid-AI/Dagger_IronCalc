@@ -34,7 +34,7 @@ Returns product of all numbers after coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Multiplies all numeric arguments.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns product of all numbers after coercion.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Multiplies all numeric arguments.
 
 - Signatures:
 

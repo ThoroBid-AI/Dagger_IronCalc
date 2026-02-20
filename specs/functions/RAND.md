@@ -34,7 +34,7 @@ Volatile function; implementation should be deterministic in seeded context.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns random number between 0 and 1.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Volatile function; implementation should be deterministic in seeded context.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns random number between 0 and 1.
 
 - Signatures:
 

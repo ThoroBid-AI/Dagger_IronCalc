@@ -34,7 +34,7 @@ Calculates payment amount using amortization formula.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns periodic loan payment.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Calculates payment amount using amortization formula.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns periodic loan payment.
 
 - Signatures:
 

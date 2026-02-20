@@ -34,7 +34,7 @@ Computes principal portion of payment at period `per`.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns payment for a loan interest and principal with constant payments.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes principal portion of payment at period `per`.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns payment for a loan interest and principal with constant payments.
 
 - Signatures:
 

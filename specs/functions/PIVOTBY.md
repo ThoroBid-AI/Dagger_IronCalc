@@ -34,7 +34,7 @@ Groups and reduces input data into a pivot table structure.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Applies reduction to data and returns reshaped output.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Returns one of 1st, 2nd, 3rd, or 4th quartiles.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns quartile of a data set.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns one of 1st, 2nd, 3rd, or 4th quartiles.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns quartile of a data set.
 
 - Signatures:
 

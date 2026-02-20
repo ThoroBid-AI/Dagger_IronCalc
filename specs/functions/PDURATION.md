@@ -34,7 +34,7 @@ Computes weighted average time to receive cash flows for a zero-coupon bond appr
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns Macauley modified duration for a security.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes weighted average time to receive cash flows for a zero-coupon bond appr
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns Macauley modified duration for a security.
 
 - Signatures:
 

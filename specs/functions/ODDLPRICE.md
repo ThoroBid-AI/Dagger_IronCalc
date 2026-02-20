@@ -34,7 +34,7 @@ Prices bonds where last period is not standard length.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns odd-last-period bond price.
 
 - Signatures:
 

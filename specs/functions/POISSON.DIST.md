@@ -34,7 +34,7 @@ Computes Poisson probability mass or cumulative probability.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns Poisson distribution values.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Computes Poisson probability mass or cumulative probability.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns Poisson distribution values.
 
 - Signatures:
 

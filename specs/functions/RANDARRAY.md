@@ -34,7 +34,7 @@ Generates deterministic pseudo-random grid when context is seeded.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns array of random numbers.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Generates deterministic pseudo-random grid when context is seeded.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns array of random numbers.
 
 - Signatures:
 

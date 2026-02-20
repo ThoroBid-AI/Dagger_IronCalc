@@ -34,7 +34,7 @@ Calculates price using issue date and annual rate context.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns security price with maturity interest.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Calculates price using issue date and annual rate context.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns security price with maturity interest.
 
 - Signatures:
 

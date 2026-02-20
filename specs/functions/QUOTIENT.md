@@ -34,7 +34,7 @@ Truncates fractional part toward zero.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns integer quotient after division.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Truncates fractional part toward zero.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and ordered input handling required.
+- Summary: Returns integer quotient after division.
 
 - Signatures:
 

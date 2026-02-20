@@ -34,7 +34,7 @@ Returns TRUE if any argument evaluates to TRUE.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Logical OR across arguments.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Returns TRUE if any argument evaluates to TRUE.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Logical OR across arguments.
 
 - Signatures:
 

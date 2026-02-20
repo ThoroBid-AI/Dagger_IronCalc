@@ -34,7 +34,7 @@ Calculates percentile with inclusive interpolation constraints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns inclusive percentile rank.
 
 - Signatures:
 
@@ -58,7 +58,7 @@ Calculates percentile with inclusive interpolation constraints.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and platform-stable behavior is required.
+- Summary: Returns inclusive percentile rank.
 
 - Signatures:
 
