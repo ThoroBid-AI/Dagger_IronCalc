@@ -14,6 +14,7 @@ MATRIX_PATH = ROOT / "specs" / "matrices" / "function_matrix_normalized.csv"
 BATCH_PATH = ROOT / "specs" / "planning" / "function_batches.csv"
 DOCS_DIR = ROOT / "specs" / "functions"
 REPORT = ROOT / "specs" / "reports" / "batch_doc_enrichment.csv"
+VALIDATION_REPORT = ROOT / "specs" / "reports" / "function_doc_validation.csv"
 
 SOURCE_LINE_RE = re.compile(r"^-\s*(excel|google\s*sheets)\s*:\s*(https?://\S+)\s*$", re.I)
 HEADER_RE = re.compile(r"^##\s+Documentation\s*\(\s*(.*?)\s*\)\s*$", re.I)
@@ -81,6 +82,13 @@ def parse_offline_arg(argv: List[str]) -> bool:
 
 def parse_report_arg(argv: List[str]) -> bool:
     return "--from-report" in argv
+
+
+def parse_report_path(argv: List[str]) -> Path | None:
+    for i, token in enumerate(argv):
+        if token == "--report" and i + 1 < len(argv):
+            return Path(argv[i + 1])
+    return None
 
 
 def normalize(name: str) -> str:
@@ -883,11 +891,13 @@ def main() -> int:
     batch = parse_batch_arg(sys.argv)
     offline = parse_offline_arg(sys.argv)
     use_report = parse_report_arg(sys.argv)
+    report_path = parse_report_path(sys.argv)
     batch_label = "REPORT" if use_report else batch
     print(f"[batch={batch_label}] Starting documentation enrichment...")
     try:
         if use_report:
-            batch_functions = load_report_functions(REPORT)
+            report_source = report_path or VALIDATION_REPORT
+            batch_functions = load_report_functions(report_source)
         else:
             batch_functions = load_batch_functions(batch)
     except Exception as exc:
