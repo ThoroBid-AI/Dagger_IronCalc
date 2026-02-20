@@ -916,10 +916,13 @@ def gen_tests_rs(rows: List[Dict[str, str]]) -> str:
     lines.append("#[test]")
     lines.append("fn test_batch_unsupported_functions_return_nimpl() {")
     lines.append("    let mut model = new_empty_model();")
-    lines.append("    let functions = [")
-    for name in unimplemented:
-        lines.append(f'        "{name}",')
-    lines.append("    ];")
+    if unimplemented:
+        lines.append("    let functions = [")
+        for name in unimplemented:
+            lines.append(f'        "{name}",')
+        lines.append("    ];")
+    else:
+        lines.append("    let functions: [&str; 0] = [];")
     lines.append("")
     lines.append("    for (idx, function) in functions.iter().enumerate() {")
     lines.append("        let cell = format!(\"A{}\", idx + 1);")

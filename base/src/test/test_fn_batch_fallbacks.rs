@@ -7,111 +7,7 @@ use crate::test::util::new_empty_model;
 #[test]
 fn test_batch_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
-    let functions = [
-        "ISOMITTED",
-        "ISURL",
-        "JIS",
-        "JOIN",
-        "LAMBDA",
-        "LEFTB",
-        "LENB",
-        "LET",
-        "LINEST",
-        "LOGEST",
-        "LT",
-        "LTE",
-        "MAKEARRAY",
-        "MAP",
-        "MARGINOFERROR",
-        "MDETERM",
-        "MDURATION",
-        "MIDB",
-        "MINUS",
-        "MINVERSE",
-        "MMULT",
-        "MODE",
-        "MODE.MULT",
-        "MODE.SNGL",
-        "MULTINOMIAL",
-        "MULTIPLY",
-        "MUNIT",
-        "NE",
-        "NUMBERVALUE",
-        "ODDFPRICE",
-        "ODDFYIELD",
-        "ODDLPRICE",
-        "ODDLYIELD",
-        "PERCENTILE",
-        "PERCENTILE.EXC",
-        "PERCENTILE.INC",
-        "PERCENTRANK",
-        "PERCENTRANK.EXC",
-        "PERCENTRANK.INC",
-        "PERMUT",
-        "PERMUTATIONA",
-        "PHONETIC",
-        "PIVOTBY",
-        "POW",
-        "PRICE",
-        "PRICEDISC",
-        "PRICEMAT",
-        "PROB",
-        "PROPER",
-        "QUARTILE",
-        "QUARTILE.EXC",
-        "QUARTILE.INC",
-        "QUERY",
-        "RANDARRAY",
-        "RANK",
-        "RECEIVED",
-        "REDUCE",
-        "REGEXEXTRACT",
-        "REGEXMATCH",
-        "REGEXREPLACE",
-        "REGISTER.ID",
-        "REPLACE",
-        "REPLACEB",
-        "RIGHTB",
-        "RTD",
-        "SCAN",
-        "SEARCHB",
-        "SEQUENCE",
-        "SERIESSUM",
-        "SORT",
-        "SORTBY",
-        "SORTN",
-        "SPARKLINE",
-        "SPLIT",
-        "STOCKHISTORY",
-        "SUMPRODUCT",
-        "TAKE",
-        "TEXTSPLIT",
-        "TOCOL",
-        "TOROW",
-        "TO_DATE",
-        "TO_DOLLARS",
-        "TO_PERCENT",
-        "TO_PURE_NUMBER",
-        "TO_TEXT",
-        "TRANSPOSE",
-        "TREND",
-        "TRIMMEAN",
-        "TRIMRANGE",
-        "UMINUS",
-        "UNARY_PERCENT",
-        "UNICHAR",
-        "UNIQUE",
-        "UPLUS",
-        "VDB",
-        "VSTACK",
-        "WEBSERVICE",
-        "WRAPCOLS",
-        "WRAPROWS",
-        "XMATCH",
-        "YIELD",
-        "YIELDDISC",
-        "YIELDMAT",
-    ];
+    let functions: [&str; 0] = [];
 
     for (idx, function) in functions.iter().enumerate() {
         let cell = format!("A{}", idx + 1);
@@ -981,6 +877,933 @@ fn test_batch_fallback_isdate() {
 fn test_batch_fallback_isemail() {
     let mut model = new_empty_model();
     model._set("A1", "=ISEMAIL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_isomitted() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ISOMITTED(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_isurl() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ISURL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_jis() {
+    let mut model = new_empty_model();
+    model._set("A1", "=JIS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_join() {
+    let mut model = new_empty_model();
+    model._set("A1", "=JOIN(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_lambda() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LAMBDA(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_leftb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LEFTB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_lenb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LENB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_let() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LET(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_linest() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LINEST(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_logest() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LOGEST(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_lt() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_lte() {
+    let mut model = new_empty_model();
+    model._set("A1", "=LTE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_makearray() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MAKEARRAY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_map() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MAP(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_marginoferror() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MARGINOFERROR(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_mdeterm() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MDETERM(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_mduration() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MDURATION(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_midb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MIDB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_minus() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MINUS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_minverse() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MINVERSE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_mmult() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MMULT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_mode() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MODE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_mode_mult() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MODE.MULT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_mode_sngl() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MODE.SNGL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_multinomial() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MULTINOMIAL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_multiply() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MULTIPLY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_munit() {
+    let mut model = new_empty_model();
+    model._set("A1", "=MUNIT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_ne() {
+    let mut model = new_empty_model();
+    model._set("A1", "=NE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_numbervalue() {
+    let mut model = new_empty_model();
+    model._set("A1", "=NUMBERVALUE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_oddfprice() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ODDFPRICE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_oddfyield() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ODDFYIELD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_oddlprice() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ODDLPRICE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_oddlyield() {
+    let mut model = new_empty_model();
+    model._set("A1", "=ODDLYIELD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_percentile() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERCENTILE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_percentile_exc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERCENTILE.EXC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_percentile_inc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERCENTILE.INC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_percentrank() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERCENTRANK(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_percentrank_exc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERCENTRANK.EXC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_percentrank_inc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERCENTRANK.INC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_permut() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERMUT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_permutationa() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PERMUTATIONA(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_phonetic() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PHONETIC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_pivotby() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PIVOTBY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_pow() {
+    let mut model = new_empty_model();
+    model._set("A1", "=POW(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_price() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PRICE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_pricedisc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PRICEDISC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_pricemat() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PRICEMAT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_prob() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PROB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_proper() {
+    let mut model = new_empty_model();
+    model._set("A1", "=PROPER(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_quartile() {
+    let mut model = new_empty_model();
+    model._set("A1", "=QUARTILE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_quartile_exc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=QUARTILE.EXC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_quartile_inc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=QUARTILE.INC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_query() {
+    let mut model = new_empty_model();
+    model._set("A1", "=QUERY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_randarray() {
+    let mut model = new_empty_model();
+    model._set("A1", "=RANDARRAY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_rank() {
+    let mut model = new_empty_model();
+    model._set("A1", "=RANK(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_received() {
+    let mut model = new_empty_model();
+    model._set("A1", "=RECEIVED(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_reduce() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REDUCE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_regexextract() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REGEXEXTRACT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_regexmatch() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REGEXMATCH(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_regexreplace() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REGEXREPLACE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_register_id() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REGISTER.ID(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_replace() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REPLACE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_replaceb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=REPLACEB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_rightb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=RIGHTB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_rtd() {
+    let mut model = new_empty_model();
+    model._set("A1", "=RTD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_scan() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SCAN(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_searchb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SEARCHB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_sequence() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SEQUENCE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_seriessum() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SERIESSUM(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_sort() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SORT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_sortby() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SORTBY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_sortn() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SORTN(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_sparkline() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SPARKLINE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_split() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SPLIT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_stockhistory() {
+    let mut model = new_empty_model();
+    model._set("A1", "=STOCKHISTORY(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_sumproduct() {
+    let mut model = new_empty_model();
+    model._set("A1", "=SUMPRODUCT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_take() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TAKE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_textsplit() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TEXTSPLIT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_tocol() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TOCOL(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_torow() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TOROW(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_to_date() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TO_DATE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_to_dollars() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TO_DOLLARS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_to_percent() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TO_PERCENT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_to_pure_number() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TO_PURE_NUMBER(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_to_text() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TO_TEXT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_transpose() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TRANSPOSE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_trend() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TREND(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_trimmean() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TRIMMEAN(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_trimrange() {
+    let mut model = new_empty_model();
+    model._set("A1", "=TRIMRANGE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_uminus() {
+    let mut model = new_empty_model();
+    model._set("A1", "=UMINUS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_unary_percent() {
+    let mut model = new_empty_model();
+    model._set("A1", "=UNARY_PERCENT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_unichar() {
+    let mut model = new_empty_model();
+    model._set("A1", "=UNICHAR(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_unique() {
+    let mut model = new_empty_model();
+    model._set("A1", "=UNIQUE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_uplus() {
+    let mut model = new_empty_model();
+    model._set("A1", "=UPLUS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_vdb() {
+    let mut model = new_empty_model();
+    model._set("A1", "=VDB(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_vstack() {
+    let mut model = new_empty_model();
+    model._set("A1", "=VSTACK(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_webservice() {
+    let mut model = new_empty_model();
+    model._set("A1", "=WEBSERVICE(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_wrapcols() {
+    let mut model = new_empty_model();
+    model._set("A1", "=WRAPCOLS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_wraprows() {
+    let mut model = new_empty_model();
+    model._set("A1", "=WRAPROWS(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_xmatch() {
+    let mut model = new_empty_model();
+    model._set("A1", "=XMATCH(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_yield() {
+    let mut model = new_empty_model();
+    model._set("A1", "=YIELD(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_yielddisc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=YIELDDISC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
+fn test_batch_fallback_yieldmat() {
+    let mut model = new_empty_model();
+    model._set("A1", "=YIELDMAT(1)");
     model.evaluate();
 
     assert_eq!(model._get_text("A1"), *"#N/IMPL!");
