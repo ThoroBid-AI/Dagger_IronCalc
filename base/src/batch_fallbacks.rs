@@ -4565,25 +4565,230 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Number(sum))
         }
         "SORT" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let sort_col = if args.len() >= 2 {
+                match model.get_number_no_bools(&args[1], cell) {
+                    Ok(f) => f.trunc() as i32,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1
+            };
+            let ascending = if args.len() >= 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f != 0.0,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                true
+            };
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => {
+                    return Some(CalcResult::Array(vec![vec![ArrayNode::Number(f)]]));
+                }
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let rows = array.len();
+            if rows == 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Empty array".to_string(),
+                ));
+            }
+            let cols = array.first().map(|r| r.len()).unwrap_or(0);
+            if sort_col <= 0 || sort_col as usize > cols {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid sort column".to_string(),
+                ));
+            }
+            let sort_idx = (sort_col - 1) as usize;
+            let mut keyed: Vec<(f64, Vec<ArrayNode>)> = Vec::new();
+            for row in array {
+                if row.len() != cols {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged array".to_string(),
+                    ));
+                }
+                let key = match row[sort_idx].clone() {
+                    ArrayNode::Number(f) => f,
+                    ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                    ArrayNode::String(s) => match model.cast_number(&s) {
+                        Some(f) => f,
+                        None => {
+                            return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Invalid sort key".to_string(),
+                            ))
+                        }
+                    },
+                    ArrayNode::Error(e) => {
+                        return Some(CalcResult::new_error(e, cell, "Sort error".to_string()));
+                    }
+                };
+                keyed.push((key, row));
+            }
+            keyed.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal));
+            if !ascending {
+                keyed.reverse();
+            }
+            let out: Vec<Vec<ArrayNode>> = keyed.into_iter().map(|(_, row)| row).collect();
+            Some(CalcResult::Array(out))
         }
         "SORTBY" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let ascending = if args.len() == 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f != 0.0,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                true
+            };
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => {
+                    return Some(CalcResult::Array(vec![vec![ArrayNode::Number(f)]]));
+                }
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let rows = array.len();
+            if rows == 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Empty array".to_string(),
+                ));
+            }
+            let cols = array.first().map(|r| r.len()).unwrap_or(0);
+            let keys = match model.get_number_or_array(&args[1], cell) {
+                Ok(NumberOrArray::Number(f)) => vec![f; rows],
+                Ok(NumberOrArray::Array(a)) => {
+                    let mut out: Vec<f64> = Vec::new();
+                    for row in a {
+                        for node in row {
+                            let key = match node {
+                                ArrayNode::Number(f) => f,
+                                ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                                ArrayNode::String(s) => match model.cast_number(&s) {
+                                    Some(f) => f,
+                                    None => {
+                                        return Some(CalcResult::new_error(
+                                            Error::VALUE,
+                                            cell,
+                                            "Invalid sort key".to_string(),
+                                        ))
+                                    }
+                                },
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Sortby error".to_string()));
+                                }
+                            };
+                            out.push(key);
+                        }
+                    }
+                    out
+                }
+                Err(e) => return Some(e),
+            };
+            if keys.len() != rows {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Sortby keys must match rows".to_string(),
+                ));
+            }
+            let mut keyed: Vec<(f64, Vec<ArrayNode>)> = Vec::new();
+            for (idx, row) in array.into_iter().enumerate() {
+                if row.len() != cols {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged array".to_string(),
+                    ));
+                }
+                keyed.push((keys[idx], row));
+            }
+            keyed.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal));
+            if !ascending {
+                keyed.reverse();
+            }
+            let out: Vec<Vec<ArrayNode>> = keyed.into_iter().map(|(_, row)| row).collect();
+            Some(CalcResult::Array(out))
         }
         "SORTN" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 2 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let n = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f.trunc() as i32,
+                Err(e) => return Some(e),
+            };
+            if n <= 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid n".to_string(),
+                ));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => {
+                    return Some(CalcResult::Array(vec![vec![ArrayNode::Number(f)]]));
+                }
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let rows = array.len();
+            if rows == 0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Empty array".to_string(),
+                ));
+            }
+            let cols = array.first().map(|r| r.len()).unwrap_or(0);
+            let mut keyed: Vec<(f64, Vec<ArrayNode>)> = Vec::new();
+            for row in array {
+                if row.len() != cols {
+                    return Some(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ragged array".to_string(),
+                    ));
+                }
+                let key = match row[0].clone() {
+                    ArrayNode::Number(f) => f,
+                    ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                    ArrayNode::String(s) => match model.cast_number(&s) {
+                        Some(f) => f,
+                        None => {
+                            return Some(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "Invalid sort key".to_string(),
+                            ))
+                        }
+                    },
+                    ArrayNode::Error(e) => {
+                        return Some(CalcResult::new_error(e, cell, "Sortn error".to_string()));
+                    }
+                };
+                keyed.push((key, row));
+            }
+            keyed.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal));
+            let take = usize::min(n as usize, keyed.len());
+            let out: Vec<Vec<ArrayNode>> = keyed.into_iter().take(take).map(|(_, row)| row).collect();
+            Some(CalcResult::Array(out))
         }
         "SPARKLINE" => {
             Some(CalcResult::new_error(
@@ -4887,11 +5092,163 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::Array(out))
         }
         "TREND" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() < 1 || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let ys = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            let mut y_vals: Vec<f64> = Vec::new();
+            let mut y_shape = (1usize, 1usize);
+            match ys {
+                NumberOrArray::Number(f) => {
+                    y_vals.push(f);
+                }
+                NumberOrArray::Array(a) => {
+                    y_shape = (a.len(), a.first().map(|r| r.len()).unwrap_or(0));
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Number(f) => y_vals.push(f),
+                                ArrayNode::Boolean(b) => y_vals.push(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => {
+                                    if let Some(f) = model.cast_number(&s) {
+                                        y_vals.push(f);
+                                    } else {
+                                        return Some(CalcResult::new_error(
+                                            Error::VALUE,
+                                            cell,
+                                            "Invalid y".to_string(),
+                                        ));
+                                    }
+                                }
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Trend error".to_string()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if y_vals.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "No data".to_string(),
+                ));
+            }
+            let mut x_vals: Vec<f64> = Vec::new();
+            if args.len() >= 2 {
+                let xs = match model.get_number_or_array(&args[1], cell) {
+                    Ok(v) => v,
+                    Err(e) => return Some(e),
+                };
+                match xs {
+                    NumberOrArray::Number(f) => x_vals.push(f),
+                    NumberOrArray::Array(a) => {
+                        for row in a {
+                            for node in row {
+                                match node {
+                                    ArrayNode::Number(f) => x_vals.push(f),
+                                    ArrayNode::Boolean(b) => x_vals.push(if b { 1.0 } else { 0.0 }),
+                                    ArrayNode::String(s) => {
+                                        if let Some(f) = model.cast_number(&s) {
+                                            x_vals.push(f);
+                                        } else {
+                                            return Some(CalcResult::new_error(
+                                                Error::VALUE,
+                                                cell,
+                                                "Invalid x".to_string(),
+                                            ));
+                                        }
+                                    }
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Trend error".to_string()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if x_vals.len() != y_vals.len() {
+                    return Some(CalcResult::new_error(
+                        Error::NUM,
+                        cell,
+                        "x/y size mismatch".to_string(),
+                    ));
+                }
+            } else {
+                for i in 0..y_vals.len() {
+                    x_vals.push((i + 1) as f64);
+                }
+            }
+            let n = y_vals.len() as f64;
+            let sum_x: f64 = x_vals.iter().sum();
+            let sum_y: f64 = y_vals.iter().sum();
+            let sum_xy: f64 = x_vals.iter().zip(y_vals.iter()).map(|(x, y)| x * y).sum();
+            let sum_x2: f64 = x_vals.iter().map(|x| x * x).sum();
+            let denom = n * sum_x2 - sum_x * sum_x;
+            if denom.abs() < 1.0e-12 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Singular".to_string(),
+                ));
+            }
+            let slope = (n * sum_xy - sum_x * sum_y) / denom;
+            let intercept = (sum_y - slope * sum_x) / n;
+            if args.len() == 3 {
+                let new_x = match model.get_number_or_array(&args[2], cell) {
+                    Ok(v) => v,
+                    Err(e) => return Some(e),
+                };
+                match new_x {
+                    NumberOrArray::Number(f) => {
+                        return Some(CalcResult::Number(slope * f + intercept));
+                    }
+                    NumberOrArray::Array(a) => {
+                        let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+                        for row in a {
+                            let mut out_row = Vec::new();
+                            for node in row {
+                                let x = match node {
+                                    ArrayNode::Number(f) => f,
+                                    ArrayNode::Boolean(b) => if b { 1.0 } else { 0.0 },
+                                    ArrayNode::String(s) => match model.cast_number(&s) {
+                                        Some(f) => f,
+                                        None => {
+                                            return Some(CalcResult::new_error(
+                                                Error::VALUE,
+                                                cell,
+                                                "Invalid new_x".to_string(),
+                                            ))
+                                        }
+                                    },
+                                    ArrayNode::Error(e) => {
+                                        return Some(CalcResult::new_error(e, cell, "Trend error".to_string()));
+                                    }
+                                };
+                                out_row.push(ArrayNode::Number(slope * x + intercept));
+                            }
+                            out.push(out_row);
+                        }
+                        return Some(CalcResult::Array(out));
+                    }
+                }
+            }
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            let mut idx = 0usize;
+            for _ in 0..y_shape.0 {
+                let mut row = Vec::new();
+                for _ in 0..y_shape.1 {
+                    let x = x_vals[idx];
+                    row.push(ArrayNode::Number(slope * x + intercept));
+                    idx += 1;
+                }
+                out.push(row);
+            }
+            Some(CalcResult::Array(out))
         }
         "TRIMMEAN" => {
             if args.len() != 2 {
@@ -5056,11 +5413,39 @@ pub(crate) fn evaluate_batch_fallback(
             Some(CalcResult::String(ch.to_string()))
         }
         "UNIQUE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 3 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let array = match model.get_number_or_array(&args[0], cell) {
+                Ok(NumberOrArray::Number(f)) => {
+                    return Some(CalcResult::Array(vec![vec![ArrayNode::Number(f)]]));
+                }
+                Ok(NumberOrArray::Array(a)) => a,
+                Err(e) => return Some(e),
+            };
+            let mut seen: Vec<String> = Vec::new();
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for row in array {
+                let mut key_parts: Vec<String> = Vec::new();
+                for node in &row {
+                    let part = match node {
+                        ArrayNode::Number(f) => format!("N{}", f),
+                        ArrayNode::Boolean(b) => format!("B{}", b),
+                        ArrayNode::String(s) => format!("S{}", s),
+                        ArrayNode::Error(e) => format!("E{:?}", e),
+                    };
+                    key_parts.push(part);
+                }
+                let key = key_parts.join("|");
+                if !seen.contains(&key) {
+                    seen.push(key);
+                    out.push(row);
+                }
+            }
+            if out.is_empty() {
+                out.push(vec![ArrayNode::Error(Error::NA)]);
+            }
+            Some(CalcResult::Array(out))
         }
         "UPLUS" => {
             if args.len() != 1 {

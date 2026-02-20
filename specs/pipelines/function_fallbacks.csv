@@ -440,9 +440,9 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 11,SLN,implemented,,,,,,,,,,,,yes,fn_sln,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/financial.rs
 11,SLOPE,implemented,,,,,,,,,,,,yes,fn_slope,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/correl.rs
 12,SMALL,implemented,,,,,,,,,,,,yes,fn_small,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/count_and_average.rs
-12,SORT,unsupported_nimpl,,,,A1,=SORT(1),#N/IMPL!,,,,,,no,,
-12,SORTBY,unsupported_nimpl,,,,A1,=SORTBY(1),#N/IMPL!,,,,,,no,,
-12,SORTN,unsupported_nimpl,,,,A1,=SORTN(1),#N/IMPL!,,,,,,no,,
+12,SORT,sort_basic,,,,A1,"=SUM(TAKE(SORT({3,1;2,4}),1,1))",2,,,,,,no,,
+12,SORTBY,sortby_basic,,,,A1,"=SUM(TAKE(SORTBY({10,20;30,40},{2;1}),1,1))",30,,,,,,no,,
+12,SORTN,sortn_basic,,,,A1,"=SUM(SORTN({3;1;2},2))",3,,,,,,no,,
 12,SPARKLINE,unsupported_nimpl,,,,A1,=SPARKLINE(1),#N/IMPL!,,,,,,no,,
 12,SPLIT,split_basic,,,,A1,"=SPLIT(""a,b,c"","","")",#N/IMPL!,,,,,,no,,
 12,SQRT,implemented,,,,,,,,,,,,yes,fn_sqrt,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
@@ -495,7 +495,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 13,TO_PURE_NUMBER,to_pure_number_basic,,,,A1,"=TO_PURE_NUMBER(""1,234.5"")",1234.5,,,,,,no,,
 13,TO_TEXT,to_text_basic,,,,A1,=TO_TEXT(123.45),123.45,,,,,,no,,
 13,TRANSPOSE,transpose_basic,,,,A1,"=SUM(TRANSPOSE({1,2;3,4}))",10,,,,,,no,,
-13,TREND,unsupported_nimpl,,,,A1,=TREND(1),#N/IMPL!,,,,,,no,,
+13,TREND,trend_basic,,,,A1,"=TREND({1,2,3},{1,2,3},4)",4,,,,,,no,,
 13,TRIM,implemented,,,,,,,,,,,,yes,fn_trim,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
 13,TRIMMEAN,trimmean_basic,,,,A1,"=TRIMMEAN({1,2,3,4,100},0.4)",3,,,,,,no,,
 13,TRIMRANGE,unsupported_nimpl,,,,A1,=TRIMRANGE(1),#N/IMPL!,,,,,,no,,
@@ -507,7 +507,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 13,UNARY_PERCENT,unary_percent_basic,,,,A1,=UNARY_PERCENT(50),0.5,,A2,=UNARY_PERCENT(1),0.01,,no,,
 13,UNICHAR,unichar_basic,,,,A1,=UNICHAR(65),A,,,,,,no,,
 13,UNICODE,implemented,,,,,,,,,,,,yes,fn_unicode,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
-13,UNIQUE,unsupported_nimpl,,,,A1,=UNIQUE(1),#N/IMPL!,,,,,,no,,
+13,UNIQUE,unique_basic,,,,A1,"=SUM(UNIQUE({1;1;2}))",3,,,,,,no,,
 13,UPLUS,uplus_basic,,,,A1,=UPLUS(-3),-3,,A2,=UPLUS(0),0,,no,,
 13,UPPER,implemented,,,,,,,,,,,,yes,fn_upper,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
 13,VALUE,implemented,,,,,,,,,,,,yes,fn_value,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs

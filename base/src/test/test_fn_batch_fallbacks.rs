@@ -1693,28 +1693,28 @@ fn test_batch_fallback_seriessum() {
 #[test]
 fn test_batch_fallback_sort() {
     let mut model = new_empty_model();
-    model._set("A1", "=SORT(1)");
+    model._set("A1", "=SUM(TAKE(SORT({3,1;2,4}),1,1))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"2");
 }
 
 #[test]
 fn test_batch_fallback_sortby() {
     let mut model = new_empty_model();
-    model._set("A1", "=SORTBY(1)");
+    model._set("A1", "=SUM(TAKE(SORTBY({10,20;30,40},{2;1}),1,1))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"30");
 }
 
 #[test]
 fn test_batch_fallback_sortn() {
     let mut model = new_empty_model();
-    model._set("A1", "=SORTN(1)");
+    model._set("A1", "=SUM(SORTN({3;1;2},2))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]
@@ -1855,10 +1855,10 @@ fn test_batch_fallback_transpose() {
 #[test]
 fn test_batch_fallback_trend() {
     let mut model = new_empty_model();
-    model._set("A1", "=TREND(1)");
+    model._set("A1", "=TREND({1,2,3},{1,2,3},4)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"4");
 }
 
 #[test]
@@ -1927,10 +1927,10 @@ fn test_batch_fallback_unichar() {
 #[test]
 fn test_batch_fallback_unique() {
     let mut model = new_empty_model();
-    model._set("A1", "=UNIQUE(1)");
+    model._set("A1", "=SUM(UNIQUE({1;1;2}))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]
