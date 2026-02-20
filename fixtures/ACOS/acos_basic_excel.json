@@ -1,0 +1,14 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "ACOS",
+  "case_id": "acos_basic",
+  "inputs": [
+    {"cell": "Sheet1!A1", "value": "1"}
+  ],
+  "formula": "=ACOS(A1)",
+  "target": "Sheet1!B1",
+  "expected_text": "0",
+  "notes": ""
+}

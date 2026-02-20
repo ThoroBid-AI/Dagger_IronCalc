@@ -1,0 +1,14 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "ABS",
+  "case_id": "abs_basic",
+  "inputs": [
+    {"cell": "Sheet1!A1", "value": "-2"}
+  ],
+  "formula": "=ABS(A1)",
+  "target": "Sheet1!B1",
+  "expected_text": "2",
+  "notes": ""
+}

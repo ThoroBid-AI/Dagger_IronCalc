@@ -1,0 +1,11 @@
+fixture_path,function,case_id,engine,status,expected,actual
+fixtures/ABS/abs_basic_excel.json,ABS,abs_basic,excel,OK,2,2
+fixtures/ABS/abs_basic_sheets.json,ABS,abs_basic,sheets,OK,2,2
+fixtures/ACOS/acos_basic_excel.json,ACOS,acos_basic,excel,OK,0,0
+fixtures/ACOS/acos_basic_sheets.json,ACOS,acos_basic,sheets,OK,0,0
+fixtures/ACOSH/acosh_basic_excel.json,ACOSH,acosh_basic,excel,OK,0,0
+fixtures/ACOSH/acosh_basic_sheets.json,ACOSH,acosh_basic,sheets,OK,0,0
+fixtures/ADD/add_basic_excel.json,ADD,add_basic,excel,OK,3,3
+fixtures/ADD/add_basic_sheets.json,ADD,add_basic,sheets,OK,3,3
+fixtures/AVERAGE/average_basic_excel.json,AVERAGE,average_basic,excel,OK,2,2
+fixtures/AVERAGE/average_basic_sheets.json,AVERAGE,average_basic,sheets,OK,2,2

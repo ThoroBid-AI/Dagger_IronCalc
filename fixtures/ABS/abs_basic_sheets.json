@@ -1,0 +1,14 @@
+{
+  "engine": "sheets",
+  "version": "Sheets 2026-02-20",
+  "locale": "en-US",
+  "function": "ABS",
+  "case_id": "abs_basic",
+  "inputs": [
+    {"cell": "Sheet1!A1", "value": "-2"}
+  ],
+  "formula": "=ABS(A1)",
+  "target": "Sheet1!B1",
+  "expected_text": "2",
+  "notes": ""
+}

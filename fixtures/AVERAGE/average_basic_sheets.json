@@ -1,0 +1,15 @@
+{
+  "engine": "sheets",
+  "version": "Sheets 2026-02-20",
+  "locale": "en-US",
+  "function": "AVERAGE",
+  "case_id": "average_basic",
+  "inputs": [
+    {"cell": "Sheet1!A1", "value": "1"},
+    {"cell": "Sheet1!A2", "value": "3"}
+  ],
+  "formula": "=AVERAGE(A1,A2)",
+  "target": "Sheet1!B1",
+  "expected_text": "2",
+  "notes": ""
+}
