@@ -28,7 +28,6 @@ batch_id,function_name,action,test_formula,expected_result
 12,STOCKHISTORY,unsupported_nimpl,=STOCKHISTORY(1),
 13,TEXTSPLIT,unsupported_nimpl,=TEXTSPLIT(1),
 13,TREND,unsupported_nimpl,=TREND(1),
-13,TRIMMEAN,unsupported_nimpl,=TRIMMEAN(1),
 13,TRIMRANGE,unsupported_nimpl,=TRIMRANGE(1),
 13,UNIQUE,unsupported_nimpl,=UNIQUE(1),
 13,VDB,unsupported_nimpl,=VDB(1),

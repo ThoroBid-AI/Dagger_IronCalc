@@ -4317,11 +4317,68 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "TRIMMEAN" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 2 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let mut values: Vec<f64> = Vec::new();
+            let data = match model.get_number_or_array(&args[0], cell) {
+                Ok(v) => v,
+                Err(e) => return Some(e),
+            };
+            match data {
+                NumberOrArray::Number(f) => values.push(f),
+                NumberOrArray::Array(a) => {
+                    for row in a {
+                        for node in row {
+                            match node {
+                                ArrayNode::Number(f) => values.push(f),
+                                ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                                ArrayNode::String(s) => {
+                                    if let Some(f) = model.cast_number(&s) {
+                                        values.push(f);
+                                    }
+                                }
+                                ArrayNode::Error(e) => {
+                                    return Some(CalcResult::new_error(e, cell, "Trimmean error".to_string()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            values.retain(|v| v.is_finite());
+            if values.is_empty() {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "No numeric values".to_string(),
+                ));
+            }
+            let percent = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            if percent < 0.0 || percent >= 1.0 {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Percent out of range".to_string(),
+                ));
+            }
+            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let n = values.len();
+            let trim = ((n as f64) * percent / 2.0).floor() as usize;
+            if trim * 2 >= n {
+                return Some(CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Trim removes all values".to_string(),
+                ));
+            }
+            let slice = &values[trim..(n - trim)];
+            let sum: f64 = slice.iter().sum();
+            let mean = sum / slice.len() as f64;
+            Some(CalcResult::Number(mean))
         }
         "TRIMRANGE" => {
             Some(CalcResult::new_error(

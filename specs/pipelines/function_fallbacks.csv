@@ -497,7 +497,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 13,TRANSPOSE,transpose_basic,,,,A1,"=SUM(TRANSPOSE({1,2;3,4}))",10,,,,,,no,,
 13,TREND,unsupported_nimpl,,,,A1,=TREND(1),#N/IMPL!,,,,,,no,,
 13,TRIM,implemented,,,,,,,,,,,,yes,fn_trim,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
-13,TRIMMEAN,unsupported_nimpl,,,,A1,=TRIMMEAN(1),#N/IMPL!,,,,,,no,,
+13,TRIMMEAN,trimmean_basic,,,,A1,"=TRIMMEAN({1,2,3,4,100},0.4)",3,,,,,,no,,
 13,TRIMRANGE,unsupported_nimpl,,,,A1,=TRIMRANGE(1),#N/IMPL!,,,,,,no,,
 13,TRUE,implemented,,,,,,,,,,,,yes,fn_true,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/logical.rs
 13,TRUNC,implemented,,,,,,,,,,,,yes,fn_trunc,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs

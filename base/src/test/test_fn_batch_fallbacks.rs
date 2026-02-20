@@ -1864,10 +1864,10 @@ fn test_batch_fallback_trend() {
 #[test]
 fn test_batch_fallback_trimmean() {
     let mut model = new_empty_model();
-    model._set("A1", "=TRIMMEAN(1)");
+    model._set("A1", "=TRIMMEAN({1,2,3,4,100},0.4)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"3");
 }
 
 #[test]

@@ -69,6 +69,7 @@ def gen_fallbacks_rs(rows: List[Dict[str, str]]) -> str:
             "sequence_basic",
             "split_basic",
             "sumproduct_basic",
+            "trimmean_basic",
             "vstack_basic",
             "transpose_basic",
             "take_basic",
@@ -103,6 +104,7 @@ def gen_fallbacks_rs(rows: List[Dict[str, str]]) -> str:
             "sequence_basic",
             "split_basic",
             "sumproduct_basic",
+            "trimmean_basic",
             "vstack_basic",
             "transpose_basic",
             "take_basic",
@@ -3767,6 +3769,71 @@ def gen_fallbacks_rs(rows: List[Dict[str, str]]) -> str:
             lines.append("                }")
             lines.append("            }")
             lines.append("            Some(CalcResult::Number(sum))")
+            lines.append("        }")
+        elif action == "trimmean_basic":
+            lines.append(f'        \"{normalized}\" => {{')
+            lines.append("            if args.len() != 2 {")
+            lines.append("                return Some(CalcResult::new_args_number_error(cell));")
+            lines.append("            }")
+            lines.append("            let mut values: Vec<f64> = Vec::new();")
+            lines.append("            let data = match model.get_number_or_array(&args[0], cell) {")
+            lines.append("                Ok(v) => v,")
+            lines.append("                Err(e) => return Some(e),")
+            lines.append("            };")
+            lines.append("            match data {")
+            lines.append("                NumberOrArray::Number(f) => values.push(f),")
+            lines.append("                NumberOrArray::Array(a) => {")
+            lines.append("                    for row in a {")
+            lines.append("                        for node in row {")
+            lines.append("                            match node {")
+            lines.append("                                ArrayNode::Number(f) => values.push(f),")
+            lines.append("                                ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),")
+            lines.append("                                ArrayNode::String(s) => {")
+            lines.append("                                    if let Some(f) = model.cast_number(&s) {")
+            lines.append("                                        values.push(f);")
+            lines.append("                                    }")
+            lines.append("                                }")
+            lines.append("                                ArrayNode::Error(e) => {")
+            lines.append("                                    return Some(CalcResult::new_error(e, cell, \"Trimmean error\".to_string()));")
+            lines.append("                                }")
+            lines.append("                            }")
+            lines.append("                        }")
+            lines.append("                    }")
+            lines.append("                }")
+            lines.append("            }")
+            lines.append("            values.retain(|v| v.is_finite());")
+            lines.append("            if values.is_empty() {")
+            lines.append("                return Some(CalcResult::new_error(")
+            lines.append("                    Error::NUM,")
+            lines.append("                    cell,")
+            lines.append("                    \"No numeric values\".to_string(),")
+            lines.append("                ));")
+            lines.append("            }")
+            lines.append("            let percent = match model.get_number_no_bools(&args[1], cell) {")
+            lines.append("                Ok(f) => f,")
+            lines.append("                Err(e) => return Some(e),")
+            lines.append("            };")
+            lines.append("            if percent < 0.0 || percent >= 1.0 {")
+            lines.append("                return Some(CalcResult::new_error(")
+            lines.append("                    Error::NUM,")
+            lines.append("                    cell,")
+            lines.append("                    \"Percent out of range\".to_string(),")
+            lines.append("                ));")
+            lines.append("            }")
+            lines.append("            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));")
+            lines.append("            let n = values.len();")
+            lines.append("            let trim = ((n as f64) * percent / 2.0).floor() as usize;")
+            lines.append("            if trim * 2 >= n {")
+            lines.append("                return Some(CalcResult::new_error(")
+            lines.append("                    Error::NUM,")
+            lines.append("                    cell,")
+            lines.append("                    \"Trim removes all values\".to_string(),")
+            lines.append("                ));")
+            lines.append("            }")
+            lines.append("            let slice = &values[trim..(n - trim)];")
+            lines.append("            let sum: f64 = slice.iter().sum();")
+            lines.append("            let mean = sum / slice.len() as f64;")
+            lines.append("            Some(CalcResult::Number(mean))")
             lines.append("        }")
         elif action == "oddfprice_basic":
             lines.append(f'        \"{normalized}\" => {{')
