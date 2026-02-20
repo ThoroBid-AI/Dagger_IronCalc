@@ -8,9 +8,6 @@ use crate::test::util::new_empty_model;
 fn test_batch_unsupported_functions_return_nimpl() {
     let mut model = new_empty_model();
     let functions = [
-        "DISC",
-        "DURATION",
-        "EUROCONVERT",
         "EXPAND",
         "FILTER",
         "FILTERXML",
@@ -576,6 +573,15 @@ fn test_batch_fallback_detectlanguage() {
 }
 
 #[test]
+fn test_batch_fallback_disc() {
+    let mut model = new_empty_model();
+    model._set("A1", "=DISC(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
 fn test_batch_fallback_divide() {
     let mut model = new_empty_model();
     model._set("A1", "=DIVIDE(10,2)");
@@ -630,6 +636,15 @@ fn test_batch_fallback_drop_extra() {
 }
 
 #[test]
+fn test_batch_fallback_duration() {
+    let mut model = new_empty_model();
+    model._set("A1", "=DURATION(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+}
+
+#[test]
 fn test_batch_fallback_encodeurl() {
     let mut model = new_empty_model();
     model._set("A1", "=ENCODEURL(\"https://example.com/hello world\")");
@@ -672,4 +687,13 @@ fn test_batch_fallback_eq_extra() {
     model.evaluate();
 
     assert_eq!(model._get_text("A2"), *"FALSE");
+}
+
+#[test]
+fn test_batch_fallback_euroconvert() {
+    let mut model = new_empty_model();
+    model._set("A1", "=EUROCONVERT(1)");
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
 }

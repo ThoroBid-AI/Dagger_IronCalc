@@ -129,7 +129,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 4,DETECTLANGUAGE,detectlanguage_basic,,,,A1,"=DETECTLANGUAGE(""Hello"")",en,,,,,,no,,
 4,DEVSQ,implemented,,,,,,,,,,,,yes,fn_devsq,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/statistical/devsq.rs
 4,DGET,implemented,,,,,,,,,,,,yes,fn_dget,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
-4,DISC,unimplemented,,,,,,,,,,,,no,,
+4,DISC,unsupported_nimpl,,,,A1,=DISC(1),#N/IMPL!,,,,,,no,,
 4,DIVIDE,divide_basic,,,,A1,"=DIVIDE(10,2)",5,,A2,"=DIVIDE(1,0)",#DIV/0!,,no,,
 4,DMAX,implemented,,,,,,,,,,,,yes,fn_dmax,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DMIN,implemented,,,,,,,,,,,,yes,fn_dmin,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
@@ -141,7 +141,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 4,DSTDEV,implemented,,,,,,,,,,,,yes,fn_dstdev,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DSTDEVP,implemented,,,,,,,,,,,,yes,fn_dstdevp,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DSUM,implemented,,,,,,,,,,,,yes,fn_dsum,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
-4,DURATION,unimplemented,,,,,,,,,,,,no,,
+4,DURATION,unsupported_nimpl,,,,A1,=DURATION(1),#N/IMPL!,,,,,,no,,
 4,DVAR,implemented,,,,,,,,,,,,yes,fn_dvar,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,DVARP,implemented,,,,,,,,,,,,yes,fn_dvarp,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/database.rs
 4,EDATE,implemented,,,,,,,,,,,,yes,fn_edate,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/date_and_time.rs
@@ -155,7 +155,7 @@ batch_id,function_name,action,target,min_args,max_args,test_cell,test_formula,ex
 4,ERFC,implemented,,,,,,,,,,,,yes,fn_erfc,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
 4,ERFC.PRECISE,implemented,,,,,,,,,,,,yes,fn_erfcprecise,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/engineering/bessel.rs
 4,ERROR.TYPE,implemented,,,,,,,,,,,,yes,fn_errortype,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/information.rs
-4,EUROCONVERT,unimplemented,,,,,,,,,,,,no,,
+4,EUROCONVERT,unsupported_nimpl,,,,A1,=EUROCONVERT(1),#N/IMPL!,,,,,,no,,
 4,EVEN,implemented,,,,,,,,,,,,yes,fn_even,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs
 4,EXACT,implemented,,,,,,,,,,,,yes,fn_exact,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/text.rs
 4,EXP,implemented,,,,,,,,,,,,yes,fn_exp,/Users/maxwittenberg/Desktop/dagger_excel/excel_thorobid/Dagger_IronCalc/base/src/functions/mathematical.rs

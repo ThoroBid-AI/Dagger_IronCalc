@@ -19,10 +19,7 @@ use crate::{
     model::Model,
 };
 
-const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 142] = [
-    "DISC",
-    "DURATION",
-    "EUROCONVERT",
+const NORMALIZED_UNIMPLEMENTED_FUNCTIONS: [&str; 139] = [
     "EXPAND",
     "FILTER",
     "FILTERXML",
@@ -872,6 +869,13 @@ pub(crate) fn evaluate_batch_fallback(
             let lang = if text.is_ascii() { "en" } else { "und" };
             Some(CalcResult::String(lang.to_string()))
         }
+        "DISC" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
         "DIVIDE" => {
             if args.len() != 2 {
                 return Some(CalcResult::new_args_number_error(cell));
@@ -979,6 +983,13 @@ pub(crate) fn evaluate_batch_fallback(
             }
             Some(CalcResult::Array(out))
         }
+        "DURATION" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
+        }
         "ENCODEURL" => {
             if args.len() != 1 {
                 return Some(CalcResult::new_args_number_error(cell));
@@ -1043,6 +1054,13 @@ pub(crate) fn evaluate_batch_fallback(
                 return Some(right);
             }
             Some(CalcResult::Boolean(compare_values(&left, &right) == 0))
+        }
+        "EUROCONVERT" => {
+            Some(CalcResult::new_error(
+                Error::NIMPL,
+                cell,
+                "Function not supported yet".to_string(),
+            ))
         }
         _ => None,
     }
