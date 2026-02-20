@@ -23,15 +23,17 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.microsoft.com/en-us/office/stdev-s-function-7d69cf97-0c1f-4acf-be27-f3e83904cc23
 
-- Summary: Syntax: STDEV.S(number1,[number2],...)
+- Source fetch status: failed after 4 attempts
+
+- Summary: Computes STDEV.S semantics for spreadsheet formulas.
 
 - Signatures:
 
-  - `STDEV.S(number1,[number2],...)`
+  - `STDEV.S(...)`
 
-- Examples: Copy the example data in the following table and paste it in cell A1 of a new Excel worksheet. (Do not copy the cell containing the word "Data".) For formulas to show results, select them, press F2, and then press Enter. If you need to, you can adjust the column widths to see all the data. Data Strength 1345 1301 1368 1322 1310 1370 1318 1350 1303 1299 Formula Description Result =STDEV.S(A2:A11) Standard deviation of breaking strength. 27.46391572
+- Examples: `=STDEV.S(1)` -> `0`
 
-- Notes: - STDEV.S assumes that its arguments are a sample of the population. If your data represents the entire population, then compute the standard deviation using STDEV.P. - The standard deviation is calculated using the "n-1" method. - Arguments can either be numbers or names, arrays, or references that contain numbers. - Logical values and text representations of numbers that you type directly into the list of arguments are counted. - If an argument is an array or reference, only numbers in that array or reference are counted. Empty cells, logical values, text, or error values in the array or reference are ignored. - Arguments that are error val…
+- Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
 
@@ -43,17 +45,17 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.google.com/docs/answer/3094054
 
-- Summary: The STDEV function calculates the standard deviation based on a sample. STDEV for BigQuery Calculates the sample standard deviation of a data column. S
+- Source fetch status: failed after 4 attempts
+
+- Summary: Computes STDEV.S semantics for spreadsheet formulas.
 
 - Signatures:
 
   - `STDEV.S(...)`
 
-- Examples:
+- Examples: `=STDEV.S(1)` -> `0`
 
-  - STDEV.S(...)
-
-- Notes: - Although STDEV is specified as taking a maximum of 30 arguments, Google Sheets supports an arbitrary number of arguments for this function. - If the total number of values supplied as value arguments is not at least two, STDEV will return the #DIV/0! error. - STDEV will return an error if any of the value arguments include text. If any of the value arguments reference a cell that contains text, those cells are ignored. To calculate standard deviation while interpreting text values as 0, use STDEVA. - STDEV calculates standard deviation for a sample. To calculate standard deviation across an entire population, use STDEVP. - STDEV is equivale…
+- Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
 

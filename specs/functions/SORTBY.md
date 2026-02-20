@@ -31,7 +31,7 @@ Deterministic behavior is required with explicit evaluation order.
 
   - `SORTBY(range, sort_key1, [sort_order1], ...)`
 
-- Examples:
+- Examples: `=SORTBY(1, 2, 3)` -> `0`
 
   - SORTBY({{3,1},{2,0}}, {2,1})
 
@@ -51,7 +51,7 @@ Deterministic behavior is required with explicit evaluation order.
 
 - Signatures: Not available for this provider.
 
-- Examples: Not available for this provider.
+- Examples: `=SORTBY(1, 2, 3)` -> `0`
 
 - Notes: Use provider compatibility layer only when a canonical equivalent exists.
 

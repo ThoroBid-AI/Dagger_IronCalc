@@ -23,15 +23,19 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.microsoft.com/en-us/office/t-function-fb83aeec-45e7-4924-af95-53e073541228
 
-- Summary: Returns the text referred to by value.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Returns text argument as text or empty string.
 
 - Signatures:
 
   - `T(value)`
 
-- Examples: Copy the example data in the following table, and paste it in cell A1 of a new Excel worksheet. For formulas to show results, select them, press F2, and then press Enter. If you need to, you can adjust the column widths to see all the data. Data Rainfall 19 TRUE Formula Description (Result) Result =T(A2) Because the first value is text, the text is returned (Rainfall) Rainfall =T(A3) Because the second value is a number, empty text is returned () =T(A4) Because the third value is a logical value, empty text is returned ()
+- Examples: `=T(1)` -> `0`
 
-- Notes: - If value is or refers to text, T returns value. If value does not refer to text, T returns "" (empty text). - You do not generally need to use the T function in a formula because Microsoft Excel automatically converts values as necessary. This function is provided for compatibility with other spreadsheet programs.
+  - T("x")
+
+- Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 
@@ -43,35 +47,19 @@ Deterministic spreadsheet-compatible behavior with stable coercion.
 
 - Source URL: https://support.google.com/docs/answer/3094138
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Returns text argument as text or empty string.
 
 - Signatures:
 
   - `T(value)`
 
-- Examples:
+- Examples: `=T(1)` -> `0`
 
-  - T(a,b)
+  - T("x")
 
-  - T(a.i,"gb_9a")
-
-  - T(a.i,"gb_Xd")
-
-  - T(a.i,"gb_8c")
-
-  - T(a.i,"gb_cd")
-
-  - T(a,"gb_S")
-
-  - T(this.i,"gb_5a")
-
-  - T(a.v,"gb_Me")
-
-  - T(this.H()
-
-  - T(a.V,"gb_S")
-
-- Notes: - This function is rarely necessary as Google Sheets automatically converts between most formats appropriately. It is provided primarily for compatibility with formulas used in other spreadsheet packages.
+- Notes: Deterministic and platform-stable behavior is required.
 
 - Error behavior: Invalid argument count or invalid domains return spreadsheet errors.
 

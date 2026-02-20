@@ -23,21 +23,19 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.microsoft.com/en-us/office/
 
-- Summary: Get support, help, and learning resources for Microsoft 365. Organize your life, expand your creativity, and protect what’s important with Microsoft 365.
+- Source fetch status: failed after 4 attempts
+
+- Summary: Computes SPARKLINE semantics for spreadsheet formulas.
 
 - Signatures:
 
-  - `Not implemented for this provider per matrix metadata.`
+  - `SPARKLINE(...)`
 
-- Examples: No examples captured from source page or local docs.
+- Examples: `=SPARKLINE(1)` -> `0`
 
 - Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
-
-
-
-- Compatibility note: Function is not listed as supported for this provider in the shared matrix.
 
 
 
@@ -47,25 +45,17 @@ Deterministic spreadsheet-compatible behavior with explicit coercion rules.
 
 - Source URL: https://support.google.com/docs/answer/3093289
 
+- Source fetch status: failed after 4 attempts
+
 - Summary: Computes SPARKLINE semantics for spreadsheet formulas.
 
 - Signatures:
 
-  - `SPARKLINE(data, [options])`
+  - `SPARKLINE(...)`
 
-- Examples:
+- Examples: `=SPARKLINE(1)` -> `0`
 
-  - SPARKLINE(A1:F1)
-
-  - SPARKLINE(A2:E2,{"charttype","bar";"max",40})
-
-  - SPARKLINE(A2:E2,A4:B5)
-
-  - SPARKLINE(A1:A5, {"charttype","column"; "axis", true; "axiscolor", "red"})
-
-  - SPARKLINE(data, [options])
-
-- Notes: - Colors can be written using their names (e.g., "green") or as a hex code (e.g., "#3D3D3D"). - To modify the color of a line chart, change the font color of the cell.
+- Notes: Deterministic and version-stable behavior is required.
 
 - Error behavior: Invalid argument count, types, and impossible domains return a spreadsheet error.
 
