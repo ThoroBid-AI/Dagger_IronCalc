@@ -3839,26 +3839,80 @@ pub(crate) fn evaluate_batch_fallback(
             ))
         }
         "REPLACE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let start = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let count = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let new_text = match model.get_string(&args[3], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            if start < 1.0 || count < 0.0 || start.fract() != 0.0 || count.fract() != 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid position".to_string(),
+                ));
+            }
+            let chars: Vec<char> = text.chars().collect();
+            let start_idx = (start as usize).saturating_sub(1);
+            let start_idx = usize::min(start_idx, chars.len());
+            let end_idx = usize::min(start_idx + count as usize, chars.len());
+            let mut out = String::new();
+            out.extend(chars[..start_idx].iter());
+            out.push_str(&new_text);
+            out.extend(chars[end_idx..].iter());
+            Some(CalcResult::String(out))
         }
         "REPLACEB" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.len() != 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let text = match model.get_string(&args[0], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            let start = match model.get_number_no_bools(&args[1], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let count = match model.get_number_no_bools(&args[2], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let new_text = match model.get_string(&args[3], cell) {
+                Ok(s) => s,
+                Err(e) => return Some(e),
+            };
+            if start < 1.0 || count < 0.0 || start.fract() != 0.0 || count.fract() != 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Invalid position".to_string(),
+                ));
+            }
+            let chars: Vec<char> = text.chars().collect();
+            let start_idx = (start as usize).saturating_sub(1);
+            let start_idx = usize::min(start_idx, chars.len());
+            let end_idx = usize::min(start_idx + count as usize, chars.len());
+            let mut out = String::new();
+            out.extend(chars[..start_idx].iter());
+            out.push_str(&new_text);
+            out.extend(chars[end_idx..].iter());
+            Some(CalcResult::String(out))
         }
-        "RIGHTB" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
-        }
+        "RIGHTB" => Some(model.fn_right(args, cell)),
         "RTD" => {
             Some(CalcResult::new_error(
                 Error::NIMPL,
@@ -3873,19 +3927,58 @@ pub(crate) fn evaluate_batch_fallback(
                 "Function not supported yet".to_string(),
             ))
         }
-        "SEARCHB" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
-        }
+        "SEARCHB" => Some(model.fn_search(args, cell)),
         "SEQUENCE" => {
-            Some(CalcResult::new_error(
-                Error::NIMPL,
-                cell,
-                "Function not supported yet".to_string(),
-            ))
+            if args.is_empty() || args.len() > 4 {
+                return Some(CalcResult::new_args_number_error(cell));
+            }
+            let rows = match model.get_number_no_bools(&args[0], cell) {
+                Ok(f) => f,
+                Err(e) => return Some(e),
+            };
+            let cols = if args.len() >= 2 {
+                match model.get_number_no_bools(&args[1], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1.0
+            };
+            let start = if args.len() >= 3 {
+                match model.get_number_no_bools(&args[2], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1.0
+            };
+            let step = if args.len() >= 4 {
+                match model.get_number_no_bools(&args[3], cell) {
+                    Ok(f) => f,
+                    Err(e) => return Some(e),
+                }
+            } else {
+                1.0
+            };
+            if rows <= 0.0 || cols <= 0.0 || rows.fract() != 0.0 || cols.fract() != 0.0 {
+                return Some(CalcResult::new_error(
+                    Error::VALUE,
+                    cell,
+                    "Rows and columns must be positive integers".to_string(),
+                ));
+            }
+            let rows = rows as usize;
+            let cols = cols as usize;
+            let mut out: Vec<Vec<ArrayNode>> = Vec::new();
+            for r in 0..rows {
+                let mut row = Vec::new();
+                for c in 0..cols {
+                    let idx = (r * cols + c) as f64;
+                    row.push(ArrayNode::Number(start + step * idx));
+                }
+                out.push(row);
+            }
+            Some(CalcResult::Array(out))
         }
         "SERIESSUM" => {
             Some(CalcResult::new_error(

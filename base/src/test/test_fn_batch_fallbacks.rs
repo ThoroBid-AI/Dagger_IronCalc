@@ -1621,28 +1621,28 @@ fn test_batch_fallback_register_id() {
 #[test]
 fn test_batch_fallback_replace() {
     let mut model = new_empty_model();
-    model._set("A1", "=REPLACE(1)");
+    model._set("A1", "=REPLACE(\"abcd\",2,2,\"ZZ\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"aZZd");
 }
 
 #[test]
 fn test_batch_fallback_replaceb() {
     let mut model = new_empty_model();
-    model._set("A1", "=REPLACEB(1)");
+    model._set("A1", "=REPLACEB(\"abcd\",2,1,\"Z\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"aZcd");
 }
 
 #[test]
 fn test_batch_fallback_rightb() {
     let mut model = new_empty_model();
-    model._set("A1", "=RIGHTB(1)");
+    model._set("A1", "=RIGHTB(\"hello\",2)");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"lo");
 }
 
 #[test]
@@ -1666,19 +1666,19 @@ fn test_batch_fallback_scan() {
 #[test]
 fn test_batch_fallback_searchb() {
     let mut model = new_empty_model();
-    model._set("A1", "=SEARCHB(1)");
+    model._set("A1", "=SEARCHB(\"lo\",\"hello\")");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"4");
 }
 
 #[test]
 fn test_batch_fallback_sequence() {
     let mut model = new_empty_model();
-    model._set("A1", "=SEQUENCE(1)");
+    model._set("A1", "=SUM(SEQUENCE(2,2,1,1))");
     model.evaluate();
 
-    assert_eq!(model._get_text("A1"), *"#N/IMPL!");
+    assert_eq!(model._get_text("A1"), *"10");
 }
 
 #[test]
