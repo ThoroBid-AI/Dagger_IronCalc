@@ -33,7 +33,7 @@ Returns the square root of a complex number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMSQRT("-4")
+- Summary: Returns the square root of a complex number.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the square root of a complex number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMSQRT("-4")
+- Summary: Returns the square root of a complex number.
 
 - Signatures:
 

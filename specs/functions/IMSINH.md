@@ -36,7 +36,7 @@ Invalid complex input returns error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns hyperbolic sine of a complex number.
 
 - Signatures:
 
@@ -60,7 +60,7 @@ Invalid complex input returns error.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns hyperbolic sine of a complex number.
 
 - Signatures:
 

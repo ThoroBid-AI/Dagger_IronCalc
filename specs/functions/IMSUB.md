@@ -33,7 +33,7 @@ Returns the difference of two complex numbers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMSUB("5+3i","2+1i")
+- Summary: Returns the difference of two complex numbers.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the difference of two complex numbers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: IMSUB("5+3i","2+1i")
+- Summary: Returns the difference of two complex numbers.
 
 - Signatures:
 

@@ -34,7 +34,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Converts a binary number to hexadecimal representation.
 
 - Signatures:
 
@@ -44,7 +44,7 @@ Implemented in IronCalc.
 
   - BIN2HEX("1111")
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid binary input or unsupported precision returns error.
 
@@ -58,7 +58,7 @@ Implemented in IronCalc.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Source temporarily unavailable; retained local documentation details where available.
+- Summary: Converts a binary number to hexadecimal representation.
 
 - Signatures:
 
@@ -68,7 +68,7 @@ Implemented in IronCalc.
 
   - BIN2HEX("1111")
 
-- Notes: See source link when network access is restored.
+- Notes: Source temporarily unavailable. Use local documentation details only.
 
 - Error behavior: Invalid binary input or unsupported precision returns error.
 
