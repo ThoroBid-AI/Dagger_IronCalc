@@ -37,7 +37,7 @@ Returns byte length of a text string.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LENB("hello")
+- Summary: Returns byte length of a text string.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns byte length of a text string.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LENB("hello")
+- Summary: Returns byte length of a text string.
 
 - Signatures:
 

@@ -38,7 +38,7 @@ Returns determinant of a square matrix.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns determinant of a square matrix.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns determinant of a square matrix.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns determinant of a square matrix.
 
 - Signatures:
 

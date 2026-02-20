@@ -33,7 +33,7 @@ Returns logarithm of a number to a base.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns logarithm of a number to a base.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns logarithm of a number to a base.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns logarithm of a number to a base.
 
 - Signatures:
 

@@ -37,7 +37,7 @@ Returns leftmost bytes from a text string.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LEFTB("hello", 2)
+- Summary: Returns leftmost bytes from a text string.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Returns leftmost bytes from a text string.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LEFTB("hello", 2)
+- Summary: Returns leftmost bytes from a text string.
 
 - Signatures:
 

@@ -33,7 +33,7 @@ Returns base-10 logarithm.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns base-10 logarithm.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns base-10 logarithm.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns base-10 logarithm.
 
 - Signatures:
 

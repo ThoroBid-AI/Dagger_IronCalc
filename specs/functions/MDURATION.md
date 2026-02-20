@@ -38,7 +38,7 @@ Returns modified bond duration.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns modified bond duration.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns modified bond duration.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns modified bond duration.
 
 - Signatures:
 

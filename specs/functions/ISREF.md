@@ -33,7 +33,7 @@ Returns TRUE if value is a reference.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISREF(A1)
+- Summary: Returns TRUE if value is a reference.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE if value is a reference.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISREF(A1)
+- Summary: Returns TRUE if value is a reference.
 
 - Signatures:
 

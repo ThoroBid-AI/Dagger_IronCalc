@@ -38,7 +38,7 @@ Returns regression statistics for x/y data.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns regression statistics for x/y data.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns regression statistics for x/y data.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns regression statistics for x/y data.
 
 - Signatures:
 

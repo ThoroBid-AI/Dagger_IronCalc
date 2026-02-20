@@ -38,7 +38,7 @@ Returns coefficients/statistics for log-linear fit.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns coefficients/statistics for log-linear fit.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns coefficients/statistics for log-linear fit.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns coefficients/statistics for log-linear fit.
 
 - Signatures:
 

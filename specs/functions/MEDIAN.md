@@ -33,7 +33,7 @@ Returns median value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns median value.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns median value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns median value.
 
 - Signatures:
 

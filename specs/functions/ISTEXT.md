@@ -33,7 +33,7 @@ Returns TRUE when value is text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISTEXT("abc")
+- Summary: Returns TRUE when value is text.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns TRUE when value is text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISTEXT("abc")
+- Summary: Returns TRUE when value is text.
 
 - Signatures:
 

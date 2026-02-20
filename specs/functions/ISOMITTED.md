@@ -37,7 +37,7 @@ Returns TRUE for omitted arguments in array formulas or omitted value contexts.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISOMITTED(, )
+- Summary: Returns TRUE for omitted arguments in array formulas or omitted value contexts.
 
 - Signatures:
 

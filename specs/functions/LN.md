@@ -33,7 +33,7 @@ Returns natural logarithm of a number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns natural logarithm of a number.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns natural logarithm of a number.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns natural logarithm of a number.
 
 - Signatures:
 

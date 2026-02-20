@@ -33,7 +33,7 @@ Returns least common multiple of integers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LCM(4,6)
+- Summary: Returns least common multiple of integers.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns least common multiple of integers.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LCM(4,6)
+- Summary: Returns least common multiple of integers.
 
 - Signatures:
 

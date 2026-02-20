@@ -33,7 +33,7 @@ Returns leftmost characters from a text string.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LEFT("hello", 2)
+- Summary: Returns leftmost characters from a text string.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns leftmost characters from a text string.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LEFT("hello", 2)
+- Summary: Returns leftmost characters from a text string.
 
 - Signatures:
 

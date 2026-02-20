@@ -33,7 +33,7 @@ Returns the k-th largest value in dataset.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LARGE({1,2,3},2)
+- Summary: Returns the k-th largest value in dataset.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the k-th largest value in dataset.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LARGE({1,2,3},2)
+- Summary: Returns the k-th largest value in dataset.
 
 - Signatures:
 

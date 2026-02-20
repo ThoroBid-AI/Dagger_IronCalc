@@ -33,7 +33,7 @@ Returns the ISO week number for a date.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISOWEEKNUM("2026-02-19")
+- Summary: Returns the ISO week number for a date.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the ISO week number for a date.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISOWEEKNUM("2026-02-19")
+- Summary: Returns the ISO week number for a date.
 
 - Signatures:
 

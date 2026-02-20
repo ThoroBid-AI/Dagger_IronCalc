@@ -33,7 +33,7 @@ Returns maximum value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns maximum value.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns maximum value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns maximum value.
 
 - Signatures:
 

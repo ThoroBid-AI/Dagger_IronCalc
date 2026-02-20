@@ -38,7 +38,7 @@ Returns margin of error for estimate.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns margin of error for estimate.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns margin of error for estimate.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns margin of error for estimate.
 
 - Signatures:
 

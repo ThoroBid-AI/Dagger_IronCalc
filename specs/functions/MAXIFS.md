@@ -33,7 +33,7 @@ Returns max with criteria conditions.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns max with criteria conditions.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns max with criteria conditions.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Returns max with criteria conditions.
 
 - Signatures:
 

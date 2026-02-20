@@ -33,7 +33,7 @@ Converts text to lowercase.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Converts text to lowercase.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Converts text to lowercase.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Implemented in IronCalc.
+- Summary: Converts text to lowercase.
 
 - Signatures:
 

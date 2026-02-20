@@ -37,7 +37,7 @@ Concatenates strings with a delimiter.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: JOIN(",", "a", "b", "c")
+- Summary: Concatenates strings with a delimiter.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Concatenates strings with a delimiter.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: JOIN(",", "a", "b", "c")
+- Summary: Concatenates strings with a delimiter.
 
 - Signatures:
 

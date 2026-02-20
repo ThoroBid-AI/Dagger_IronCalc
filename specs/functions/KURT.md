@@ -33,7 +33,7 @@ Returns the kurtosis of a data set.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: KURT(1,2,3,4)
+- Summary: Returns the kurtosis of a data set.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns the kurtosis of a data set.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: KURT(1,2,3,4)
+- Summary: Returns the kurtosis of a data set.
 
 - Signatures:
 

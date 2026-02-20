@@ -33,7 +33,7 @@ Returns interest paid during a payment period on an interest-only loan.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISPMT(0.08/12, 1, 12, -1000)
+- Summary: Returns interest paid during a payment period on an interest-only loan.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns interest paid during a payment period on an interest-only loan.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISPMT(0.08/12, 1, 12, -1000)
+- Summary: Returns interest paid during a payment period on an interest-only loan.
 
 - Signatures:
 

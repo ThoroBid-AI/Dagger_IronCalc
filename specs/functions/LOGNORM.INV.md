@@ -38,7 +38,7 @@ Returns inverse lognormal value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns inverse lognormal value.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns inverse lognormal value.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns inverse lognormal value.
 
 - Signatures:
 

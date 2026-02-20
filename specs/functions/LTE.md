@@ -38,7 +38,7 @@ Returns TRUE if value1 <= value2.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns TRUE if value1 <= value2.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Returns TRUE if value1 <= value2.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Returns TRUE if value1 <= value2.
 
 - Signatures:
 

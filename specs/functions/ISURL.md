@@ -37,7 +37,7 @@ Checks whether text resembles a URL.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISURL("https://example.com")
+- Summary: Checks whether text resembles a URL.
 
 - Signatures:
 
@@ -61,7 +61,7 @@ Checks whether text resembles a URL.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: ISURL("https://example.com")
+- Summary: Checks whether text resembles a URL.
 
 - Signatures:
 

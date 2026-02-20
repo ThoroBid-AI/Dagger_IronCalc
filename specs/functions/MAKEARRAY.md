@@ -38,7 +38,7 @@ Creates an array with lambda-generated values.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Creates an array with lambda-generated values.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Creates an array with lambda-generated values.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Creates an array with lambda-generated values.
 
 - Signatures:
 

@@ -37,7 +37,7 @@ Converts text to Japanese Industrial Standards character set representation.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: JIS("abc")
+- Summary: Converts text to Japanese Industrial Standards character set representation.
 
 - Signatures:
 

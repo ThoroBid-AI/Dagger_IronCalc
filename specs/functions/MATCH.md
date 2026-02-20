@@ -25,7 +25,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Returns position of value within array.
 
 - Signatures:
 
@@ -49,7 +49,7 @@ Deterministic spreadsheet-compatible behavior with explicit date handling.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Deterministic and reproducible date arithmetic.
+- Summary: Returns position of value within array.
 
 - Signatures:
 

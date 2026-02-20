@@ -33,7 +33,7 @@ Returns character count of text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LEN("hello")
+- Summary: Returns character count of text.
 
 - Signatures:
 
@@ -57,7 +57,7 @@ Returns character count of text.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: LEN("hello")
+- Summary: Returns character count of text.
 
 - Signatures:
 

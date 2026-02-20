@@ -38,7 +38,7 @@ Applies lambda across arrays.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Applies lambda across arrays.
 
 - Signatures:
 
@@ -62,7 +62,7 @@ Applies lambda across arrays.
 
 - Source fetch status: failed after 4 attempts
 
-- Summary: Not implemented in IronCalc.
+- Summary: Applies lambda across arrays.
 
 - Signatures:
 
