@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v6
       - name: Validate backlog specs
         run: make validate-backlog-specs
+      - name: Validate sheets fixtures
+        run: make validate-sheets-fixtures
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
       - name: Setup Node
