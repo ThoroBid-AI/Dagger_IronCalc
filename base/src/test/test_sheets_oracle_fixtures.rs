@@ -138,9 +138,9 @@ fn sheets_oracle_fixtures_match_ironcalc() {
         let mut model = Model::new_empty("oracle", "en", "UTC", "en").unwrap();
 
         for input in &fixture.inputs {
-            let reference = model
-                .parse_reference(&input.cell)
-                .unwrap_or_else(|| panic!("Invalid input cell in fixture {}", fixture_file.display()));
+            let reference = model.parse_reference(&input.cell).unwrap_or_else(|| {
+                panic!("Invalid input cell in fixture {}", fixture_file.display())
+            });
             model
                 .set_user_input(
                     reference.sheet,
@@ -185,7 +185,10 @@ fn sheets_oracle_fixtures_match_ironcalc() {
         }
     }
 
-    assert!(checked > 0, "No sheets fixtures with expected_text were checked");
+    assert!(
+        checked > 0,
+        "No sheets fixtures with expected_text were checked"
+    );
     assert!(
         mismatches.is_empty(),
         "Sheets oracle mismatches:\n{}",

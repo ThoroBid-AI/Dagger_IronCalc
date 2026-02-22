@@ -204,11 +204,7 @@ impl<'a> Model<'a> {
     /// Removes non-printable ASCII characters (codes 0..=31).
     pub(crate) fn fn_clean(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
         if args.len() != 1 {
-            return CalcResult::new_error(
-                Error::NA,
-                cell,
-                "Wrong number of arguments".to_string(),
-            );
+            return CalcResult::new_error(Error::NA, cell, "Wrong number of arguments".to_string());
         }
 
         let text = match self.get_string(&args[0], cell) {
@@ -464,11 +460,7 @@ impl<'a> Model<'a> {
     /// Uppercases the first letter of each word and lowercases remaining letters.
     pub(crate) fn fn_proper(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
         if args.len() != 1 {
-            return CalcResult::new_error(
-                Error::NA,
-                cell,
-                "Wrong number of arguments".to_string(),
-            );
+            return CalcResult::new_error(Error::NA, cell, "Wrong number of arguments".to_string());
         }
 
         let text = match self.get_string(&args[0], cell) {

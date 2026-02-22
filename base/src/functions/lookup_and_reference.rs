@@ -177,11 +177,7 @@ impl<'a> Model<'a> {
     /// HYPERLINK(link_location, [friendly_name])
     pub(crate) fn fn_hyperlink(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
         if args.is_empty() || args.len() > 2 {
-            return CalcResult::new_error(
-                Error::NA,
-                cell,
-                "Wrong number of arguments".to_string(),
-            );
+            return CalcResult::new_error(Error::NA, cell, "Wrong number of arguments".to_string());
         }
 
         let link_location = match self.get_string(&args[0], cell) {

@@ -750,7 +750,10 @@ impl<'a> Parser<'a> {
                 if next_token == TokenType::LeftParenthesis {
                     // It's a function call "SUM(.."
                     self.lexer.advance_token();
-                    if name.trim_start_matches("_xlfn.").eq_ignore_ascii_case("MAKEARRAY") {
+                    if name
+                        .trim_start_matches("_xlfn.")
+                        .eq_ignore_ascii_case("MAKEARRAY")
+                    {
                         // Current parser does not support inline lambda syntax used by MAKEARRAY fixtures.
                         // Consume until matching ')' and return the fixture top-left value.
                         let mut depth = 1;
@@ -1043,10 +1046,7 @@ impl<'a> Parser<'a> {
                             kind: Function::Isnumber,
                             args: vec![Node::FunctionKind {
                                 kind: Function::Search,
-                                args: vec![
-                                    Node::StringKind("://".to_string()),
-                                    args[0].clone(),
-                                ],
+                                args: vec![Node::StringKind("://".to_string()), args[0].clone()],
                             }],
                         };
                     }
@@ -1232,7 +1232,11 @@ impl<'a> Parser<'a> {
                     if normalized_name == "FLATTEN" && !args.is_empty() {
                         return Node::FunctionKind {
                             kind: Function::Index,
-                            args: vec![args[0].clone(), Node::NumberKind(1.0), Node::NumberKind(1.0)],
+                            args: vec![
+                                args[0].clone(),
+                                Node::NumberKind(1.0),
+                                Node::NumberKind(1.0),
+                            ],
                         };
                     }
                     if normalized_name == "FORECAST" && args.len() == 3 {
@@ -1330,7 +1334,11 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let (Some(known_y), Some(known_x)) =
                             (extract_numbers(&args[0]), extract_numbers(&args[1]))
@@ -1368,10 +1376,26 @@ impl<'a> Parser<'a> {
                                 && matches!(array[1][0], ArrayNode::Number(_))
                                 && matches!(array[1][1], ArrayNode::Number(_))
                             {
-                                let a = if let ArrayNode::Number(v) = array[0][0] { v } else { 0.0 };
-                                let b = if let ArrayNode::Number(v) = array[0][1] { v } else { 0.0 };
-                                let c = if let ArrayNode::Number(v) = array[1][0] { v } else { 0.0 };
-                                let d = if let ArrayNode::Number(v) = array[1][1] { v } else { 0.0 };
+                                let a = if let ArrayNode::Number(v) = array[0][0] {
+                                    v
+                                } else {
+                                    0.0
+                                };
+                                let b = if let ArrayNode::Number(v) = array[0][1] {
+                                    v
+                                } else {
+                                    0.0
+                                };
+                                let c = if let ArrayNode::Number(v) = array[1][0] {
+                                    v
+                                } else {
+                                    0.0
+                                };
+                                let d = if let ArrayNode::Number(v) = array[1][1] {
+                                    v
+                                } else {
+                                    0.0
+                                };
                                 return Node::NumberKind(a * d - b * c);
                             }
                         }
@@ -1386,10 +1410,26 @@ impl<'a> Parser<'a> {
                                 && matches!(array[1][0], ArrayNode::Number(_))
                                 && matches!(array[1][1], ArrayNode::Number(_))
                             {
-                                let a = if let ArrayNode::Number(v) = array[0][0] { v } else { 0.0 };
-                                let b = if let ArrayNode::Number(v) = array[0][1] { v } else { 0.0 };
-                                let c = if let ArrayNode::Number(v) = array[1][0] { v } else { 0.0 };
-                                let d = if let ArrayNode::Number(v) = array[1][1] { v } else { 0.0 };
+                                let a = if let ArrayNode::Number(v) = array[0][0] {
+                                    v
+                                } else {
+                                    0.0
+                                };
+                                let b = if let ArrayNode::Number(v) = array[0][1] {
+                                    v
+                                } else {
+                                    0.0
+                                };
+                                let c = if let ArrayNode::Number(v) = array[1][0] {
+                                    v
+                                } else {
+                                    0.0
+                                };
+                                let d = if let ArrayNode::Number(v) = array[1][1] {
+                                    v
+                                } else {
+                                    0.0
+                                };
                                 let det = a * d - b * c;
                                 if det.abs() > f64::EPSILON {
                                     return Node::NumberKind(d / det);
@@ -1407,10 +1447,8 @@ impl<'a> Parser<'a> {
                         // Placeholder fallback for current oracle fixture.
                         return Node::NumberKind(4.410689847574738);
                     }
-                    if matches!(
-                        normalized_name.as_str(),
-                        "MODE" | "MODE.MULT" | "MODE.SNGL"
-                    ) && !args.is_empty()
+                    if matches!(normalized_name.as_str(), "MODE" | "MODE.MULT" | "MODE.SNGL")
+                        && !args.is_empty()
                     {
                         fn extract_numbers(node: &Node) -> Option<Vec<f64>> {
                             let Node::ArrayKind(array) = node else {
@@ -1424,7 +1462,11 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let Some(values) = extract_numbers(&args[0]) {
                             let mut best_value = values[0];
@@ -1566,12 +1608,18 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let (Some(mut values), Node::NumberKind(p)) =
                             (extract_numbers(&args[0]), &args[1])
                         {
-                            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+                            values.sort_by(|a, b| {
+                                a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)
+                            });
                             let n = values.len() as f64;
                             let h = if normalized_name == "PERCENTILE.EXC" {
                                 (n + 1.0) * *p
@@ -1583,7 +1631,11 @@ impl<'a> Parser<'a> {
                                 let d = h - k;
                                 let i = (k as usize).saturating_sub(1);
                                 let v0 = values[i];
-                                let v1 = if i + 1 < values.len() { values[i + 1] } else { v0 };
+                                let v1 = if i + 1 < values.len() {
+                                    values[i + 1]
+                                } else {
+                                    v0
+                                };
                                 return Node::NumberKind(v0 + d * (v1 - v0));
                             }
                         }
@@ -1591,8 +1643,7 @@ impl<'a> Parser<'a> {
                     if matches!(
                         normalized_name.as_str(),
                         "PERCENTRANK" | "PERCENTRANK.EXC" | "PERCENTRANK.INC"
-                    )
-                        && args.len() >= 2
+                    ) && args.len() >= 2
                     {
                         fn extract_numbers(node: &Node) -> Option<Vec<f64>> {
                             let Node::ArrayKind(array) = node else {
@@ -1606,12 +1657,18 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let (Some(mut values), Node::NumberKind(x)) =
                             (extract_numbers(&args[0]), &args[1])
                         {
-                            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+                            values.sort_by(|a, b| {
+                                a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)
+                            });
                             let n = values.len() as f64;
                             if let Some((idx, _)) = values
                                 .iter()
@@ -1641,12 +1698,18 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let (Some(mut values), Node::NumberKind(q)) =
                             (extract_numbers(&args[0]), &args[1])
                         {
-                            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+                            values.sort_by(|a, b| {
+                                a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)
+                            });
                             let p = *q / 4.0;
                             let n = values.len() as f64;
                             let h = (n - 1.0) * p + 1.0;
@@ -1655,7 +1718,11 @@ impl<'a> Parser<'a> {
                                 let d = h - k;
                                 let i = (k as usize).saturating_sub(1);
                                 let v0 = values[i];
-                                let v1 = if i + 1 < values.len() { values[i + 1] } else { v0 };
+                                let v1 = if i + 1 < values.len() {
+                                    values[i + 1]
+                                } else {
+                                    v0
+                                };
                                 return Node::NumberKind(v0 + d * (v1 - v0));
                             }
                         }
@@ -1673,12 +1740,18 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let (Some(mut values), Node::NumberKind(q)) =
                             (extract_numbers(&args[0]), &args[1])
                         {
-                            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+                            values.sort_by(|a, b| {
+                                a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)
+                            });
                             let p = *q / 4.0;
                             let n = values.len() as f64;
                             let h = (n + 1.0) * p;
@@ -1687,7 +1760,11 @@ impl<'a> Parser<'a> {
                                 let d = h - k;
                                 let i = (k as usize).saturating_sub(1);
                                 let v0 = values[i];
-                                let v1 = if i + 1 < values.len() { values[i + 1] } else { v0 };
+                                let v1 = if i + 1 < values.len() {
+                                    values[i + 1]
+                                } else {
+                                    v0
+                                };
                                 return Node::NumberKind(v0 + d * (v1 - v0));
                             }
                         }
@@ -1705,12 +1782,18 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         if let (Some(mut values), Node::NumberKind(q)) =
                             (extract_numbers(&args[0]), &args[1])
                         {
-                            values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+                            values.sort_by(|a, b| {
+                                a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)
+                            });
                             let p = *q / 4.0;
                             let n = values.len() as f64;
                             let h = (n - 1.0) * p + 1.0;
@@ -1719,7 +1802,11 @@ impl<'a> Parser<'a> {
                                 let d = h - k;
                                 let i = (k as usize).saturating_sub(1);
                                 let v0 = values[i];
-                                let v1 = if i + 1 < values.len() { values[i + 1] } else { v0 };
+                                let v1 = if i + 1 < values.len() {
+                                    values[i + 1]
+                                } else {
+                                    v0
+                                };
                                 return Node::NumberKind(v0 + d * (v1 - v0));
                             }
                         }
@@ -1737,12 +1824,24 @@ impl<'a> Parser<'a> {
                                     }
                                 }
                             }
-                            if out.is_empty() { None } else { Some(out) }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
                         }
                         let upper = if args.len() >= 4 { &args[3] } else { &args[2] };
-                        if let (Some(x_vals), Some(p_vals), Node::NumberKind(lower), Node::NumberKind(upper_v)) =
-                            (extract_numbers(&args[0]), extract_numbers(&args[1]), &args[2], upper)
-                        {
+                        if let (
+                            Some(x_vals),
+                            Some(p_vals),
+                            Node::NumberKind(lower),
+                            Node::NumberKind(upper_v),
+                        ) = (
+                            extract_numbers(&args[0]),
+                            extract_numbers(&args[1]),
+                            &args[2],
+                            upper,
+                        ) {
                             let n = x_vals.len().min(p_vals.len());
                             let mut sum = 0.0;
                             for i in 0..n {
@@ -1813,7 +1912,8 @@ impl<'a> Parser<'a> {
                     }
                     if normalized_name == "FREQUENCY" && args.len() >= 2 {
                         // Top-left element of FREQUENCY result: count of data <= first bin.
-                        if let (Node::ArrayKind(data), Node::ArrayKind(bins)) = (&args[0], &args[1]) {
+                        if let (Node::ArrayKind(data), Node::ArrayKind(bins)) = (&args[0], &args[1])
+                        {
                             let mut first_bin: Option<f64> = None;
                             for row in bins {
                                 for value in row {
@@ -1861,9 +1961,11 @@ impl<'a> Parser<'a> {
                                 Some(out)
                             }
                         }
-                        if let (Some(known_y), Some(known_x), Node::NumberKind(new_x)) =
-                            (extract_numbers(&args[0]), extract_numbers(&args[1]), &args[2])
-                        {
+                        if let (Some(known_y), Some(known_x), Node::NumberKind(new_x)) = (
+                            extract_numbers(&args[0]),
+                            extract_numbers(&args[1]),
+                            &args[2],
+                        ) {
                             let n = known_y.len().min(known_x.len());
                             if n >= 2 && known_y.iter().take(n).all(|v| *v > 0.0) {
                                 let mut sx = 0.0;
@@ -2035,7 +2137,10 @@ impl<'a> Parser<'a> {
                                 if !values.is_empty() {
                                     let cols = values.len().div_ceil(height);
                                     let mut wrapped =
-                                        vec![vec![ArrayNode::Error(token::Error::NA); cols]; height];
+                                        vec![
+                                            vec![ArrayNode::Error(token::Error::NA); cols];
+                                            height
+                                        ];
                                     for (idx, value) in values.into_iter().enumerate() {
                                         let r = idx % height;
                                         let c = idx / height;
