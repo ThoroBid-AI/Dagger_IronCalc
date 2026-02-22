@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 use crate::expressions::lexer::LexerMode;
 use crate::expressions::parser::stringify::{to_rc_format, to_string_displaced, DisplaceData};
-use crate::expressions::parser::Node;
+use crate::expressions::parser::{ArrayNode, Node};
 use crate::expressions::types::CellReferenceRC;
 
 use crate::expressions::parser::tests::utils::{new_parser, to_english_localized_string};
@@ -88,6 +88,29 @@ fn test_parser_simple_formula() {
 
     let t = parser.parse("C3+Sheet2!D4", &cell_reference);
     assert_eq!(to_rc_format(&t), "R[2]C[2]+Sheet2!R[3]C[3]");
+}
+
+#[test]
+fn test_parser_makearray_and_lambda_invocation() {
+    let worksheets = vec!["Sheet1".to_string()];
+    let mut parser = new_parser(worksheets, vec![], HashMap::new());
+    let cell_reference = CellReferenceRC {
+        sheet: "Sheet1".to_string(),
+        row: 1,
+        column: 1,
+    };
+
+    let lambda = parser.parse("LAMBDA(x,x+1)(1)", &cell_reference);
+    let makearray = parser.parse("MAKEARRAY(2,2,LAMBDA(r,c,r+c))", &cell_reference);
+
+    assert!(!matches!(lambda, Node::ParseErrorKind { .. }));
+    assert_eq!(
+        makearray,
+        Node::ArrayKind(vec![
+            vec![ArrayNode::Number(2.0), ArrayNode::Number(3.0)],
+            vec![ArrayNode::Number(3.0), ArrayNode::Number(4.0)]
+        ])
+    );
 }
 
 #[test]

@@ -145,6 +145,13 @@ impl<'a> Lexer<'a> {
         self.position as i32
     }
 
+    /// Sets the lexer position. This is used by parser-level fallbacks that
+    /// consume raw formula slices when tokenization cannot proceed.
+    pub fn set_position(&mut self, position: usize) {
+        self.position = position.min(self.len);
+        self.next_token_position = None;
+    }
+
     /// Resets the formula
     pub fn set_formula(&mut self, content: &str) {
         self.chars = content.chars().collect();
