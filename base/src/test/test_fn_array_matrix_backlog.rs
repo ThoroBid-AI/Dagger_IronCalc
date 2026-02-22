@@ -152,3 +152,56 @@ fn sheets_array_aliases_return_full_arrays() {
     assert_eq!(model._get_text("R1"), *"2");
     assert_eq!(model._get_text("S1"), *"4");
 }
+
+#[test]
+fn sheets_array_aliases_spill_batch_two() {
+    let mut model = new_empty_model();
+
+    model._set("A1", "=CHOOSECOLS({1,2,3;4,5,6},1,3)");
+    model._set("D1", "=CHOOSEROWS({1,2;3,4;5,6},1,3)");
+    model._set("G1", "=FLATTEN({1,2;3,4})");
+    model._set("I1", "=HSTACK({1;2},{3})");
+    model._set("L1", "=MUNIT(2)");
+    model._set("N1", "=BYCOL({1,2,3;4,5,6},LAMBDA(col,SUM(col)))");
+    model._set("N3", "=BYROW({1,2,3;4,5,6},LAMBDA(row,SUM(row)))");
+    model._set("R1", "=VSTACK({1,2},{3})");
+
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"1");
+    assert_eq!(model._get_text("B1"), *"3");
+    assert_eq!(model._get_text("A2"), *"4");
+    assert_eq!(model._get_text("B2"), *"6");
+
+    assert_eq!(model._get_text("D1"), *"1");
+    assert_eq!(model._get_text("E1"), *"2");
+    assert_eq!(model._get_text("D2"), *"5");
+    assert_eq!(model._get_text("E2"), *"6");
+
+    assert_eq!(model._get_text("G1"), *"1");
+    assert_eq!(model._get_text("G2"), *"2");
+    assert_eq!(model._get_text("G3"), *"3");
+    assert_eq!(model._get_text("G4"), *"4");
+
+    assert_eq!(model._get_text("I1"), *"1");
+    assert_eq!(model._get_text("J1"), *"3");
+    assert_eq!(model._get_text("I2"), *"2");
+    assert_eq!(model._get_text("J2"), *"#N/A");
+
+    assert_eq!(model._get_text("L1"), *"1");
+    assert_eq!(model._get_text("M1"), *"0");
+    assert_eq!(model._get_text("L2"), *"0");
+    assert_eq!(model._get_text("M2"), *"1");
+
+    assert_eq!(model._get_text("N1"), *"5");
+    assert_eq!(model._get_text("O1"), *"7");
+    assert_eq!(model._get_text("P1"), *"9");
+
+    assert_eq!(model._get_text("N3"), *"6");
+    assert_eq!(model._get_text("N4"), *"15");
+
+    assert_eq!(model._get_text("R1"), *"1");
+    assert_eq!(model._get_text("S1"), *"2");
+    assert_eq!(model._get_text("R2"), *"3");
+    assert_eq!(model._get_text("S2"), *"#N/A");
+}

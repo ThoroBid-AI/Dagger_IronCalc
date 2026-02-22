@@ -893,41 +893,118 @@ impl<'a> Parser<'a> {
                         };
                     }
                     if normalized_name == "CHOOSECOLS" && args.len() >= 2 {
-                        // Return top-left of CHOOSECOLS result via INDEX(array,1,first_selected_col).
-                        return Node::FunctionKind {
-                            kind: Function::Index,
-                            args: vec![args[0].clone(), Node::NumberKind(1.0), args[1].clone()],
-                        };
+                        if let Node::ArrayKind(array) = &args[0] {
+                            let max_columns =
+                                array.iter().map(std::vec::Vec::len).max().unwrap_or(0);
+                            if max_columns == 0 {
+                                return Node::ErrorKind(token::Error::VALUE);
+                            }
+
+                            let mut selected_indices = Vec::with_capacity(args.len() - 1);
+                            for selector in args.iter().skip(1) {
+                                let raw = match selector {
+                                    Node::NumberKind(v) if v.is_finite() && *v != 0.0 => {
+                                        v.trunc() as isize
+                                    }
+                                    _ => return Node::ErrorKind(token::Error::VALUE),
+                                };
+
+                                let normalized = if raw > 0 {
+                                    raw
+                                } else {
+                                    max_columns as isize + raw + 1
+                                };
+                                if normalized <= 0 || normalized > max_columns as isize {
+                                    return Node::ErrorKind(token::Error::VALUE);
+                                }
+                                selected_indices.push((normalized - 1) as usize);
+                            }
+
+                            let mut result = Vec::with_capacity(array.len());
+                            for row in array {
+                                let mut out_row = Vec::with_capacity(selected_indices.len());
+                                for index in &selected_indices {
+                                    out_row.push(
+                                        row.get(*index)
+                                            .cloned()
+                                            .unwrap_or(ArrayNode::Error(token::Error::NA)),
+                                    );
+                                }
+                                result.push(out_row);
+                            }
+                            return Node::ArrayKind(result);
+                        }
                     }
                     if normalized_name == "CHOOSEROWS" && args.len() >= 2 {
-                        // Return top-left of CHOOSEROWS result via INDEX(array,first_selected_row,1).
-                        return Node::FunctionKind {
-                            kind: Function::Index,
-                            args: vec![args[0].clone(), args[1].clone(), Node::NumberKind(1.0)],
-                        };
+                        if let Node::ArrayKind(array) = &args[0] {
+                            if array.is_empty() {
+                                return Node::ErrorKind(token::Error::VALUE);
+                            }
+
+                            let mut selected_indices = Vec::with_capacity(args.len() - 1);
+                            for selector in args.iter().skip(1) {
+                                let raw = match selector {
+                                    Node::NumberKind(v) if v.is_finite() && *v != 0.0 => {
+                                        v.trunc() as isize
+                                    }
+                                    _ => return Node::ErrorKind(token::Error::VALUE),
+                                };
+
+                                let normalized = if raw > 0 {
+                                    raw
+                                } else {
+                                    array.len() as isize + raw + 1
+                                };
+                                if normalized <= 0 || normalized > array.len() as isize {
+                                    return Node::ErrorKind(token::Error::VALUE);
+                                }
+                                selected_indices.push((normalized - 1) as usize);
+                            }
+
+                            let result = selected_indices
+                                .into_iter()
+                                .map(|index| array[index].clone())
+                                .collect();
+                            return Node::ArrayKind(result);
+                        }
                     }
                     if normalized_name == "BYCOL" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            let mut sum = 0.0;
-                            for row in array {
-                                if let Some(ArrayNode::Number(value)) = row.first() {
-                                    sum += *value;
-                                }
+                            let max_columns =
+                                array.iter().map(std::vec::Vec::len).max().unwrap_or(0);
+                            if max_columns == 0 {
+                                return Node::ErrorKind(token::Error::VALUE);
                             }
-                            return Node::NumberKind(sum);
+                            let mut out_row = Vec::with_capacity(max_columns);
+                            for column in 0..max_columns {
+                                let mut sum = 0.0;
+                                for row in array {
+                                    if let Some(value) = row.get(column) {
+                                        match value {
+                                            ArrayNode::Number(v) => sum += *v,
+                                            _ => return Node::ErrorKind(token::Error::VALUE),
+                                        }
+                                    }
+                                }
+                                out_row.push(ArrayNode::Number(sum));
+                            }
+                            return Node::ArrayKind(vec![out_row]);
                         }
                     }
                     if normalized_name == "BYROW" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            let mut sum = 0.0;
-                            if let Some(first_row) = array.first() {
-                                for value in first_row {
-                                    if let ArrayNode::Number(number) = value {
-                                        sum += *number;
+                            let mut out = Vec::with_capacity(array.len());
+                            for row in array {
+                                let mut sum = 0.0;
+                                for value in row {
+                                    match value {
+                                        ArrayNode::Number(number) => sum += *number,
+                                        _ => return Node::ErrorKind(token::Error::VALUE),
                                     }
                                 }
+                                out.push(vec![ArrayNode::Number(sum)]);
                             }
-                            return Node::NumberKind(sum);
+                            return Node::ArrayKind(out);
                         }
                     }
                     if normalized_name == "TDIST" && args.len() == 3 {
@@ -1230,14 +1307,27 @@ impl<'a> Parser<'a> {
                         };
                     }
                     if normalized_name == "FLATTEN" && !args.is_empty() {
-                        return Node::FunctionKind {
-                            kind: Function::Index,
-                            args: vec![
-                                args[0].clone(),
-                                Node::NumberKind(1.0),
-                                Node::NumberKind(1.0),
-                            ],
-                        };
+                        let mut flattened = Vec::new();
+                        for arg in &args {
+                            match arg {
+                                Node::ArrayKind(array) => {
+                                    for row in array {
+                                        for value in row {
+                                            flattened.push(value.clone());
+                                        }
+                                    }
+                                }
+                                Node::NumberKind(v) => flattened.push(ArrayNode::Number(*v)),
+                                Node::StringKind(v) => flattened.push(ArrayNode::String(v.clone())),
+                                Node::BooleanKind(v) => flattened.push(ArrayNode::Boolean(*v)),
+                                Node::ErrorKind(v) => flattened.push(ArrayNode::Error(v.clone())),
+                                _ => {}
+                            }
+                        }
+                        if !flattened.is_empty() {
+                            let result = flattened.into_iter().map(|v| vec![v]).collect();
+                            return Node::ArrayKind(result);
+                        }
                     }
                     if normalized_name == "FORECAST" && args.len() == 3 {
                         // FORECAST(x, known_y, known_x) -> INTERCEPT(known_y,known_x) + SLOPE(known_y,known_x)*x
@@ -1485,8 +1575,25 @@ impl<'a> Parser<'a> {
                         }
                     }
                     if normalized_name == "MUNIT" && !args.is_empty() {
-                        // Top-left of identity matrix.
-                        return Node::NumberKind(1.0);
+                        let dimension = match args.first() {
+                            Some(Node::NumberKind(v)) if v.is_finite() && *v > 0.0 => {
+                                v.trunc() as usize
+                            }
+                            _ => return Node::ErrorKind(token::Error::VALUE),
+                        };
+                        let mut out = Vec::with_capacity(dimension);
+                        for row in 0..dimension {
+                            let mut out_row = Vec::with_capacity(dimension);
+                            for column in 0..dimension {
+                                out_row.push(ArrayNode::Number(if row == column {
+                                    1.0
+                                } else {
+                                    0.0
+                                }));
+                            }
+                            out.push(out_row);
+                        }
+                        return Node::ArrayKind(out);
                     }
                     if normalized_name == "QUERY" && !args.is_empty() {
                         // Top-left of QUERY output for current fixture shape.
@@ -1994,15 +2101,53 @@ impl<'a> Parser<'a> {
                         }
                     }
                     if normalized_name == "HSTACK" && !args.is_empty() {
-                        // Top-left element of concatenated horizontal stack.
-                        return Node::FunctionKind {
-                            kind: Function::Index,
-                            args: vec![
-                                args[0].clone(),
-                                Node::NumberKind(1.0),
-                                Node::NumberKind(1.0),
-                            ],
-                        };
+                        fn node_to_matrix(node: &Node) -> Option<Vec<Vec<ArrayNode>>> {
+                            match node {
+                                Node::ArrayKind(array) => Some(array.clone()),
+                                Node::NumberKind(v) => Some(vec![vec![ArrayNode::Number(*v)]]),
+                                Node::StringKind(v) => {
+                                    Some(vec![vec![ArrayNode::String(v.clone())]])
+                                }
+                                Node::BooleanKind(v) => Some(vec![vec![ArrayNode::Boolean(*v)]]),
+                                Node::ErrorKind(v) => Some(vec![vec![ArrayNode::Error(v.clone())]]),
+                                _ => None,
+                            }
+                        }
+
+                        let mut matrices = Vec::with_capacity(args.len());
+                        for arg in &args {
+                            let Some(matrix) = node_to_matrix(arg) else {
+                                continue;
+                            };
+                            let width = matrix.iter().map(std::vec::Vec::len).max().unwrap_or(0);
+                            matrices.push((matrix, width));
+                        }
+
+                        if !matrices.is_empty() {
+                            let max_rows = matrices.iter().map(|(m, _)| m.len()).max().unwrap_or(0);
+                            let mut output = Vec::with_capacity(max_rows);
+                            for row_index in 0..max_rows {
+                                let mut row = Vec::new();
+                                for (matrix, width) in &matrices {
+                                    if row_index < matrix.len() {
+                                        row.extend(matrix[row_index].clone());
+                                        if matrix[row_index].len() < *width {
+                                            row.extend(std::iter::repeat_n(
+                                                ArrayNode::Error(token::Error::NA),
+                                                *width - matrix[row_index].len(),
+                                            ));
+                                        }
+                                    } else {
+                                        row.extend(std::iter::repeat_n(
+                                            ArrayNode::Error(token::Error::NA),
+                                            *width,
+                                        ));
+                                    }
+                                }
+                                output.push(row);
+                            }
+                            return Node::ArrayKind(output);
+                        }
                     }
                     if normalized_name == "IMTANH" && args.len() == 1 {
                         // IMTANH(z) = IMSINH(z) / IMCOSH(z)
@@ -2090,14 +2235,46 @@ impl<'a> Parser<'a> {
                         return Node::ErrorKind(token::Error::NUM);
                     }
                     if normalized_name == "VSTACK" && !args.is_empty() {
-                        let mut rows: Vec<Vec<ArrayNode>> = Vec::new();
-                        for arg in &args {
-                            if let Node::ArrayKind(array) = arg {
-                                rows.extend(array.clone());
+                        fn node_to_matrix(node: &Node) -> Option<Vec<Vec<ArrayNode>>> {
+                            match node {
+                                Node::ArrayKind(array) => Some(array.clone()),
+                                Node::NumberKind(v) => Some(vec![vec![ArrayNode::Number(*v)]]),
+                                Node::StringKind(v) => {
+                                    Some(vec![vec![ArrayNode::String(v.clone())]])
+                                }
+                                Node::BooleanKind(v) => Some(vec![vec![ArrayNode::Boolean(*v)]]),
+                                Node::ErrorKind(v) => Some(vec![vec![ArrayNode::Error(v.clone())]]),
+                                _ => None,
                             }
                         }
-                        if !rows.is_empty() {
-                            return Node::ArrayKind(rows);
+
+                        let mut matrices = Vec::with_capacity(args.len());
+                        for arg in &args {
+                            let Some(matrix) = node_to_matrix(arg) else {
+                                continue;
+                            };
+                            let width = matrix.iter().map(std::vec::Vec::len).max().unwrap_or(0);
+                            matrices.push((matrix, width));
+                        }
+
+                        if !matrices.is_empty() {
+                            let max_columns =
+                                matrices.iter().map(|(_, width)| *width).max().unwrap_or(0);
+                            let mut rows: Vec<Vec<ArrayNode>> = Vec::new();
+                            for (matrix, _) in matrices {
+                                for mut row in matrix {
+                                    if row.len() < max_columns {
+                                        row.extend(std::iter::repeat_n(
+                                            ArrayNode::Error(token::Error::NA),
+                                            max_columns - row.len(),
+                                        ));
+                                    }
+                                    rows.push(row);
+                                }
+                            }
+                            if !rows.is_empty() {
+                                return Node::ArrayKind(rows);
+                            }
                         }
                     }
                     if normalized_name == "WRAPROWS" && args.len() >= 2 {
