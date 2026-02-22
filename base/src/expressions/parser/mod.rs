@@ -1350,9 +1350,135 @@ impl<'a> Parser<'a> {
                     if normalized_name == "DETECTLANGUAGE" && args.len() == 1 {
                         return Node::StringKind("en".to_string());
                     }
-                    if normalized_name == "DURATION" && args.len() >= 6 {
-                        // Placeholder fallback for current oracle fixture.
-                        return Node::NumberKind(4.498903644526233);
+                    if normalized_name == "DURATION" && args.len() >= 5 {
+                        // Approximate Macaulay duration for regular coupon bonds using closed-form periods.
+                        let basis = args.get(5).cloned().unwrap_or(Node::NumberKind(0.0));
+                        let frequency = args[4].clone();
+                        let n_periods = Node::FunctionKind {
+                            kind: Function::Roundup,
+                            args: vec![
+                                Node::OpProductKind {
+                                    kind: token::OpProduct::Times,
+                                    left: Box::new(Node::FunctionKind {
+                                        kind: Function::Yearfrac,
+                                        args: vec![args[0].clone(), args[1].clone(), basis],
+                                    }),
+                                    right: Box::new(frequency.clone()),
+                                },
+                                Node::NumberKind(0.0),
+                            ],
+                        };
+                        let coupon_rate_per_period = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(args[2].clone()),
+                            right: Box::new(frequency.clone()),
+                        };
+                        let yield_per_period = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(args[3].clone()),
+                            right: Box::new(frequency.clone()),
+                        };
+                        let one_plus_yield = Node::OpSumKind {
+                            kind: token::OpSum::Add,
+                            left: Box::new(Node::NumberKind(1.0)),
+                            right: Box::new(yield_per_period.clone()),
+                        };
+                        let y_is_zero = Node::CompareKind {
+                            kind: OpCompare::Equal,
+                            left: Box::new(yield_per_period.clone()),
+                            right: Box::new(Node::NumberKind(0.0)),
+                        };
+
+                        let duration_periods_discounted = Node::OpSumKind {
+                            kind: token::OpSum::Minus,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Divide,
+                                left: Box::new(one_plus_yield.clone()),
+                                right: Box::new(yield_per_period.clone()),
+                            }),
+                            right: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Divide,
+                                left: Box::new(Node::OpSumKind {
+                                    kind: token::OpSum::Add,
+                                    left: Box::new(one_plus_yield.clone()),
+                                    right: Box::new(Node::OpProductKind {
+                                        kind: token::OpProduct::Times,
+                                        left: Box::new(n_periods.clone()),
+                                        right: Box::new(Node::OpSumKind {
+                                            kind: token::OpSum::Minus,
+                                            left: Box::new(coupon_rate_per_period.clone()),
+                                            right: Box::new(yield_per_period.clone()),
+                                        }),
+                                    }),
+                                }),
+                                right: Box::new(Node::OpSumKind {
+                                    kind: token::OpSum::Add,
+                                    left: Box::new(Node::OpProductKind {
+                                        kind: token::OpProduct::Times,
+                                        left: Box::new(coupon_rate_per_period.clone()),
+                                        right: Box::new(Node::OpSumKind {
+                                            kind: token::OpSum::Minus,
+                                            left: Box::new(Node::FunctionKind {
+                                                kind: Function::Power,
+                                                args: vec![
+                                                    one_plus_yield.clone(),
+                                                    n_periods.clone(),
+                                                ],
+                                            }),
+                                            right: Box::new(Node::NumberKind(1.0)),
+                                        }),
+                                    }),
+                                    right: Box::new(yield_per_period.clone()),
+                                }),
+                            }),
+                        };
+
+                        let duration_periods_zero_yield = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(Node::OpSumKind {
+                                kind: token::OpSum::Add,
+                                left: Box::new(Node::OpProductKind {
+                                    kind: token::OpProduct::Divide,
+                                    left: Box::new(Node::OpProductKind {
+                                        kind: token::OpProduct::Times,
+                                        left: Box::new(Node::OpProductKind {
+                                            kind: token::OpProduct::Times,
+                                            left: Box::new(coupon_rate_per_period.clone()),
+                                            right: Box::new(n_periods.clone()),
+                                        }),
+                                        right: Box::new(Node::OpSumKind {
+                                            kind: token::OpSum::Add,
+                                            left: Box::new(n_periods.clone()),
+                                            right: Box::new(Node::NumberKind(1.0)),
+                                        }),
+                                    }),
+                                    right: Box::new(Node::NumberKind(2.0)),
+                                }),
+                                right: Box::new(n_periods.clone()),
+                            }),
+                            right: Box::new(Node::OpSumKind {
+                                kind: token::OpSum::Add,
+                                left: Box::new(Node::OpProductKind {
+                                    kind: token::OpProduct::Times,
+                                    left: Box::new(coupon_rate_per_period.clone()),
+                                    right: Box::new(n_periods.clone()),
+                                }),
+                                right: Box::new(Node::NumberKind(1.0)),
+                            }),
+                        };
+
+                        return Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(Node::FunctionKind {
+                                kind: Function::If,
+                                args: vec![
+                                    y_is_zero,
+                                    duration_periods_zero_yield,
+                                    duration_periods_discounted,
+                                ],
+                            }),
+                            right: Box::new(frequency),
+                        };
                     }
                     if matches!(
                         normalized_name.as_str(),
@@ -1631,9 +1757,92 @@ impl<'a> Parser<'a> {
                             args,
                         };
                     }
-                    if normalized_name == "MDURATION" && args.len() >= 6 {
-                        // Placeholder fallback for current oracle fixture.
-                        return Node::NumberKind(4.410689847574738);
+                    if normalized_name == "MDURATION" && args.len() >= 5 {
+                        let basis = args.get(5).cloned().unwrap_or(Node::NumberKind(0.0));
+                        let frequency = args[4].clone();
+                        let n_periods = Node::FunctionKind {
+                            kind: Function::Roundup,
+                            args: vec![
+                                Node::OpProductKind {
+                                    kind: token::OpProduct::Times,
+                                    left: Box::new(Node::FunctionKind {
+                                        kind: Function::Yearfrac,
+                                        args: vec![args[0].clone(), args[1].clone(), basis],
+                                    }),
+                                    right: Box::new(frequency.clone()),
+                                },
+                                Node::NumberKind(0.0),
+                            ],
+                        };
+                        let coupon_rate_per_period = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(args[2].clone()),
+                            right: Box::new(frequency.clone()),
+                        };
+                        let yield_per_period = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(args[3].clone()),
+                            right: Box::new(frequency.clone()),
+                        };
+                        let one_plus_yield = Node::OpSumKind {
+                            kind: token::OpSum::Add,
+                            left: Box::new(Node::NumberKind(1.0)),
+                            right: Box::new(yield_per_period.clone()),
+                        };
+
+                        let duration_periods = Node::OpSumKind {
+                            kind: token::OpSum::Minus,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Divide,
+                                left: Box::new(one_plus_yield.clone()),
+                                right: Box::new(yield_per_period.clone()),
+                            }),
+                            right: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Divide,
+                                left: Box::new(Node::OpSumKind {
+                                    kind: token::OpSum::Add,
+                                    left: Box::new(one_plus_yield.clone()),
+                                    right: Box::new(Node::OpProductKind {
+                                        kind: token::OpProduct::Times,
+                                        left: Box::new(n_periods.clone()),
+                                        right: Box::new(Node::OpSumKind {
+                                            kind: token::OpSum::Minus,
+                                            left: Box::new(coupon_rate_per_period.clone()),
+                                            right: Box::new(yield_per_period.clone()),
+                                        }),
+                                    }),
+                                }),
+                                right: Box::new(Node::OpSumKind {
+                                    kind: token::OpSum::Add,
+                                    left: Box::new(Node::OpProductKind {
+                                        kind: token::OpProduct::Times,
+                                        left: Box::new(coupon_rate_per_period.clone()),
+                                        right: Box::new(Node::OpSumKind {
+                                            kind: token::OpSum::Minus,
+                                            left: Box::new(Node::FunctionKind {
+                                                kind: Function::Power,
+                                                args: vec![
+                                                    one_plus_yield.clone(),
+                                                    n_periods.clone(),
+                                                ],
+                                            }),
+                                            right: Box::new(Node::NumberKind(1.0)),
+                                        }),
+                                    }),
+                                    right: Box::new(yield_per_period.clone()),
+                                }),
+                            }),
+                        };
+
+                        return Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Divide,
+                                left: Box::new(duration_periods),
+                                right: Box::new(frequency),
+                            }),
+                            right: Box::new(one_plus_yield),
+                        };
                     }
                     if matches!(normalized_name.as_str(), "MODE" | "MODE.MULT" | "MODE.SNGL")
                         && !args.is_empty()
@@ -2138,8 +2347,91 @@ impl<'a> Parser<'a> {
                         };
                     }
                     if normalized_name == "PRICE" && args.len() >= 7 {
-                        // Fixture fallback for current test case.
-                        return Node::NumberKind(104.49129250312109);
+                        // Approximate clean price for regular coupon bonds.
+                        let basis = args.get(6).cloned().unwrap_or(Node::NumberKind(0.0));
+                        let frequency = args[5].clone();
+                        let n_periods = Node::FunctionKind {
+                            kind: Function::Roundup,
+                            args: vec![
+                                Node::OpProductKind {
+                                    kind: token::OpProduct::Times,
+                                    left: Box::new(Node::FunctionKind {
+                                        kind: Function::Yearfrac,
+                                        args: vec![args[0].clone(), args[1].clone(), basis],
+                                    }),
+                                    right: Box::new(frequency.clone()),
+                                },
+                                Node::NumberKind(0.0),
+                            ],
+                        };
+                        let coupon_payment = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Times,
+                                left: Box::new(args[2].clone()),
+                                right: Box::new(args[4].clone()),
+                            }),
+                            right: Box::new(frequency.clone()),
+                        };
+                        let yield_per_period = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(args[3].clone()),
+                            right: Box::new(frequency.clone()),
+                        };
+                        let discount_base = Node::OpSumKind {
+                            kind: token::OpSum::Add,
+                            left: Box::new(Node::NumberKind(1.0)),
+                            right: Box::new(yield_per_period.clone()),
+                        };
+                        let discount_power = Node::FunctionKind {
+                            kind: Function::Power,
+                            args: vec![
+                                discount_base,
+                                Node::UnaryKind {
+                                    kind: OpUnary::Minus,
+                                    right: Box::new(n_periods.clone()),
+                                },
+                            ],
+                        };
+                        let y_is_zero = Node::CompareKind {
+                            kind: OpCompare::Equal,
+                            left: Box::new(yield_per_period.clone()),
+                            right: Box::new(Node::NumberKind(0.0)),
+                        };
+                        let price_when_y_zero = Node::OpSumKind {
+                            kind: token::OpSum::Add,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Times,
+                                left: Box::new(coupon_payment.clone()),
+                                right: Box::new(n_periods.clone()),
+                            }),
+                            right: Box::new(args[4].clone()),
+                        };
+                        let price_discounted = Node::OpSumKind {
+                            kind: token::OpSum::Add,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Divide,
+                                left: Box::new(Node::OpProductKind {
+                                    kind: token::OpProduct::Times,
+                                    left: Box::new(coupon_payment),
+                                    right: Box::new(Node::OpSumKind {
+                                        kind: token::OpSum::Minus,
+                                        left: Box::new(Node::NumberKind(1.0)),
+                                        right: Box::new(discount_power.clone()),
+                                    }),
+                                }),
+                                right: Box::new(yield_per_period),
+                            }),
+                            right: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Times,
+                                left: Box::new(args[4].clone()),
+                                right: Box::new(discount_power),
+                            }),
+                        };
+                        return Node::FunctionKind {
+                            kind: Function::If,
+                            args: vec![y_is_zero, price_when_y_zero, price_discounted],
+                        };
                     }
                     if normalized_name == "PRICEMAT" {
                         return Node::ErrorKind(token::Error::NUM);
@@ -2499,9 +2791,48 @@ impl<'a> Parser<'a> {
                             }
                         }
                     }
-                    if normalized_name == "YIELD" {
-                        // Fixture fallback for current oracle capture.
-                        return Node::NumberKind(0.07746681779849668);
+                    if normalized_name == "YIELD" && args.len() >= 6 {
+                        let basis = args.get(6).cloned().unwrap_or(Node::NumberKind(0.0));
+                        let frequency = args[5].clone();
+                        let n_periods = Node::FunctionKind {
+                            kind: Function::Roundup,
+                            args: vec![
+                                Node::OpProductKind {
+                                    kind: token::OpProduct::Times,
+                                    left: Box::new(Node::FunctionKind {
+                                        kind: Function::Yearfrac,
+                                        args: vec![args[0].clone(), args[1].clone(), basis],
+                                    }),
+                                    right: Box::new(frequency.clone()),
+                                },
+                                Node::NumberKind(0.0),
+                            ],
+                        };
+                        let coupon_payment = Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(Node::OpProductKind {
+                                kind: token::OpProduct::Times,
+                                left: Box::new(args[2].clone()),
+                                right: Box::new(args[4].clone()),
+                            }),
+                            right: Box::new(frequency.clone()),
+                        };
+                        return Node::OpProductKind {
+                            kind: token::OpProduct::Times,
+                            left: Box::new(Node::FunctionKind {
+                                kind: Function::Rate,
+                                args: vec![
+                                    n_periods,
+                                    coupon_payment,
+                                    Node::UnaryKind {
+                                        kind: OpUnary::Minus,
+                                        right: Box::new(args[3].clone()),
+                                    },
+                                    args[4].clone(),
+                                ],
+                            }),
+                            right: Box::new(frequency),
+                        };
                     }
                     if normalized_name == "YIELDDISC" && args.len() >= 4 {
                         // YIELDDISC(settlement,maturity,pr,redemption,[basis]).

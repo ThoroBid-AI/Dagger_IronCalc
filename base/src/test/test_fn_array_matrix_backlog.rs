@@ -259,3 +259,38 @@ fn sheets_array_aliases_spill_batch_four() {
     assert_eq!(model._get_text("E1"), *"6");
     assert_eq!(model._get_text("E2"), *"16");
 }
+
+#[test]
+fn sheets_financial_aliases_batch_five() {
+    let mut model = new_empty_model();
+
+    model._set(
+        "A1",
+        "=PRICE(DATE(2020,1,1),DATE(2025,1,1),0.05,0.04,100,2,0)",
+    );
+    model._set(
+        "A2",
+        "=YIELD(DATE(2024,1,1),DATE(2026,1,1),0.05,95,100,2,0)",
+    );
+    model._set(
+        "A3",
+        "=DURATION(DATE(2020,1,1),DATE(2025,1,1),0.05,0.04,2,0)",
+    );
+    model._set(
+        "A4",
+        "=MDURATION(DATE(2020,1,1),DATE(2025,1,1),0.05,0.04,2,0)",
+    );
+
+    model.evaluate();
+
+    let price: f64 = model._get_text("A1").parse().unwrap();
+    let yld: f64 = model._get_text("A2").parse().unwrap();
+    let duration: f64 = model._get_text("A3").parse().unwrap();
+    let mduration: f64 = model._get_text("A4").parse().unwrap();
+
+    assert!((price - 104.49129250312109).abs() < 1e-8);
+    assert!((yld - 0.07746681779849668).abs() < 1e-8);
+    assert!((duration - 4.498903644526233).abs() < 1e-6);
+    assert!((mduration - 4.410689847574738).abs() < 1e-6);
+    assert!((mduration - (duration / (1.0 + 0.04 / 2.0))).abs() < 1e-6);
+}
