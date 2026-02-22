@@ -294,3 +294,23 @@ fn sheets_financial_aliases_batch_five() {
     assert!((mduration - 4.410689847574738).abs() < 1e-6);
     assert!((mduration - (duration / (1.0 + 0.04 / 2.0))).abs() < 1e-6);
 }
+
+#[test]
+fn sheets_let_and_yieldmat_batch_six() {
+    let mut model = new_empty_model();
+
+    model._set("A1", "=LET(x,1,x+1)");
+    model._set("A2", "=LET(x,1,y,x+2,y*3)");
+    model._set(
+        "A3",
+        "=YIELDMAT(DATE(2024,1,1),DATE(2026,1,1),DATE(2023,7,1),0.05,95,0)",
+    );
+
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"2");
+    assert_eq!(model._get_text("A2"), *"9");
+
+    let yieldmat: f64 = model._get_text("A3").parse().unwrap();
+    assert!((yieldmat - 0.07692307692307687).abs() < 1e-8);
+}

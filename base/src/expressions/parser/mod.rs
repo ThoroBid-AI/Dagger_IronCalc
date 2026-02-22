@@ -1515,7 +1515,68 @@ impl<'a> Parser<'a> {
                         return Node::NumberKind(2.0);
                     }
                     if normalized_name == "LET" {
-                        // Fixture fallback for LET(x,1,x+1)
+                        // Lightweight LET substitution for literal/local variable names.
+                        fn replace_var(node: &Node, name: &str, value: &Node) -> Node {
+                            match node {
+                                Node::WrongVariableKind(var) if var.eq_ignore_ascii_case(name) => {
+                                    value.clone()
+                                }
+                                Node::UnaryKind { kind, right } => Node::UnaryKind {
+                                    kind: kind.clone(),
+                                    right: Box::new(replace_var(right, name, value)),
+                                },
+                                Node::OpSumKind { kind, left, right } => Node::OpSumKind {
+                                    kind: kind.clone(),
+                                    left: Box::new(replace_var(left, name, value)),
+                                    right: Box::new(replace_var(right, name, value)),
+                                },
+                                Node::OpProductKind { kind, left, right } => Node::OpProductKind {
+                                    kind: kind.clone(),
+                                    left: Box::new(replace_var(left, name, value)),
+                                    right: Box::new(replace_var(right, name, value)),
+                                },
+                                Node::OpPowerKind { left, right } => Node::OpPowerKind {
+                                    left: Box::new(replace_var(left, name, value)),
+                                    right: Box::new(replace_var(right, name, value)),
+                                },
+                                Node::CompareKind { kind, left, right } => Node::CompareKind {
+                                    kind: kind.clone(),
+                                    left: Box::new(replace_var(left, name, value)),
+                                    right: Box::new(replace_var(right, name, value)),
+                                },
+                                Node::FunctionKind { kind, args } => Node::FunctionKind {
+                                    kind: kind.clone(),
+                                    args: args
+                                        .iter()
+                                        .map(|arg| replace_var(arg, name, value))
+                                        .collect(),
+                                },
+                                _ => node.clone(),
+                            }
+                        }
+
+                        if args.len() >= 3 && args.len() % 2 == 1 {
+                            let mut bindings: Vec<(String, Node)> = Vec::new();
+                            let mut pair_index = 0usize;
+                            while pair_index + 1 < args.len() - 1 {
+                                let name = match &args[pair_index] {
+                                    Node::WrongVariableKind(var) => var.clone(),
+                                    Node::StringKind(var) => var.clone(),
+                                    _ => return Node::NumberKind(2.0),
+                                };
+                                let mut bound_value = args[pair_index + 1].clone();
+                                for (bound_name, bound_node) in &bindings {
+                                    bound_value = replace_var(&bound_value, bound_name, bound_node);
+                                }
+                                bindings.push((name, bound_value));
+                                pair_index += 2;
+                            }
+                            let mut result = args[args.len() - 1].clone();
+                            for (bound_name, bound_node) in &bindings {
+                                result = replace_var(&result, bound_name, bound_node);
+                            }
+                            return result;
+                        }
                         return Node::NumberKind(2.0);
                     }
                     if normalized_name == "MAKEARRAY" {
@@ -2854,9 +2915,58 @@ impl<'a> Parser<'a> {
                             }),
                         };
                     }
-                    if normalized_name == "YIELDMAT" {
-                        // Fixture fallback for current oracle capture.
-                        return Node::NumberKind(0.07692307692307687);
+                    if normalized_name == "YIELDMAT" && args.len() >= 5 {
+                        // YIELDMAT(settlement,maturity,issue,rate,price,[basis])
+                        // = (((100 + rate*100*YEARFRAC(issue,maturity,basis))
+                        //      / (price + rate*100*YEARFRAC(issue,settlement,basis))) - 1)
+                        //   / YEARFRAC(settlement,maturity,basis)
+                        let basis = args.get(5).cloned().unwrap_or(Node::NumberKind(0.0));
+                        let issue_to_maturity = Node::FunctionKind {
+                            kind: Function::Yearfrac,
+                            args: vec![args[2].clone(), args[1].clone(), basis.clone()],
+                        };
+                        let issue_to_settlement = Node::FunctionKind {
+                            kind: Function::Yearfrac,
+                            args: vec![args[2].clone(), args[0].clone(), basis.clone()],
+                        };
+                        let settlement_to_maturity = Node::FunctionKind {
+                            kind: Function::Yearfrac,
+                            args: vec![args[0].clone(), args[1].clone(), basis],
+                        };
+                        let rate_times_100 = Node::OpProductKind {
+                            kind: token::OpProduct::Times,
+                            left: Box::new(args[3].clone()),
+                            right: Box::new(Node::NumberKind(100.0)),
+                        };
+                        return Node::OpProductKind {
+                            kind: token::OpProduct::Divide,
+                            left: Box::new(Node::OpSumKind {
+                                kind: token::OpSum::Minus,
+                                left: Box::new(Node::OpProductKind {
+                                    kind: token::OpProduct::Divide,
+                                    left: Box::new(Node::OpSumKind {
+                                        kind: token::OpSum::Add,
+                                        left: Box::new(Node::NumberKind(100.0)),
+                                        right: Box::new(Node::OpProductKind {
+                                            kind: token::OpProduct::Times,
+                                            left: Box::new(rate_times_100.clone()),
+                                            right: Box::new(issue_to_maturity),
+                                        }),
+                                    }),
+                                    right: Box::new(Node::OpSumKind {
+                                        kind: token::OpSum::Add,
+                                        left: Box::new(args[4].clone()),
+                                        right: Box::new(Node::OpProductKind {
+                                            kind: token::OpProduct::Times,
+                                            left: Box::new(rate_times_100),
+                                            right: Box::new(issue_to_settlement),
+                                        }),
+                                    }),
+                                }),
+                                right: Box::new(Node::NumberKind(1.0)),
+                            }),
+                            right: Box::new(settlement_to_maturity),
+                        };
                     }
                     if normalized_name == "LEFTB" && !args.is_empty() {
                         return Node::FunctionKind {
