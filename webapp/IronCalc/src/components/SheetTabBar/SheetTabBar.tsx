@@ -3,7 +3,6 @@ import { styled, Tooltip } from "@mui/material";
 import { Menu, Plus } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { IronCalcLogo } from "../../icons";
 import { theme } from "../../theme";
 import { NAVIGATION_HEIGHT } from "../constants";
 import { getLocaleDisplayName } from "../RightDrawer/RegionalSettings/RegionalSettings";
@@ -106,11 +105,6 @@ function SheetTabBar(props: SheetTabBarProps) {
             )}
           </RegionalSettingsButton>
         </Tooltip>
-        <LogoLink
-          onClick={() => window.open("https://www.ironcalc.com", "_blank")}
-        >
-          <IronCalcLogo />
-        </LogoLink>
       </RightContainer>
       <SheetListMenu
         anchorEl={anchorEl}
@@ -207,25 +201,6 @@ const TextDivider = styled("div")`
   width: 1px;
   height: 60%;
   background-color: ${theme.palette.grey["300"]};
-`;
-
-const LogoLink = styled("div")`
-  display: flex;
-  align-items: center;
-  padding: 0px 4px;
-  border-radius: 4px;
-  max-height: 24px;
-  min-height: 24px;
-  cursor: pointer;
-  svg {
-    height: 14px;
-    width: auto;
-  }
-  &:hover {
-    background-color: ${theme.palette.grey["100"]};
-    transition: "all 0.2s";
-    outline: 1px solid ${theme.palette.grey["200"]};
-  }
 `;
 
 export default SheetTabBar;

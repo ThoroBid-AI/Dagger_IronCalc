@@ -4,13 +4,12 @@ import { ClickAwayListener, IconButton, Tooltip } from "@mui/material";
 import { CloudOff, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import DaggerLogo from "../assets/dagger_logo.png";
 import { MIN_MAIN_CONTENT_WIDTH_FOR_MOBILE } from "../App";
 import { FileMenu } from "./FileMenu";
 import { HelpMenu } from "./HelpMenu";
 import { MobileMenu } from "./MobileMenu";
 import { downloadModel } from "./rpc";
-import { ShareButton } from "./ShareButton";
-import ShareWorkbookDialog from "./ShareWorkbookDialog";
 import { updateNameSelectedWorkbook } from "./storage";
 import { WorkbookTitle } from "./WorkbookTitle";
 
@@ -42,7 +41,6 @@ export function FileBar(properties: {
   setLocalStorageId: (updater: (id: number) => number) => void;
   onLanguageChange: (language: string) => void;
 }) {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
   const [maxTitleWidth, setMaxTitleWidth] = useState(0);
@@ -190,16 +188,9 @@ export function FileBar(properties: {
             <CloudOff />
           </CloudButton>
         </Tooltip>
-        <DialogContainer>
-          <ShareButton onClick={() => setIsDialogOpen(true)} />
-          {isDialogOpen && (
-            <ShareWorkbookDialog
-              onClose={() => setIsDialogOpen(false)}
-              onModelUpload={properties.onModelUpload}
-              model={properties.model}
-            />
-          )}
-        </DialogContainer>
+        <BrandLogoContainer>
+          <img src={DaggerLogo} alt="Dagger" />
+        </BrandLogoContainer>
       </RightSideWrapper>
     </FileBarWrapper>
   );
@@ -237,7 +228,7 @@ const CloudButton = styled("div")`
   }
 `;
 
-// The "Spacer" component occupies as much space as possible between the menu and the share button
+// The "Spacer" component occupies as much space as possible between the menu and right controls
 const Spacer = styled("div")`
   flex-grow: 1;
 `;
@@ -283,19 +274,18 @@ const RightSideWrapper = styled("div")`
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-right: 8px;
 `;
 
-const DialogContainer = styled("div")`
-  position: relative;
-  display: inline-block;
-  button {
-    margin-bottom: 8px;
-  }
-  .MuiDialog-root {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    transform: translateY(8px);
+const BrandLogoContainer = styled("div")`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  img {
+    height: 24px;
+    width: auto;
+    display: block;
   }
 `;
 

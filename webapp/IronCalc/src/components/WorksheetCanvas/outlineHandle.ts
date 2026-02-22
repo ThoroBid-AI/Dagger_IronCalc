@@ -21,8 +21,8 @@ export function attachOutlineHandle(
 
   Object.assign(cellOutlineHandle.style, {
     position: "absolute",
-    width: "5px",
-    height: "5px",
+    width: "6px",
+    height: "6px",
     background: outlineColor,
     cursor: "crosshair",
     borderRadius: "1px",
