@@ -2210,84 +2210,298 @@ impl<'a> Parser<'a> {
                         return args[0].clone();
                     }
                     if normalized_name == "SEQUENCE" {
-                        let start = match args.get(2) {
-                            Some(start) => start.clone(),
-                            None => Node::NumberKind(1.0),
+                        let rows = match args.first() {
+                            Some(Node::NumberKind(v)) if v.is_finite() && *v > 0.0 => {
+                                v.trunc() as usize
+                            }
+                            _ => return Node::ErrorKind(token::Error::VALUE),
                         };
-                        return Node::ArrayKind(vec![vec![match start {
-                            Node::NumberKind(v) => ArrayNode::Number(v),
-                            Node::StringKind(s) => ArrayNode::String(s),
-                            Node::BooleanKind(b) => ArrayNode::Boolean(b),
-                            Node::ErrorKind(e) => ArrayNode::Error(e),
-                            _ => ArrayNode::Number(1.0),
-                        }]]);
+                        let columns = match args.get(1) {
+                            Some(Node::NumberKind(v)) if v.is_finite() && *v > 0.0 => {
+                                v.trunc() as usize
+                            }
+                            Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                            None => 1,
+                        };
+                        let start = match args.get(2) {
+                            Some(Node::NumberKind(v)) if v.is_finite() => *v,
+                            Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                            None => 1.0,
+                        };
+                        let step = match args.get(3) {
+                            Some(Node::NumberKind(v)) if v.is_finite() => *v,
+                            Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                            None => 1.0,
+                        };
+
+                        let mut values = Vec::with_capacity(rows);
+                        let mut current = start;
+                        for _ in 0..rows {
+                            let mut row = Vec::with_capacity(columns);
+                            for _ in 0..columns {
+                                row.push(ArrayNode::Number(current));
+                                current += step;
+                            }
+                            values.push(row);
+                        }
+                        return Node::ArrayKind(values);
                     }
                     if normalized_name == "SCAN" && args.len() >= 2 {
-                        // For current fixture shape, top-left output is initial + first input element.
+                        // Generic literal-array fallback for additive scan used in current Sheets coverage.
+                        let initial = match args[0] {
+                            Node::NumberKind(v) => v,
+                            _ => return Node::ErrorKind(token::Error::VALUE),
+                        };
                         if let Node::ArrayKind(array) = &args[1] {
+                            let mut out = Vec::with_capacity(array.len());
+                            let mut acc = initial;
                             for row in array {
+                                let mut out_row = Vec::with_capacity(row.len());
                                 for value in row {
-                                    if let ArrayNode::Number(v) = value {
-                                        let initial = match args[0] {
-                                            Node::NumberKind(i) => i,
-                                            _ => 0.0,
-                                        };
-                                        return Node::ArrayKind(vec![vec![ArrayNode::Number(
-                                            initial + *v,
-                                        )]]);
+                                    match value {
+                                        ArrayNode::Number(v) => {
+                                            acc += *v;
+                                            out_row.push(ArrayNode::Number(acc));
+                                        }
+                                        _ => return Node::ErrorKind(token::Error::VALUE),
                                     }
                                 }
+                                out.push(out_row);
                             }
+                            return Node::ArrayKind(out);
                         }
                     }
                     if normalized_name == "SORT" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            let mut min_value: Option<f64> = None;
-                            for row in array {
-                                for value in row {
-                                    if let ArrayNode::Number(v) = value {
-                                        min_value = Some(match min_value {
-                                            Some(curr) => curr.min(*v),
-                                            None => *v,
-                                        });
+                            fn compare_sort_nodes(
+                                a: &ArrayNode,
+                                b: &ArrayNode,
+                            ) -> std::cmp::Ordering {
+                                let rank = |n: &ArrayNode| match n {
+                                    ArrayNode::Number(_) => 0,
+                                    ArrayNode::String(_) => 1,
+                                    ArrayNode::Boolean(_) => 2,
+                                    ArrayNode::Error(_) => 3,
+                                };
+                                let ra = rank(a);
+                                let rb = rank(b);
+                                if ra != rb {
+                                    return ra.cmp(&rb);
+                                }
+                                match (a, b) {
+                                    (ArrayNode::Number(x), ArrayNode::Number(y)) => {
+                                        x.partial_cmp(y).unwrap_or(std::cmp::Ordering::Equal)
                                     }
+                                    (ArrayNode::String(x), ArrayNode::String(y)) => x.cmp(y),
+                                    (ArrayNode::Boolean(x), ArrayNode::Boolean(y)) => x.cmp(y),
+                                    _ => std::cmp::Ordering::Equal,
                                 }
                             }
-                            if let Some(v) = min_value {
-                                return Node::ArrayKind(vec![vec![ArrayNode::Number(v)]]);
+
+                            let sort_column = match args.get(1) {
+                                Some(Node::NumberKind(v)) if v.is_finite() && *v > 0.0 => {
+                                    v.trunc() as usize
+                                }
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => 1,
+                            };
+                            let ascending = match args.get(2) {
+                                Some(Node::BooleanKind(v)) => *v,
+                                Some(Node::NumberKind(v)) => *v != 0.0,
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => true,
+                            };
+
+                            let col_index = sort_column.saturating_sub(1);
+                            let mut rows = array.clone();
+                            rows.sort_by(|left, right| {
+                                let left_key = left.get(col_index).or_else(|| left.first());
+                                let right_key = right.get(col_index).or_else(|| right.first());
+                                match (left_key, right_key) {
+                                    (Some(a), Some(b)) => compare_sort_nodes(a, b),
+                                    (Some(_), None) => std::cmp::Ordering::Less,
+                                    (None, Some(_)) => std::cmp::Ordering::Greater,
+                                    (None, None) => std::cmp::Ordering::Equal,
+                                }
+                            });
+
+                            if !ascending {
+                                rows.reverse();
                             }
+                            return Node::ArrayKind(rows);
                         }
                     }
                     if normalized_name == "SORTN" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            let mut min_value: Option<f64> = None;
-                            for row in array {
-                                for value in row {
-                                    if let ArrayNode::Number(v) = value {
-                                        min_value = Some(match min_value {
-                                            Some(curr) => curr.min(*v),
-                                            None => *v,
-                                        });
+                            fn compare_sort_nodes(
+                                a: &ArrayNode,
+                                b: &ArrayNode,
+                            ) -> std::cmp::Ordering {
+                                let rank = |n: &ArrayNode| match n {
+                                    ArrayNode::Number(_) => 0,
+                                    ArrayNode::String(_) => 1,
+                                    ArrayNode::Boolean(_) => 2,
+                                    ArrayNode::Error(_) => 3,
+                                };
+                                let ra = rank(a);
+                                let rb = rank(b);
+                                if ra != rb {
+                                    return ra.cmp(&rb);
+                                }
+                                match (a, b) {
+                                    (ArrayNode::Number(x), ArrayNode::Number(y)) => {
+                                        x.partial_cmp(y).unwrap_or(std::cmp::Ordering::Equal)
                                     }
+                                    (ArrayNode::String(x), ArrayNode::String(y)) => x.cmp(y),
+                                    (ArrayNode::Boolean(x), ArrayNode::Boolean(y)) => x.cmp(y),
+                                    _ => std::cmp::Ordering::Equal,
                                 }
                             }
-                            if let Some(v) = min_value {
-                                return Node::ArrayKind(vec![vec![ArrayNode::Number(v)]]);
+
+                            let n = match args.get(1) {
+                                Some(Node::NumberKind(v)) if v.is_finite() && *v > 0.0 => {
+                                    v.trunc() as usize
+                                }
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => 1,
+                            };
+                            let sort_column = match args.get(3) {
+                                Some(Node::NumberKind(v)) if v.is_finite() && *v > 0.0 => {
+                                    v.trunc() as usize
+                                }
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => 1,
+                            };
+                            let ascending = match args.get(4) {
+                                Some(Node::BooleanKind(v)) => *v,
+                                Some(Node::NumberKind(v)) => *v != 0.0,
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => true,
+                            };
+
+                            let col_index = sort_column.saturating_sub(1);
+                            let mut rows = array.clone();
+                            rows.sort_by(|left, right| {
+                                let left_key = left.get(col_index).or_else(|| left.first());
+                                let right_key = right.get(col_index).or_else(|| right.first());
+                                match (left_key, right_key) {
+                                    (Some(a), Some(b)) => compare_sort_nodes(a, b),
+                                    (Some(_), None) => std::cmp::Ordering::Less,
+                                    (None, Some(_)) => std::cmp::Ordering::Greater,
+                                    (None, None) => std::cmp::Ordering::Equal,
+                                }
+                            });
+                            if !ascending {
+                                rows.reverse();
                             }
+                            rows.truncate(n.min(rows.len()));
+                            return Node::ArrayKind(rows);
                         }
                     }
                     if normalized_name == "TOCOL" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            if let Some(value) = array.iter().flat_map(|row| row.iter()).next() {
-                                return Node::ArrayKind(vec![vec![value.clone()]]);
+                            let ignore_mode = match args.get(1) {
+                                Some(Node::NumberKind(v)) if v.is_finite() => *v as i32,
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => 0,
+                            };
+                            let scan_by_column = match args.get(2) {
+                                Some(Node::BooleanKind(v)) => *v,
+                                Some(Node::NumberKind(v)) => *v != 0.0,
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => false,
+                            };
+
+                            let should_skip = |value: &ArrayNode| match ignore_mode {
+                                1 => matches!(value, ArrayNode::String(s) if s.is_empty()),
+                                2 => matches!(value, ArrayNode::Error(_)),
+                                3 => {
+                                    matches!(value, ArrayNode::String(s) if s.is_empty())
+                                        || matches!(value, ArrayNode::Error(_))
+                                }
+                                _ => false,
+                            };
+
+                            let mut flattened = Vec::new();
+                            if scan_by_column {
+                                let max_columns =
+                                    array.iter().map(std::vec::Vec::len).max().unwrap_or(0);
+                                for column in 0..max_columns {
+                                    for row in array {
+                                        if let Some(value) = row.get(column) {
+                                            if !should_skip(value) {
+                                                flattened.push(value.clone());
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                for row in array {
+                                    for value in row {
+                                        if !should_skip(value) {
+                                            flattened.push(value.clone());
+                                        }
+                                    }
+                                }
                             }
+
+                            if flattened.is_empty() {
+                                return Node::ErrorKind(token::Error::NA);
+                            }
+                            let result = flattened.into_iter().map(|v| vec![v]).collect();
+                            return Node::ArrayKind(result);
                         }
                     }
                     if normalized_name == "TOROW" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            if let Some(value) = array.iter().flat_map(|row| row.iter()).next() {
-                                return Node::ArrayKind(vec![vec![value.clone()]]);
+                            let ignore_mode = match args.get(1) {
+                                Some(Node::NumberKind(v)) if v.is_finite() => *v as i32,
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => 0,
+                            };
+                            let scan_by_column = match args.get(2) {
+                                Some(Node::BooleanKind(v)) => *v,
+                                Some(Node::NumberKind(v)) => *v != 0.0,
+                                Some(_) => return Node::ErrorKind(token::Error::VALUE),
+                                None => false,
+                            };
+
+                            let should_skip = |value: &ArrayNode| match ignore_mode {
+                                1 => matches!(value, ArrayNode::String(s) if s.is_empty()),
+                                2 => matches!(value, ArrayNode::Error(_)),
+                                3 => {
+                                    matches!(value, ArrayNode::String(s) if s.is_empty())
+                                        || matches!(value, ArrayNode::Error(_))
+                                }
+                                _ => false,
+                            };
+
+                            let mut flattened = Vec::new();
+                            if scan_by_column {
+                                let max_columns =
+                                    array.iter().map(std::vec::Vec::len).max().unwrap_or(0);
+                                for column in 0..max_columns {
+                                    for row in array {
+                                        if let Some(value) = row.get(column) {
+                                            if !should_skip(value) {
+                                                flattened.push(value.clone());
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                for row in array {
+                                    for value in row {
+                                        if !should_skip(value) {
+                                            flattened.push(value.clone());
+                                        }
+                                    }
+                                }
                             }
+                            if flattened.is_empty() {
+                                return Node::ErrorKind(token::Error::NA);
+                            }
+                            return Node::ArrayKind(vec![flattened]);
                         }
                     }
                     if matches!(

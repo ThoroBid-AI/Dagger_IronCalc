@@ -104,3 +104,51 @@ fn array_backlog_functions() {
 
     assert_eq!(model._get_text("R5"), *"2");
 }
+
+#[test]
+fn sheets_array_aliases_return_full_arrays() {
+    let mut model = new_empty_model();
+
+    model._set("A1", "=SEQUENCE(2,3,10,2)");
+    model._set("E1", "=SCAN(10,{1,2;3,4})");
+    model._set("I1", "=SORT({3,9;1,8;2,7})");
+    model._set("L1", "=SORTN({3,9;1,8;2,7},2,0,1,TRUE)");
+    model._set("N1", "=TOCOL({1,2;3,4})");
+    model._set("P1", "=TOROW({1,2;3,4},0,TRUE)");
+
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"10");
+    assert_eq!(model._get_text("B1"), *"12");
+    assert_eq!(model._get_text("C1"), *"14");
+    assert_eq!(model._get_text("A2"), *"16");
+    assert_eq!(model._get_text("B2"), *"18");
+    assert_eq!(model._get_text("C2"), *"20");
+
+    assert_eq!(model._get_text("E1"), *"11");
+    assert_eq!(model._get_text("F1"), *"13");
+    assert_eq!(model._get_text("E2"), *"16");
+    assert_eq!(model._get_text("F2"), *"20");
+
+    assert_eq!(model._get_text("I1"), *"1");
+    assert_eq!(model._get_text("J1"), *"8");
+    assert_eq!(model._get_text("I2"), *"2");
+    assert_eq!(model._get_text("J2"), *"7");
+    assert_eq!(model._get_text("I3"), *"3");
+    assert_eq!(model._get_text("J3"), *"9");
+
+    assert_eq!(model._get_text("L1"), *"1");
+    assert_eq!(model._get_text("M1"), *"8");
+    assert_eq!(model._get_text("L2"), *"2");
+    assert_eq!(model._get_text("M2"), *"7");
+
+    assert_eq!(model._get_text("N1"), *"1");
+    assert_eq!(model._get_text("N2"), *"2");
+    assert_eq!(model._get_text("N3"), *"3");
+    assert_eq!(model._get_text("N4"), *"4");
+
+    assert_eq!(model._get_text("P1"), *"1");
+    assert_eq!(model._get_text("Q1"), *"3");
+    assert_eq!(model._get_text("R1"), *"2");
+    assert_eq!(model._get_text("S1"), *"4");
+}
