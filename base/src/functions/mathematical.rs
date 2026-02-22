@@ -846,7 +846,7 @@ impl<'a> Model<'a> {
         let mut product = Vec::with_capacity(left_rows);
         for left_row in left.iter().take(left_rows) {
             let mut row = Vec::with_capacity(right_columns);
-            for column in 0..right_columns {
+            for (column, _) in right[0].iter().enumerate().take(right_columns) {
                 let mut total = 0.0;
                 for (k, left_value) in left_row.iter().enumerate().take(left_columns) {
                     total += *left_value * right[k][column];

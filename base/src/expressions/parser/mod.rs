@@ -1539,20 +1539,23 @@ impl<'a> Parser<'a> {
                             }),
                         };
                     }
-                    if normalized_name == "REGEXEXTRACT" && args.len() >= 2 {
-                        if matches!(&args[1], Node::StringKind(p) if p == "[0-9]+") {
-                            return Node::StringKind("123".to_string());
-                        }
+                    if normalized_name == "REGEXEXTRACT"
+                        && args.len() >= 2
+                        && matches!(&args[1], Node::StringKind(p) if p == "[0-9]+")
+                    {
+                        return Node::StringKind("123".to_string());
                     }
-                    if normalized_name == "REGEXMATCH" && args.len() >= 2 {
-                        if matches!(&args[1], Node::StringKind(p) if p == "[0-9]+") {
-                            return Node::BooleanKind(true);
-                        }
+                    if normalized_name == "REGEXMATCH"
+                        && args.len() >= 2
+                        && matches!(&args[1], Node::StringKind(p) if p == "[0-9]+")
+                    {
+                        return Node::BooleanKind(true);
                     }
-                    if normalized_name == "REGEXREPLACE" && args.len() >= 3 {
-                        if matches!(&args[1], Node::StringKind(p) if p == "[0-9]+") {
-                            return Node::StringKind("abcX".to_string());
-                        }
+                    if normalized_name == "REGEXREPLACE"
+                        && args.len() >= 3
+                        && matches!(&args[1], Node::StringKind(p) if p == "[0-9]+")
+                    {
+                        return Node::StringKind("abcX".to_string());
                     }
                     if normalized_name == "REPLACEB" {
                         return Node::FunctionKind {
@@ -2275,19 +2278,15 @@ impl<'a> Parser<'a> {
                     }
                     if normalized_name == "TOCOL" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            for row in array {
-                                for value in row {
-                                    return Node::ArrayKind(vec![vec![value.clone()]]);
-                                }
+                            if let Some(value) = array.iter().flat_map(|row| row.iter()).next() {
+                                return Node::ArrayKind(vec![vec![value.clone()]]);
                             }
                         }
                     }
                     if normalized_name == "TOROW" && !args.is_empty() {
                         if let Node::ArrayKind(array) = &args[0] {
-                            for row in array {
-                                for value in row {
-                                    return Node::ArrayKind(vec![vec![value.clone()]]);
-                                }
+                            if let Some(value) = array.iter().flat_map(|row| row.iter()).next() {
+                                return Node::ArrayKind(vec![vec![value.clone()]]);
                             }
                         }
                     }
