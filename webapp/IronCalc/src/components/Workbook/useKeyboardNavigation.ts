@@ -10,7 +10,11 @@ export enum Border {
 
 interface Options {
   onCellsDeleted: () => void;
+  onSelectAll: () => void;
   onExpandAreaSelectedKeyboard: (
+    key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
+  ) => void;
+  onExpandAreaSelectedKeyboardToEdge: (
     key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
   ) => void;
   onEditKeyPressStart: (initText: string) => void;
@@ -57,9 +61,6 @@ interface Options {
 // * Shift+Space: select row
 //
 // # Not implemented yet:
-// * Ctrl+a: select all (continuous area around the selection, if it exists,
-//   otherwise select whole sheet)
-// * Ctrl+Shift+Arrows: select to edge
 // * Ctrl+Shift+Home/End: select to end
 // * Ctrl+Shift++: (after selecting) insert row/column (also Alt+I, R or C)
 // * Ctrl+-: (after selecting) delete row/column
@@ -121,8 +122,7 @@ const useKeyboardNavigation = (
             break;
           }
           case "a": {
-            // TODO: Area selection. CTRL+A should select "continuous" area around the selection,
-            // if it does exist then whole sheet is selected.
+            options.onSelectAll();
             event.stopPropagation();
             event.preventDefault();
             break;
@@ -148,6 +148,17 @@ const useKeyboardNavigation = (
         switch (lowerKey) {
           case "z": {
             options.onRedo();
+            event.stopPropagation();
+            event.preventDefault();
+            break;
+          }
+          case "arrowright":
+          case "arrowleft":
+          case "arrowup":
+          case "arrowdown": {
+            options.onExpandAreaSelectedKeyboardToEdge(
+              key as "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
+            );
             event.stopPropagation();
             event.preventDefault();
             break;
@@ -204,9 +215,8 @@ const useKeyboardNavigation = (
         return;
       }
 
-      if (isEditingKey(key) || key === "Backspace") {
-        const initText = key === "Backspace" ? "" : key;
-        options.onEditKeyPressStart(initText);
+      if (isEditingKey(key)) {
+        options.onEditKeyPressStart(key);
         event.stopPropagation();
         event.preventDefault();
         return;
@@ -249,7 +259,8 @@ const useKeyboardNavigation = (
           options.onKeyHome();
           break;
         }
-        case "Delete": {
+        case "Delete":
+        case "Backspace": {
           options.onCellsDeleted();
           break;
         }

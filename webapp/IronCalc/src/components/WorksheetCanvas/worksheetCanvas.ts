@@ -12,6 +12,7 @@ import {
   gridSeparatorColor,
   headerBackground,
   headerBorderColor,
+  headerFullSelectedBackground,
   headerSelectedBackground,
   headerSelectedColor,
   headerTextColor,
@@ -1118,7 +1119,7 @@ export default class WorksheetCanvas {
     div.style.height = `${headerRowHeight}px`;
     div.style.backgroundColor = selected
       ? isFullColumnSelected
-        ? theme.palette.primary.main
+        ? headerFullSelectedBackground
         : headerSelectedBackground
       : headerBackground;
     div.style.color = selected
@@ -1177,7 +1178,7 @@ export default class WorksheetCanvas {
       context.fillRect(0.5, topLeftCornerY, headerColumnWidth, rowHeight);
       context.fillStyle = selected
         ? isFullRowSelected
-          ? theme.palette.primary.main
+          ? headerFullSelectedBackground
           : headerSelectedBackground
         : headerBackground;
       context.fillRect(

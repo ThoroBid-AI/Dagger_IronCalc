@@ -576,7 +576,6 @@ impl<'a> Model<'a> {
         }
     }
 
-    #[allow(clippy::expect_used)]
     fn set_formula_cell_from_calc_result(
         &mut self,
         cell_reference: CellReferenceIndex,

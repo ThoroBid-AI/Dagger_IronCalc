@@ -9,10 +9,6 @@ lint:
 validate-backlog-specs:
 	./scripts/validate_backlog_specs.sh
 
-.PHONY: validate-sheets-fixtures
-validate-sheets-fixtures:
-	python3 scripts/validate_sheets_expected_text.py
-
 .PHONY: format
 format:
 	cargo fmt

@@ -200,10 +200,25 @@ const Workbook = (props: { model: Model; workbookState: WorkbookState }) => {
       );
       setRedrawId((id) => id + 1);
     },
+    onSelectAll: (): void => {
+      model.setSelectedCell(1, 1);
+      model.setSelectedRange(1, 1, LAST_ROW, LAST_COLUMN);
+      setRedrawId((id) => id + 1);
+    },
     onExpandAreaSelectedKeyboard: (
       key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
     ): void => {
       model.onExpandSelectedRange(key);
+      setRedrawId((id) => id + 1);
+    },
+    onExpandAreaSelectedKeyboardToEdge: (
+      key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
+    ): void => {
+      const { row, column } = model.getSelectedView();
+      model.onNavigateToEdgeInDirection(key);
+      const { row: targetRow, column: targetColumn } = model.getSelectedView();
+      model.setSelectedCell(row, column);
+      model.onAreaSelecting(targetRow, targetColumn);
       setRedrawId((id) => id + 1);
     },
     onEditKeyPressStart: (initText: string): void => {
