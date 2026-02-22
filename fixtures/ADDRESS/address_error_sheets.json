@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ADDRESS",
+  "case_id": "address_error_sheets",
+  "inputs": [],
+  "formula": "=ADDRESS(1,1,5)",
+  "target": "Sheet1!A1",
+  "expected_text": "#NUM!",
+  "notes": "Capture oracle output"
+}

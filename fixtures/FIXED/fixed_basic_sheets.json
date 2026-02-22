@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FIXED",
+  "case_id": "fixed_basic_sheets",
+  "inputs": [],
+  "formula": "=FIXED(1234.567,2,TRUE)",
+  "target": "Sheet1!A1",
+  "expected_text": "1234.57",
+  "notes": "Capture oracle output"
+}

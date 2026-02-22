@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PRICEMAT",
+  "case_id": "pricemat_basic_sheets",
+  "inputs": [],
+  "formula": "=PRICEMAT(DATE(2020,1,1),DATE(2020,7,1),DATE(2021,1,1),0.05,0.04,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "#NUM!",
+  "notes": "Capture oracle output"
+}

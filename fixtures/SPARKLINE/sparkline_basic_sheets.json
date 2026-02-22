@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SPARKLINE",
+  "case_id": "sparkline_basic_sheets",
+  "inputs": [],
+  "formula": "=SPARKLINE({1,2,3})",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "Visual-only Sheets output; no stable scalar export value. expected_text intentionally empty for oracle conformance."
+}

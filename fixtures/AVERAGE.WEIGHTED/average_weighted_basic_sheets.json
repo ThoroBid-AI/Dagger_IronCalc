@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "AVERAGE.WEIGHTED",
+  "case_id": "average_weighted_basic_sheets",
+  "inputs": [],
+  "formula": "=AVERAGE.WEIGHTED({3,6,9},{1,1,2})",
+  "target": "Sheet1!A1",
+  "expected_text": "6.75",
+  "notes": "Capture oracle output"
+}

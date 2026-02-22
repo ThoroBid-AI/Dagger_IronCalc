@@ -10,6 +10,7 @@ use csv::{ReaderBuilder, WriterBuilder};
 use serde::{Deserialize, Serialize};
 
 use crate::{
+    calc_result::CalcResult,
     constants::{self, LAST_COLUMN, LAST_ROW},
     expressions::{
         types::{Area, CellReferenceIndex},
@@ -1931,9 +1932,22 @@ impl<'a> UserModel<'a> {
         if let Some(row_data) = data {
             let mut last_column = None;
             let mut columns: Vec<i32> = row_data.keys().copied().collect();
+            for (spill_sheet, spill_row, spill_column) in self.model.spilled_values.keys() {
+                if *spill_sheet == sheet && *spill_row == row {
+                    columns.push(*spill_column);
+                }
+            }
             columns.sort_unstable();
+            columns.dedup();
             for col in columns {
                 if col < column {
+                    if let Some(spill_value) = self.model.spilled_values.get(&(sheet, row, col)) {
+                        if matches!(spill_value, CalcResult::EmptyCell | CalcResult::EmptyArg) {
+                            continue;
+                        }
+                        last_column = Some(col);
+                        continue;
+                    }
                     if let Some(cell) = worksheet.cell(row, col) {
                         if matches!(cell, Cell::EmptyCell { .. }) {
                             continue;
@@ -1961,10 +1975,22 @@ impl<'a> UserModel<'a> {
         let data = worksheet.sheet_data.get(&row);
         if let Some(row_data) = data {
             let mut columns: Vec<i32> = row_data.keys().copied().collect();
+            for (spill_sheet, spill_row, spill_column) in self.model.spilled_values.keys() {
+                if *spill_sheet == sheet && *spill_row == row {
+                    columns.push(*spill_column);
+                }
+            }
             // We sort the keys to ensure we are going from left to right
             columns.sort_unstable();
+            columns.dedup();
             for col in columns {
                 if col > column {
+                    if let Some(spill_value) = self.model.spilled_values.get(&(sheet, row, col)) {
+                        if matches!(spill_value, CalcResult::EmptyCell | CalcResult::EmptyArg) {
+                            continue;
+                        }
+                        return Ok(Some(col));
+                    }
                     if let Some(cell) = worksheet.cell(row, col) {
                         if matches!(cell, Cell::EmptyCell { .. }) {
                             continue;

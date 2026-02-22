@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "VSTACK",
+  "case_id": "vstack_basic_sheets",
+  "inputs": [],
+  "formula": "=INDEX(VSTACK({1;2},{3;4}),4,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "4.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "COVAR",
+  "case_id": "covar_basic_sheets",
+  "inputs": [],
+  "formula": "=COVAR({1,2,3},{2,4,6})",
+  "target": "Sheet1!A1",
+  "expected_text": "1.3333333333333333",
+  "notes": "Capture oracle output"
+}

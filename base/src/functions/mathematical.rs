@@ -8,6 +8,7 @@ use crate::single_number_fn;
 use crate::{
     calc_result::CalcResult, expressions::parser::Node, expressions::token::Error, model::Model,
 };
+use statrs::function::gamma::ln_gamma;
 use std::f64::consts::PI;
 
 #[cfg(not(target_arch = "wasm32"))]
@@ -631,6 +632,264 @@ impl<'a> Model<'a> {
             };
         }
         CalcResult::Number(result)
+    }
+
+    fn get_sumproduct_array(
+        &mut self,
+        arg: &Node,
+        cell: CellReferenceIndex,
+    ) -> Result<(usize, usize, Vec<f64>), CalcResult> {
+        match self.evaluate_node_in_context(arg, cell) {
+            CalcResult::Number(value) => Ok((1, 1, vec![value])),
+            CalcResult::Boolean(value) => Ok((1, 1, vec![if value { 1.0 } else { 0.0 }])),
+            CalcResult::EmptyCell | CalcResult::EmptyArg => Ok((1, 1, vec![0.0])),
+            CalcResult::String(value) => match self.cast_number(&value) {
+                Some(number) => Ok((1, 1, vec![number])),
+                None => Ok((1, 1, vec![0.0])),
+            },
+            CalcResult::Range { left, right } => {
+                if left.sheet != right.sheet {
+                    return Err(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ranges are in different sheets".to_string(),
+                    ));
+                }
+
+                let row1 = left.row;
+                let mut row2 = right.row;
+                let column1 = left.column;
+                let mut column2 = right.column;
+                if row1 == 1 && row2 == LAST_ROW {
+                    row2 = match self.workbook.worksheet(left.sheet) {
+                        Ok(s) => s.dimension().max_row,
+                        Err(_) => {
+                            return Err(CalcResult::new_error(
+                                Error::ERROR,
+                                cell,
+                                format!("Invalid worksheet index: '{}'", left.sheet),
+                            ))
+                        }
+                    };
+                }
+                if column1 == 1 && column2 == LAST_COLUMN {
+                    column2 = match self.workbook.worksheet(left.sheet) {
+                        Ok(s) => s.dimension().max_column,
+                        Err(_) => {
+                            return Err(CalcResult::new_error(
+                                Error::ERROR,
+                                cell,
+                                format!("Invalid worksheet index: '{}'", left.sheet),
+                            ))
+                        }
+                    };
+                }
+
+                let rows = (row2 - row1 + 1) as usize;
+                let columns = (column2 - column1 + 1) as usize;
+                let mut values = Vec::with_capacity(rows * columns);
+
+                for row in row1..=row2 {
+                    for column in column1..=column2 {
+                        match self.evaluate_cell(CellReferenceIndex {
+                            sheet: left.sheet,
+                            row,
+                            column,
+                        }) {
+                            CalcResult::Number(value) => values.push(value),
+                            CalcResult::Boolean(value) => {
+                                values.push(if value { 1.0 } else { 0.0 })
+                            }
+                            CalcResult::String(value) => {
+                                values.push(self.cast_number(&value).unwrap_or(0.0))
+                            }
+                            CalcResult::EmptyCell | CalcResult::EmptyArg => values.push(0.0),
+                            error @ CalcResult::Error { .. } => return Err(error),
+                            CalcResult::Range { .. } | CalcResult::Array(_) => {
+                                return Err(CalcResult::new_error(
+                                    Error::ERROR,
+                                    cell,
+                                    "Invalid SUMPRODUCT argument".to_string(),
+                                ))
+                            }
+                        }
+                    }
+                }
+
+                Ok((rows, columns, values))
+            }
+            CalcResult::Array(array) => {
+                let rows = array.len();
+                if rows == 0 {
+                    return Ok((0, 0, vec![]));
+                }
+                let columns = array[0].len();
+                if !array.iter().all(|row| row.len() == columns) {
+                    return Err(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Array dimensions are inconsistent".to_string(),
+                    ));
+                }
+                let mut values = Vec::with_capacity(rows * columns);
+                for row in array {
+                    for value in row {
+                        match value {
+                            ArrayNode::Number(number) => values.push(number),
+                            ArrayNode::String(s) => {
+                                values.push(self.cast_number(&s).unwrap_or(0.0))
+                            }
+                            ArrayNode::Boolean(b) => values.push(if b { 1.0 } else { 0.0 }),
+                            ArrayNode::Error(error) => {
+                                return Err(CalcResult::Error {
+                                    error,
+                                    origin: cell,
+                                    message: "Error in array".to_string(),
+                                })
+                            }
+                        }
+                    }
+                }
+                Ok((rows, columns, values))
+            }
+            error @ CalcResult::Error { .. } => Err(error),
+        }
+    }
+
+    fn get_mmult_matrix(
+        &mut self,
+        arg: &Node,
+        cell: CellReferenceIndex,
+    ) -> Result<Vec<Vec<f64>>, CalcResult> {
+        let array = self.get_array(arg, cell)?;
+        let rows = array.len();
+        if rows == 0 {
+            return Err(CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "MMULT requires non-empty arrays".to_string(),
+            ));
+        }
+        let columns = array[0].len();
+        if columns == 0 || !array.iter().all(|row| row.len() == columns) {
+            return Err(CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "MMULT expects rectangular arrays".to_string(),
+            ));
+        }
+
+        let mut result = Vec::with_capacity(rows);
+        for row in array {
+            let mut numeric_row = Vec::with_capacity(columns);
+            for value in row {
+                match value {
+                    ArrayNode::Number(number) => numeric_row.push(number),
+                    ArrayNode::Boolean(boolean) => {
+                        numeric_row.push(if boolean { 1.0 } else { 0.0 })
+                    }
+                    ArrayNode::String(text) => {
+                        if text.trim().is_empty() {
+                            numeric_row.push(0.0);
+                        } else if let Some(number) = self.cast_number(&text) {
+                            numeric_row.push(number);
+                        } else {
+                            return Err(CalcResult::new_error(
+                                Error::VALUE,
+                                cell,
+                                "MMULT array contains non-numeric text".to_string(),
+                            ));
+                        }
+                    }
+                    ArrayNode::Error(error) => {
+                        return Err(CalcResult::new_error(
+                            error,
+                            cell,
+                            "Error in MMULT array argument".to_string(),
+                        ))
+                    }
+                }
+            }
+            result.push(numeric_row);
+        }
+
+        Ok(result)
+    }
+
+    pub(crate) fn fn_mmult(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 2 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let left = match self.get_mmult_matrix(&args[0], cell) {
+            Ok(matrix) => matrix,
+            Err(e) => return e,
+        };
+        let right = match self.get_mmult_matrix(&args[1], cell) {
+            Ok(matrix) => matrix,
+            Err(e) => return e,
+        };
+
+        let left_rows = left.len();
+        let left_columns = left[0].len();
+        let right_rows = right.len();
+        let right_columns = right[0].len();
+
+        if left_columns != right_rows {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "MMULT array dimensions are incompatible".to_string(),
+            );
+        }
+
+        let mut product = Vec::with_capacity(left_rows);
+        for left_row in left.iter().take(left_rows) {
+            let mut row = Vec::with_capacity(right_columns);
+            for column in 0..right_columns {
+                let mut total = 0.0;
+                for (k, left_value) in left_row.iter().enumerate().take(left_columns) {
+                    total += *left_value * right[k][column];
+                }
+                row.push(ArrayNode::Number(total));
+            }
+            product.push(row);
+        }
+        CalcResult::Array(product)
+    }
+
+    pub(crate) fn fn_sumproduct(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.is_empty() {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let mut expected_shape: Option<(usize, usize)> = None;
+        let mut product: Vec<f64> = Vec::new();
+
+        for arg in args {
+            let (rows, columns, values) = match self.get_sumproduct_array(arg, cell) {
+                Ok(v) => v,
+                Err(e) => return e,
+            };
+
+            if let Some((expected_rows, expected_columns)) = expected_shape {
+                if rows != expected_rows || columns != expected_columns {
+                    return CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "All arrays must have the same dimensions".to_string(),
+                    );
+                }
+                for (index, value) in values.iter().enumerate() {
+                    product[index] *= value;
+                }
+            } else {
+                expected_shape = Some((rows, columns));
+                product = values;
+            }
+        }
+
+        CalcResult::Number(product.iter().sum())
     }
 
     pub(crate) fn fn_sumsq(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
@@ -1670,5 +1929,46 @@ impl<'a> Model<'a> {
             result *= (n + t) / (t + 1.0);
         }
         CalcResult::Number(result)
+    }
+
+    pub(crate) fn fn_multinomial(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.is_empty() {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let mut values: Vec<f64> = Vec::with_capacity(args.len());
+        let mut sum = 0.0;
+        for arg in args {
+            let value = match self.get_number(arg, cell) {
+                Ok(v) => v.floor(),
+                Err(e) => return e,
+            };
+            if value < 0.0 {
+                return CalcResult::new_error(
+                    Error::NUM,
+                    cell,
+                    "Arguments must be non-negative integers".to_string(),
+                );
+            }
+            values.push(value);
+            sum += value;
+        }
+
+        let mut log_result = ln_gamma(sum + 1.0);
+        for value in values {
+            log_result -= ln_gamma(value + 1.0);
+        }
+
+        let result = log_result.exp();
+        if !result.is_finite() {
+            return CalcResult::new_error(Error::NUM, cell, "Invalid result".to_string());
+        }
+
+        let rounded = result.round();
+        if (result - rounded).abs() < 1e-10 * rounded.abs().max(1.0) {
+            CalcResult::Number(rounded)
+        } else {
+            CalcResult::Number(result)
+        }
     }
 }

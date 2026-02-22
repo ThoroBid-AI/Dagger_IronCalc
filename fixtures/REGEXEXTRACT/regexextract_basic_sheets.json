@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "REGEXEXTRACT",
+  "case_id": "regexextract_basic_sheets",
+  "inputs": [],
+  "formula": "=REGEXEXTRACT(\"abc123\",\"[0-9]+\")",
+  "target": "Sheet1!A1",
+  "expected_text": "123",
+  "notes": "Capture oracle output"
+}

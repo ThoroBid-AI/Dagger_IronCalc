@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "BETADIST",
+  "case_id": "betadist_basic_sheets",
+  "inputs": [],
+  "formula": "=BETADIST(0.234,2,2.5)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.18604350941228887",
+  "notes": "Capture oracle output"
+}

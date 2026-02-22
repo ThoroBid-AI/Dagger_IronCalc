@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FINV",
+  "case_id": "finv_basic_sheets",
+  "inputs": [],
+  "formula": "=FINV(0.05,6,4)",
+  "target": "Sheet1!A1",
+  "expected_text": "6.163132282688633",
+  "notes": "Capture oracle output"
+}

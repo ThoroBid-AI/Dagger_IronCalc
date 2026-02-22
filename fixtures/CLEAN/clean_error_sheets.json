@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CLEAN",
+  "case_id": "clean_error_sheets",
+  "inputs": [],
+  "formula": "=CLEAN(\"A\",\"B\")",
+  "target": "Sheet1!A1",
+  "expected_text": "#N/A",
+  "notes": "Capture oracle output"
+}

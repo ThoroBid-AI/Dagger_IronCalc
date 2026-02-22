@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "VARP",
+  "case_id": "varp_basic_sheets",
+  "inputs": [],
+  "formula": "=VARP(1,2,3,4,5)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

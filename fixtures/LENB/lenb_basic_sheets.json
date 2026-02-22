@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "LENB",
+  "case_id": "lenb_basic_sheets",
+  "inputs": [],
+  "formula": "=LENB(\"abc\")",
+  "target": "Sheet1!A1",
+  "expected_text": "3.0",
+  "notes": "Capture oracle output"
+}

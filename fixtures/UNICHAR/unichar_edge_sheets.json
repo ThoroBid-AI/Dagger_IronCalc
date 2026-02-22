@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "UNICHAR",
+  "case_id": "unichar_edge_sheets",
+  "inputs": [],
+  "formula": "=UNICHAR(169)",
+  "target": "Sheet1!A1",
+  "expected_text": "\u00a9",
+  "notes": "Capture oracle output"
+}

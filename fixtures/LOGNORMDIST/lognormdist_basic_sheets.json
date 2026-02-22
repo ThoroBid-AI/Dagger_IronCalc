@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "LOGNORMDIST",
+  "case_id": "lognormdist_basic_sheets",
+  "inputs": [],
+  "formula": "=LOGNORMDIST(4,0,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.9171714809983016",
+  "notes": "Capture oracle output"
+}

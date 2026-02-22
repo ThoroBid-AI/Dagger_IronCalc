@@ -641,6 +641,30 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Choose => vec![Signature::Scalar; arg_count],
         Function::Column => args_signature_row(arg_count),
         Function::Columns => args_signature_one_vector(arg_count),
+        Function::Address => args_signature_scalars(arg_count, 2, 3),
+        Function::Arrayconstrain => {
+            if arg_count == 3 {
+                vec![Signature::Vector, Signature::Scalar, Signature::Scalar]
+            } else {
+                vec![Signature::Error; arg_count]
+            }
+        }
+        Function::Arrayformula => {
+            if arg_count == 1 {
+                vec![Signature::Vector]
+            } else {
+                vec![Signature::Error; arg_count]
+            }
+        }
+        Function::Filter => {
+            if arg_count == 2 {
+                vec![Signature::Vector, Signature::Vector]
+            } else if arg_count == 3 {
+                vec![Signature::Vector, Signature::Vector, Signature::Scalar]
+            } else {
+                vec![Signature::Error; arg_count]
+            }
+        }
         Function::Ln => args_signature_scalars(arg_count, 1, 0),
         Function::Log => args_signature_scalars(arg_count, 1, 1),
         Function::Log10 => args_signature_scalars(arg_count, 1, 0),
@@ -661,6 +685,7 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Sum => vec![Signature::Vector; arg_count],
         Function::Sumif => args_signature_sumif(arg_count),
         Function::Sumifs => vec![Signature::Vector; arg_count],
+        Function::Sumproduct => vec![Signature::Vector; arg_count],
         Function::Tan => args_signature_scalars(arg_count, 1, 0),
         Function::Tanh => args_signature_scalars(arg_count, 1, 0),
         Function::ErrorType => args_signature_scalars(arg_count, 1, 0),
@@ -680,6 +705,7 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Sheet => args_signature_sheet(arg_count),
         Function::Type => args_signature_one_vector(arg_count),
         Function::Hlookup => args_signature_hlookup(arg_count),
+        Function::Hyperlink => args_signature_scalars(arg_count, 1, 1),
         Function::Index => args_signature_index(arg_count),
         Function::Indirect => args_signature_scalars(arg_count, 1, 0),
         Function::Lookup => args_signature_lookup(arg_count),
@@ -687,8 +713,12 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Offset => args_signature_offset(arg_count),
         Function::Row => args_signature_row(arg_count),
         Function::Rows => args_signature_one_vector(arg_count),
+        Function::Transpose => args_signature_one_vector(arg_count),
         Function::Vlookup => args_signature_hlookup(arg_count),
         Function::Xlookup => args_signature_xlookup(arg_count),
+        Function::Char => args_signature_scalars(arg_count, 1, 0),
+        Function::Clean => args_signature_scalars(arg_count, 1, 0),
+        Function::Code => args_signature_scalars(arg_count, 1, 0),
         Function::Concat => vec![Signature::Vector; arg_count],
         Function::Concatenate => vec![Signature::Scalar; arg_count],
         Function::Exact => args_signature_scalars(arg_count, 2, 0),
@@ -697,9 +727,12 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Len => args_signature_scalars(arg_count, 1, 0),
         Function::Lower => args_signature_scalars(arg_count, 1, 0),
         Function::Mid => args_signature_scalars(arg_count, 3, 0),
+        Function::Proper => args_signature_scalars(arg_count, 1, 0),
+        Function::Replace => args_signature_scalars(arg_count, 4, 0),
         Function::Rept => args_signature_scalars(arg_count, 2, 0),
         Function::Right => args_signature_scalars(arg_count, 2, 1),
         Function::Search => args_signature_scalars(arg_count, 2, 1),
+        Function::Split => args_signature_scalars(arg_count, 2, 2),
         Function::Substitute => args_signature_scalars(arg_count, 3, 1),
         Function::T => args_signature_scalars(arg_count, 1, 0),
         Function::Text => args_signature_scalars(arg_count, 2, 0),
@@ -707,6 +740,7 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Textbefore => args_signature_textafter(arg_count),
         Function::Textjoin => args_signature_textjoin(arg_count),
         Function::Trim => args_signature_scalars(arg_count, 1, 0),
+        Function::Unichar => args_signature_scalars(arg_count, 1, 0),
         Function::Upper => args_signature_scalars(arg_count, 1, 0),
         Function::Value => args_signature_scalars(arg_count, 1, 0),
         Function::Valuetotext => args_signature_scalars(arg_count, 1, 1),
@@ -720,6 +754,7 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Countblank => vec![Signature::Vector; arg_count],
         Function::Countif => args_signature_sumif(arg_count),
         Function::Countifs => vec![Signature::Vector; arg_count],
+        Function::Countunique => vec![Signature::Vector; arg_count],
         Function::Maxifs => vec![Signature::Vector; arg_count],
         Function::Minifs => vec![Signature::Vector; arg_count],
         Function::Date => args_signature_scalars(arg_count, 3, 0),
@@ -753,6 +788,13 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Dollarfr => args_signature_scalars(arg_count, 2, 0),
         Function::Effect => args_signature_scalars(arg_count, 2, 0),
         Function::Fv => args_signature_scalars(arg_count, 3, 2),
+        Function::Fvschedule => {
+            if arg_count == 2 {
+                vec![Signature::Scalar, Signature::Vector]
+            } else {
+                vec![Signature::Error; arg_count]
+            }
+        }
         Function::Ipmt => args_signature_scalars(arg_count, 4, 2),
         Function::Irr => args_signature_irr(arg_count),
         Function::Ispmt => args_signature_scalars(arg_count, 4, 0),
@@ -862,6 +904,13 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Mod => args_signature_scalars(arg_count, 2, 0),
         Function::Quotient => args_signature_scalars(arg_count, 2, 0),
         Function::Mround => args_signature_scalars(arg_count, 2, 0),
+        Function::Mmult => {
+            if arg_count == 2 {
+                vec![Signature::Vector, Signature::Vector]
+            } else {
+                vec![Signature::Error; arg_count]
+            }
+        }
         Function::Trunc => args_signature_scalars(arg_count, 1, 1),
         Function::Gcd => vec![Signature::Vector; arg_count],
         Function::Lcm => vec![Signature::Vector; arg_count],
@@ -871,6 +920,19 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::Arabic => args_signature_scalars(arg_count, 1, 0),
         Function::Combin => args_signature_scalars(arg_count, 2, 0),
         Function::Combina => args_signature_scalars(arg_count, 2, 0),
+        Function::Multinomial => vec![Signature::Scalar; arg_count],
+        Function::Seriessum => {
+            if arg_count == 4 {
+                vec![
+                    Signature::Scalar,
+                    Signature::Scalar,
+                    Signature::Scalar,
+                    Signature::Vector,
+                ]
+            } else {
+                vec![Signature::Error; arg_count]
+            }
+        }
         Function::Sumsq => vec![Signature::Vector; arg_count],
         Function::N => args_signature_scalars(arg_count, 1, 0),
         Function::Sheets => args_signature_scalars(arg_count, 0, 1),
@@ -893,6 +955,7 @@ fn get_function_args_signature(kind: &Function, arg_count: usize) -> Vec<Signatu
         Function::BinomDist => args_signature_scalars(arg_count, 4, 0),
         Function::BinomDistRange => args_signature_scalars(arg_count, 3, 1),
         Function::BinomInv => args_signature_scalars(arg_count, 3, 0),
+        Function::Critbinom => args_signature_scalars(arg_count, 3, 0),
         Function::ChisqDist => args_signature_scalars(arg_count, 4, 0),
         Function::ChisqDistRT => args_signature_scalars(arg_count, 3, 0),
         Function::ChisqInv => args_signature_scalars(arg_count, 3, 0),
@@ -1035,6 +1098,10 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Choose => scalar_arguments(args),
         Function::Column => not_implemented(args),
         Function::Columns => not_implemented(args),
+        Function::Address => not_implemented(args),
+        Function::Arrayconstrain => not_implemented(args),
+        Function::Arrayformula => not_implemented(args),
+        Function::Filter => not_implemented(args),
         Function::Cos => scalar_arguments(args),
         Function::Cosh => scalar_arguments(args),
         Function::Max => StaticResult::Scalar,
@@ -1055,6 +1122,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Sum => StaticResult::Scalar,
         Function::Sumif => not_implemented(args),
         Function::Sumifs => not_implemented(args),
+        Function::Sumproduct => StaticResult::Scalar,
         Function::Tan => scalar_arguments(args),
         Function::Tanh => scalar_arguments(args),
         Function::ErrorType => not_implemented(args),
@@ -1074,6 +1142,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Sheet => StaticResult::Scalar,
         Function::Type => not_implemented(args),
         Function::Hlookup => not_implemented(args),
+        Function::Hyperlink => not_implemented(args),
         Function::Index => static_analysis_index(args),
         Function::Indirect => static_analysis_indirect(args),
         Function::Lookup => not_implemented(args),
@@ -1081,8 +1150,12 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Offset => static_analysis_offset(args),
         Function::Row => StaticResult::Scalar,
         Function::Rows => not_implemented(args),
+        Function::Transpose => not_implemented(args),
         Function::Vlookup => not_implemented(args),
         Function::Xlookup => not_implemented(args),
+        Function::Char => not_implemented(args),
+        Function::Clean => not_implemented(args),
+        Function::Code => not_implemented(args),
         Function::Concat => not_implemented(args),
         Function::Concatenate => not_implemented(args),
         Function::Exact => not_implemented(args),
@@ -1091,9 +1164,12 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Len => not_implemented(args),
         Function::Lower => not_implemented(args),
         Function::Mid => not_implemented(args),
+        Function::Proper => not_implemented(args),
+        Function::Replace => not_implemented(args),
         Function::Rept => not_implemented(args),
         Function::Right => not_implemented(args),
         Function::Search => not_implemented(args),
+        Function::Split => not_implemented(args),
         Function::Substitute => not_implemented(args),
         Function::T => not_implemented(args),
         Function::Text => not_implemented(args),
@@ -1101,6 +1177,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Textbefore => not_implemented(args),
         Function::Textjoin => not_implemented(args),
         Function::Trim => not_implemented(args),
+        Function::Unichar => not_implemented(args),
         Function::Unicode => not_implemented(args),
         Function::Upper => not_implemented(args),
         Function::Value => not_implemented(args),
@@ -1115,6 +1192,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Countblank => not_implemented(args),
         Function::Countif => not_implemented(args),
         Function::Countifs => not_implemented(args),
+        Function::Countunique => not_implemented(args),
         Function::Maxifs => not_implemented(args),
         Function::Minifs => not_implemented(args),
         Function::Date => not_implemented(args),
@@ -1147,6 +1225,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Dollarfr => not_implemented(args),
         Function::Effect => not_implemented(args),
         Function::Fv => not_implemented(args),
+        Function::Fvschedule => not_implemented(args),
         Function::Ipmt => not_implemented(args),
         Function::Irr => not_implemented(args),
         Function::Ispmt => not_implemented(args),
@@ -1256,6 +1335,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Mod => scalar_arguments(args),
         Function::Quotient => scalar_arguments(args),
         Function::Mround => scalar_arguments(args),
+        Function::Mmult => not_implemented(args),
         Function::Trunc => scalar_arguments(args),
         Function::Gcd => not_implemented(args),
         Function::Lcm => not_implemented(args),
@@ -1265,6 +1345,8 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::Arabic => scalar_arguments(args),
         Function::Combin => scalar_arguments(args),
         Function::Combina => scalar_arguments(args),
+        Function::Multinomial => scalar_arguments(args),
+        Function::Seriessum => scalar_arguments(args),
         Function::Sumsq => StaticResult::Scalar,
         Function::N => scalar_arguments(args),
         Function::Sheets => scalar_arguments(args),
@@ -1287,6 +1369,7 @@ fn static_analysis_on_function(kind: &Function, args: &[Node]) -> StaticResult {
         Function::BinomDist => StaticResult::Scalar,
         Function::BinomDistRange => StaticResult::Scalar,
         Function::BinomInv => StaticResult::Scalar,
+        Function::Critbinom => StaticResult::Scalar,
         Function::ChisqDist => StaticResult::Scalar,
         Function::ChisqDistRT => StaticResult::Scalar,
         Function::ChisqInv => StaticResult::Scalar,

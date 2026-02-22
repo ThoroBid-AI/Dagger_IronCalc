@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "RECEIVED",
+  "case_id": "received_basic_sheets",
+  "inputs": [],
+  "formula": "=RECEIVED(DATE(2020,1,1),DATE(2021,1,1),100,0.05,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "105.26315789473685",
+  "notes": "Capture oracle output"
+}

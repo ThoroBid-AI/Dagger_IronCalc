@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "IMPORTRANGE",
+  "case_id": "importrange_basic_sheets",
+  "inputs": [],
+  "formula": "=IMPORTRANGE(\"spreadsheet_key\",\"Sheet1!A1\")",
+  "target": "Sheet1!A1",
+  "expected_text": "#REF!",
+  "notes": "Capture oracle output"
+}

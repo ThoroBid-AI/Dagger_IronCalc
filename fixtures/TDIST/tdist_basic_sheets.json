@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TDIST",
+  "case_id": "tdist_basic_sheets",
+  "inputs": [],
+  "formula": "=TDIST(1.5,10,2)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.1645073264454413",
+  "notes": "Capture oracle output"
+}

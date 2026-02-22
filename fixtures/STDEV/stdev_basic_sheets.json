@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "STDEV",
+  "case_id": "stdev_basic_sheets",
+  "inputs": [],
+  "formula": "=STDEV(1,2,3,4,5)",
+  "target": "Sheet1!A1",
+  "expected_text": "1.5811388300841898",
+  "notes": "Capture oracle output"
+}

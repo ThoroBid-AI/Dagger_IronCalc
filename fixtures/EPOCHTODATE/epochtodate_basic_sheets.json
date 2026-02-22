@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "EPOCHTODATE",
+  "case_id": "epochtodate_basic_sheets",
+  "inputs": [],
+  "formula": "=EPOCHTODATE(0,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "25569.0",
+  "notes": "Capture oracle output"
+}

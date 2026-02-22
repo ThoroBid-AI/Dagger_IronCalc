@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PROPER",
+  "case_id": "proper_basic_sheets",
+  "inputs": [],
+  "formula": "=PROPER(\"hello world\")",
+  "target": "Sheet1!A1",
+  "expected_text": "Hello World",
+  "notes": "Capture oracle output"
+}

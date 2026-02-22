@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TREND",
+  "case_id": "trend_basic_sheets",
+  "inputs": [],
+  "formula": "=INDEX(TREND({2,4,6},{1,2,3},{4}),1,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "7.999999999999999",
+  "notes": "Capture oracle output"
+}

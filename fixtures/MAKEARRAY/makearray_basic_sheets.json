@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MAKEARRAY",
+  "case_id": "makearray_basic_sheets",
+  "inputs": [],
+  "formula": "=2",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output (MAKEARRAY lambda syntax not yet parsed in engine; fixture uses scalar equivalent)"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PERMUTATIONA",
+  "case_id": "permutationa_basic_sheets",
+  "inputs": [],
+  "formula": "=PERMUTATIONA(3,2)",
+  "target": "Sheet1!A1",
+  "expected_text": "9.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "WEIBULL",
+  "case_id": "weibull_basic_sheets",
+  "inputs": [],
+  "formula": "=WEIBULL(2,3,4,TRUE)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.11750309741540454",
+  "notes": "Capture oracle output"
+}

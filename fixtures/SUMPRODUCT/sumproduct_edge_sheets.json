@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SUMPRODUCT",
+  "case_id": "sumproduct_edge_sheets",
+  "inputs": [],
+  "formula": "=SUMPRODUCT({1,2;3,4},{5,6;7,8})",
+  "target": "Sheet1!A1",
+  "expected_text": "70.0",
+  "notes": "Capture oracle output"
+}

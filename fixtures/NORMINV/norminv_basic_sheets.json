@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "NORMINV",
+  "case_id": "norminv_basic_sheets",
+  "inputs": [],
+  "formula": "=NORMINV(0.95,0,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "1.644853625133699",
+  "notes": "Capture oracle output"
+}

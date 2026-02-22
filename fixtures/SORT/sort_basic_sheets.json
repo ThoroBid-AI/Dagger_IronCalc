@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SORT",
+  "case_id": "sort_basic_sheets",
+  "inputs": [],
+  "formula": "=SORT({3;1;2})",
+  "target": "Sheet1!A1",
+  "expected_text": "1.0",
+  "notes": "Capture oracle output"
+}

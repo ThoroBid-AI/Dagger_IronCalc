@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "GOOGLETRANSLATE",
+  "case_id": "googletranslate_basic_sheets",
+  "inputs": [],
+  "formula": "=GOOGLETRANSLATE(\"hola\",\"es\",\"en\")",
+  "target": "Sheet1!A1",
+  "expected_text": "hello",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FILTER",
+  "case_id": "filter_error_sheets",
+  "inputs": [],
+  "formula": "=FILTER({1,2;3,4},{TRUE;FALSE;TRUE})",
+  "target": "Sheet1!A1",
+  "expected_text": "#N/A",
+  "notes": "Capture oracle output"
+}

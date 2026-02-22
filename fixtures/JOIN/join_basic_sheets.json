@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "JOIN",
+  "case_id": "join_basic_sheets",
+  "inputs": [],
+  "formula": "=JOIN(\"-\",\"a\",\"b\",\"c\")",
+  "target": "Sheet1!A1",
+  "expected_text": "a-b-c",
+  "notes": "Capture oracle output"
+}

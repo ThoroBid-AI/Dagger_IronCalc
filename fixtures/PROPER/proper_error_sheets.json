@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PROPER",
+  "case_id": "proper_error_sheets",
+  "inputs": [],
+  "formula": "=PROPER()",
+  "target": "Sheet1!A1",
+  "expected_text": "#N/A",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PERCENTILE",
+  "case_id": "percentile_basic_sheets",
+  "inputs": [],
+  "formula": "=PERCENTILE({1,2,3,4,5},0.4)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.6",
+  "notes": "Capture oracle output"
+}

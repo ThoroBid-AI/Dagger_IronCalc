@@ -1,0 +1,12 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "FILTER",
+  "case_id": "filter_if_empty_excel",
+  "inputs": [],
+  "formula": "=FILTER({1,2},{FALSE,FALSE},\"none\")",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FVSCHEDULE",
+  "case_id": "fvschedule_error_sheets",
+  "inputs": [],
+  "formula": "=FVSCHEDULE(1000,{0.02,\"x\"})",
+  "target": "Sheet1!A1",
+  "expected_text": "#VALUE!",
+  "notes": "Capture oracle output"
+}

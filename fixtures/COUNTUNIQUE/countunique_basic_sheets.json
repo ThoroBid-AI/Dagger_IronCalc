@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "COUNTUNIQUE",
+  "case_id": "countunique_basic_sheets",
+  "inputs": [],
+  "formula": "=COUNTUNIQUE(1,1,2,2,3)",
+  "target": "Sheet1!A1",
+  "expected_text": "3.0",
+  "notes": "Capture oracle output"
+}

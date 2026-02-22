@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "COUPNCD",
+  "case_id": "coupncd_basic_sheets",
+  "inputs": [],
+  "formula": "=COUPNCD(DATE(2020,4,1),DATE(2022,4,1),2,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "44105.0",
+  "notes": "Capture oracle output"
+}

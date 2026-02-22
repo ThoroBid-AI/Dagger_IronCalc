@@ -12,7 +12,7 @@ use crate::{
         parser::{
             move_formula::{move_formula, MoveContext},
             stringify::{rename_defined_name_in_node, to_localized_string, to_rc_format},
-            Node, Parser,
+            ArrayNode, Node, Parser,
         },
         token::{get_error_by_name, Error, OpCompare, OpProduct, OpSum, OpUnary},
         types::*,
@@ -128,6 +128,10 @@ pub struct Model<'a> {
     pub(crate) parser: Parser<'a>,
     /// The list of cells with formulas that are evaluated or being evaluated
     pub(crate) cells: HashMap<(u32, i32, i32), CellState>,
+    /// Runtime spill values (dynamic array children), keyed by `(sheet, row, column)`.
+    pub(crate) spilled_values: HashMap<(u32, i32, i32), CalcResult>,
+    /// Spill values from previous evaluation pass used as fallback for dependency convergence.
+    pub(crate) previous_spilled_values: HashMap<(u32, i32, i32), CalcResult>,
     /// The locale of the model
     pub(crate) locale: &'a Locale,
     /// The language used
@@ -548,6 +552,126 @@ impl<'a> Model<'a> {
         }
         Ok(format!("{}!{}{}", sheet.name, column, cell_reference.row))
     }
+
+    fn get_spilled_value(&self, sheet: u32, row: i32, column: i32) -> Option<&CalcResult> {
+        self.spilled_values
+            .get(&(sheet, row, column))
+            .or_else(|| self.previous_spilled_values.get(&(sheet, row, column)))
+    }
+
+    fn array_node_to_calc_result(
+        &self,
+        node: &ArrayNode,
+        origin: CellReferenceIndex,
+    ) -> CalcResult {
+        match node {
+            ArrayNode::Number(value) => CalcResult::Number(*value),
+            ArrayNode::String(value) => CalcResult::String(value.clone()),
+            ArrayNode::Boolean(value) => CalcResult::Boolean(*value),
+            ArrayNode::Error(error) => CalcResult::Error {
+                error: error.clone(),
+                origin,
+                message: "".to_string(),
+            },
+        }
+    }
+
+    fn set_formula_cell_from_calc_result(
+        &mut self,
+        cell_reference: CellReferenceIndex,
+        f: i32,
+        s: i32,
+        result: &CalcResult,
+    ) {
+        let CellReferenceIndex { sheet, row, column } = cell_reference;
+        match result {
+            CalcResult::Number(value) => {
+                if value.is_nan() || value.is_infinite() {
+                    *self.workbook.worksheets[sheet as usize]
+                        .sheet_data
+                        .get_mut(&row)
+                        .expect("expected a row")
+                        .get_mut(&column)
+                        .expect("expected a column") = Cell::CellFormulaError {
+                        f,
+                        s,
+                        o: "".to_string(),
+                        m: "Invalid number".to_string(),
+                        ei: Error::NUM,
+                    };
+                } else {
+                    *self.workbook.worksheets[sheet as usize]
+                        .sheet_data
+                        .get_mut(&row)
+                        .expect("expected a row")
+                        .get_mut(&column)
+                        .expect("expected a column") = Cell::CellFormulaNumber { f, s, v: *value };
+                }
+            }
+            CalcResult::String(value) => {
+                *self.workbook.worksheets[sheet as usize]
+                    .sheet_data
+                    .get_mut(&row)
+                    .expect("expected a row")
+                    .get_mut(&column)
+                    .expect("expected a column") = Cell::CellFormulaString {
+                    f,
+                    s,
+                    v: value.clone(),
+                };
+            }
+            CalcResult::Boolean(value) => {
+                *self.workbook.worksheets[sheet as usize]
+                    .sheet_data
+                    .get_mut(&row)
+                    .expect("expected a row")
+                    .get_mut(&column)
+                    .expect("expected a column") = Cell::CellFormulaBoolean { f, s, v: *value };
+            }
+            CalcResult::Error {
+                error,
+                origin,
+                message,
+            } => {
+                let o = self.cell_reference_to_string(origin).unwrap_or_default();
+                *self.workbook.worksheets[sheet as usize]
+                    .sheet_data
+                    .get_mut(&row)
+                    .expect("expected a row")
+                    .get_mut(&column)
+                    .expect("expected a column") = Cell::CellFormulaError {
+                    f,
+                    s,
+                    o,
+                    m: message.to_string(),
+                    ei: error.clone(),
+                };
+            }
+            CalcResult::EmptyCell | CalcResult::EmptyArg => {
+                *self.workbook.worksheets[sheet as usize]
+                    .sheet_data
+                    .get_mut(&row)
+                    .expect("expected a row")
+                    .get_mut(&column)
+                    .expect("expected a column") = Cell::CellFormulaNumber { f, s, v: 0.0 };
+            }
+            CalcResult::Range { .. } | CalcResult::Array(_) => {
+                *self.workbook.worksheets[sheet as usize]
+                    .sheet_data
+                    .get_mut(&row)
+                    .expect("expected a row")
+                    .get_mut(&column)
+                    .expect("expected a column") = Cell::CellFormulaError {
+                    f,
+                    s,
+                    o: "".to_string(),
+                    m: "Unexpected non-scalar result".to_string(),
+                    ei: Error::VALUE,
+                };
+            }
+        }
+    }
+
     /// Sets `result` in the cell given by `sheet` sheet index, row and column
     /// Note that will panic if the cell does not exist
     /// It will do nothing if the cell does not have a formula
@@ -681,19 +805,105 @@ impl<'a> Model<'a> {
                         .get_mut(&column)
                         .expect("expected a column") = Cell::CellFormulaNumber { f, s, v: 0.0 };
                 }
-                CalcResult::Array(_) => {
-                    *self.workbook.worksheets[sheet as usize]
-                        .sheet_data
-                        .get_mut(&row)
-                        .expect("expected a row")
-                        .get_mut(&column)
-                        .expect("expected a column") = Cell::CellFormulaError {
-                        f,
-                        s,
-                        o: "".to_string(),
-                        m: "Arrays not supported yet".to_string(),
-                        ei: Error::NIMPL,
-                    };
+                CalcResult::Array(array) => {
+                    let width = array.iter().map(|r| r.len()).max().unwrap_or(0);
+                    if array.is_empty() || width == 0 {
+                        *self.workbook.worksheets[sheet as usize]
+                            .sheet_data
+                            .get_mut(&row)
+                            .expect("expected a row")
+                            .get_mut(&column)
+                            .expect("expected a column") = Cell::CellFormulaError {
+                            f,
+                            s,
+                            o: "".to_string(),
+                            m: "Empty array result".to_string(),
+                            ei: Error::CALC,
+                        };
+                        return;
+                    }
+
+                    // Validate spill target before writing any value.
+                    let mut blocked = false;
+                    for r in 0..array.len() {
+                        for c in 0..width {
+                            if r == 0 && c == 0 {
+                                continue;
+                            }
+                            let target_row = row + r as i32;
+                            let target_column = column + c as i32;
+                            if target_row > LAST_ROW || target_column > LAST_COLUMN {
+                                blocked = true;
+                                break;
+                            }
+
+                            if self
+                                .spilled_values
+                                .contains_key(&(sheet, target_row, target_column))
+                            {
+                                blocked = true;
+                                break;
+                            }
+
+                            if let Some(target_cell) = self.workbook.worksheets[sheet as usize]
+                                .cell(target_row, target_column)
+                            {
+                                if !matches!(target_cell, Cell::EmptyCell { .. }) {
+                                    blocked = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if blocked {
+                            break;
+                        }
+                    }
+
+                    if blocked {
+                        *self.workbook.worksheets[sheet as usize]
+                            .sheet_data
+                            .get_mut(&row)
+                            .expect("expected a row")
+                            .get_mut(&column)
+                            .expect("expected a column") = Cell::CellFormulaError {
+                            f,
+                            s,
+                            o: "".to_string(),
+                            m: "Spill range is not blank".to_string(),
+                            ei: Error::SPILL,
+                        };
+                        return;
+                    }
+
+                    let top_left = array
+                        .first()
+                        .and_then(|data_row| data_row.first())
+                        .map(|n| self.array_node_to_calc_result(n, cell_reference))
+                        .unwrap_or_else(|| {
+                            CalcResult::new_error(
+                                Error::CALC,
+                                cell_reference,
+                                "Empty array result".to_string(),
+                            )
+                        });
+                    self.set_formula_cell_from_calc_result(cell_reference, f, s, &top_left);
+
+                    for r in 0..array.len() {
+                        for c in 0..width {
+                            if r == 0 && c == 0 {
+                                continue;
+                            }
+                            let target_row = row + r as i32;
+                            let target_column = column + c as i32;
+                            let value = array
+                                .get(r)
+                                .and_then(|data_row| data_row.get(c))
+                                .map(|n| self.array_node_to_calc_result(n, cell_reference))
+                                .unwrap_or(CalcResult::EmptyCell);
+                            self.spilled_values
+                                .insert((sheet, target_row, target_column), value);
+                        }
+                    }
                 }
             }
         }
@@ -799,19 +1009,35 @@ impl<'a> Model<'a> {
     }
 
     pub(crate) fn evaluate_cell(&mut self, cell_reference: CellReferenceIndex) -> CalcResult {
-        let row_data = match self.workbook.worksheets[cell_reference.sheet as usize]
+        let cell = self.workbook.worksheets[cell_reference.sheet as usize]
             .sheet_data
             .get(&cell_reference.row)
-        {
-            Some(r) => r,
-            None => return CalcResult::EmptyCell,
-        };
-        let cell = match row_data.get(&cell_reference.column) {
+            .and_then(|r| r.get(&cell_reference.column));
+
+        let cell = match cell {
             Some(c) => c,
             None => {
+                if let Some(value) = self.get_spilled_value(
+                    cell_reference.sheet,
+                    cell_reference.row,
+                    cell_reference.column,
+                ) {
+                    return value.clone();
+                }
                 return CalcResult::EmptyCell;
             }
         };
+
+        if matches!(cell, Cell::EmptyCell { .. }) {
+            if let Some(value) = self.get_spilled_value(
+                cell_reference.sheet,
+                cell_reference.row,
+                cell_reference.column,
+            ) {
+                return value.clone();
+            }
+            return CalcResult::EmptyCell;
+        }
 
         match cell.get_formula() {
             Some(f) => {
@@ -951,6 +1177,8 @@ impl<'a> Model<'a> {
             parsed_defined_names: HashMap::new(),
             parser,
             cells,
+            spilled_values: HashMap::new(),
+            previous_spilled_values: HashMap::new(),
             language,
             locale,
             tz,
@@ -1763,6 +1991,18 @@ impl<'a> Model<'a> {
         row: i32,
         column: i32,
     ) -> Result<CellValue, String> {
+        if let Some(value) = self.get_spilled_value(sheet_index, row, column) {
+            return Ok(match value {
+                CalcResult::Number(number) => CellValue::Number(*number),
+                CalcResult::String(text) => CellValue::String(text.clone()),
+                CalcResult::Boolean(boolean) => CellValue::Boolean(*boolean),
+                CalcResult::Error { error, .. } => {
+                    CellValue::String(error.to_localized_error_string(self.language))
+                }
+                CalcResult::EmptyCell | CalcResult::EmptyArg => CellValue::None,
+                CalcResult::Range { .. } | CalcResult::Array(_) => CellValue::None,
+            });
+        }
         let cell = self
             .workbook
             .worksheet(sheet_index)?
@@ -1799,6 +2039,23 @@ impl<'a> Model<'a> {
         row: i32,
         column: i32,
     ) -> Result<String, String> {
+        if let Some(value) = self.get_spilled_value(sheet_index, row, column) {
+            let format = self.get_style_for_cell(sheet_index, row, column)?.num_fmt;
+            return Ok(match value {
+                CalcResult::Number(number) => format_number(*number, &format, self.locale).text,
+                CalcResult::String(text) => text.clone(),
+                CalcResult::Boolean(boolean) => {
+                    if *boolean {
+                        self.language.booleans.r#true.to_string()
+                    } else {
+                        self.language.booleans.r#false.to_string()
+                    }
+                }
+                CalcResult::Error { error, .. } => error.to_localized_error_string(self.language),
+                CalcResult::EmptyCell | CalcResult::EmptyArg => "".to_string(),
+                CalcResult::Range { .. } | CalcResult::Array(_) => "".to_string(),
+            });
+        }
         match self.workbook.worksheet(sheet_index)?.cell(row, column) {
             Some(cell) => {
                 let format = self.get_style_for_cell(sheet_index, row, column)?.num_fmt;
@@ -1814,6 +2071,17 @@ impl<'a> Model<'a> {
 
     /// Return the typeof a cell
     pub fn get_cell_type(&self, sheet: u32, row: i32, column: i32) -> Result<CellType, String> {
+        if let Some(value) = self.get_spilled_value(sheet, row, column) {
+            return Ok(match value {
+                CalcResult::Number(_) | CalcResult::EmptyCell | CalcResult::EmptyArg => {
+                    CellType::Number
+                }
+                CalcResult::String(_) => CellType::Text,
+                CalcResult::Boolean(_) => CellType::LogicalValue,
+                CalcResult::Error { .. } => CellType::ErrorValue,
+                CalcResult::Range { .. } | CalcResult::Array(_) => CellType::Array,
+            });
+        }
         Ok(match self.workbook.worksheet(sheet)?.cell(row, column) {
             Some(c) => c.get_type(),
             None => CellType::Number,
@@ -1832,6 +2100,37 @@ impl<'a> Model<'a> {
         row: i32,
         column: i32,
     ) -> Result<String, String> {
+        if let Some(value) = self.get_spilled_value(sheet, row, column) {
+            let style = self.get_style_for_cell(sheet, row, column)?;
+            return Ok(match value {
+                CalcResult::Number(number) => {
+                    let formatted = format_number(*number, &style.num_fmt, self.locale);
+                    if formatted.error.is_none() {
+                        formatted.text
+                    } else {
+                        number.to_string()
+                    }
+                }
+                CalcResult::String(text) => {
+                    if style.quote_prefix {
+                        format!("'{text}")
+                    } else {
+                        text.clone()
+                    }
+                }
+                CalcResult::Boolean(boolean) => {
+                    if *boolean {
+                        self.language.booleans.r#true.to_string()
+                    } else {
+                        self.language.booleans.r#false.to_string()
+                    }
+                }
+                CalcResult::Error { error, .. } => error.to_localized_error_string(self.language),
+                CalcResult::EmptyCell | CalcResult::EmptyArg => "".to_string(),
+                CalcResult::Range { .. } | CalcResult::Array(_) => "".to_string(),
+            });
+        }
+
         let worksheet = self.workbook.worksheet(sheet)?;
         let cell = match worksheet.cell(row, column) {
             Some(c) => c,
@@ -1909,15 +2208,35 @@ impl<'a> Model<'a> {
     pub fn evaluate(&mut self) {
         // clear all computation artifacts
         self.cells.clear();
+        self.spilled_values.clear();
+        self.previous_spilled_values.clear();
 
         let cells = self.get_all_cells();
 
-        for cell in cells {
+        for cell in &cells {
             self.evaluate_cell(CellReferenceIndex {
                 sheet: cell.index,
                 row: cell.row,
                 column: cell.column,
             });
+        }
+
+        // Spill children are not formula cells; run a second pass using previous spill values as
+        // fallback so formulas that reference spill children converge deterministically.
+        if !self.spilled_values.is_empty() {
+            self.previous_spilled_values = self.spilled_values.clone();
+            self.spilled_values.clear();
+            self.cells.clear();
+
+            for cell in &cells {
+                self.evaluate_cell(CellReferenceIndex {
+                    sheet: cell.index,
+                    row: cell.row,
+                    column: cell.column,
+                });
+            }
+
+            self.previous_spilled_values.clear();
         }
     }
 

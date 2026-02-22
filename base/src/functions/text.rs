@@ -1,7 +1,11 @@
 use crate::{
     calc_result::CalcResult,
     constants::{LAST_COLUMN, LAST_ROW},
-    expressions::{parser::Node, token::Error, types::CellReferenceIndex},
+    expressions::{
+        parser::{ArrayNode, Node},
+        token::Error,
+        types::CellReferenceIndex,
+    },
     formatter::format::{format_number, parse_formatted_number},
     model::Model,
     number_format::to_precision,
@@ -160,6 +164,80 @@ impl<'a> Model<'a> {
             CalcResult::String(d.text)
         } else {
             CalcResult::new_args_number_error(cell)
+        }
+    }
+
+    /// CHAR(number)
+    /// Converts a number from 1..=255 into the corresponding single character.
+    pub(crate) fn fn_char(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let value = match self.get_number_no_bools(&args[0], cell) {
+            Ok(v) => {
+                if v < 0.0 {
+                    v.ceil()
+                } else {
+                    v.floor()
+                }
+            }
+            Err(e) => return e,
+        };
+
+        if !(1.0..=255.0).contains(&value) {
+            return CalcResult::new_error(
+                Error::NUM,
+                cell,
+                "Character code must be between 1 and 255".to_string(),
+            );
+        }
+
+        let code = value as u32;
+        match char::from_u32(code) {
+            Some(ch) => CalcResult::String(ch.to_string()),
+            None => CalcResult::new_error(Error::VALUE, cell, "Invalid character code".to_string()),
+        }
+    }
+
+    /// CLEAN(text)
+    /// Removes non-printable ASCII characters (codes 0..=31).
+    pub(crate) fn fn_clean(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_error(
+                Error::NA,
+                cell,
+                "Wrong number of arguments".to_string(),
+            );
+        }
+
+        let text = match self.get_string(&args[0], cell) {
+            Ok(s) => s,
+            Err(e) => return e,
+        };
+
+        let cleaned = text
+            .chars()
+            .filter(|c| (*c as u32) >= 32)
+            .collect::<String>();
+        CalcResult::String(cleaned)
+    }
+
+    /// CODE(text)
+    /// Returns the numeric code of the first character of the text.
+    pub(crate) fn fn_code(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let text = match self.get_string(&args[0], cell) {
+            Ok(s) => s,
+            Err(e) => return e,
+        };
+
+        match text.chars().next() {
+            Some(ch) => CalcResult::Number((ch as u32) as f64),
+            None => CalcResult::new_error(Error::VALUE, cell, "Text cannot be empty".to_string()),
         }
     }
 
@@ -382,6 +460,41 @@ impl<'a> Model<'a> {
         CalcResult::new_args_number_error(cell)
     }
 
+    /// PROPER(text)
+    /// Uppercases the first letter of each word and lowercases remaining letters.
+    pub(crate) fn fn_proper(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_error(
+                Error::NA,
+                cell,
+                "Wrong number of arguments".to_string(),
+            );
+        }
+
+        let text = match self.get_string(&args[0], cell) {
+            Ok(s) => s,
+            Err(e) => return e,
+        };
+
+        let mut output = String::with_capacity(text.len());
+        let mut capitalize_next = true;
+        for ch in text.chars() {
+            if ch.is_alphabetic() {
+                if capitalize_next {
+                    output.extend(ch.to_uppercase());
+                } else {
+                    output.extend(ch.to_lowercase());
+                }
+                capitalize_next = false;
+            } else {
+                output.push(ch);
+                capitalize_next = true;
+            }
+        }
+
+        CalcResult::String(output)
+    }
+
     pub(crate) fn fn_unicode(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
         if args.len() == 1 {
             let s = match self.evaluate_node_in_context(&args[0], cell) {
@@ -434,6 +547,49 @@ impl<'a> Model<'a> {
             }
         }
         CalcResult::new_args_number_error(cell)
+    }
+
+    /// UNICHAR(number)
+    /// Returns the Unicode character referenced by code point.
+    pub(crate) fn fn_unichar(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let value = match self.get_number_no_bools(&args[0], cell) {
+            Ok(v) => {
+                if v < 0.0 {
+                    v.ceil()
+                } else {
+                    v.floor()
+                }
+            }
+            Err(e) => return e,
+        };
+
+        if !(1.0..=0x10FFFF as f64).contains(&value) {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "Unicode code point is out of range".to_string(),
+            );
+        }
+
+        let code = value as u32;
+        if (0xD800..=0xDFFF).contains(&code) {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "Unicode surrogate code points are invalid".to_string(),
+            );
+        }
+
+        match char::from_u32(code) {
+            Some(ch) => CalcResult::String(ch.to_string()),
+            None => {
+                CalcResult::new_error(Error::VALUE, cell, "Invalid unicode code point".to_string())
+            }
+        }
     }
 
     pub(crate) fn fn_upper(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
@@ -750,6 +906,70 @@ impl<'a> Model<'a> {
             }
         }
         CalcResult::String(result)
+    }
+
+    /// REPLACE(old_text, start_num, num_chars, new_text)
+    pub(crate) fn fn_replace(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 4 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let old_text = match self.get_string(&args[0], cell) {
+            Ok(s) => s,
+            Err(e) => return e,
+        };
+
+        let start_num = match self.get_number(&args[1], cell) {
+            Ok(v) => {
+                if v < 0.0 {
+                    v.ceil()
+                } else {
+                    v.floor()
+                }
+            }
+            Err(e) => return e,
+        };
+        if start_num < 1.0 {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "Start position must be >= 1".to_string(),
+            );
+        }
+
+        let num_chars = match self.get_number(&args[2], cell) {
+            Ok(v) => {
+                if v < 0.0 {
+                    v.ceil()
+                } else {
+                    v.floor()
+                }
+            }
+            Err(e) => return e,
+        };
+        if num_chars < 0.0 {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "Number of characters must be >= 0".to_string(),
+            );
+        }
+
+        let new_text = match self.get_string(&args[3], cell) {
+            Ok(s) => s,
+            Err(e) => return e,
+        };
+
+        let old_chars = old_text.chars().collect::<Vec<char>>();
+        let start_index = start_num as usize - 1;
+        if start_index >= old_chars.len() {
+            return CalcResult::String(format!("{old_text}{new_text}"));
+        }
+
+        let end_index = (start_index + num_chars as usize).min(old_chars.len());
+        let left = old_chars[..start_index].iter().collect::<String>();
+        let right = old_chars[end_index..].iter().collect::<String>();
+        CalcResult::String(format!("{left}{new_text}{right}"))
     }
 
     // REPT(text, number_times)
@@ -1164,6 +1384,73 @@ impl<'a> Model<'a> {
             CalcResult::String(text.replace(&old_text, &new_text))
         }
     }
+
+    // SPLIT(text, delimiter, [split_by_each], [remove_empty_text])
+    pub(crate) fn fn_split(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if !(2..=4).contains(&args.len()) {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let text = match self.get_string(&args[0], cell) {
+            Ok(value) => value,
+            Err(e) => return e,
+        };
+        let delimiter = match self.get_string(&args[1], cell) {
+            Ok(value) => value,
+            Err(e) => return e,
+        };
+        let split_by_each = if args.len() >= 3 {
+            match self.get_boolean(&args[2], cell) {
+                Ok(value) => value,
+                Err(e) => return e,
+            }
+        } else {
+            true
+        };
+        let remove_empty_text = if args.len() >= 4 {
+            match self.get_boolean(&args[3], cell) {
+                Ok(value) => value,
+                Err(e) => return e,
+            }
+        } else {
+            true
+        };
+
+        let mut parts: Vec<String> = if delimiter.is_empty() {
+            text.chars().map(|c| c.to_string()).collect()
+        } else if split_by_each {
+            let delimiters: Vec<char> = delimiter.chars().collect();
+            let mut tokens = Vec::new();
+            let mut current = String::new();
+            for ch in text.chars() {
+                if delimiters.contains(&ch) {
+                    tokens.push(current);
+                    current = String::new();
+                } else {
+                    current.push(ch);
+                }
+            }
+            tokens.push(current);
+            tokens
+        } else {
+            text.split(&delimiter)
+                .map(|value| value.to_string())
+                .collect()
+        };
+
+        if remove_empty_text {
+            parts.retain(|value| !value.is_empty());
+        }
+        if parts.is_empty() {
+            parts.push("".to_string());
+        }
+
+        CalcResult::Array(vec![parts
+            .into_iter()
+            .map(ArrayNode::String)
+            .collect::<Vec<ArrayNode>>()])
+    }
+
     pub(crate) fn fn_concatenate(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
         let arg_count = args.len();
         if arg_count == 0 {

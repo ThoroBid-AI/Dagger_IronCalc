@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "RIGHTB",
+  "case_id": "rightb_basic_sheets",
+  "inputs": [],
+  "formula": "=RIGHTB(\"abcdef\",2)",
+  "target": "Sheet1!A1",
+  "expected_text": "ef",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "STDEVP",
+  "case_id": "stdevp_basic_sheets",
+  "inputs": [],
+  "formula": "=STDEVP(1,2,3,4,5)",
+  "target": "Sheet1!A1",
+  "expected_text": "1.4142135623730951",
+  "notes": "Capture oracle output"
+}

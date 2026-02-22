@@ -235,6 +235,12 @@ impl<'a> Model<'a> {
         CalcResult::Number(k as f64)
     }
 
+    /// CRITBINOM(trials, probability_s, alpha)
+    /// Legacy alias for BINOM.INV.
+    pub(crate) fn fn_critbinom(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        self.fn_binom_inv(args, cell)
+    }
+
     pub(crate) fn fn_negbinom_dist(
         &mut self,
         args: &[Node],

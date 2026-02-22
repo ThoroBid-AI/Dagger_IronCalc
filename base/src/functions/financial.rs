@@ -2,8 +2,9 @@ use chrono::Datelike;
 
 use crate::{
     calc_result::CalcResult,
+    cast::NumberOrArray,
     constants::{LAST_COLUMN, LAST_ROW, MAXIMUM_DATE_SERIAL_NUMBER, MINIMUM_DATE_SERIAL_NUMBER},
-    expressions::{parser::Node, token::Error, types::CellReferenceIndex},
+    expressions::{parser::ArrayNode, parser::Node, token::Error, types::CellReferenceIndex},
     formatter::dates::from_excel_date,
     model::Model,
 };
@@ -192,6 +193,54 @@ fn compute_ppmt(
 // In these formulas the payment (pmt) is normally negative
 
 impl<'a> Model<'a> {
+    fn get_strict_numeric_vector(
+        &mut self,
+        arg: &Node,
+        cell: CellReferenceIndex,
+        context: &str,
+    ) -> Result<Vec<f64>, CalcResult> {
+        match self.get_number_or_array(arg, cell) {
+            Ok(NumberOrArray::Number(value)) => Ok(vec![value]),
+            Ok(NumberOrArray::Array(array)) => {
+                let mut values = Vec::new();
+                for row in array {
+                    for value in row {
+                        match value {
+                            ArrayNode::Number(number) => values.push(number),
+                            ArrayNode::String(s) => {
+                                if let Some(number) = self.cast_number(&s) {
+                                    values.push(number);
+                                } else {
+                                    return Err(CalcResult::new_error(
+                                        Error::VALUE,
+                                        cell,
+                                        format!("Expected number in {context}"),
+                                    ));
+                                }
+                            }
+                            ArrayNode::Boolean(_) => {
+                                return Err(CalcResult::new_error(
+                                    Error::VALUE,
+                                    cell,
+                                    format!("Expected number in {context}"),
+                                ));
+                            }
+                            ArrayNode::Error(error) => {
+                                return Err(CalcResult::Error {
+                                    error,
+                                    origin: cell,
+                                    message: "Error in array".to_string(),
+                                });
+                            }
+                        }
+                    }
+                }
+                Ok(values)
+            }
+            Err(error) => Err(error),
+        }
+    }
+
     fn get_array_of_numbers_generic(
         &mut self,
         arg: &Node,
@@ -639,6 +688,75 @@ impl<'a> Model<'a> {
                 message: error.1,
             },
         }
+    }
+
+    /// FVSCHEDULE(principal, schedule)
+    pub(crate) fn fn_fvschedule(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 2 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let principal = match self.get_number(&args[0], cell) {
+            Ok(v) => v,
+            Err(e) => return e,
+        };
+
+        let schedule = match self.get_strict_numeric_vector(&args[1], cell, "schedule") {
+            Ok(values) => values,
+            Err(e) => return e,
+        };
+
+        let mut value = principal;
+        for rate in schedule {
+            value *= 1.0 + rate;
+        }
+
+        if !value.is_finite() {
+            return CalcResult::new_error(Error::NUM, cell, "Invalid result".to_string());
+        }
+
+        CalcResult::Number(value)
+    }
+
+    /// SERIESSUM(x, n, m, coefficients)
+    pub(crate) fn fn_seriessum(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 4 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let x = match self.get_number(&args[0], cell) {
+            Ok(v) => v,
+            Err(e) => return e,
+        };
+        let n = match self.get_number(&args[1], cell) {
+            Ok(v) => v,
+            Err(e) => return e,
+        };
+        let m = match self.get_number(&args[2], cell) {
+            Ok(v) => v,
+            Err(e) => return e,
+        };
+
+        let coefficients = match self.get_strict_numeric_vector(&args[3], cell, "coefficients") {
+            Ok(values) => values,
+            Err(e) => return e,
+        };
+
+        let mut result = 0.0;
+        for (index, coefficient) in coefficients.iter().enumerate() {
+            let exponent = n + index as f64 * m;
+            let term = coefficient * x.powf(exponent);
+            if !term.is_finite() {
+                return CalcResult::new_error(Error::NUM, cell, "Invalid result".to_string());
+            }
+            result += term;
+        }
+
+        if !result.is_finite() {
+            return CalcResult::new_error(Error::NUM, cell, "Invalid result".to_string());
+        }
+
+        CalcResult::Number(result)
     }
 
     // IPMT(rate, per, nper, pv, [fv], [type])

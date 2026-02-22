@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SERIESSUM",
+  "case_id": "seriessum_edge_sheets",
+  "inputs": [],
+  "formula": "=SERIESSUM(1.5,0,1,{1,2,3})",
+  "target": "Sheet1!A1",
+  "expected_text": "10.75",
+  "notes": "Capture oracle output"
+}

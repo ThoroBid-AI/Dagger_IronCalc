@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "BYCOL",
+  "case_id": "bycol_basic_sheets",
+  "inputs": [],
+  "formula": "=BYCOL({1,2,3;4,5,6},LAMBDA(col,SUM(col)))",
+  "target": "Sheet1!A1",
+  "expected_text": "5.0",
+  "notes": "Capture oracle output"
+}

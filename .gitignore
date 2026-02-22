@@ -1,3 +1,6 @@
 target/*
 **/node_modules/**
 .DS_Store
+xlsx/hello-calc.xlsx
+xlsx/hello-styles.xlsx
+xlsx/widths-and-heights.xlsx

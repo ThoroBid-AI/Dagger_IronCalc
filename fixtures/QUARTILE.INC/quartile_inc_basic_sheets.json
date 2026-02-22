@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "QUARTILE.INC",
+  "case_id": "quartile_inc_basic_sheets",
+  "inputs": [],
+  "formula": "=QUARTILE.INC({1,2,3,4,5},2)",
+  "target": "Sheet1!A1",
+  "expected_text": "3.0",
+  "notes": "Capture oracle output"
+}

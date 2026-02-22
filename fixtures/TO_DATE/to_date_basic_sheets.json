@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TO_DATE",
+  "case_id": "to_date_basic_sheets",
+  "inputs": [],
+  "formula": "=TO_DATE(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "1.0",
+  "notes": "Capture oracle output"
+}

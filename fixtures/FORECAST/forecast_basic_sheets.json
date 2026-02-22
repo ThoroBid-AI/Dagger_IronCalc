@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FORECAST",
+  "case_id": "forecast_basic_sheets",
+  "inputs": [],
+  "formula": "=FORECAST(6,{2,4,6,8,10},{1,2,3,4,5})",
+  "target": "Sheet1!A1",
+  "expected_text": "12.0",
+  "notes": "Capture oracle output"
+}

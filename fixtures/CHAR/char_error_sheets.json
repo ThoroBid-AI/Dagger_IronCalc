@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CHAR",
+  "case_id": "char_error_sheets",
+  "inputs": [],
+  "formula": "=CHAR(0)",
+  "target": "Sheet1!A1",
+  "expected_text": "#NUM!",
+  "notes": "Capture oracle output"
+}

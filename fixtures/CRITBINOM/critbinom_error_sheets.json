@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CRITBINOM",
+  "case_id": "critbinom_error_sheets",
+  "inputs": [],
+  "formula": "=CRITBINOM(10,1.5,0.75)",
+  "target": "Sheet1!A1",
+  "expected_text": "#NUM!",
+  "notes": "Capture oracle output"
+}

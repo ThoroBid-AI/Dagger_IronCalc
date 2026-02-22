@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ADDRESS",
+  "case_id": "address_edge_sheets",
+  "inputs": [],
+  "formula": "=ADDRESS(5,2,1,TRUE,\"My Sheet\")",
+  "target": "Sheet1!A1",
+  "expected_text": "'My Sheet'!$B$5",
+  "notes": "Capture oracle output"
+}

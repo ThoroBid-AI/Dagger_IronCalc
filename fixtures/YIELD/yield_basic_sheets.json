@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "YIELD",
+  "case_id": "yield_basic_sheets",
+  "inputs": [],
+  "formula": "=YIELD(DATE(2024,1,1),DATE(2026,1,1),0.05,95,100,2,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.07746681779849668",
+  "notes": "Capture oracle output"
+}

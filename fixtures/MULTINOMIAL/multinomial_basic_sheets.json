@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MULTINOMIAL",
+  "case_id": "multinomial_basic_sheets",
+  "inputs": [],
+  "formula": "=MULTINOMIAL(2,3,4)",
+  "target": "Sheet1!A1",
+  "expected_text": "1260.0",
+  "notes": "Capture oracle output"
+}

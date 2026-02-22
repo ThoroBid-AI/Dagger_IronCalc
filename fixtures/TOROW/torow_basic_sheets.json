@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TOROW",
+  "case_id": "torow_basic_sheets",
+  "inputs": [],
+  "formula": "=TOROW({1,2;3,4})",
+  "target": "Sheet1!A1",
+  "expected_text": "1.0",
+  "notes": "Capture oracle output"
+}

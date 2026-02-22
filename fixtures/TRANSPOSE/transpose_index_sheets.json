@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TRANSPOSE",
+  "case_id": "transpose_index_sheets",
+  "inputs": [],
+  "formula": "=INDEX(TRANSPOSE({1,2;3,4}),2,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SPLIT",
+  "case_id": "split_index_sheets",
+  "inputs": [],
+  "formula": "=INDEX(SPLIT(\"a,b,,c\",\",\",TRUE,FALSE),1,4)",
+  "target": "Sheet1!A1",
+  "expected_text": "c",
+  "notes": "Capture oracle output"
+}

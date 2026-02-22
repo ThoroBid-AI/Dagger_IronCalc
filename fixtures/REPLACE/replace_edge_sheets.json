@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "REPLACE",
+  "case_id": "replace_edge_sheets",
+  "inputs": [],
+  "formula": "=REPLACE(\"abcdef\",1,0,\"Z\")",
+  "target": "Sheet1!A1",
+  "expected_text": "Zabcdef",
+  "notes": "Capture oracle output"
+}
