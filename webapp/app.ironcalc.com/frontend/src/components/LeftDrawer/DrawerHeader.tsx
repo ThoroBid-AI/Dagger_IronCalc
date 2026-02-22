@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
-import { IronCalcIconWhite as IronCalcIcon } from "@ironcalc/workbook";
 import { IconButton, Tooltip } from "@mui/material";
 import { Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { DialogHeaderLogoWrapper } from "../WelcomeDialog/WelcomeDialog";
 
 interface DrawerHeaderProps {
   onNewModel: () => void;
@@ -14,10 +12,7 @@ function DrawerHeader({ onNewModel }: DrawerHeaderProps) {
   return (
     <HeaderContainer>
       <LogoWrapper>
-        <Logo>
-          <IronCalcIcon />
-        </Logo>
-        <Title>IronCalc</Title>
+        <Title>Atlas AI</Title>
       </LogoWrapper>
       <Tooltip
         title={t("left_drawer.new_workbook")}
@@ -56,18 +51,12 @@ const HeaderContainer = styled("div")`
 const LogoWrapper = styled("div")`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0px;
 `;
 
 const Title = styled("h1")`
   font-size: 14px;
   font-weight: 600;
-`;
-
-const Logo = styled(DialogHeaderLogoWrapper)`
-  transform: none;
-  margin-bottom: 0px;
-  padding: 6px;
 `;
 
 const AddButton = styled(IconButton)`
