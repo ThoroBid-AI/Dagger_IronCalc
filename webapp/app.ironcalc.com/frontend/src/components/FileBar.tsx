@@ -4,7 +4,6 @@ import { ClickAwayListener, IconButton, Tooltip } from "@mui/material";
 import { CloudOff, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import DaggerLogo from "../assets/dagger_logo.png";
 import { MIN_MAIN_CONTENT_WIDTH_FOR_MOBILE } from "../App";
 import DaggerLogo from "../assets/dagger_logo.png";
 import { FileMenu } from "./FileMenu";
