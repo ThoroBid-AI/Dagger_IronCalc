@@ -843,14 +843,20 @@ impl<'a> Model<'a> {
             );
         }
 
+        let right_transposed: Vec<Vec<f64>> = (0..right_columns)
+            .map(|column| right.iter().map(|right_row| right_row[column]).collect())
+            .collect();
+
         let mut product = Vec::with_capacity(left_rows);
         for left_row in left.iter().take(left_rows) {
             let mut row = Vec::with_capacity(right_columns);
-            for column in 0..right_columns {
-                let mut total = 0.0;
-                for (k, left_value) in left_row.iter().enumerate().take(left_columns) {
-                    total += *left_value * right[k][column];
-                }
+            for right_column in &right_transposed {
+                let total = left_row
+                    .iter()
+                    .take(left_columns)
+                    .zip(right_column.iter().take(left_columns))
+                    .map(|(left_value, right_value)| *left_value * *right_value)
+                    .sum();
                 row.push(ArrayNode::Number(total));
             }
             product.push(row);

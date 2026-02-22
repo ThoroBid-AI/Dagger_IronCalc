@@ -31,7 +31,7 @@ fn fixtures_root() -> PathBuf {
             return candidate;
         }
     }
-    panic!("Could not find fixtures directory");
+    PathBuf::from("fixtures")
 }
 
 fn collect_sheet_fixtures(root: &Path) -> Vec<PathBuf> {
@@ -129,7 +129,7 @@ fn sheets_oracle_fixtures_match_ironcalc() {
     let mut checked = 0;
     let mut mismatches = Vec::new();
 
-    for fixture_file in fixture_files {
+    'fixtures: for fixture_file in fixture_files {
         let raw = fs::read_to_string(&fixture_file).unwrap();
         let fixture: Fixture = serde_json::from_str(&raw).unwrap();
         if fixture.engine != "sheets" || fixture.expected_text.is_empty() {
@@ -138,9 +138,16 @@ fn sheets_oracle_fixtures_match_ironcalc() {
         let mut model = Model::new_empty("oracle", "en", "UTC", "en").unwrap();
 
         for input in &fixture.inputs {
-            let reference = model.parse_reference(&input.cell).unwrap_or_else(|| {
-                panic!("Invalid input cell in fixture {}", fixture_file.display())
-            });
+            let Some(reference) = model.parse_reference(&input.cell) else {
+                mismatches.push(format!(
+                    "{} ({}::{}) invalid input cell '{}'",
+                    fixture_file.display(),
+                    fixture.function,
+                    fixture.case_id,
+                    input.cell
+                ));
+                continue 'fixtures;
+            };
             model
                 .set_user_input(
                     reference.sheet,
@@ -151,9 +158,16 @@ fn sheets_oracle_fixtures_match_ironcalc() {
                 .unwrap();
         }
 
-        let target = model
-            .parse_reference(&fixture.target)
-            .unwrap_or_else(|| panic!("Invalid target in fixture {}", fixture_file.display()));
+        let Some(target) = model.parse_reference(&fixture.target) else {
+            mismatches.push(format!(
+                "{} ({}::{}) invalid target '{}'",
+                fixture_file.display(),
+                fixture.function,
+                fixture.case_id,
+                fixture.target
+            ));
+            continue;
+        };
         model
             .set_user_input(
                 target.sheet,

@@ -584,92 +584,53 @@ impl<'a> Model<'a> {
         result: &CalcResult,
     ) {
         let CellReferenceIndex { sheet, row, column } = cell_reference;
-        match result {
+        let cell = match result {
             CalcResult::Number(value) => {
                 if value.is_nan() || value.is_infinite() {
-                    *self.workbook.worksheets[sheet as usize]
-                        .sheet_data
-                        .get_mut(&row)
-                        .expect("expected a row")
-                        .get_mut(&column)
-                        .expect("expected a column") = Cell::CellFormulaError {
+                    Cell::CellFormulaError {
                         f,
                         s,
                         o: "".to_string(),
                         m: "Invalid number".to_string(),
                         ei: Error::NUM,
-                    };
+                    }
                 } else {
-                    *self.workbook.worksheets[sheet as usize]
-                        .sheet_data
-                        .get_mut(&row)
-                        .expect("expected a row")
-                        .get_mut(&column)
-                        .expect("expected a column") = Cell::CellFormulaNumber { f, s, v: *value };
+                    Cell::CellFormulaNumber { f, s, v: *value }
                 }
             }
-            CalcResult::String(value) => {
-                *self.workbook.worksheets[sheet as usize]
-                    .sheet_data
-                    .get_mut(&row)
-                    .expect("expected a row")
-                    .get_mut(&column)
-                    .expect("expected a column") = Cell::CellFormulaString {
-                    f,
-                    s,
-                    v: value.clone(),
-                };
-            }
-            CalcResult::Boolean(value) => {
-                *self.workbook.worksheets[sheet as usize]
-                    .sheet_data
-                    .get_mut(&row)
-                    .expect("expected a row")
-                    .get_mut(&column)
-                    .expect("expected a column") = Cell::CellFormulaBoolean { f, s, v: *value };
-            }
+            CalcResult::String(value) => Cell::CellFormulaString {
+                f,
+                s,
+                v: value.clone(),
+            },
+            CalcResult::Boolean(value) => Cell::CellFormulaBoolean { f, s, v: *value },
             CalcResult::Error {
                 error,
                 origin,
                 message,
-            } => {
-                let o = self.cell_reference_to_string(origin).unwrap_or_default();
-                *self.workbook.worksheets[sheet as usize]
-                    .sheet_data
-                    .get_mut(&row)
-                    .expect("expected a row")
-                    .get_mut(&column)
-                    .expect("expected a column") = Cell::CellFormulaError {
-                    f,
-                    s,
-                    o,
-                    m: message.to_string(),
-                    ei: error.clone(),
-                };
-            }
+            } => Cell::CellFormulaError {
+                f,
+                s,
+                o: self.cell_reference_to_string(origin).unwrap_or_default(),
+                m: message.to_string(),
+                ei: error.clone(),
+            },
             CalcResult::EmptyCell | CalcResult::EmptyArg => {
-                *self.workbook.worksheets[sheet as usize]
-                    .sheet_data
-                    .get_mut(&row)
-                    .expect("expected a row")
-                    .get_mut(&column)
-                    .expect("expected a column") = Cell::CellFormulaNumber { f, s, v: 0.0 };
+                Cell::CellFormulaNumber { f, s, v: 0.0 }
             }
-            CalcResult::Range { .. } | CalcResult::Array(_) => {
-                *self.workbook.worksheets[sheet as usize]
-                    .sheet_data
-                    .get_mut(&row)
-                    .expect("expected a row")
-                    .get_mut(&column)
-                    .expect("expected a column") = Cell::CellFormulaError {
-                    f,
-                    s,
-                    o: "".to_string(),
-                    m: "Unexpected non-scalar result".to_string(),
-                    ei: Error::VALUE,
-                };
-            }
-        }
+            CalcResult::Range { .. } | CalcResult::Array(_) => Cell::CellFormulaError {
+                f,
+                s,
+                o: "".to_string(),
+                m: "Unexpected non-scalar result".to_string(),
+                ei: Error::VALUE,
+            },
+        };
+        self.workbook.worksheets[sheet as usize]
+            .sheet_data
+            .entry(row)
+            .or_default()
+            .insert(column, cell);
     }
 
     /// Sets `result` in the cell given by `sheet` sheet index, row and column
