@@ -205,3 +205,33 @@ fn sheets_array_aliases_spill_batch_two() {
     assert_eq!(model._get_text("R2"), *"3");
     assert_eq!(model._get_text("S2"), *"#N/A");
 }
+
+#[test]
+fn sheets_array_aliases_spill_batch_three() {
+    let mut model = new_empty_model();
+
+    model._set("A1", "=LINEST({2,4,6,8,10},{1,2,3,4,5})");
+    model._set("D1", "=LOGEST({2,4,8},{1,2,3})");
+    model._set("G1", "=FREQUENCY({1,2,3,4,5},{3})");
+    model._set("J1", "=QUERY({1,2;3,4},\"select Col2, Col1\",0)");
+
+    model.evaluate();
+
+    let linest_slope: f64 = model._get_text("A1").parse().unwrap();
+    let linest_intercept: f64 = model._get_text("B1").parse().unwrap();
+    assert!((linest_slope - 2.0).abs() < 1e-10);
+    assert!(linest_intercept.abs() < 1e-10);
+
+    let logest_m: f64 = model._get_text("D1").parse().unwrap();
+    let logest_b: f64 = model._get_text("E1").parse().unwrap();
+    assert!((logest_m - 2.0).abs() < 1e-10);
+    assert!((logest_b - 1.0).abs() < 1e-10);
+
+    assert_eq!(model._get_text("G1"), *"3");
+    assert_eq!(model._get_text("G2"), *"2");
+
+    assert_eq!(model._get_text("J1"), *"2");
+    assert_eq!(model._get_text("K1"), *"1");
+    assert_eq!(model._get_text("J2"), *"4");
+    assert_eq!(model._get_text("K2"), *"3");
+}

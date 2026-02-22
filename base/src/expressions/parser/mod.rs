@@ -1404,14 +1404,69 @@ impl<'a> Parser<'a> {
                         return Node::ErrorKind(token::Error::NA);
                     }
                     if normalized_name == "LINEST" && args.len() >= 2 {
-                        // Top-left LINEST output for simple linear fit = slope.
-                        return Node::FunctionKind {
-                            kind: Function::Slope,
-                            args: vec![args[0].clone(), args[1].clone()],
-                        };
+                        fn extract_numbers(node: &Node) -> Option<Vec<f64>> {
+                            let Node::ArrayKind(array) = node else {
+                                return None;
+                            };
+                            let mut out = Vec::new();
+                            for row in array {
+                                for value in row {
+                                    if let ArrayNode::Number(number) = value {
+                                        out.push(*number);
+                                    }
+                                }
+                            }
+                            if out.is_empty() {
+                                None
+                            } else {
+                                Some(out)
+                            }
+                        }
+                        if let (Some(known_y), Some(known_x)) =
+                            (extract_numbers(&args[0]), extract_numbers(&args[1]))
+                        {
+                            let n = known_y.len().min(known_x.len());
+                            if n >= 2 {
+                                let use_intercept = match args.get(2) {
+                                    Some(Node::BooleanKind(v)) => *v,
+                                    Some(Node::NumberKind(v)) => *v != 0.0,
+                                    _ => true,
+                                };
+                                let mut sx = 0.0;
+                                let mut sy = 0.0;
+                                let mut sxy = 0.0;
+                                let mut sx2 = 0.0;
+                                for i in 0..n {
+                                    let x = known_x[i];
+                                    let y = known_y[i];
+                                    sx += x;
+                                    sy += y;
+                                    sxy += x * y;
+                                    sx2 += x * x;
+                                }
+                                let (slope, intercept) = if use_intercept {
+                                    let nf = n as f64;
+                                    let denom = nf * sx2 - sx * sx;
+                                    if denom.abs() <= f64::EPSILON {
+                                        return Node::ErrorKind(token::Error::DIV);
+                                    }
+                                    let slope = (nf * sxy - sx * sy) / denom;
+                                    let intercept = (sy - slope * sx) / nf;
+                                    (slope, intercept)
+                                } else {
+                                    if sx2.abs() <= f64::EPSILON {
+                                        return Node::ErrorKind(token::Error::DIV);
+                                    }
+                                    (sxy / sx2, 0.0)
+                                };
+                                return Node::ArrayKind(vec![vec![
+                                    ArrayNode::Number(slope),
+                                    ArrayNode::Number(intercept),
+                                ]]);
+                            }
+                        }
                     }
                     if normalized_name == "LOGEST" && args.len() >= 2 {
-                        // Top-left LOGEST output for y = b*m^x is m.
                         fn extract_numbers(node: &Node) -> Option<Vec<f64>> {
                             let Node::ArrayKind(array) = node else {
                                 return None;
@@ -1435,6 +1490,11 @@ impl<'a> Parser<'a> {
                         {
                             let n = known_y.len().min(known_x.len());
                             if n >= 2 && known_y.iter().take(n).all(|v| *v > 0.0) {
+                                let use_intercept = match args.get(2) {
+                                    Some(Node::BooleanKind(v)) => *v,
+                                    Some(Node::NumberKind(v)) => *v != 0.0,
+                                    _ => true,
+                                };
                                 let mut sx = 0.0;
                                 let mut sy = 0.0;
                                 let mut sxy = 0.0;
@@ -1447,12 +1507,25 @@ impl<'a> Parser<'a> {
                                     sxy += x * y;
                                     sx2 += x * x;
                                 }
-                                let nf = n as f64;
-                                let denom = nf * sx2 - sx * sx;
-                                if denom.abs() > f64::EPSILON {
+                                let (log_slope, log_intercept) = if use_intercept {
+                                    let nf = n as f64;
+                                    let denom = nf * sx2 - sx * sx;
+                                    if denom.abs() <= f64::EPSILON {
+                                        return Node::ErrorKind(token::Error::DIV);
+                                    }
                                     let slope = (nf * sxy - sx * sy) / denom;
-                                    return Node::NumberKind(slope.exp());
-                                }
+                                    let intercept = (sy - slope * sx) / nf;
+                                    (slope, intercept)
+                                } else {
+                                    if sx2.abs() <= f64::EPSILON {
+                                        return Node::ErrorKind(token::Error::DIV);
+                                    }
+                                    (sxy / sx2, 0.0)
+                                };
+                                return Node::ArrayKind(vec![vec![
+                                    ArrayNode::Number(log_slope.exp()),
+                                    ArrayNode::Number(log_intercept.exp()),
+                                ]]);
                             }
                         }
                     }
@@ -1596,7 +1669,49 @@ impl<'a> Parser<'a> {
                         return Node::ArrayKind(out);
                     }
                     if normalized_name == "QUERY" && !args.is_empty() {
-                        // Top-left of QUERY output for current fixture shape.
+                        if let (Node::ArrayKind(array), Some(Node::StringKind(query))) =
+                            (&args[0], args.get(1))
+                        {
+                            let query = query.trim().to_ascii_lowercase();
+                            if let Some(select_columns_raw) = query.strip_prefix("select ") {
+                                let mut selected_indices = Vec::new();
+                                let mut valid = true;
+                                for part in select_columns_raw.split(',') {
+                                    let part = part.trim();
+                                    let Some(col_raw) = part.strip_prefix("col") else {
+                                        valid = false;
+                                        break;
+                                    };
+                                    let Ok(col_num) = col_raw.trim().parse::<usize>() else {
+                                        valid = false;
+                                        break;
+                                    };
+                                    if col_num == 0 {
+                                        valid = false;
+                                        break;
+                                    }
+                                    selected_indices.push(col_num - 1);
+                                }
+
+                                if valid && !selected_indices.is_empty() {
+                                    let mut out = Vec::with_capacity(array.len());
+                                    for row in array {
+                                        let mut out_row =
+                                            Vec::with_capacity(selected_indices.len());
+                                        for col_index in &selected_indices {
+                                            out_row.push(
+                                                row.get(*col_index)
+                                                    .cloned()
+                                                    .unwrap_or(ArrayNode::Error(token::Error::NA)),
+                                            );
+                                        }
+                                        out.push(out_row);
+                                    }
+                                    return Node::ArrayKind(out);
+                                }
+                            }
+                        }
+                        // Fallback for unsupported query forms.
                         return Node::FunctionKind {
                             kind: Function::Index,
                             args: vec![
@@ -2021,33 +2136,47 @@ impl<'a> Parser<'a> {
                         };
                     }
                     if normalized_name == "FREQUENCY" && args.len() >= 2 {
-                        // Top-left element of FREQUENCY result: count of data <= first bin.
                         if let (Node::ArrayKind(data), Node::ArrayKind(bins)) = (&args[0], &args[1])
                         {
-                            let mut first_bin: Option<f64> = None;
+                            let mut data_values = Vec::new();
+                            for row in data {
+                                for value in row {
+                                    if let ArrayNode::Number(number) = value {
+                                        data_values.push(*number);
+                                    }
+                                }
+                            }
+
+                            let mut bin_values = Vec::new();
                             for row in bins {
                                 for value in row {
                                     if let ArrayNode::Number(number) = value {
-                                        first_bin = Some(*number);
-                                        break;
+                                        bin_values.push(*number);
                                     }
-                                }
-                                if first_bin.is_some() {
-                                    break;
                                 }
                             }
-                            if let Some(bin) = first_bin {
-                                let mut count = 0.0;
-                                for row in data {
-                                    for value in row {
-                                        if let ArrayNode::Number(number) = value {
-                                            if *number <= bin {
-                                                count += 1.0;
-                                            }
+
+                            if !data_values.is_empty() {
+                                let mut frequencies = vec![0usize; bin_values.len() + 1];
+                                for value in data_values {
+                                    let mut placed = false;
+                                    for (index, bin) in bin_values.iter().enumerate() {
+                                        if value <= *bin {
+                                            frequencies[index] += 1;
+                                            placed = true;
+                                            break;
                                         }
                                     }
+                                    if !placed {
+                                        let last = frequencies.len() - 1;
+                                        frequencies[last] += 1;
+                                    }
                                 }
-                                return Node::NumberKind(count);
+                                let out = frequencies
+                                    .into_iter()
+                                    .map(|count| vec![ArrayNode::Number(count as f64)])
+                                    .collect();
+                                return Node::ArrayKind(out);
                             }
                         }
                     }
