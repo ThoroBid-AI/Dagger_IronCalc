@@ -4,9 +4,9 @@ set -euo pipefail
 BACKLOG_FILE="specs/planning/lua_implementation_backlog.md"
 SPEC_DIR="specs/functions"
 
-if ! command -v rg >/dev/null 2>&1; then
-  echo "error: ripgrep (rg) is required for this check."
-  exit 2
+HAS_RG=0
+if command -v rg >/dev/null 2>&1; then
+  HAS_RG=1
 fi
 
 FUNCTIONS=()
@@ -40,7 +40,13 @@ for fn in "${FUNCTIONS[@]}"; do
     continue
   fi
 
-  if hits=$(rg -n "TBD|<category>" "$spec_file"); then
+  if [[ $HAS_RG -eq 1 ]]; then
+    hits=$(rg -n "TBD|<category>" "$spec_file" || true)
+  else
+    hits=$(grep -nE "TBD|<category>" "$spec_file" || true)
+  fi
+
+  if [[ -n "$hits" ]]; then
     echo "placeholder metadata found: $spec_file"
     echo "$hits"
     failures=1
