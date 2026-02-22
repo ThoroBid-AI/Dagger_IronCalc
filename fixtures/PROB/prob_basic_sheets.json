@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PROB",
+  "case_id": "prob_basic_sheets",
+  "inputs": [],
+  "formula": "=PROB({1,2,3},{0.2,0.3,0.5},1,2)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.5",
+  "notes": "Capture oracle output"
+}

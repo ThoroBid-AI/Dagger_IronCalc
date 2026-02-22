@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SORTN",
+  "case_id": "sortn_basic_sheets",
+  "inputs": [],
+  "formula": "=SORTN({3;1;2},1,0,1,TRUE)",
+  "target": "Sheet1!A1",
+  "expected_text": "1.0",
+  "notes": "Capture oracle output"
+}

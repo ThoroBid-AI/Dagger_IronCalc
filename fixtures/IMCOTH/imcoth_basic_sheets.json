@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "IMCOTH",
+  "case_id": "imcoth_basic_sheets",
+  "inputs": [],
+  "formula": "=IMCOTH(\"1+2i\")",
+  "target": "Sheet1!A1",
+  "expected_text": "0.821329797493852+0.171383612909185i",
+  "notes": "Capture oracle output"
+}

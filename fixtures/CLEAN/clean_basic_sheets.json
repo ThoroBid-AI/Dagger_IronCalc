@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CLEAN",
+  "case_id": "clean_basic_sheets",
+  "inputs": [],
+  "formula": "=CLEAN(\"a\"&CHAR(10)&\"b\")",
+  "target": "Sheet1!A1",
+  "expected_text": "ab",
+  "notes": "Capture oracle output"
+}

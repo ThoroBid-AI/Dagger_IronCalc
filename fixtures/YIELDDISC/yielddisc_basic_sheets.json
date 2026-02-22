@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "YIELDDISC",
+  "case_id": "yielddisc_basic_sheets",
+  "inputs": [],
+  "formula": "=YIELDDISC(DATE(2024,1,1),DATE(2024,7,1),95,100,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.10526315789473684",
+  "notes": "Capture oracle output"
+}

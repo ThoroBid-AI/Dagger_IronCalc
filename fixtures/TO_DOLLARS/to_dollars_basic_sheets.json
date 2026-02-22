@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TO_DOLLARS",
+  "case_id": "to_dollars_basic_sheets",
+  "inputs": [],
+  "formula": "=TO_DOLLARS(1234.5)",
+  "target": "Sheet1!A1",
+  "expected_text": "1234.5",
+  "notes": "Capture oracle output"
+}

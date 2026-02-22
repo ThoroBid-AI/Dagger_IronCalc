@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "IMPORTDATA",
+  "case_id": "importdata_basic_sheets",
+  "inputs": [],
+  "formula": "=IMPORTDATA(\"https://example.com\")",
+  "target": "Sheet1!A1",
+  "expected_text": "#REF!",
+  "notes": "Capture oracle output"
+}

@@ -459,6 +459,8 @@ impl<'a> Model<'a> {
             parsed_defined_names: HashMap::new(),
             parser,
             cells,
+            spilled_values: HashMap::new(),
+            previous_spilled_values: HashMap::new(),
             locale,
             language,
             tz,

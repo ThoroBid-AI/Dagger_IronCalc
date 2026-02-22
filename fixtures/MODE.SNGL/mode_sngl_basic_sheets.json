@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MODE.SNGL",
+  "case_id": "mode_sngl_basic_sheets",
+  "inputs": [],
+  "formula": "=MODE.SNGL({1,2,2,3})",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

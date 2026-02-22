@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MIDB",
+  "case_id": "midb_basic_sheets",
+  "inputs": [],
+  "formula": "=MIDB(\"abcdef\",2,3)",
+  "target": "Sheet1!A1",
+  "expected_text": "bcd",
+  "notes": "Capture oracle output"
+}

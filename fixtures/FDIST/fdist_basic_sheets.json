@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FDIST",
+  "case_id": "fdist_basic_sheets",
+  "inputs": [],
+  "formula": "=FDIST(15,6,4)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.010258047605980813",
+  "notes": "Capture oracle output"
+}

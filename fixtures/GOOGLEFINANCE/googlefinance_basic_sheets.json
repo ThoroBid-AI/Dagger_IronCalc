@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "GOOGLEFINANCE",
+  "case_id": "googlefinance_basic_sheets",
+  "inputs": [],
+  "formula": "=GOOGLEFINANCE(\"GOOG\",\"price\")",
+  "target": "Sheet1!A1",
+  "expected_text": "314.9",
+  "notes": "Capture oracle output"
+}

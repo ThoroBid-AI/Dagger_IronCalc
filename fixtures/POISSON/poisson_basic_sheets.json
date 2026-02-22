@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "POISSON",
+  "case_id": "poisson_basic_sheets",
+  "inputs": [],
+  "formula": "=POISSON(2,3,TRUE)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.42319008112684353",
+  "notes": "Capture oracle output"
+}

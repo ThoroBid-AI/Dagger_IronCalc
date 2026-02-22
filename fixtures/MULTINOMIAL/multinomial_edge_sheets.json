@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MULTINOMIAL",
+  "case_id": "multinomial_edge_sheets",
+  "inputs": [],
+  "formula": "=MULTINOMIAL(0,0,5)",
+  "target": "Sheet1!A1",
+  "expected_text": "1.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CHAR",
+  "case_id": "char_basic_sheets",
+  "inputs": [],
+  "formula": "=CHAR(65)",
+  "target": "Sheet1!A1",
+  "expected_text": "A",
+  "notes": "Capture oracle output"
+}

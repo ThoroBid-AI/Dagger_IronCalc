@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CHAR",
+  "case_id": "char_edge_sheets",
+  "inputs": [],
+  "formula": "=CHAR(CODE(\"z\"))",
+  "target": "Sheet1!A1",
+  "expected_text": "z",
+  "notes": "Capture oracle output"
+}

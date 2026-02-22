@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "LEFTB",
+  "case_id": "leftb_basic_sheets",
+  "inputs": [],
+  "formula": "=LEFTB(\"abc\",2)",
+  "target": "Sheet1!A1",
+  "expected_text": "ab",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ISURL",
+  "case_id": "isurl_basic_sheets",
+  "inputs": [],
+  "formula": "=ISURL(\"https://example.com\")",
+  "target": "Sheet1!A1",
+  "expected_text": "TRUE",
+  "notes": "Capture oracle output"
+}

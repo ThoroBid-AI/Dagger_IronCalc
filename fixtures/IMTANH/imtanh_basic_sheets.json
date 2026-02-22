@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "IMTANH",
+  "case_id": "imtanh_basic_sheets",
+  "inputs": [],
+  "formula": "=IMTANH(\"1+2i\")",
+  "target": "Sheet1!A1",
+  "expected_text": "1.16673625724092-0.243458201185725i",
+  "notes": "Capture oracle output"
+}

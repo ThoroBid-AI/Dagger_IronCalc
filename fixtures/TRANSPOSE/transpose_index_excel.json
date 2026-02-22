@@ -1,0 +1,12 @@
+{
+  "engine": "excel",
+  "version": "Excel 365 (manual)",
+  "locale": "en-US",
+  "function": "TRANSPOSE",
+  "case_id": "transpose_index_excel",
+  "inputs": [],
+  "formula": "=INDEX(TRANSPOSE({1,2;3,4}),2,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "",
+  "notes": "Capture oracle output"
+}

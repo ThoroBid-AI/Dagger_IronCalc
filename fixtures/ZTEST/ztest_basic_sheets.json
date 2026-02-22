@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ZTEST",
+  "case_id": "ztest_basic_sheets",
+  "inputs": [],
+  "formula": "=ZTEST({1,2,3,4,5},3)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.5",
+  "notes": "Capture oracle output"
+}

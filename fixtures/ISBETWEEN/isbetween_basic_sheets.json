@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ISBETWEEN",
+  "case_id": "isbetween_basic_sheets",
+  "inputs": [],
+  "formula": "=ISBETWEEN(5,1,10)",
+  "target": "Sheet1!A1",
+  "expected_text": "TRUE",
+  "notes": "Capture oracle output"
+}

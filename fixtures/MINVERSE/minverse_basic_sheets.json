@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MINVERSE",
+  "case_id": "minverse_basic_sheets",
+  "inputs": [],
+  "formula": "=MINVERSE({1,2;3,4})",
+  "target": "Sheet1!A1",
+  "expected_text": "-1.9999999999999998",
+  "notes": "Capture oracle output"
+}

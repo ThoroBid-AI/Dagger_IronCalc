@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ARRAYFORMULA",
+  "case_id": "arrayformula_index_sheets",
+  "inputs": [],
+  "formula": "=INDEX(ARRAYFORMULA({1;2;3}*2),3,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "6.0",
+  "notes": "Capture oracle output"
+}

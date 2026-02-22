@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MULTINOMIAL",
+  "case_id": "multinomial_error_sheets",
+  "inputs": [],
+  "formula": "=MULTINOMIAL(1,-2,3)",
+  "target": "Sheet1!A1",
+  "expected_text": "#NUM!",
+  "notes": "Capture oracle output"
+}

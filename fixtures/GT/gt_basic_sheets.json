@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "GT",
+  "case_id": "gt_basic_sheets",
+  "inputs": [],
+  "formula": "=GT(5,4)",
+  "target": "Sheet1!A1",
+  "expected_text": "TRUE",
+  "notes": "Capture oracle output"
+}

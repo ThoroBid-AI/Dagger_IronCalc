@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MDETERM",
+  "case_id": "mdeterm_basic_sheets",
+  "inputs": [],
+  "formula": "=MDETERM({1,2;3,4})",
+  "target": "Sheet1!A1",
+  "expected_text": "-2.0",
+  "notes": "Capture oracle output"
+}

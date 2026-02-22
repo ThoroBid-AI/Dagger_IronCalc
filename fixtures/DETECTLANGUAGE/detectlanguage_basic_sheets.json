@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "DETECTLANGUAGE",
+  "case_id": "detectlanguage_basic_sheets",
+  "inputs": [],
+  "formula": "=DETECTLANGUAGE(\"Hello world\")",
+  "target": "Sheet1!A1",
+  "expected_text": "en",
+  "notes": "Capture oracle output"
+}

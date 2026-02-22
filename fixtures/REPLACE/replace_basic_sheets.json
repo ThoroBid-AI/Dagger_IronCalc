@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "REPLACE",
+  "case_id": "replace_basic_sheets",
+  "inputs": [],
+  "formula": "=REPLACE(\"abcdef\",2,3,\"Z\")",
+  "target": "Sheet1!A1",
+  "expected_text": "aZef",
+  "notes": "Capture oracle output"
+}

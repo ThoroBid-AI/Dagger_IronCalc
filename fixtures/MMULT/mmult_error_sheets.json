@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MMULT",
+  "case_id": "mmult_error_sheets",
+  "inputs": [],
+  "formula": "=MMULT({1,2},{3,4})",
+  "target": "Sheet1!A1",
+  "expected_text": "#VALUE!",
+  "notes": "Capture oracle output"
+}

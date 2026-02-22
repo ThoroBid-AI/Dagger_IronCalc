@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "HYPERLINK",
+  "case_id": "hyperlink_error_sheets",
+  "inputs": [],
+  "formula": "=HYPERLINK()",
+  "target": "Sheet1!A1",
+  "expected_text": "#N/A",
+  "notes": "Capture oracle output"
+}

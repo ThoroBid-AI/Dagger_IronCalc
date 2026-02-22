@@ -17,6 +17,9 @@ These are updated as part of workflow execution.
 - `lua_backlog_status.csv` (progress tracker for Lua backlog)
 - `oracle_capture_status.csv` (updated by `scripts/import_oracle_workbook.py`)
 
+Sheets oracle note:
+- `SPARKLINE` is tracked as a visual-only exception because Google Sheets export does not provide a stable scalar cell value for conformance assertions.
+
 ## Cleanup Policy
 - Keep this folder clean: remove obsolete generated reports only after replacing them.
 - Do not delete tracking files unless the workflow changes.

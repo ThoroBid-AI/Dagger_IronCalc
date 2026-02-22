@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MODE.MULT",
+  "case_id": "mode_mult_basic_sheets",
+  "inputs": [],
+  "formula": "=MODE.MULT({1,2,2,3})",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

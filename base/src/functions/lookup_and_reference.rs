@@ -1,13 +1,370 @@
 use crate::constants::{LAST_COLUMN, LAST_ROW};
 use crate::expressions::types::CellReferenceIndex;
 use crate::{
-    calc_result::CalcResult, expressions::parser::Node, expressions::token::Error, model::Model,
+    calc_result::CalcResult,
+    expressions::{
+        parser::{ArrayNode, Node},
+        token::Error,
+        utils::number_to_column,
+        utils::quote_name,
+    },
+    model::Model,
     utils::ParsedReference,
 };
 
 use super::util::{compare_values, from_wildcard_to_regex, result_matches_regex, values_are_equal};
 
 impl<'a> Model<'a> {
+    fn array_shape(array: &[Vec<ArrayNode>]) -> (usize, usize) {
+        let rows = array.len();
+        let cols = array.iter().map(|row| row.len()).max().unwrap_or(0);
+        (rows, cols)
+    }
+
+    fn array_value_or_empty(array: &[Vec<ArrayNode>], row: usize, col: usize) -> ArrayNode {
+        array
+            .get(row)
+            .and_then(|data_row| data_row.get(col))
+            .cloned()
+            .unwrap_or_else(|| ArrayNode::String("".to_string()))
+    }
+
+    fn array_node_to_bool(
+        &self,
+        value: &ArrayNode,
+        cell: CellReferenceIndex,
+    ) -> Result<bool, CalcResult> {
+        match value {
+            ArrayNode::Boolean(boolean) => Ok(*boolean),
+            ArrayNode::Number(number) => Ok(*number != 0.0),
+            ArrayNode::String(text) => {
+                let lower = text.trim().to_lowercase();
+                if lower == "true" {
+                    Ok(true)
+                } else if lower == "false" || lower.is_empty() {
+                    Ok(false)
+                } else if let Some(number) = self.cast_number(text) {
+                    Ok(number != 0.0)
+                } else {
+                    Err(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "FILTER include value cannot be coerced to boolean".to_string(),
+                    ))
+                }
+            }
+            ArrayNode::Error(error) => Err(CalcResult::new_error(
+                error.clone(),
+                cell,
+                "Error in FILTER include array".to_string(),
+            )),
+        }
+    }
+
+    /// ADDRESS(row_num, column_num, [abs_num], [a1], [sheet_text])
+    pub(crate) fn fn_address(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() < 2 || args.len() > 5 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let row_num = match self.get_number_no_bools(&args[0], cell) {
+            Ok(v) => {
+                if v < 0.0 {
+                    v.ceil()
+                } else {
+                    v.floor()
+                }
+            }
+            Err(e) => return e,
+        };
+        let column_num = match self.get_number_no_bools(&args[1], cell) {
+            Ok(v) => {
+                if v < 0.0 {
+                    v.ceil()
+                } else {
+                    v.floor()
+                }
+            }
+            Err(e) => return e,
+        };
+
+        if row_num < 1.0
+            || row_num > LAST_ROW as f64
+            || column_num < 1.0
+            || column_num > LAST_COLUMN as f64
+        {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "Row/column is out of range".to_string(),
+            );
+        }
+
+        let abs_num = if args.len() >= 3 {
+            match self.get_number_no_bools(&args[2], cell) {
+                Ok(v) => {
+                    if v < 0.0 {
+                        v.ceil()
+                    } else {
+                        v.floor()
+                    }
+                }
+                Err(e) => return e,
+            }
+        } else {
+            1.0
+        };
+
+        if !(1.0..=4.0).contains(&abs_num) {
+            return CalcResult::new_error(
+                Error::NUM,
+                cell,
+                "abs_num must be between 1 and 4".to_string(),
+            );
+        }
+
+        let a1_style = if args.len() >= 4 {
+            match self.get_boolean(&args[3], cell) {
+                Ok(v) => v,
+                Err(e) => return e,
+            }
+        } else {
+            true
+        };
+
+        let row = row_num as i32;
+        let column = column_num as i32;
+        let body = if a1_style {
+            let column_name = match number_to_column(column) {
+                Some(name) => name,
+                None => {
+                    return CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Column is out of range".to_string(),
+                    )
+                }
+            };
+
+            match abs_num as i32 {
+                1 => format!("${column_name}${row}"),
+                2 => format!("{column_name}${row}"),
+                3 => format!("${column_name}{row}"),
+                4 => format!("{column_name}{row}"),
+                _ => unreachable!(),
+            }
+        } else {
+            match abs_num as i32 {
+                1 => format!("R{row}C{column}"),
+                2 => format!("R{row}C[{column}]"),
+                3 => format!("R[{row}]C{column}"),
+                4 => format!("R[{row}]C[{column}]"),
+                _ => unreachable!(),
+            }
+        };
+
+        if args.len() == 5 {
+            let sheet_text = match self.get_string(&args[4], cell) {
+                Ok(s) => s,
+                Err(e) => return e,
+            };
+            CalcResult::String(format!("{}!{body}", quote_name(&sheet_text)))
+        } else {
+            CalcResult::String(body)
+        }
+    }
+
+    /// HYPERLINK(link_location, [friendly_name])
+    pub(crate) fn fn_hyperlink(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.is_empty() || args.len() > 2 {
+            return CalcResult::new_error(
+                Error::NA,
+                cell,
+                "Wrong number of arguments".to_string(),
+            );
+        }
+
+        let link_location = match self.get_string(&args[0], cell) {
+            Ok(v) => v,
+            Err(e) => return e,
+        };
+
+        if args.len() == 1 {
+            return CalcResult::String(link_location);
+        }
+
+        match self.get_string(&args[1], cell) {
+            Ok(v) => CalcResult::String(v),
+            Err(e) => e,
+        }
+    }
+
+    /// ARRAYFORMULA(formula)
+    pub(crate) fn fn_arrayformula(
+        &mut self,
+        args: &[Node],
+        cell: CellReferenceIndex,
+    ) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_args_number_error(cell);
+        }
+        match self.evaluate_node_in_context(&args[0], cell) {
+            CalcResult::Range { left, right } => {
+                match self.calc_result_to_array(CalcResult::Range { left, right }, cell) {
+                    Ok(array) => CalcResult::Array(array),
+                    Err(e) => e,
+                }
+            }
+            value => value,
+        }
+    }
+
+    /// ARRAY_CONSTRAIN(array, rows, columns)
+    pub(crate) fn fn_array_constrain(
+        &mut self,
+        args: &[Node],
+        cell: CellReferenceIndex,
+    ) -> CalcResult {
+        if args.len() != 3 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let rows = match self.get_number_no_bools(&args[1], cell) {
+            Ok(value) => value.floor() as i32,
+            Err(e) => return e,
+        };
+        let columns = match self.get_number_no_bools(&args[2], cell) {
+            Ok(value) => value.floor() as i32,
+            Err(e) => return e,
+        };
+        if rows <= 0 || columns <= 0 {
+            return CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "rows/columns must be positive".to_string(),
+            );
+        }
+
+        let source = match self.get_array(&args[0], cell) {
+            Ok(array) => array,
+            Err(e) => return e,
+        };
+        let (source_rows, source_columns) = Model::array_shape(&source);
+        let row_count = (rows as usize).min(source_rows);
+        let column_count = (columns as usize).min(source_columns);
+
+        let mut result = Vec::new();
+        for row in 0..row_count {
+            let mut result_row = Vec::new();
+            for column in 0..column_count {
+                result_row.push(Model::array_value_or_empty(&source, row, column));
+            }
+            result.push(result_row);
+        }
+
+        CalcResult::Array(result)
+    }
+
+    /// TRANSPOSE(array_or_range)
+    pub(crate) fn fn_transpose(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 1 {
+            return CalcResult::new_args_number_error(cell);
+        }
+        let source = match self.get_array(&args[0], cell) {
+            Ok(array) => array,
+            Err(e) => return e,
+        };
+        let (rows, columns) = Model::array_shape(&source);
+        let mut result = Vec::new();
+        for column in 0..columns {
+            let mut result_row = Vec::new();
+            for row in 0..rows {
+                result_row.push(Model::array_value_or_empty(&source, row, column));
+            }
+            result.push(result_row);
+        }
+        CalcResult::Array(result)
+    }
+
+    /// FILTER(array, include, [if_empty])
+    pub(crate) fn fn_filter(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
+        if args.len() != 2 && args.len() != 3 {
+            return CalcResult::new_args_number_error(cell);
+        }
+
+        let source = match self.get_array(&args[0], cell) {
+            Ok(array) => array,
+            Err(e) => return e,
+        };
+        let include = match self.get_array(&args[1], cell) {
+            Ok(array) => array,
+            Err(e) => return e,
+        };
+        let (source_rows, source_columns) = Model::array_shape(&source);
+        let (include_rows, include_columns) = Model::array_shape(&include);
+
+        let mut result = Vec::new();
+        let row_filter = include_rows == source_rows && include_columns == 1;
+        let column_filter = include_rows == 1 && include_columns == source_columns;
+
+        if row_filter {
+            for row in 0..source_rows {
+                let include_value = Model::array_value_or_empty(&include, row, 0);
+                let take = match self.array_node_to_bool(&include_value, cell) {
+                    Ok(value) => value,
+                    Err(e) => return e,
+                };
+                if take {
+                    let mut filtered_row = Vec::new();
+                    for column in 0..source_columns {
+                        filtered_row.push(Model::array_value_or_empty(&source, row, column));
+                    }
+                    result.push(filtered_row);
+                }
+            }
+        } else if column_filter {
+            let mut selected_columns = Vec::new();
+            for column in 0..source_columns {
+                let include_value = Model::array_value_or_empty(&include, 0, column);
+                let take = match self.array_node_to_bool(&include_value, cell) {
+                    Ok(value) => value,
+                    Err(e) => return e,
+                };
+                if take {
+                    selected_columns.push(column);
+                }
+            }
+            for row in 0..source_rows {
+                let mut filtered_row = Vec::new();
+                for column in &selected_columns {
+                    filtered_row.push(Model::array_value_or_empty(&source, row, *column));
+                }
+                if !filtered_row.is_empty() {
+                    result.push(filtered_row);
+                }
+            }
+        } else {
+            return CalcResult::new_error(
+                Error::NA,
+                cell,
+                "FILTER include range has incompatible dimensions".to_string(),
+            );
+        }
+
+        if result.is_empty() {
+            if args.len() == 3 {
+                return self.evaluate_node_in_context(&args[2], cell);
+            }
+            return CalcResult::new_error(
+                Error::NA,
+                cell,
+                "FILTER returned no matches".to_string(),
+            );
+        }
+
+        CalcResult::Array(result)
+    }
+
     pub(crate) fn fn_index(&mut self, args: &[Node], cell: CellReferenceIndex) -> CalcResult {
         let row_num;
         let col_num;
@@ -91,6 +448,50 @@ impl<'a> Model<'a> {
                     row,
                     column,
                 })
+            }
+            CalcResult::Array(array) => {
+                let (rows, columns) = Model::array_shape(&array);
+                if rows == 0 || columns == 0 {
+                    return CalcResult::Error {
+                        error: Error::REF,
+                        origin: cell,
+                        message: "Wrong reference".to_string(),
+                    };
+                }
+
+                let target_row;
+                let target_col;
+                if (col_num + 1.0).abs() < f64::EPSILON {
+                    if rows == 1 {
+                        target_row = 0usize;
+                        target_col = (row_num as usize).saturating_sub(1);
+                    } else {
+                        target_row = (row_num as usize).saturating_sub(1);
+                        target_col = 0usize;
+                    }
+                } else {
+                    target_row = (row_num as usize).saturating_sub(1);
+                    target_col = (col_num as usize).saturating_sub(1);
+                }
+
+                if target_row >= rows || target_col >= columns {
+                    return CalcResult::Error {
+                        error: Error::REF,
+                        origin: cell,
+                        message: "Wrong reference".to_string(),
+                    };
+                }
+
+                match Model::array_value_or_empty(&array, target_row, target_col) {
+                    ArrayNode::Number(value) => CalcResult::Number(value),
+                    ArrayNode::String(value) => CalcResult::String(value),
+                    ArrayNode::Boolean(value) => CalcResult::Boolean(value),
+                    ArrayNode::Error(error) => CalcResult::Error {
+                        error,
+                        origin: cell,
+                        message: "".to_string(),
+                    },
+                }
             }
             error @ CalcResult::Error { .. } => error,
             _ => CalcResult::Error {

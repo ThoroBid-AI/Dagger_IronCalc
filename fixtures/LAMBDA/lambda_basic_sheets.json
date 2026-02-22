@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "LAMBDA",
+  "case_id": "lambda_basic_sheets",
+  "inputs": [],
+  "formula": "=LAMBDA(x,x+1)(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

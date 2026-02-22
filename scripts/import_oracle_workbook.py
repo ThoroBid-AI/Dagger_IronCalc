@@ -51,6 +51,23 @@ def parse_batches(raw: str) -> List[int]:
     return out
 
 
+def parse_functions(raw: str) -> List[str]:
+    functions: List[str] = []
+    for part in raw.split(","):
+        name = part.strip()
+        if not name:
+            continue
+        functions.append(name)
+    seen = set()
+    out = []
+    for name in functions:
+        key = name.upper()
+        if key not in seen:
+            seen.add(key)
+            out.append(name)
+    return out
+
+
 def sanitize_sheet_name(name: str, used: Dict[str, int]) -> str:
     safe = re.sub(r"[\[\]\*:/\\\?]", "_", name)
     safe = safe.replace("'", "")
@@ -93,9 +110,9 @@ def format_value(value) -> str:
     return str(value)
 
 
-def batches_label(batch_ids: List[int], raw: str | None) -> str:
-    if raw:
-        return raw
+def batches_label(batch_ids: List[int], raw_label: str | None) -> str:
+    if raw_label:
+        return raw_label
     if not batch_ids:
         return ""
     if len(batch_ids) == 1:
@@ -141,6 +158,14 @@ def main() -> int:
         "--batches",
         help="Comma-separated batch list or ranges (e.g. 2-4,6). Overrides --batch.",
     )
+    parser.add_argument(
+        "--functions",
+        help="Comma-separated function names to import directly (overrides --batches/--batch).",
+    )
+    parser.add_argument(
+        "--label",
+        help="Optional capture status label override for specs/reports/oracle_capture_status.csv.",
+    )
     parser.add_argument("--engine", choices=["excel", "sheets"], required=True)
     parser.add_argument("--fixtures", default=str(ROOT / "fixtures"), help="Fixtures root")
     parser.add_argument(
@@ -150,19 +175,29 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    if args.batches:
-        batch_ids = parse_batches(args.batches)
-    elif args.batch is not None:
-        batch_ids = [args.batch]
+    batch_ids: List[int] = []
+    status_label: str | None = None
+    if args.functions:
+        functions = parse_functions(args.functions)
+        status_label = args.functions
     else:
-        print("Must provide --batch or --batches")
-        return 1
-
-    functions: List[str] = []
-    for batch_id in batch_ids:
-        functions.extend(load_batch_functions(batch_id))
+        if args.batches:
+            batch_ids = parse_batches(args.batches)
+            status_label = args.batches
+        elif args.batch is not None:
+            batch_ids = [args.batch]
+            status_label = str(args.batch)
+        else:
+            print("Must provide --functions or --batch/--batches")
+            return 1
+        functions = []
+        for batch_id in batch_ids:
+            functions.extend(load_batch_functions(batch_id))
     if not functions:
-        print(f"No functions found for batches {batch_ids}")
+        if args.functions:
+            print(f"No functions found for explicit function list: {args.functions}")
+        else:
+            print(f"No functions found for batches {batch_ids}")
         return 1
 
     fixtures_root = Path(args.fixtures)
@@ -200,7 +235,9 @@ def main() -> int:
     if missing:
         print(f"Missing sheets: {missing}")
         return 2
-    update_capture_status(args.engine, batch_ids, args.batches, workbook_path)
+    if args.label:
+        status_label = args.label
+    update_capture_status(args.engine, batch_ids, status_label, workbook_path)
     return 0
 
 

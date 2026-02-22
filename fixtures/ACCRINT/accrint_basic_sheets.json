@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ACCRINT",
+  "case_id": "accrint_basic_sheets",
+  "inputs": [],
+  "formula": "=ACCRINT(DATE(2020,1,1),DATE(2020,7,1),DATE(2020,4,1),0.1,1000,2,0,TRUE)",
+  "target": "Sheet1!A1",
+  "expected_text": "25.0",
+  "notes": "Capture oracle output"
+}

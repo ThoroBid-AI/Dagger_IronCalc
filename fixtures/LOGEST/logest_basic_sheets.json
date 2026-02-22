@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "LOGEST",
+  "case_id": "logest_basic_sheets",
+  "inputs": [],
+  "formula": "=LOGEST({2,4,8},{1,2,3})",
+  "target": "Sheet1!A1",
+  "expected_text": "1.999999999999999",
+  "notes": "Capture oracle output"
+}

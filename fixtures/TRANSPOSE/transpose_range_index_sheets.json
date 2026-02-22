@@ -1,0 +1,29 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TRANSPOSE",
+  "case_id": "transpose_range_index_sheets",
+  "inputs": [
+    {
+      "cell": "Sheet1!A1",
+      "value": "1"
+    },
+    {
+      "cell": "Sheet1!B1",
+      "value": "2"
+    },
+    {
+      "cell": "Sheet1!A2",
+      "value": "3"
+    },
+    {
+      "cell": "Sheet1!B2",
+      "value": "4"
+    }
+  ],
+  "formula": "=INDEX(TRANSPOSE(A1:B2),1,2)",
+  "target": "Sheet1!A3",
+  "expected_text": "3.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "HYPERLINK",
+  "case_id": "hyperlink_basic_sheets",
+  "inputs": [],
+  "formula": "=HYPERLINK(\"https://example.com\",\"Example\")",
+  "target": "Sheet1!A1",
+  "expected_text": "Example",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CONFIDENCE",
+  "case_id": "confidence_basic_sheets",
+  "inputs": [],
+  "formula": "=CONFIDENCE(0.05,2.5,50)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.692951912733503",
+  "notes": "Capture oracle output"
+}

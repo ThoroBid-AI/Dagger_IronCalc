@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CODE",
+  "case_id": "code_edge_sheets",
+  "inputs": [],
+  "formula": "=CODE(\"ABC\")",
+  "target": "Sheet1!A1",
+  "expected_text": "65.0",
+  "notes": "Capture oracle output"
+}

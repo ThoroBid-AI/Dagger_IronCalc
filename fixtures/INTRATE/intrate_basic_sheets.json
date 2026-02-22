@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "INTRATE",
+  "case_id": "intrate_basic_sheets",
+  "inputs": [],
+  "formula": "=INTRATE(DATE(2020,1,1),DATE(2021,1,1),97,100,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.030927835051546393",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TINV",
+  "case_id": "tinv_basic_sheets",
+  "inputs": [],
+  "formula": "=TINV(0.05,10)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.2281388519862735",
+  "notes": "Capture oracle output"
+}

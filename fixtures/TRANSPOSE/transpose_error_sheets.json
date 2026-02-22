@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TRANSPOSE",
+  "case_id": "transpose_error_sheets",
+  "inputs": [],
+  "formula": "=INDEX(TRANSPOSE({1,2;3,4}),3,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "#REF!",
+  "notes": "Capture oracle output"
+}

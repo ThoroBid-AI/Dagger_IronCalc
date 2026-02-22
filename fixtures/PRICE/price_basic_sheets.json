@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PRICE",
+  "case_id": "price_basic_sheets",
+  "inputs": [],
+  "formula": "=PRICE(DATE(2020,1,1),DATE(2025,1,1),0.05,0.04,100,2,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "104.49129250312109",
+  "notes": "Capture oracle output"
+}

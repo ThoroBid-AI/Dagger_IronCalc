@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "AMORLINC",
+  "case_id": "amorlinc_basic_sheets",
+  "inputs": [],
+  "formula": "=AMORLINC(2400,DATE(2020,1,1),DATE(2020,12,31),300,1,0.15,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "360.0",
+  "notes": "Capture oracle output"
+}

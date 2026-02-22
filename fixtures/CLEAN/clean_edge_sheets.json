@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CLEAN",
+  "case_id": "clean_edge_sheets",
+  "inputs": [],
+  "formula": "=LEN(CLEAN(\"a\"&CHAR(9)&CHAR(10)&\"b\"))",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

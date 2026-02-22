@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "CHITEST",
+  "case_id": "chitest_basic_sheets",
+  "inputs": [],
+  "formula": "=CHITEST({1,2;3,4},{2,2;2,4})",
+  "target": "Sheet1!A1",
+  "expected_text": "0.31731050786291404",
+  "notes": "Capture oracle output"
+}

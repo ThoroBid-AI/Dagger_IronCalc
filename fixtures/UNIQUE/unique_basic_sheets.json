@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "UNIQUE",
+  "case_id": "unique_basic_sheets",
+  "inputs": [],
+  "formula": "=INDEX(UNIQUE({1;1;2}),2,1)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

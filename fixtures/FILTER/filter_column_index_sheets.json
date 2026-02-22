@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FILTER",
+  "case_id": "filter_column_index_sheets",
+  "inputs": [],
+  "formula": "=INDEX(FILTER({1,2,3;4,5,6},{TRUE,FALSE,TRUE}),2,2)",
+  "target": "Sheet1!A1",
+  "expected_text": "6.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MINUS",
+  "case_id": "minus_basic_sheets",
+  "inputs": [],
+  "formula": "=MINUS(10,4)",
+  "target": "Sheet1!A1",
+  "expected_text": "6.0",
+  "notes": "Capture oracle output"
+}

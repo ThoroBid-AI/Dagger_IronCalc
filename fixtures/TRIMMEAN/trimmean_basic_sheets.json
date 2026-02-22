@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "TRIMMEAN",
+  "case_id": "trimmean_basic_sheets",
+  "inputs": [],
+  "formula": "=TRIMMEAN({1,2,3,4,100},0.4)",
+  "target": "Sheet1!A1",
+  "expected_text": "3.0",
+  "notes": "Capture oracle output"
+}

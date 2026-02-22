@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "VDB",
+  "case_id": "vdb_basic_sheets",
+  "inputs": [],
+  "formula": "=VDB(10000,1000,0,1,2)",
+  "target": "Sheet1!A1",
+  "expected_text": "#NUM!",
+  "notes": "Capture oracle output"
+}

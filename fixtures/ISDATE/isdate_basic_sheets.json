@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ISDATE",
+  "case_id": "isdate_basic_sheets",
+  "inputs": [],
+  "formula": "=ISDATE(DATE(2020,1,1))",
+  "target": "Sheet1!A1",
+  "expected_text": "TRUE",
+  "notes": "Capture oracle output"
+}

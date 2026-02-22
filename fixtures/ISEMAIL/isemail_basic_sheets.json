@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "ISEMAIL",
+  "case_id": "isemail_basic_sheets",
+  "inputs": [],
+  "formula": "=ISEMAIL(\"test@example.com\")",
+  "target": "Sheet1!A1",
+  "expected_text": "TRUE",
+  "notes": "Capture oracle output"
+}

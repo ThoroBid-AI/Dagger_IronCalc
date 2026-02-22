@@ -15,6 +15,23 @@ def main() -> int:
     fixtures = str(Path(args.fixtures))
     report = str(Path(args.report))
 
+    if args.engine == "sheets":
+        print(
+            "Running Sheets conformance via Rust test harness (report output is not generated).",
+            flush=True,
+        )
+        return subprocess.call(
+            [
+                "cargo",
+                "test",
+                "-p",
+                "ironcalc_base",
+                "sheets_oracle_fixtures_match_ironcalc",
+                "--",
+                "--nocapture",
+            ]
+        )
+
     cmd = [
         "cargo",
         "run",

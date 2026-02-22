@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PROPER",
+  "case_id": "proper_edge_sheets",
+  "inputs": [],
+  "formula": "=PROPER(\"o'brien smith-jones\")",
+  "target": "Sheet1!A1",
+  "expected_text": "O'Brien Smith-Jones",
+  "notes": "Capture oracle output"
+}

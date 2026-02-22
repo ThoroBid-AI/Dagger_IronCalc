@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "PRICEDISC",
+  "case_id": "pricedisc_basic_sheets",
+  "inputs": [],
+  "formula": "=PRICEDISC(DATE(2020,1,1),DATE(2021,1,1),0.05,100,0)",
+  "target": "Sheet1!A1",
+  "expected_text": "95.0",
+  "notes": "Capture oracle output"
+}

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "FINDB",
+  "case_id": "findb_basic_sheets",
+  "inputs": [],
+  "formula": "=FINDB(\"B\",\"ABC\",1)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.0",
+  "notes": "Capture oracle output"
+}

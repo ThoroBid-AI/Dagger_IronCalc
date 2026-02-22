@@ -33,6 +33,69 @@ impl<'a> Model<'a> {
             }
         }
     }
+
+    fn calc_result_to_array_scalar(
+        &self,
+        result: CalcResult,
+        cell: CellReferenceIndex,
+    ) -> Result<ArrayNode, CalcResult> {
+        match result {
+            CalcResult::Number(value) => Ok(ArrayNode::Number(value)),
+            CalcResult::String(value) => Ok(ArrayNode::String(value)),
+            CalcResult::Boolean(value) => Ok(ArrayNode::Boolean(value)),
+            CalcResult::EmptyCell | CalcResult::EmptyArg => Ok(ArrayNode::String("".to_string())),
+            error @ CalcResult::Error { .. } => Err(error),
+            CalcResult::Range { .. } | CalcResult::Array(_) => Err(CalcResult::new_error(
+                Error::VALUE,
+                cell,
+                "Unexpected nested array/range".to_string(),
+            )),
+        }
+    }
+
+    pub(crate) fn calc_result_to_array(
+        &mut self,
+        result: CalcResult,
+        cell: CellReferenceIndex,
+    ) -> Result<Vec<Vec<ArrayNode>>, CalcResult> {
+        match result {
+            CalcResult::Array(array) => Ok(array),
+            CalcResult::Range { left, right } => {
+                if left.sheet != right.sheet {
+                    return Err(CalcResult::new_error(
+                        Error::VALUE,
+                        cell,
+                        "Ranges are in different sheets".to_string(),
+                    ));
+                }
+                let mut array = Vec::new();
+                for row in left.row..=right.row {
+                    let mut row_data = Vec::new();
+                    for column in left.column..=right.column {
+                        let value = self.evaluate_cell(CellReferenceIndex {
+                            sheet: left.sheet,
+                            row,
+                            column,
+                        });
+                        row_data.push(self.calc_result_to_array_scalar(value, cell)?);
+                    }
+                    array.push(row_data);
+                }
+                Ok(array)
+            }
+            value => Ok(vec![vec![self.calc_result_to_array_scalar(value, cell)?]]),
+        }
+    }
+
+    pub(crate) fn get_array(
+        &mut self,
+        node: &Node,
+        cell: CellReferenceIndex,
+    ) -> Result<Vec<Vec<ArrayNode>>, CalcResult> {
+        let value = self.evaluate_node_in_context(node, cell);
+        self.calc_result_to_array(value, cell)
+    }
+
     pub(crate) fn get_number_or_array(
         &mut self,
         node: &Node,

@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "VAR",
+  "case_id": "var_basic_sheets",
+  "inputs": [],
+  "formula": "=VAR(1,2,3,4,5)",
+  "target": "Sheet1!A1",
+  "expected_text": "2.5",
+  "notes": "Capture oracle output"
+}

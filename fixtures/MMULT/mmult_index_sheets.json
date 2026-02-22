@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "MMULT",
+  "case_id": "mmult_index_sheets",
+  "inputs": [],
+  "formula": "=INDEX(MMULT({1,2;3,4},{5,6;7,8}),2,2)",
+  "target": "Sheet1!A1",
+  "expected_text": "50.0",
+  "notes": "Capture oracle output"
+}

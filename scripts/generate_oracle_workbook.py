@@ -51,6 +51,23 @@ def parse_batches(raw: str) -> List[int]:
     return out
 
 
+def parse_functions(raw: str) -> List[str]:
+    functions: List[str] = []
+    for part in raw.split(","):
+        name = part.strip()
+        if not name:
+            continue
+        functions.append(name)
+    seen = set()
+    out = []
+    for name in functions:
+        key = name.upper()
+        if key not in seen:
+            seen.add(key)
+            out.append(name)
+    return out
+
+
 def sanitize_sheet_name(name: str, used: Dict[str, int]) -> str:
     # Excel sheet name rules: <=31 chars, no []:*?/\
     safe = re.sub(r"[\[\]\*:/\\\?]", "_", name)
@@ -114,6 +131,10 @@ def main() -> int:
         "--batches",
         help="Comma-separated batch list or ranges (e.g. 2-4,6). Overrides --batch.",
     )
+    parser.add_argument(
+        "--functions",
+        help="Comma-separated function names to export directly (overrides --batches/--batch).",
+    )
     parser.add_argument("--engine", choices=["excel", "sheets"], required=True)
     parser.add_argument("--fixtures", default=str(ROOT / "fixtures"), help="Fixtures root")
     parser.add_argument(
@@ -123,27 +144,36 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    if args.batches:
-        batch_ids = parse_batches(args.batches)
-    elif args.batch is not None:
-        batch_ids = [args.batch]
+    batch_ids: List[int] = []
+    if args.functions:
+        functions = parse_functions(args.functions)
     else:
-        print("Must provide --batch or --batches")
-        return 1
-
-    functions: List[str] = []
-    for batch_id in batch_ids:
-        functions.extend(load_batch_functions(batch_id))
+        if args.batches:
+            batch_ids = parse_batches(args.batches)
+        elif args.batch is not None:
+            batch_ids = [args.batch]
+        else:
+            print("Must provide --functions or --batch/--batches")
+            return 1
+        functions = []
+        for batch_id in batch_ids:
+            functions.extend(load_batch_functions(batch_id))
     if not functions:
-        print(f"No functions found for batches {batch_ids}")
+        if args.functions:
+            print(f"No functions found for explicit function list: {args.functions}")
+        else:
+            print(f"No functions found for batches {batch_ids}")
         return 1
 
     fixtures_root = Path(args.fixtures)
-    default_name = (
-        f"oracle_batch{batch_ids[0]}_{args.engine}.xlsx"
-        if len(batch_ids) == 1
-        else f"oracle_batches{batch_ids[0]}-{batch_ids[-1]}_{args.engine}.xlsx"
-    )
+    if args.functions:
+        default_name = f"oracle_functions_{args.engine}.xlsx"
+    else:
+        default_name = (
+            f"oracle_batch{batch_ids[0]}_{args.engine}.xlsx"
+            if len(batch_ids) == 1
+            else f"oracle_batches{batch_ids[0]}-{batch_ids[-1]}_{args.engine}.xlsx"
+        )
     out_path = Path(args.out) if args.out else fixtures_root / default_name
 
     wb = Workbook()
@@ -179,7 +209,10 @@ def main() -> int:
         count += 1
 
     if count == 0:
-        print(f"No fixtures found for batches {batch_ids} / {args.engine}")
+        if args.functions:
+            print(f"No fixtures found for functions [{args.functions}] / {args.engine}")
+        else:
+            print(f"No fixtures found for batches {batch_ids} / {args.engine}")
         return 1
 
     wb.save(out_path)

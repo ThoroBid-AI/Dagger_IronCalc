@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "NORMSDIST",
+  "case_id": "normsdist_basic_sheets",
+  "inputs": [],
+  "formula": "=NORMSDIST(1)",
+  "target": "Sheet1!A1",
+  "expected_text": "0.841344746068543",
+  "notes": "Capture oracle output"
+}

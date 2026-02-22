@@ -1,0 +1,12 @@
+{
+  "engine": "sheets",
+  "version": "Google Sheets (manual)",
+  "locale": "en-US",
+  "function": "SERIESSUM",
+  "case_id": "seriessum_basic_sheets",
+  "inputs": [],
+  "formula": "=SERIESSUM(2,1,2,{1,2,3})",
+  "target": "Sheet1!A1",
+  "expected_text": "114.0",
+  "notes": "Capture oracle output"
+}
