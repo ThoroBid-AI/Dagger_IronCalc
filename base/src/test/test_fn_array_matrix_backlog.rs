@@ -235,3 +235,27 @@ fn sheets_array_aliases_spill_batch_three() {
     assert_eq!(model._get_text("J2"), *"4");
     assert_eq!(model._get_text("K2"), *"3");
 }
+
+#[test]
+fn sheets_array_aliases_spill_batch_four() {
+    let mut model = new_empty_model();
+
+    model._set("A1", "=MAP({1,2,3},LAMBDA(x,x*2))");
+    model._set("A3", "=MAP({1,2;3,4},LAMBDA(x,x*2))");
+    model._set("E1", "=REDUCE(0,{1,2,3},LAMBDA(a,b,a+b))");
+    model._set("E2", "=REDUCE(10,{1,2,3},LAMBDA(a,b,a+b))");
+
+    model.evaluate();
+
+    assert_eq!(model._get_text("A1"), *"2");
+    assert_eq!(model._get_text("B1"), *"4");
+    assert_eq!(model._get_text("C1"), *"6");
+
+    assert_eq!(model._get_text("A3"), *"2");
+    assert_eq!(model._get_text("B3"), *"4");
+    assert_eq!(model._get_text("A4"), *"6");
+    assert_eq!(model._get_text("B4"), *"8");
+
+    assert_eq!(model._get_text("E1"), *"6");
+    assert_eq!(model._get_text("E2"), *"16");
+}
