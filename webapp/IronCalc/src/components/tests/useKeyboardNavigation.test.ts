@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { KeyboardEvent as ReactKeyboardEvent, RefObject } from "react";
 import { expect, test, vi } from "vitest";
 import {
   handleKeyboardNavigation,
@@ -38,7 +38,7 @@ const createHarness = () => {
     ...callbacks,
     root: { current: root } as RefObject<HTMLDivElement>,
   };
-  const createEvent = (overrides: Partial<KeyboardEvent> = {}) => {
+  const createEvent = (overrides: Partial<ReactKeyboardEvent> = {}) => {
     const stopPropagation = vi.fn();
     const preventDefault = vi.fn();
     const event = {
@@ -51,7 +51,7 @@ const createHarness = () => {
       stopPropagation,
       preventDefault,
       ...overrides,
-    } as KeyboardEvent;
+    } as ReactKeyboardEvent;
     return { event, stopPropagation, preventDefault };
   };
   return { callbacks, options, root, createEvent };
