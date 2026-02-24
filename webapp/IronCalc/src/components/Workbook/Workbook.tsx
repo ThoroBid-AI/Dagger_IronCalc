@@ -18,11 +18,7 @@ import RightDrawer, {
 } from "../RightDrawer/RightDrawer";
 import SheetTabBar from "../SheetTabBar";
 import Toolbar from "../Toolbar/Toolbar";
-import {
-  getCellAddress,
-  getFullRangeToString,
-  type NavigationKey,
-} from "../util";
+import { getCellAddress, getFullRangeToString } from "../util";
 import Worksheet from "../Worksheet/Worksheet";
 import {
   COLUMN_WIDTH_SCALE,
@@ -33,7 +29,9 @@ import {
 import type WorksheetCanvas from "../WorksheetCanvas/worksheetCanvas";
 import { devicePixelRatio } from "../WorksheetCanvas/worksheetCanvas";
 import type { WorkbookState } from "../workbookState";
-import useKeyboardNavigation from "./useKeyboardNavigation";
+import useKeyboardNavigation, {
+  type NavigationKey,
+} from "./useKeyboardNavigation";
 
 const Workbook = (props: { model: Model; workbookState: WorkbookState }) => {
   const { model, workbookState } = props;

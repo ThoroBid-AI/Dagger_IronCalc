@@ -1,5 +1,25 @@
 import { type KeyboardEvent, type RefObject, useCallback } from "react";
-import { isEditingKey, isNavigationKey, type NavigationKey } from "../util";
+
+export type NavigationKey =
+  | "ArrowRight"
+  | "ArrowLeft"
+  | "ArrowDown"
+  | "ArrowUp"
+  | "Home"
+  | "End";
+
+export const isNavigationKey = (key: string): key is NavigationKey =>
+  ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Home", "End"].includes(
+    key,
+  );
+
+const isEditingKey = (key: string): boolean => {
+  if (key.length !== 1) {
+    return false;
+  }
+  const code = key.codePointAt(0) ?? 0;
+  return code > 0 && code < 255;
+};
 
 export enum Border {
   Top = "top",
@@ -8,7 +28,7 @@ export enum Border {
   Left = "left",
 }
 
-interface Options {
+export interface KeyboardNavigationOptions {
   onCellsDeleted: () => void;
   onSelectAll: () => void;
   onExpandAreaSelectedKeyboard: (
@@ -67,216 +87,221 @@ interface Options {
 // https://support.google.com/docs/answer/181110
 // https://support.microsoft.com/en-us/office/keyboard-shortcuts-in-excel-1798d9d5-842a-42b8-9c99-9b7213f0040f
 
-const useKeyboardNavigation = (
-  options: Options,
-): { onKeyDown: (event: KeyboardEvent) => void } => {
-  const onKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      const { key } = event;
-      const lowerKey = key.toLowerCase();
-      const { root } = options;
-      // Silence the linter
-      if (!root.current) {
-        return;
-      }
-      if (event.target !== root.current) {
-        return;
-      }
-      const isCtrl = event.metaKey || event.ctrlKey;
-      const isShift = event.shiftKey;
-      const isAlt = event.altKey;
-      if (isCtrl && !isShift && !isAlt) {
-        // Ctrl+...
-        switch (lowerKey) {
-          case "z": {
-            options.onUndo();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "y": {
-            options.onRedo();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "b": {
-            options.onBold();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "i": {
-            options.onItalic();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "u": {
-            options.onUnderline();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "a": {
-            options.onSelectAll();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case " ": {
-            options.onSelectColumn();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          // No default
-        }
-        if (isNavigationKey(key)) {
-          // Ctrl+Arrows, Ctrl+Home/End
-          options.onNavigationToEdge(key);
-          event.stopPropagation();
-          event.preventDefault();
-        }
-        return;
-      }
-      if (isCtrl && isShift && !isAlt) {
-        // Ctrl+Shift+...
-        switch (lowerKey) {
-          case "z": {
-            options.onRedo();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "arrowright":
-          case "arrowleft":
-          case "arrowup":
-          case "arrowdown":
-          case "home":
-          case "end": {
-            options.onExpandAreaSelectedKeyboardToEdge(key as NavigationKey);
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-        }
-        return;
-      }
-      if (isShift && !isAlt && !isCtrl) {
-        // Shift+...
-        switch (key) {
-          case " ": {
-            options.onSelectRow();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "ArrowRight":
-          case "ArrowLeft":
-          case "ArrowUp":
-          case "ArrowDown": {
-            options.onExpandAreaSelectedKeyboard(key);
-            break;
-          }
-          case "Tab": {
-            options.onArrowLeft();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-        }
-      }
-      if (isAlt && !isCtrl && !isShift) {
-        // Alt+...
-        switch (key) {
-          case "ArrowDown": {
-            // select next sheet
-            options.onNextSheet();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-          case "ArrowUp": {
-            // select previous sheet
-            options.onPreviousSheet();
-            event.stopPropagation();
-            event.preventDefault();
-            break;
-          }
-        }
-        return;
-      }
-      if (isCtrl || isAlt) {
-        // Other combinations with Ctrl or Alt are not handled
-        return;
-      }
-
-      if (isEditingKey(key)) {
-        options.onEditKeyPressStart(key);
+export const handleKeyboardNavigation = (
+  event: KeyboardEvent,
+  options: KeyboardNavigationOptions,
+): void => {
+  const { key } = event;
+  const lowerKey = key.toLowerCase();
+  const { root } = options;
+  // Silence the linter
+  if (!root.current) {
+    return;
+  }
+  if (event.target !== root.current) {
+    return;
+  }
+  const isCtrl = event.metaKey || event.ctrlKey;
+  const isShift = event.shiftKey;
+  const isAlt = event.altKey;
+  if (isCtrl && !isShift && !isAlt) {
+    // Ctrl+...
+    switch (lowerKey) {
+      case "z": {
+        options.onUndo();
         event.stopPropagation();
         event.preventDefault();
-        return;
+        break;
       }
-      if (isShift) {
-        // Other combinations with Shift are not handled
-        return;
-      }
-      if (key === "F2") {
-        options.onCellEditStart();
+      case "y": {
+        options.onRedo();
         event.stopPropagation();
         event.preventDefault();
-        return;
+        break;
       }
-      // Worksheet Navigation
-      switch (key) {
-        case "ArrowRight":
-        case "Tab": {
-          options.onArrowRight();
-          break;
-        }
-        case "ArrowLeft": {
-          options.onArrowLeft();
-          break;
-        }
-        case "ArrowDown":
-        case "Enter": {
-          options.onArrowDown();
-          break;
-        }
-        case "ArrowUp": {
-          options.onArrowUp();
-          break;
-        }
-        case "End": {
-          options.onKeyEnd();
-          break;
-        }
-        case "Home": {
-          options.onKeyHome();
-          break;
-        }
-        case "Delete":
-        case "Backspace": {
-          options.onCellsDeleted();
-          break;
-        }
-        case "PageDown": {
-          options.onPageDown();
-          break;
-        }
-        case "PageUp": {
-          options.onPageUp();
-          break;
-        }
-        case "Escape": {
-          options.onEscape();
-        }
-        // No default
+      case "b": {
+        options.onBold();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
       }
+      case "i": {
+        options.onItalic();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      case "u": {
+        options.onUnderline();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      case "a": {
+        options.onSelectAll();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      case " ": {
+        options.onSelectColumn();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      // No default
+    }
+    if (isNavigationKey(key)) {
+      // Ctrl+Arrows, Ctrl+Home/End
+      options.onNavigationToEdge(key);
       event.stopPropagation();
       event.preventDefault();
-    },
+    }
+    return;
+  }
+  if (isCtrl && isShift && !isAlt) {
+    // Ctrl+Shift+...
+    switch (lowerKey) {
+      case "z": {
+        options.onRedo();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      case "arrowright":
+      case "arrowleft":
+      case "arrowup":
+      case "arrowdown":
+      case "home":
+      case "end": {
+        options.onExpandAreaSelectedKeyboardToEdge(key as NavigationKey);
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+    }
+    return;
+  }
+  if (isShift && !isAlt && !isCtrl) {
+    // Shift+...
+    switch (key) {
+      case " ": {
+        options.onSelectRow();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      case "ArrowRight":
+      case "ArrowLeft":
+      case "ArrowUp":
+      case "ArrowDown": {
+        options.onExpandAreaSelectedKeyboard(key);
+        break;
+      }
+      case "Tab": {
+        options.onArrowLeft();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+    }
+  }
+  if (isAlt && !isCtrl && !isShift) {
+    // Alt+...
+    switch (key) {
+      case "ArrowDown": {
+        // select next sheet
+        options.onNextSheet();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      case "ArrowUp": {
+        // select previous sheet
+        options.onPreviousSheet();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+    }
+    return;
+  }
+  if (isCtrl || isAlt) {
+    // Other combinations with Ctrl or Alt are not handled
+    return;
+  }
+
+  if (isEditingKey(key)) {
+    options.onEditKeyPressStart(key);
+    event.stopPropagation();
+    event.preventDefault();
+    return;
+  }
+  if (isShift) {
+    // Other combinations with Shift are not handled
+    return;
+  }
+  if (key === "F2") {
+    options.onCellEditStart();
+    event.stopPropagation();
+    event.preventDefault();
+    return;
+  }
+  // Worksheet Navigation
+  switch (key) {
+    case "ArrowRight":
+    case "Tab": {
+      options.onArrowRight();
+      break;
+    }
+    case "ArrowLeft": {
+      options.onArrowLeft();
+      break;
+    }
+    case "ArrowDown":
+    case "Enter": {
+      options.onArrowDown();
+      break;
+    }
+    case "ArrowUp": {
+      options.onArrowUp();
+      break;
+    }
+    case "End": {
+      options.onKeyEnd();
+      break;
+    }
+    case "Home": {
+      options.onKeyHome();
+      break;
+    }
+    case "Delete":
+    case "Backspace": {
+      options.onCellsDeleted();
+      break;
+    }
+    case "PageDown": {
+      options.onPageDown();
+      break;
+    }
+    case "PageUp": {
+      options.onPageUp();
+      break;
+    }
+    case "Escape": {
+      options.onEscape();
+    }
+    // No default
+  }
+  event.stopPropagation();
+  event.preventDefault();
+};
+
+const useKeyboardNavigation = (
+  options: KeyboardNavigationOptions,
+): { onKeyDown: (event: KeyboardEvent) => void } => {
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent) => handleKeyboardNavigation(event, options),
     [options],
   );
   return { onKeyDown };
