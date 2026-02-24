@@ -32,6 +32,12 @@ import TemplatesDialog from "./components/WelcomeDialog/TemplatesDialog";
 import WelcomeDialog from "./components/WelcomeDialog/WelcomeDialog";
 
 type SaveState = "saving" | "saved";
+const AUTOSAVE_INTERVAL_MS = 1000;
+const SAVE_STATE_POLL_MS = 250;
+
+function getModelSnapshot(model: Model): string {
+  return bytesToBase64(model.toBytes());
+}
 
 function hasPendingUnsavedChanges(model: Model | null): boolean {
   if (!model) {
@@ -45,7 +51,7 @@ function hasPendingUnsavedChanges(model: Model | null): boolean {
   if (!savedBytes) {
     return true;
   }
-  return bytesToBase64(model.toBytes()) !== savedBytes;
+  return getModelSnapshot(model) !== savedBytes;
 }
 
 function App() {
@@ -55,6 +61,7 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [localStorageId, setLocalStorageId] = useState<number>(1);
   const [saveState, setSaveState] = useState<SaveState>("saved");
+  const lastPersistedSnapshotRef = useRef<string | null>(null);
 
   const ironCalcRef = useRef<IronCalcHandle>(null);
 
@@ -157,25 +164,43 @@ function App() {
     };
   }, [model]);
 
-  // We try to save the model every second
+  // We update save status quickly and persist to storage at autosave cadence.
   useEffect(() => {
     if (!model) {
       setSaveState("saved");
+      lastPersistedSnapshotRef.current = null;
       return;
     }
 
-    const persistModelIfDirty = () => {
-      if (!hasPendingUnsavedChanges(model)) {
-        setSaveState("saved");
+    const selectedUuid = localStorage.getItem("selected");
+    const savedBytes = selectedUuid ? localStorage.getItem(selectedUuid) : null;
+    lastPersistedSnapshotRef.current = savedBytes ?? getModelSnapshot(model);
+    let lastPersistAt = performance.now();
+
+    const syncSaveStateAndPersist = () => {
+      const currentSnapshot = getModelSnapshot(model);
+      const isDirty = currentSnapshot !== lastPersistedSnapshotRef.current;
+      setSaveState(isDirty ? "saving" : "saved");
+      if (!isDirty) {
         return;
       }
-      setSaveState("saving");
+
+      const now = performance.now();
+      if (now - lastPersistAt < AUTOSAVE_INTERVAL_MS) {
+        return;
+      }
+
       saveSelectedModelInStorage(model);
+      lastPersistedSnapshotRef.current = currentSnapshot;
+      lastPersistAt = now;
       setSaveState("saved");
     };
 
-    persistModelIfDirty();
-    const intervalId = window.setInterval(persistModelIfDirty, 1000);
+    syncSaveStateAndPersist();
+    const intervalId = window.setInterval(
+      syncSaveStateAndPersist,
+      SAVE_STATE_POLL_MS,
+    );
     return () => window.clearInterval(intervalId);
   }, [model]);
 
