@@ -40,6 +40,7 @@ export function FileBar(properties: {
   setIsDrawerOpen: (open: boolean) => void;
   setLocalStorageId: (updater: (id: number) => number) => void;
   onLanguageChange: (language: string) => void;
+  saveState: "saving" | "saved";
 }) {
   const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
@@ -144,6 +145,9 @@ export function FileBar(properties: {
       </WorkbookTitleWrapper>
       <Spacer ref={spacerRef} />
       <RightSideWrapper>
+        <SaveStatus $state={properties.saveState}>
+          {properties.saveState === "saving" ? "Saving..." : "Saved"}
+        </SaveStatus>
         <Tooltip
           title={
             <div
@@ -275,6 +279,14 @@ const RightSideWrapper = styled("div")`
   align-items: center;
   gap: 8px;
   margin-right: 8px;
+`;
+
+const SaveStatus = styled("div")<{ $state: "saving" | "saved" }>`
+  min-width: 56px;
+  text-align: right;
+  font-family: Inter;
+  font-size: 12px;
+  color: ${({ $state }) => ($state === "saving" ? "#f59e0b" : "#6b7280")};
 `;
 
 const BrandLogoContainer = styled("div")`

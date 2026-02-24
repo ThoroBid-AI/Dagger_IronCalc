@@ -27,8 +27,26 @@ import {
   saveSelectedModelInStorage,
   selectModelFromStorage,
 } from "./components/storage";
+import { bytesToBase64 } from "./components/util";
 import TemplatesDialog from "./components/WelcomeDialog/TemplatesDialog";
 import WelcomeDialog from "./components/WelcomeDialog/WelcomeDialog";
+
+type SaveState = "saving" | "saved";
+
+function hasPendingUnsavedChanges(model: Model | null): boolean {
+  if (!model) {
+    return false;
+  }
+  const selectedUuid = localStorage.getItem("selected");
+  if (!selectedUuid) {
+    return false;
+  }
+  const savedBytes = localStorage.getItem(selectedUuid);
+  if (!savedBytes) {
+    return true;
+  }
+  return bytesToBase64(model.toBytes()) !== savedBytes;
+}
 
 function App() {
   const [model, setModel] = useState<Model | null>(null);
@@ -36,6 +54,7 @@ function App() {
   const [isTemplatesDialogOpen, setTemplatesDialogOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [localStorageId, setLocalStorageId] = useState<number>(1);
+  const [saveState, setSaveState] = useState<SaveState>("saved");
 
   const ironCalcRef = useRef<IronCalcHandle>(null);
 
@@ -114,6 +133,52 @@ function App() {
     }
   }, [model, localStorageId]);
 
+  const confirmDiscardUnsavedChanges = (activeModel: Model | null): boolean => {
+    if (!hasPendingUnsavedChanges(activeModel)) {
+      return true;
+    }
+    return window.confirm(
+      "You have unsaved changes. Continue and discard those changes?",
+    );
+  };
+
+  useEffect(() => {
+    const onBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (!hasPendingUnsavedChanges(model)) {
+        return;
+      }
+      event.preventDefault();
+      event.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", onBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", onBeforeUnload);
+    };
+  }, [model]);
+
+  // We try to save the model every second
+  useEffect(() => {
+    if (!model) {
+      setSaveState("saved");
+      return;
+    }
+
+    const persistModelIfDirty = () => {
+      if (!hasPendingUnsavedChanges(model)) {
+        setSaveState("saved");
+        return;
+      }
+      setSaveState("saving");
+      saveSelectedModelInStorage(model);
+      setSaveState("saved");
+    };
+
+    persistModelIfDirty();
+    const intervalId = window.setInterval(persistModelIfDirty, 1000);
+    return () => window.clearInterval(intervalId);
+  }, [model]);
+
   if (!model) {
     return (
       <Loading>
@@ -123,38 +188,46 @@ function App() {
     );
   }
 
-  // We try to save the model every second
-  setInterval(() => {
-    const queue = model.flushSendQueue();
-    if (queue.length !== 1) {
-      saveSelectedModelInStorage(model);
-    }
-  }, 1000);
-
   // Handlers for model changes that also update our models state
   const handleNewModel = () => {
+    if (!confirmDiscardUnsavedChanges(model)) {
+      return;
+    }
     const newModel = createNewModel();
     setModel(newModel);
+    setSaveState("saved");
   };
 
   const handleSetModel = (uuid: string) => {
+    if (!confirmDiscardUnsavedChanges(model)) {
+      return;
+    }
     const newModel = selectModelFromStorage(uuid);
     if (newModel) {
       setModel(newModel);
+      setSaveState("saved");
     }
   };
 
   const handleDeleteModel = () => {
+    if (!confirmDiscardUnsavedChanges(model)) {
+      return;
+    }
     const newModel = deleteSelectedModel();
     if (newModel) {
       setModel(newModel);
+      setSaveState("saved");
     }
   };
 
   const handleDeleteModelByUuid = (uuid: string) => {
+    if (!confirmDiscardUnsavedChanges(model)) {
+      return;
+    }
     const newModel = deleteModelByUuid(uuid);
     if (newModel) {
       setModel(newModel);
+      setSaveState("saved");
     }
   };
 
@@ -178,6 +251,9 @@ function App() {
         <FileBar
           model={model}
           onModelUpload={async (arrayBuffer: ArrayBuffer, fileName: string) => {
+            if (!confirmDiscardUnsavedChanges(model)) {
+              return;
+            }
             const blob = await uploadFile(arrayBuffer, fileName);
 
             const bytes = new Uint8Array(await blob.arrayBuffer());
@@ -187,6 +263,7 @@ function App() {
             saveModelToStorage(newModel);
 
             setModel(newModel);
+            setSaveState("saved");
           }}
           newModel={handleNewModel}
           newModelFromTemplate={() => {
@@ -198,6 +275,7 @@ function App() {
           setIsDrawerOpen={setIsDrawerOpen}
           setLocalStorageId={setLocalStorageId}
           onLanguageChange={handleLanguageChange}
+          saveState={saveState}
         />
         <IronCalc model={model} ref={ironCalcRef} />
       </MainContent>
@@ -215,9 +293,13 @@ function App() {
               case "blank": {
                 const createdModel = createNewModel();
                 setModel(createdModel);
+                setSaveState("saved");
                 break;
               }
               default: {
+                if (!confirmDiscardUnsavedChanges(model)) {
+                  return;
+                }
                 const model_bytes = await get_documentation_model(templateId);
                 const locale = loadDefaultLocaleFromStorage();
                 const localeShort = getShortLocaleCode(locale);
@@ -227,6 +309,7 @@ function App() {
                 );
                 saveModelToStorage(importedModel);
                 setModel(importedModel);
+                setSaveState("saved");
                 break;
               }
             }
@@ -243,12 +326,16 @@ function App() {
         <TemplatesDialog
           onClose={() => setTemplatesDialogOpen(false)}
           onSelectTemplate={async (fileName) => {
+            if (!confirmDiscardUnsavedChanges(model)) {
+              return;
+            }
             const model_bytes = await get_documentation_model(fileName);
             const locale = loadDefaultLocaleFromStorage();
             const localeShort = getShortLocaleCode(locale);
             const importedModel = Model.from_bytes(model_bytes, localeShort);
             saveModelToStorage(importedModel);
             setModel(importedModel);
+            setSaveState("saved");
             setTemplatesDialogOpen(false);
           }}
         />
