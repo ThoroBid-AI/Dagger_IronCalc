@@ -14,9 +14,7 @@ interface Options {
   onExpandAreaSelectedKeyboard: (
     key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
   ) => void;
-  onExpandAreaSelectedKeyboardToEdge: (
-    key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
-  ) => void;
+  onExpandAreaSelectedKeyboardToEdge: (key: NavigationKey) => void;
   onEditKeyPressStart: (initText: string) => void;
   onCellEditStart: () => void;
   onBold: () => void;
@@ -61,7 +59,6 @@ interface Options {
 // * Shift+Space: select row
 //
 // # Not implemented yet:
-// * Ctrl+Shift+Home/End: select to end
 // * Ctrl+Shift++: (after selecting) insert row/column (also Alt+I, R or C)
 // * Ctrl+-: (after selecting) delete row/column
 
@@ -155,10 +152,10 @@ const useKeyboardNavigation = (
           case "arrowright":
           case "arrowleft":
           case "arrowup":
-          case "arrowdown": {
-            options.onExpandAreaSelectedKeyboardToEdge(
-              key as "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
-            );
+          case "arrowdown":
+          case "home":
+          case "end": {
+            options.onExpandAreaSelectedKeyboardToEdge(key as NavigationKey);
             event.stopPropagation();
             event.preventDefault();
             break;

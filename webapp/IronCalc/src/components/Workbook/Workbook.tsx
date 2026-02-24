@@ -211,9 +211,7 @@ const Workbook = (props: { model: Model; workbookState: WorkbookState }) => {
       model.onExpandSelectedRange(key);
       setRedrawId((id) => id + 1);
     },
-    onExpandAreaSelectedKeyboardToEdge: (
-      key: "ArrowRight" | "ArrowLeft" | "ArrowUp" | "ArrowDown",
-    ): void => {
+    onExpandAreaSelectedKeyboardToEdge: (key: NavigationKey): void => {
       const { row, column } = model.getSelectedView();
       model.onNavigateToEdgeInDirection(key);
       const { row: targetRow, column: targetColumn } = model.getSelectedView();
